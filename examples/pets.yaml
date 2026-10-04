@@ -1,0 +1,61 @@
+# Synthetic PetProfiles: the shape step 1 hands to step 2. Not real patients.
+# Each one is chosen to exercise a different part of the graph.
+
+# Senior large-breed dog: NSAID interaction, liver flag, breed copper predisposition.
+- pet_id: demo-luna
+  species: species:dog
+  breed: breed:labrador_retriever
+  age_years: 11
+  weight_kg: 34
+  ideal_weight_kg: 29   # BCS 7/9: dose on ideal weight
+  conditions: [condition:osteoarthritis, condition:hepatopathy, condition:obesity]
+  medications: [med:nsaid]
+  allergens: []
+  needs:
+    - {need: need:joint_mobility, priority: 1}
+    - {need: need:hepatic_support, priority: 2}
+    - {need: need:weight_lean_mass, priority: 3}
+    - {need: need:cognitive_aging, priority: 3}
+
+# Senior cat with CKD: species toxicity (alpha-lipoic acid), phosphate binder, small-unit dosing.
+- pet_id: demo-miso
+  species: species:cat
+  breed: breed:domestic_shorthair
+  age_years: 14
+  weight_kg: 4.2
+  conditions: [condition:chronic_kidney_disease, condition:hyperphosphatemia, condition:osteoarthritis]
+  medications: [med:ace_inhibitor]
+  allergens: []
+  needs:
+    - {need: need:renal_support, priority: 1}
+    - {need: need:phosphate_management, priority: 1}
+    - {need: need:joint_mobility, priority: 3}
+
+# Small dog with chronic enteropathy, pancreatitis history, beef + chicken allergy, on antibiotics.
+- pet_id: demo-pepper
+  species: species:dog
+  breed: breed:miniature_schnauzer
+  age_years: 5
+  weight_kg: 8
+  conditions: [condition:chronic_enteropathy, condition:pancreatitis_history, condition:hyperlipidemia,
+               condition:adverse_food_reaction]
+  medications: [med:antibiotics_general]
+  allergens: [allergen:beef, allergen:chicken]
+  needs:
+    - {need: need:gi_mucosal_inflammation, priority: 1}
+    - {need: need:gi_microbiome_stool_quality, priority: 1}
+    - {need: need:cobalamin_repletion, priority: 2}
+    - {need: need:skin_coat_barrier, priority: 3}
+
+# Anxious Dalmatian on fluoxetine: serotonergic interactions, urate (purine) screening of products.
+- pet_id: demo-biscuit
+  species: species:dog
+  breed: breed:dalmatian
+  age_years: 6
+  weight_kg: 25
+  conditions: [condition:anxiety_disorder, condition:atopic_dermatitis]
+  medications: [med:serotonergic_drugs, med:oclacitinib]
+  allergens: []
+  needs:
+    - {need: need:anxiety_stress, priority: 1}
+    - {need: need:skin_coat_barrier, priority: 2}

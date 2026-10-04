@@ -1,0 +1,1243 @@
+# Dosing research for the pet supplement knowledge graph (dogs and cats)
+# Compiled 2026-10-03. Every PMID/DOI below was checked against PubMed E-utilities
+# (esummary/efetch) or, for non-indexed items, the publisher PDF/page. Numbers come from
+# the abstract or full text (Europe PMC) unless a field's `status` says otherwise.
+#
+# status vocabulary (one per value or block):
+#   verified          - number read directly in the primary source (abstract/full text/label page)
+#   verified_secondary- number read in a reputable secondary source that cites the primary
+#                       (e.g. Lenox & Bauer 2013 quoting NRC 2006); primary not opened
+#   derived           - arithmetic on verified numbers (e.g. label mg / weight band); method shown
+#   unverified        - commonly quoted value that could not be confirmed; do NOT treat as fact
+#
+# dose_basis vocabulary: mg_per_kg | mg_per_kg_0.75 | per_animal_fixed | per_weight_band
+# Diet-inclusion studies (% of diet, per 1000 kcal) are energy-proportional and map to
+# mg_per_kg_0.75 (dog MER ~95-110 kcal/kg^0.75; cat ~75-100 kcal/kg^0.67, per FEDIAF).
+#
+# NRC 2006 itself could not be opened online (NAP reader blocked). NRC values are therefore
+# verified_secondary at best. FEDIAF 2025 guidelines PDF was downloaded and read directly.
+
+meta:
+  compiled: "2026-10-03"
+  primary_regulatory_sources:
+    nrc_2006: "National Research Council (2006) Nutrient Requirements of Dogs and Cats. National Academies Press. https://nap.nationalacademies.org/catalog/10668 (not opened directly; values via secondary sources)"
+    fediaf_2025: "FEDIAF Nutritional Guidelines for Complete and Complementary Pet Food for Cats and Dogs, publication September 2025. https://europeanpetfood.org/wp-content/uploads/2025/09/FEDIAF-Nutritional-Guidelines_2025-ONLINE.pdf (read directly)"
+    aafco: "AAFCO Dog and Cat Food Nutrient Profiles (Official Publication; not opened directly). Values via Jewell & Panickar 2023."
+  important_caveat_food_vs_supplement: >
+    NRC SULs, FEDIAF maxima and AAFCO maxima are concentrations in a complete diet
+    (per kg DM or per 1000 kcal ME). To compare a supplement dose, convert the animal's
+    daily energy intake (kcal) x limit/1000 kcal, then subtract what the base diet already supplies.
+
+weight_band_vs_mg_per_kg_note: >
+  For most nutraceuticals (glucosamine/chondroitin, SAMe/silybin, cobalamin, L-theanine,
+  alpha-casozepine, UC-II, probiotics, Epakitin) the only dose ever tested clinically was
+  either a fixed per-animal amount or the manufacturer's weight bands. Converting those to
+  mg/kg gives wide, step-shaped ranges (small dogs get much higher mg/kg than large dogs in
+  the same band). Recommendation for the graph: store the manufacturer band table as the
+  practical dose (dose_basis: per_weight_band) and keep a derived mg/kg range only as a
+  cross-product comparison aid. mg/kg (or mg/kg^0.75) is the better primary basis only where
+  dose-finding or consensus data exist in those units: omega-3 EPA+DHA (Bauer; NRC SUL in
+  mg/kg^0.75), SAMe 20 mg/kg (ACVIM consensus), silybin-PC 0.7-6 mg/kg (ACVIM), vitamin E
+  10 IU/kg (ACVIM), zinc 2-3 mg/kg elemental (White 2001), L-carnitine ~50 mg/kg q8h,
+  alpha-casozepine 15 mg/kg (Beata 2007), eggshell membrane 13.5 mg/kg (Ruff 2016),
+  GLM 20-49 mg/kg (Hielm-Bjorkman 2009). Probiotics are genuinely per_animal_fixed
+  (CFU/day), except VSL#3 in Rossi 2014, which was dosed per 10 kg.
+  Bands from Cosequin/Dasuquin and Denamarin work out to similar per-kg doses as
+  the mg/kg consensus values (Denamarin ~ 15-30 mg/kg SAMe; Cosequin loading ~ 33-125 mg/kg
+  glucosamine), but Welactin softgel bands (~28 mg/kg EPA+DHA) sit below the Bauer
+  therapeutic range. Weight bands from brands therefore cannot replace mg/kg for omega-3.
+
+ingredients:
+
+  - id: omega3_epa_dha
+    name: "Omega-3 fatty acids (EPA + DHA, fish oil)"
+    dog:
+      dose_basis: mg_per_kg   # SUL expressed in mg_per_kg_0.75; therapeutic ranges in mg/kg
+      doses:
+        - need: general_therapeutic_range
+          min: 50
+          max: 220
+          unit: "mg EPA+DHA/kg/day"
+          notes: "Lower end most often used for inflammatory, renal and cardiac disease; highest for osteoarthritis."
+          status: verified_secondary
+          refs: [lenox_bauer_2013, bauer_2011, raditic_gaylord_2020]
+        - need: osteoarthritis
+          target: 310
+          unit: "mg EPA+DHA/kg^0.75/day"
+          notes: "Bauer 2011 recommendation as quoted in secondary sources (~ 175 mg/kg for a 20 kg dog). Fish-oil dose-titration in OA dogs showed dose-dependent serum EPA/DHA and modest clinical gains at ~3x the baseline food level (Fritsch 2010). Published OA trials span EPA 48-100 mg/kg + DHA 20-32 mg/kg (Vendramini 2025 review)."
+          status: verified_secondary
+          refs: [bauer_2011, fritsch_2010, vendramini_2025]
+        - need: atopic_dermatitis_skin
+          min: 1.65
+          max: 73
+          unit: "mg EPA+DHA/kg/day (range across published trials: EPA 0.99-43 + DHA 0.66-30 mg/kg)"
+          status: verified_secondary
+          refs: [vendramini_2025]
+        - need: cardiac_disease
+          min: 45
+          max: 95
+          unit: "mg EPA+DHA/kg/day (trials: EPA 27-54.2 + DHA 18-40.6 mg/kg)"
+          status: verified_secondary
+          refs: [vendramini_2025]
+        - need: cardiac_cachexia_anorexia
+          target: 65
+          unit: "mg/kg/day as EPA 40 mg/kg + DHA 25 mg/kg"
+          notes: "Freeman's recommendation (VIN proceedings, seen only as search snippet); the underlying RCT (Freeman 1998) showed fish oil improved cachexia and lowered IL-1."
+          status: verified_secondary
+          refs: [freeman_1998, freeman_vin_proceedings]
+        - need: chronic_kidney_disease
+          min: 50
+          unit: "mg EPA+DHA/kg/day (lower end of Bauer range)"
+          notes: "No CKD-specific mg/kg dose was verified for dogs. Brown 1998 (renal-insufficient dogs) used diet-level fish oil."
+          status: unverified
+          refs: [lenox_bauer_2013, brown_1998]
+        - need: dyslipidemia
+          target: 104
+          unit: "mg EPA+DHA/kg/day (single study: EPA 58.8 + DHA 45.4 mg/kg)"
+          status: verified_secondary
+          refs: [vendramini_2025]
+      sul:
+        value: 370
+        unit: "mg EPA+DHA/kg^0.75/day (= 2,800 mg/1,000 kcal ME); 10 kg dog = 2,080 mg/day"
+        source: "NRC 2006, as quoted in Lenox & Bauer 2013"
+        status: verified_secondary
+      adverse_effects_high_dose:
+        - "Altered platelet function / prolonged bleeding"
+        - "GI effects incl. diarrhoea (no reports of fish oil causing pancreatitis in dogs, cats or humans per Lenox & Bauer)"
+        - "Delayed wound healing (caution peri-operatively)"
+        - "Lipid peroxidation; increased vitamin E requirement"
+        - "Weight gain (calories); altered immune/neutrophil function; effects on glycaemic control/insulin sensitivity"
+        - "Toxin/heavy-metal exposure from poor-quality oils; drug interactions (antiplatelet drugs)"
+      adverse_refs: [lenox_bauer_2013]
+      product_weight_bands:
+        - product: "Welactin Canine softgel (Nutramax)"
+          content: "155 mg EPA + 100 mg DHA per softgel"
+          band: "1 softgel per 20 lb (9.1 kg) BW daily"
+          derived_mg_per_kg: "~28 mg EPA+DHA/kg/day; below the Bauer 50-220 mg/kg therapeutic range"
+          status: verified_secondary   # retailer label reproduction
+          refs: [welactin_label]
+        - product: "Welactin Canine liquid"
+          content: "1,330 mg EPA+DHA per 6 mL scoop"
+          band: "5-9 lb 1/2 scoop every other day; 10-19 lb 1/2 scoop/day; 20-44 lb 1 scoop; 45-79 lb 1.5; 80-114 lb 2; >=115 lb 2.5"
+          derived_mg_per_kg: "20-44 lb (9-20 kg) band = ~66-147 mg/kg/day"
+          status: derived
+          refs: [welactin_label]
+    cat:
+      dose_basis: mg_per_kg
+      doses:
+        - need: chronic_kidney_disease
+          target: 112
+          unit: "mg EPA+DHA/kg/day (derived from renal diet providing ~200 mg/100 kcal)"
+          status: verified_secondary
+          refs: [raditic_gaylord_2020, plantinga_2005]
+        - need: osteoarthritis_djd
+          target: 120
+          unit: "mg EPA+DHA/kg/day (derived from therapeutic diet with 188 mg EPA+DHA/100 kcal)"
+          status: verified_secondary
+          refs: [raditic_gaylord_2020, lascelles_2010]
+      sul:
+        value: null
+        note: "NRC 2006: not enough published data to set an SUL for cats (per Lenox & Bauer 2013)."
+        status: verified_secondary
+      adverse_effects_high_dose: ["As for dogs; toxin/heavy-metal exposure noted more frequently in cats (Lenox & Bauer 2013)"]
+      adverse_refs: [lenox_bauer_2013]
+
+  - id: glucosamine
+    name: "Glucosamine (HCl or sulfate)"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: osteoarthritis_joint_support
+          notes: >
+            No authoritative mg/kg dose exists; review states therapeutic inclusion level for
+            glucosamine in dogs is not established and oral bioavailability is low (12% for
+            GlcN HCl in beagles). The commonly quoted '20-25 mg/kg' could not be traced to a
+            primary source (unverified). Label-derived Cosequin DS loading dose =
+            ~33-125 mg/kg/day (see bands); maintenance is roughly half.
+          derived_min: 33
+          derived_max: 125
+          unit: "mg glucosamine HCl/kg/day (Cosequin DS initial 4-6 wk, derived)"
+          status: derived
+          refs: [bhathal_2017, adebowale_2002, cosequin_ds_label]
+      sul:
+        value: null
+        note: "Not a nutrient; no NRC/AAFCO/FEDIAF limit. No formal NOAEL in dogs found."
+        status: verified
+      adverse_effects_high_dose:
+        - "Hypersensitivity; minor GI effects (flatulence, stool softening) (Plumb 2015 via Bhathal 2017)"
+        - "Accidental mass ingestion of flavoured joint chews reported to ASPCA APCC (Khan 2010 JAVMA letter); clinical details not verified (no abstract)"
+      adverse_refs: [bhathal_2017, khan_2010]
+      product_weight_bands:
+        - product: "Cosequin DS capsules (Nutramax)"
+          content: "glucosamine HCl 500 mg + sodium chondroitin sulfate 400 mg + manganese 2.5 mg per capsule"
+          initial_4_6_weeks: {"<10 lb": "1/2 cap/day", "10-24 lb": "1/2 cap BID", "25-49 lb": "1 cap BID", "50-100 lb": "2 caps AM + 1 PM", ">100 lb": "2 caps BID"}
+          maintenance: "Reduced after 6 wk (e.g. <10 lb 1/2 cap/day); full maintenance table was truncated in the retailer page and is unverified"
+          status: verified_secondary
+          refs: [cosequin_ds_label]
+        - product: "Dasuquin Advanced chewable (Nutramax)"
+          content: "S/M: GlcN HCl 600 mg, MSM 400 mg, CS 250 mg, ASU 45 mg, blend 70 mg (boswellia, curcuma, green tea, ALA), Mn 3 mg. Large: GlcN 900 mg, MSM 800 mg, CS 350 mg, ASU 90 mg, blend 140 mg, Mn 5 mg"
+          bands: {"<10 lb": "0.5 tab initial / 0.5 maint", "10-29 lb": "1 / 0.5", "30-59 lb": "2 / 1", "60-120 lb": "2 / 1 (large tab)"}
+          status: verified
+          refs: [dasuquin_advanced_label]
+    cat:
+      dose_basis: per_weight_band
+      doses:
+        - need: osteoarthritis_djd
+          derived_target: "~31 mg glucosamine HCl/kg/day for a 4 kg cat on 1 capsule"
+          status: derived
+          refs: [dasuquin_cat_label]
+      sul: {value: null, status: verified, note: "none established"}
+      adverse_effects_high_dose: ["GI upset (extrapolated from dogs; no feline safety study verified)"]
+      product_weight_bands:
+        - product: "Dasuquin for Cats sprinkle capsules"
+          content: "GlcN HCl 125 mg, low-MW sodium chondroitin sulfate 100 mg, ASU powder 25 mg, Boswellia extract 11 mg, green tea extract 9 mg per capsule"
+          bands: {"<10 lb": "1 capsule/day for 4-6 wk", ">=10 lb": "2 capsules/day for 4-6 wk", "maintenance": "halve the number"}
+          status: verified_secondary
+          refs: [dasuquin_cat_label]
+
+  - id: chondroitin_sulfate
+    name: "Chondroitin sulfate"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: osteoarthritis_joint_support
+          min: 15
+          max: 30
+          unit: "mg/kg/day (adjunctive; Plumb 2015 via Bhathal 2017)"
+          status: verified_secondary
+          refs: [bhathal_2017]
+        - need: osteoarthritis_label_loading
+          derived_min: 26
+          derived_max: 100
+          unit: "mg/kg/day from Cosequin DS initial bands (400 mg/capsule)"
+          status: derived
+          refs: [cosequin_ds_label]
+      notes: "Oral bioavailability ~5% in beagles (Adebowale 2002). Usually combined with glucosamine; McCarthy 2007 RCT found Glu/CS effective by day 70 but slower than carprofen (dose not in abstract)."
+      sul: {value: null, status: verified, note: "none established"}
+      adverse_effects_high_dose: ["Minor GI effects; hypersensitivity (Plumb via Bhathal 2017)"]
+      adverse_refs: [bhathal_2017]
+      refs: [adebowale_2002, mccarthy_2007]
+    cat:
+      dose_basis: per_weight_band
+      doses:
+        - need: osteoarthritis_djd
+          derived_target: "~25 mg/kg/day for a 4 kg cat on 1 Dasuquin-for-Cats capsule (100 mg)"
+          status: derived
+          refs: [dasuquin_cat_label]
+      sul: {value: null, status: verified}
+      adverse_effects_high_dose: ["unverified for cats"]
+
+  - id: green_lipped_mussel
+    name: "Green-lipped mussel (Perna canaliculus) powder/extract"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: osteoarthritis
+          min: 20
+          max: 49
+          unit: "mg/kg/day GLM powder (loading: 4 caps/day <=40 kg, 6 caps/day >40 kg for 10 d), then half (~10-25 mg/kg)"
+          notes: "GLM less effective than carprofen but better than placebo; no side effects detected. Earlier trial using 25% of this dose (Dobenecker) found no effect."
+          status: verified
+          refs: [hielm_bjorkman_2009]
+      sul: {value: null, status: verified, note: "none established; rat lipid fraction non-gastrotoxic at 300 mg/kg (cited in Hielm-Bjorkman)"}
+      adverse_effects_high_dose: ["None detected in RCT; shellfish allergy is a theoretical contraindication (unverified)"]
+      refs: [bierer_2002, pollard_2006, hielm_bjorkman_2009]
+    cat:
+      dose_basis: unverified
+      doses:
+        - need: osteoarthritis
+          status: unverified
+          notes: "Only combination products / GLM-enriched diet studied (Corbee 2022; Lascelles 2010 diet). No standalone feline dose verified."
+          refs: [corbee_2022, lascelles_2010]
+      sul: {value: null}
+
+  - id: undenatured_collagen_type_ii
+    name: "Undenatured type II collagen (UC-II)"
+    dog:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: osteoarthritis_mobility
+          target: 40
+          unit: "mg UC-II product/dog/day (= 10 mg active collagen; >=3% undenatured type II collagen) regardless of size"
+          notes: "Deparle 2005: 1 vs 10 mg/day for 90 d; 10 mg gave greater improvement. Commercial products provide 40 mg/day. Stabile 2019: UC-II 1 tablet/day comparable to robenacoxib at 30 d."
+          status: verified
+          refs: [deparle_2005, d_altilio_2007, varney_2022, stabile_2019, zapata_2023]
+      sul: {value: null, status: verified, note: "No adverse effects or serum chemistry changes at 1 or 10 mg/day"}
+      adverse_effects_high_dose: ["None reported in canine trials"]
+      adverse_refs: [deparle_2005, d_altilio_2007]
+    cat:
+      dose_basis: unverified
+      doses: [{need: osteoarthritis, status: unverified, notes: "No feline clinical studies found."}]
+      sul: {value: null}
+
+  - id: msm
+    name: "Methylsulfonylmethane (MSM)"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: joint_support
+          min: 50
+          max: 100
+          unit: "mg/kg/day (blog/commercial claim only)"
+          status: unverified
+          notes: "No peer-reviewed canine dose-finding or efficacy study found. Practical source = product bands, e.g. Dasuquin Advanced 400 mg (S/M) or 800 mg (large) MSM per tablet."
+          refs: [dasuquin_advanced_label]
+      sul:
+        value: 1500
+        unit: "mg/kg/day for 90 days in rats (no adverse effects); acute 2 g/kg no adverse effects"
+        source: "Horvath 2002 (rat study; not canine)"
+        status: verified
+      adverse_effects_high_dose: ["None characterised in dogs; GI upset is plausible (unverified)"]
+      refs: [horvath_2002]
+    cat:
+      dose_basis: unverified
+      doses: [{need: joint_support, status: unverified}]
+      sul: {value: null}
+
+  - id: avocado_soybean_unsaponifiables
+    name: "Avocado/soybean unsaponifiables (ASU)"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: osteoarthritis_experimental
+          target: 10
+          unit: "mg/kg/day for 8 weeks (experimental ACL-transection OA model; reduced lesion size)"
+          status: verified
+          refs: [boileau_2009]
+        - need: osteoarthritis_commercial
+          notes: "Dasuquin Advanced: 45 mg (S/M tab) or 90 mg (large tab) ASU; e.g. 2 S/M tabs for 30-59 lb dog = ~3-7 mg/kg/day (derived)"
+          status: derived
+          refs: [dasuquin_advanced_label]
+      sul: {value: null, status: verified, note: "none established"}
+      adverse_effects_high_dose: ["Not characterised in dogs (unverified)"]
+    cat:
+      dose_basis: per_weight_band
+      doses:
+        - need: osteoarthritis
+          notes: "Dasuquin for Cats 25 mg ASU per capsule (1-2 capsules/day by weight). No feline efficacy/safety study verified."
+          status: verified_secondary
+          refs: [dasuquin_cat_label]
+      sul: {value: null}
+
+  - id: curcumin
+    name: "Curcumin / curcuminoids (Curcuma longa)"
+    dog:
+      dose_basis: mg_per_kg_0.75
+      doses:
+        - need: osteoarthritis
+          target: 0.43
+          unit: "g curcuma extract (18-22% curcuminoids) per 1,000 kcal of diet, i.e. ~41 mg extract/kg^0.75/day (~7-9 mg curcuminoids/kg^0.75) at MER 95 kcal/kg^0.75; combined with hydrolysed collagen + green tea"
+          status: derived
+          refs: [comblain_2017]
+      bioavailability_caveat: >
+        Very poor oral bioavailability. In beagles, unformulated curcumin at 150 mg/kg reached
+        Cmax only 4.22 ng/mL at 40 min, then fell rapidly; a solid dispersion raised Cmax
+        ~15-fold, and a phospholipid complex gave 196% relative bioavailability (Song 2022). Human
+        review: Anand 2007. mg of 'turmeric' or 'curcumin' is not comparable across formulations;
+        record the formulation (phytosome, solid dispersion, piperine, nanoparticle) as part of the dose.
+      sul: {value: null, status: verified, note: "none established"}
+      adverse_effects_high_dose: ["GI upset; theoretical antiplatelet/drug interactions (unverified for dogs)"]
+      refs: [song_2022, anand_2007, comblain_2016]
+    cat:
+      dose_basis: unverified
+      doses: [{need: osteoarthritis, status: unverified, notes: "Only within combination product (Corbee 2022). Cats have limited glucuronidation capacity; curcumin is extensively glucuronidated, so caution (theoretical, unverified)."}]
+      sul: {value: null}
+      refs: [corbee_2022]
+
+  - id: boswellia_serrata
+    name: "Boswellia serrata resin extract"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: osteoarthritis_inflammatory_joint_spinal
+          target: 40
+          unit: "mg/kg/day (400 mg/10 kg once daily with food, 6 weeks; extract BSB108, >=50% triterpenic acids)"
+          notes: "Open study; 71% overall efficacy after 2 weeks. Only study evaluating Boswellia alone in dogs (Zapata 2023)."
+          status: verified
+          refs: [reichling_2004, zapata_2023]
+      quality_caveat: "Canine products vary enormously: AKBA 0.1-155.7 mg/g in tested products; measured AKBA 114-224% of label (Miscioscia 2019). Dose should be stated as AKBA/KBA content where possible."
+      sul: {value: null, status: verified}
+      adverse_effects_high_dose: ["Occasional GI signs reported in open study (details not verified)"]
+      refs: [miscioscia_2019]
+    cat:
+      dose_basis: per_weight_band
+      doses: [{need: osteoarthritis, status: verified_secondary, notes: "Only as 11 mg/capsule in Dasuquin for Cats; no feline study."}]
+      sul: {value: null}
+      refs: [dasuquin_cat_label]
+
+  - id: hyaluronic_acid
+    name: "Hyaluronic acid (oral)"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: post_TTA_stifle_osteoarthritis
+          bands: {"<=26 kg": "27 mg HA once daily", ">26 kg": "54 mg HA once daily"}
+          derived_mg_per_kg: "~1-2+ mg/kg/day (e.g. 1.0 mg/kg at 26 kg; 1.35 mg/kg at 40 kg)"
+          notes: "Rooster-comb HMW HA (Mobilee), 10 weeks; improved synovial HA and PON-1 biomarkers."
+          status: verified
+          refs: [serra_aguado_2021]
+      sul: {value: null, status: verified}
+      adverse_effects_high_dose: ["None reported (unverified)"]
+    cat:
+      dose_basis: unverified
+      doses: [{need: joint_or_skin, status: unverified}]
+      sul: {value: null}
+
+  - id: eggshell_membrane
+    name: "Natural eggshell membrane (NEM)"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: joint_function_osteoarthritis
+          target: 13.5
+          unit: "mg/kg/day (6 mg/lb) once daily, 6 weeks"
+          notes: "No serious adverse events; manufacturer-sponsored. Muller 2019 (pilot, combination product) and Ragetly 2025 used combination supplements."
+          status: verified
+          refs: [ruff_2016, muller_2019, ragetly_2025]
+      sul: {value: null, status: verified}
+      adverse_effects_high_dose: ["None serious reported at 13.5 mg/kg; egg allergy theoretical"]
+    cat:
+      dose_basis: unverified
+      doses: [{need: skin_coat, status: unverified, notes: "Ragdoll cat study with sodium hyaluronate + eggshell membrane (Chen 2026); dose not extracted."}]
+      sul: {value: null}
+
+  - id: same
+    name: "S-adenosylmethionine (SAMe)"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: chronic_hepatitis_hepatoprotection
+          target: 20
+          unit: "mg/kg PO q24h on an empty stomach (butanedisulfonate or tosylate salts); phytate salt 8-10 mg/kg q24h (text: 5-10 mg/kg)"
+          status: verified
+          refs: [acvim_chronic_hepatitis_2019]
+        - need: glucocorticoid_vacuolar_hepatopathy
+          target: 20
+          unit: "mg/kg/day divided BID (with prednisolone 2.2 mg/kg)"
+          status: verified
+          refs: [center_2005_dogs]
+        - need: age_related_cognitive_decline
+          target: 18
+          unit: "mg/kg/day SAMe tosylate, 8 weeks"
+          status: verified
+          refs: [reme_2008]
+      sul: {value: null, status: verified, note: "none established"}
+      adverse_effects_high_dose: ["Rare nausea (ACVIM table)"]
+      adverse_refs: [acvim_chronic_hepatitis_2019]
+      product_weight_bands:
+        - product: "Denamarin tablets (Nutramax; SAMe + silybin-PC)"
+          strengths: {"small (cats & dogs <=12 lb)": "SAMe 90 mg + SPC 31 mg (9 mg silybin A+B)", "medium (13-34 lb)": "SAMe 225 mg + SPC 82 mg (24 mg silybin)", "large (35+ lb)": "SAMe 425 mg + SPC 120 mg (35 mg silybin)"}
+          bands: {"<=12 lb": "1 small", "13-34 lb": "1 medium", "35-65 lb": "1 large", "66-120 lb": "2 large", ">120 lb": "3 large"}
+          derived_mg_per_kg: "SAMe ~13-30 mg/kg/day across bands (e.g. 35-65 lb = 14-27 mg/kg) - consistent with the 20 mg/kg consensus"
+          administration: "Empty stomach, >=1 h before a meal"
+          status: verified_secondary
+          refs: [denamarin_label]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: hepatoprotection
+          target: 90
+          unit: "mg SAMe/cat/day (Denamarin small tablet; ~18-30 mg/kg for 3-5 kg cats, derived)"
+          status: verified_secondary
+          refs: [denamarin_label]
+        - need: safety_reference
+          target: 48
+          unit: "mg/kg PO q24h for 113 days in 15 healthy cats (enteric-coated butanedisulfonate); increased hepatic GSH, no adverse findings reported in abstract"
+          status: verified
+          refs: [center_2005_cats]
+      sul: {value: null, status: verified}
+      adverse_effects_high_dose: ["None reported at 48 mg/kg/day x 113 d (abstract); rare nausea"]
+
+  - id: silybin
+    name: "Silybin (silibinin) - preferably silybin-phosphatidylcholine complex (SPC)"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: chronic_hepatitis_hepatoprotection
+          min: 0.7
+          max: 6
+          unit: "mg silybin/kg/day PO once daily as PC complex (dose 'not well defined')"
+          status: verified
+          refs: [acvim_chronic_hepatitis_2019]
+        - need: chronic_hepatitis_native_extract
+          min: 4
+          max: 8
+          unit: "mg/kg/day silymarin native extract divided 2-3 times daily ('largely undefined')"
+          status: verified
+          refs: [acvim_chronic_hepatitis_2019]
+        - need: CCNU_hepatotoxicity_prevention
+          notes: "Denamarin (SAMe+silybin) reduced CCNU-associated liver enzyme increases (Skorupski 2011); doses per label bands."
+          status: verified
+          refs: [skorupski_2011, denamarin_label]
+      bioavailability_note: "SPC gave Cmax 1,310 vs 472 ng/mL and AUC 11,200 vs 3,720 ng.h/mL for an equivalent silybin dose of standard silymarin extract in beagles (Filburn 2007)."
+      sul: {value: null, status: verified}
+      adverse_effects_high_dose: ["Rare; inhibits CYP450 enzymes and P-glycoprotein (drug interactions)"]
+      adverse_refs: [acvim_chronic_hepatitis_2019]
+      refs: [filburn_2007]
+    cat:
+      dose_basis: mg_per_kg
+      doses:
+        - need: antioxidant_research
+          target: 10
+          unit: "mg SPC (complex)/kg/day PO for 5 days (increased leukocyte GSH); note: mg of complex, not of silybin"
+          status: verified
+          refs: [webb_2009]
+        - need: hepatoprotection_commercial
+          target: 9
+          unit: "mg silybin A+B per cat/day (Denamarin small tablet)"
+          status: verified_secondary
+          refs: [denamarin_label]
+      sul: {value: null}
+      adverse_effects_high_dose: ["unverified for cats"]
+
+  - id: vitamin_e
+    name: "Vitamin E (alpha-tocopherol)"
+    dog:
+      dose_basis: mg_per_kg   # IU/kg
+      doses:
+        - need: chronic_hepatitis_antioxidant
+          target: 10
+          unit: "IU/kg PO q24h with food, not to exceed 400 IU per dog"
+          status: verified
+          refs: [acvim_chronic_hepatitis_2019]
+        - need: atopic_dermatitis
+          target: 8.1
+          unit: "IU/kg PO once daily (8 weeks), improved CADESI vs placebo"
+          status: verified
+          refs: [plevnik_kapun_2014]
+        - need: with_fish_oil
+          notes: "Higher vitamin E is required with high PUFA/fish-oil intake (FEDIAF; Hall 1996/2003). No fixed IU-per-g-fish-oil figure given for dogs."
+          status: verified
+          refs: [fediaf_2025]
+      sul:
+        value: null
+        note: "FEDIAF 2025 lists no maximum for vitamin E (dogs or cats). NRC 2006 SUL: none set to my knowledge (could not open NRC; unverified). Wide safety margin, no published toxicity reports in dogs (secondary)."
+        status: verified_secondary
+      adverse_effects_high_dose:
+        - "Overdosage can impair vitamin K activity (coagulopathy risk) and may increase oxidative injury via accumulation of tocopheroxyl radical (ACVIM)"
+      adverse_refs: [acvim_chronic_hepatitis_2019]
+    cat:
+      dose_basis: unverified
+      doses:
+        - need: with_fish_oil_in_diet
+          notes: "Add 5-10 IU vitamin E above minimum per gram of fish oil added per kg of cat diet (FEDIAF citing Hendriks 2002)."
+          status: verified
+          refs: [fediaf_2025]
+        - need: commercial_reference
+          notes: "Purina Calming Care feline sachet contains 100 IU vitamin E per 1 g sachet (daily)."
+          status: verified
+          refs: [calming_care_label]
+      sul: {value: null, note: "FEDIAF: no maximum listed", status: verified}
+      adverse_effects_high_dose: ["High dietary vitamin E reported to prolong bleeding times in cats (secondary source WikiVet; unverified)"]
+
+  - id: enterococcus_faecium_sf68
+    name: "Enterococcus faecium SF68 (NCIMB 10415)"
+    dog:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: acute_or_stress_diarrhoea_gi_support
+          target: "1 sachet (1 g)/day"
+          cfu: "US label: >=1 x 10^8 CFU/g (=1e8 CFU/day); UK label: 5 x 10^8 CFU/g"
+          notes: "Label CFU differs by market. Shelter study: no significant effect in dogs (few dogs with diarrhoea)."
+          status: verified_secondary
+          refs: [fortiflora_label, bybee_2011]
+      sul: {value: null, status: verified}
+      adverse_effects_high_dose: ["None reported in trials; theoretical concern for Enterococcus in immunocompromised animals (unverified)"]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: diarrhoea_prevention_shelter
+          target: "1 sachet (1 g)/day"
+          cfu: "US feline label >=1 x 10^8 CFU/g"
+          notes: "Shelter cats: diarrhoea >=2 d in 7.4% probiotic vs 20.7% placebo (P=.0297)."
+          status: verified
+          refs: [bybee_2011, fortiflora_label]
+        - need: antibiotic_associated_gi_signs
+          status: verified
+          refs: [torres_henderson_2017]
+      sul: {value: null}
+      adverse_effects_high_dose: ["None reported"]
+
+  - id: bifidobacterium_longum_bl999
+    name: "Bifidobacterium longum BL999 (NCC3001)"
+    dog:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: anxiety_calm_behaviour
+          target: "1 sachet/day"
+          cfu: "1 x 10^9 CFU per packet"
+          notes: "Label says results may take 6 weeks. Peer-reviewed canine efficacy data not verified (Purina conference data)."
+          status: verified_secondary
+          refs: [calming_care_label]
+      sul: {value: null}
+      adverse_effects_high_dose: ["None reported"]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: anxiety_calm_behaviour
+          target: "1 sachet (1 g)/day"
+          cfu: "1 x 10^9 CFU per sachet (+100 IU vitamin E)"
+          status: verified
+          refs: [calming_care_label]
+      sul: {value: null}
+      notes: "Use the feline product for cats (species-specific formulations)."
+
+  - id: multistrain_probiotic
+    name: "Multi-strain probiotics (e.g. VSL#3/Visbiome, Proviable-DC)"
+    dog:
+      dose_basis: per_animal_fixed  # but VSL#3 trial dosed per 10 kg
+      doses:
+        - need: idiopathic_IBD
+          min: 112000000000
+          max: 225000000000
+          unit: "CFU per 10 kg BW per day (VSL#3, 60 days) = 1.1-2.25 x 10^10 CFU/kg/day"
+          status: verified
+          refs: [rossi_2014]
+        - need: gi_support_commercial
+          target: 5000000000
+          unit: "CFU/day (Proviable-DC, 1 capsule daily for dogs of all weights; 7 strains + 2 prebiotics)"
+          status: verified_secondary
+          refs: [proviable_label]
+      sul: {value: null}
+      adverse_effects_high_dose: ["None reported; transient flatulence/soft stool plausible (unverified)"]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: chronic_diarrhoea
+          target: 5000000000
+          unit: "CFU/day (Proviable-DC 1 capsule daily x 21 days; open-label synbiotic trial)"
+          status: verified
+          refs: [hart_2012, proviable_label]
+      sul: {value: null}
+
+  - id: psyllium
+    name: "Psyllium husk (ispaghula)"
+    dog:
+      dose_basis: per_animal_fixed  # trials used tablespoons/day; no validated per-kg basis
+      doses:
+        - need: chronic_idiopathic_large_bowel_diarrhoea
+          target: "2 tablespoons/day Metamucil (median; median BW 13.9 kg)"
+          status: verified
+          refs: [leib_2000]
+        - need: chronic_idiopathic_large_bowel_diarrhoea_working_dogs
+          target: "4 tablespoons/day psyllium husk for 1 month (police working dogs)"
+          status: verified
+          refs: [alves_2021]
+        - need: rule_of_thumb
+          notes: "'~1 tsp per 5 kg' could not be verified in any primary or consensus source."
+          status: unverified
+      sul: {value: null}
+      adverse_effects_high_dose: ["Softer/bulkier stools, flatulence; risk of impaction if water intake is inadequate (general; unverified)"]
+    cat:
+      dose_basis: mg_per_kg_0.75   # diet inclusion
+      doses:
+        - need: constipation
+          notes: "Psyllium-enriched dry diets: 6% psyllium diet increased defecation frequency, faecal moisture and score in healthy cats (Keller 2024); psyllium-enriched diet improved constipation (Freiche 2011; Rochon 2026 6-month controlled trial). No verified per-cat teaspoon dose."
+          status: verified
+          refs: [keller_2024, freiche_2011, rochon_2026]
+      sul: {value: null}
+      adverse_effects_high_dose: ["Softer faeces (higher faecal score) at 6% diet inclusion"]
+
+  - id: inulin_fos
+    name: "Inulin / fructo-oligosaccharides (FOS)"
+    dog:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: microbiota_modulation
+          min: 1
+          max: 3
+          unit: "g scFOS/day (hounds); 1.9 +/- 0.6 g/day oligofructose (beagles)"
+          status: verified
+          refs: [flickinger_2003]
+      sul: {value: null}
+      adverse_effects_high_dose: ["Oligofructose decreased total-tract nutrient digestibility in one experiment; flatulence/loose stools at high doses (general; unverified)"]
+    cat:
+      dose_basis: mg_per_kg_0.75   # % of diet
+      doses:
+        - need: microbiota_modulation
+          target: "0.75% of diet (FOS), 12 weeks"
+          status: verified
+          refs: [sparkes_1998]
+      sul: {value: null}
+
+  - id: cobalamin
+    name: "Cobalamin (cyanocobalamin, oral)"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: hypocobalaminaemia_chronic_enteropathy
+          bands: {"1-10 kg": "0.25 mg/day", "10-20 kg": "0.5 mg/day", ">20 kg": "1 mg/day"}
+          notes: "1 mg cyanocobalamin tablets once daily (1/4, 1/2, 1 tablet). All 51 dogs normalised (retrospective). RCT: oral 0.25-1.0 mg/day by BW was as effective as parenteral at 28 and 90 d."
+          status: verified_secondary   # band cut-offs from a Veterinary Evidence summary of Toresson 2016; the 0.25-1.0 mg/day range is verified in the Toresson 2018 abstract
+          refs: [toresson_2016, toresson_2018]
+        - need: hypocobalaminaemia_review_protocol
+          target: 50
+          unit: "ug/kg PO q24h (250-1,000 ug/dog by size) for 12 weeks"
+          status: verified_secondary
+          refs: [kather_2020]
+        - need: hereditary_malabsorption_IGS_beagles
+          target: 1
+          unit: "mg cyanocobalamin PO daily (maintained normal MMA)"
+          status: verified
+          refs: [kook_2019]
+        - need: anchor_check
+          notes: "'Toll 2010' and 'Kook 2012' oral-cobalamin papers could not be found in PubMed. The protocol in the brief matches Toresson 2016/2018 (dogs) and Kook & Hersberger 2019 (IGS Beagles)."
+          status: unverified
+      sul:
+        value: null
+        note: "Consensus that over-supplementation/toxicity does not occur, though data in companion animals are lacking (Kather 2020)."
+        status: verified_secondary
+      adverse_effects_high_dose: ["None documented in dogs/cats; human data link chronic high-dose B12 to lung cancer risk in smokers (cited in Kather 2020)"]
+      adverse_refs: [kather_2020]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: hypocobalaminaemia_gi_disease
+          target: 0.25
+          unit: "mg cyanocobalamin PO once daily per cat"
+          notes: "25 cats; median serum B12 rose from 128 to 2,701 pmol/L. Authors call for prospective trials before routine use."
+          status: verified
+          refs: [toresson_2017]
+      sul: {value: null, status: verified_secondary}
+
+  - id: l_theanine
+    name: "L-theanine (Anxitane)"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: stress_fear_anxiety
+          bands_uk: {"<10 kg": "1/2 Anxitane S (25 mg) BID", "11-24 kg": "1/2 Anxitane ML (50 mg) BID", ">=25 kg": "1 Anxitane ML (100 mg) BID"}
+          bands_us: {"<22 lb": "1/2 x 50 mg BID", "22.1-55 lb": "1/2 x 100 mg BID", ">=55.1 lb": "1 x 100 mg BID"}
+          derived_mg_per_kg: "~4-10 mg/kg/day overall (band-dependent)"
+          status: verified   # UK Virbac page read directly; US bands verified_secondary
+          refs: [anxitane_label_uk, anxitane_label_us]
+        - need: fear_of_humans_lab_model
+          notes: "Araujo 2010 (J Vet Behav 5:268-275) - dose not verified; not PubMed-indexed."
+          status: unverified
+          refs: [araujo_2010]
+      sul: {value: null}
+      adverse_effects_high_dose: ["None reported (unverified); label: no drowsiness"]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: stress_related_emotional_signs
+          target: 25
+          unit: "mg PO BID (1/2 Anxitane S tablet), 30 days (open-label)"
+          status: verified
+          refs: [dramard_2018, anxitane_label_us]
+      sul: {value: null}
+
+  - id: alpha_casozepine
+    name: "Alpha-casozepine (alpha-s1 casein tryptic hydrolysate; Zylkene)"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: anxiety_disorders
+          target: 15
+          unit: "mg/kg PO q24h (56-day trial; equivalent efficacy to selegiline 0.5 mg/kg)"
+          status: verified
+          refs: [beata_2007_dogs]
+      sul: {value: null, note: "GRAS milk-protein hydrolysate; no adverse effects attributable in trial", status: verified}
+      adverse_effects_high_dose: ["None reported; milk-protein allergy theoretical"]
+      product_weight_bands:
+        - product: "Zylkene capsules (Vetoquinol)"
+          bands: {"75 mg": "<=10 lb 1 cap/day; 11-22 lb 2 caps/day (small dogs & cats)", "225 mg": "23-32 lb 1 cap; 33-65 lb 2 caps", "450 mg": "33-65 lb 1 cap; 66-132 lb 2 caps (large dogs)"}
+          derived_mg_per_kg: "~15-35 mg/kg/day (band step-dependent)"
+          status: verified_secondary
+          refs: [zylkene_label]
+    cat:
+      dose_basis: mg_per_kg
+      doses:
+        - need: anxiety_disorders
+          target: 15
+          unit: "mg/kg PO q24h (56-day placebo-controlled trial, 34 cats)"
+          status: verified_secondary
+          refs: [beata_2007_cats, makawey_2020]
+        - need: veterinary_visit_stress
+          min: 15
+          max: 45
+          unit: "mg/kg q24h (15 mg/kg x 6 d or 45 mg/kg x 3 d before visit); no adverse effects in 60 cats"
+          status: verified
+          refs: [makawey_2020]
+      sul: {value: null}
+      adverse_effects_high_dose: ["None reported at 45 mg/kg"]
+
+  - id: melatonin
+    name: "Melatonin"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: sleep_anxiety_general
+          bands: {"<15 kg": "3 mg PO q12h", ">=15 kg": "6 mg PO q12h"}
+          notes: "28-day RCT in healthy dogs: no effect on platelet parameters."
+          status: verified
+          refs: [chen_2019]
+        - need: alopecia_x_hair_cycle_arrest
+          min: 3
+          max: 6
+          unit: "mg/dog PO q12h initially; increased per response"
+          status: verified
+          refs: [frank_2004]
+        - need: alopecia_x_dose_response
+          min: 0.1
+          max: 0.5
+          unit: "mg/kg PO BID for 45 d (intact male Pomeranians)"
+          status: verified
+          refs: [abdous_2025]
+        - need: preanaesthetic_calming
+          notes: "Single oral dose reported in abstract as '5 mg kg-1' (reduced propofol in trustful dogs)."
+          status: verified
+          refs: [niggemann_2019]
+      sul: {value: null}
+      adverse_effects_high_dose:
+        - "Sedation (unverified)"
+        - "Reproductive hormone effects: decreased testosterone:oestradiol ratio in intact males (Abdous 2025)"
+        - "Human-label products may contain xylitol, which is toxic to dogs (FDA)"
+      adverse_refs: [abdous_2025, fda_xylitol]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: sleep_behaviour
+          min: 1.5
+          max: 6
+          unit: "mg/cat at bedtime (clinical-experience figure from secondary consumer/vet sites)"
+          status: unverified
+      sul: {value: null}
+
+  - id: cranberry_pac
+    name: "Cranberry extract (proanthocyanidins, PAC)"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: bacteriuria_prevention_post_IVDH
+          bands: {"<10 lb": "4 mg PAC", "10-19 lb": "8 mg", "20-39 lb": "16 mg", "40-59 lb": "24 mg", "60-79 lb": "32 mg"}
+          derived_mg_per_kg: "~0.9-1.8 mg PAC/kg/day"
+          notes: "RCT showed no benefit (low power); authors suggest other doses be investigated."
+          status: verified
+          refs: [olby_2017]
+        - need: recurrent_UTI_prevention
+          notes: "Cranberry extract for 6 months prevented UTI in 6 dogs vs antimicrobial; dose not in abstract (unverified)."
+          status: verified
+          refs: [chou_2016]
+        - need: evidence_summary
+          notes: "2026 systematic review of cranberry for prevention/treatment of infectious urinary disease in dogs and cats."
+          refs: [weese_2026]
+      sul: {value: null}
+      adverse_effects_high_dose: ["GI upset; theoretical oxalate load (human data; unverified)"]
+    cat:
+      dose_basis: unverified
+      doses: [{need: feline_idiopathic_cystitis_or_UTI, status: unverified, notes: "Combination supplement (Colombino 2022); E. coli adherence study (Carvajal-Campos 2024). Doses not extracted."}]
+      refs: [colombino_2022, carvajal_campos_2024]
+      sul: {value: null}
+
+  - id: chitosan_calcium_carbonate
+    name: "Chitosan + calcium carbonate phosphate binder (Epakitin/Ipakitine)"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: ckd_hyperphosphataemia
+          target: "1 g product per 5 kg BW PO BID with meals (= 0.4 g/kg/day)"
+          status: verified
+          refs: [epakitin_label_vetoquinol]
+      composition_note: "Composition differs by market/version: US retailer listing shows chitosan 200 mg + calcium carbonate 250-330 mg per 1 g (inconsistent within page); older EU Ipakitine formula reported as 8% chitosan / 10% CaCO3 (unverified)."
+      sul: {value: null}
+      adverse_effects_high_dose: ["Hypercalcaemia risk from calcium carbonate (monitor Ca/P); constipation (general; unverified)"]
+    cat:
+      dose_basis: mg_per_kg
+      doses:
+        - need: ckd_hyperphosphataemia
+          target: "1 g per 5 kg BW BID (same label)"
+          status: verified
+          refs: [epakitin_label_vetoquinol, wagner_2004, biasibetti_2018]
+      sul: {value: null}
+
+  - id: mct_oil
+    name: "Medium-chain triglycerides (MCT oil)"
+    dog:
+      dose_basis: mg_per_kg_0.75   # % of metabolisable energy
+      doses:
+        - need: idiopathic_epilepsy_add_on
+          target: "9% of metabolisable energy as MCT supplement (3 months)"
+          status: verified
+          refs: [berk_2020]
+        - need: idiopathic_epilepsy_diet
+          notes: "Ketogenic MCT diet reduced seizure frequency (Law 2015); inclusion level not extracted."
+          status: verified
+          refs: [law_2015]
+        - need: cognition_aged_dogs
+          target: "Diet supplemented with 5.5% MCT"
+          status: verified
+          refs: [pan_2010]
+      sul: {value: null}
+      adverse_effects_high_dose: ["GI upset (diarrhoea/vomiting), weight gain from calories (general; unverified)"]
+    cat:
+      dose_basis: mg_per_kg_0.75
+      doses:
+        - need: chronic_kidney_disease
+          target: "8% C8 MCT (trioctanoin) as-fed in a renal-type food with fish oil, 8 weeks"
+          status: verified
+          refs: [gordon_2026]
+      sul: {value: null}
+      adverse_effects_high_dose: ["Palatability issues in cats (unverified)"]
+
+  - id: l_carnitine
+    name: "L-carnitine"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: dilated_cardiomyopathy
+          target: 50
+          unit: "mg/kg PO q8h with food (~150 mg/kg/day)"
+          notes: "UC Davis Stern lab recommendation (2018). The '50-100 mg/kg TID' upper end in the brief was not verified. MUST trial (Kittleson 1997) showed taurine+carnitine response in American Cocker Spaniels; doses not in abstract."
+          status: verified
+          refs: [stern_lab_2018, kittleson_1997]
+      sul: {value: null}
+      adverse_effects_high_dose: ["GI upset/diarrhoea (unverified)"]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: hepatic_lipidosis_obesity
+          notes: "Experimental: diet with 1,000 mg/kg L-carnitine reduced ketosis in fasting obese cats (Blanchard 2002). The clinical figure 250-500 mg/cat/day is commonly quoted but unverified."
+          status: verified
+          refs: [blanchard_2002]
+      sul: {value: null}
+
+  - id: taurine
+    name: "Taurine"
+    dog:
+      dose_basis: per_weight_band
+      doses:
+        - need: dilated_cardiomyopathy_taurine_deficiency
+          bands: {"<50 lb": "500 mg PO q12h", ">50 lb": "1,000 mg PO q12h"}
+          notes: "Recommended only with documented DCM and/or significant deficiency; recheck levels after 3 months."
+          status: verified
+          refs: [stern_lab_2018, kaplan_2018, kittleson_1997]
+      sul: {value: null, note: "FEDIAF lists no maximum", status: verified}
+      adverse_effects_high_dose: ["Very low toxicity; GI upset (unverified)"]
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: dilated_cardiomyopathy
+          min: 250
+          max: 500
+          unit: "mg/cat PO q12h"
+          notes: "Pion 1992 gave 500 or 1,000 mg/day; 59% marked improvement. '250 mg q12h' from a 5-Minute Veterinary Consult excerpt (secondary)."
+          status: verified_secondary
+          refs: [pion_1992, pion_1987]
+      sul: {value: null, status: verified}
+      notes: "FEDIAF cat minimum: 0.10 g/100 g DM (dry) and 0.20 g/100 g DM (canned) for adults."
+
+  - id: coenzyme_q10
+    name: "Coenzyme Q10 (ubiquinone)"
+    dog:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: myxomatous_mitral_valve_disease_CKCS
+          target: 100
+          unit: "mg ubiquinone PO q12h (200 mg/day) for 3 weeks; 13/19 dogs reached plasma Q10 >=2.0 ug/mL"
+          status: verified
+          refs: [christiansen_2020]
+        - need: product_quality
+          notes: "Few US combination cardiac supplements reach commonly recommended doses of their ingredients (Bousquet 2025)."
+          refs: [bousquet_2025]
+      sul: {value: null}
+      adverse_effects_high_dose: ["None characterised (unverified)"]
+    cat:
+      dose_basis: unverified
+      doses: [{need: cardiac, status: unverified}]
+      sul: {value: null}
+
+  - id: zinc
+    name: "Zinc (elemental; as sulfate, gluconate, methionine)"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: zinc_responsive_dermatosis
+          min: 2
+          max: 3
+          unit: "mg/kg elemental zinc per day (starting dose)"
+          status: verified
+          refs: [white_2001]
+      sul:
+        value: 22.70
+        unit: "mg/100 g DM in complete feed (EU legal maximum; 227 mg/kg DM)"
+        source: "FEDIAF 2025 (changed from 28.40 mg/100 g DM). FEDIAF deleted its nutritional maximum for zinc. NRC 2006 SUL and AAFCO maximum not verified."
+        status: verified
+      adverse_effects_high_dose:
+        - "Acute zinc toxicosis (mostly metallic foreign bodies / zinc oxide creams): haemolytic anaemia, pancreatitis, GI signs"
+        - "Chronic excess antagonises copper (FEDIAF: high zinc decreases copper)"
+        - "Oral zinc salts commonly cause vomiting; give with food (unverified)"
+      adverse_refs: [henke_2023, ambar_2022, foote_2020, fediaf_2025]
+    cat:
+      dose_basis: unverified
+      doses: [{need: dermatologic, status: unverified}]
+      sul: {value: 22.70, unit: "mg/100 g DM (EU legal max, complete feed)", source: "FEDIAF 2025", status: verified}
+
+  - id: biotin
+    name: "Biotin"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: skin_coat_conditions
+          target: 0.5
+          unit: "mg/kg/day (~5 mg per 10 kg BW) for 3-5 weeks; 119 dogs, uncontrolled"
+          status: verified_secondary
+          refs: [frigg_1989]
+      sul: {value: null, note: "No NRC/FEDIAF maximum; water-soluble, low toxicity (unverified)"}
+      notes: "FEDIAF: biotin need not be added for healthy dogs unless food contains antimicrobials/antivitamins (e.g. raw egg white)."
+      adverse_effects_high_dose: ["None known; can interfere with biotin-streptavidin immunoassays (human data; unverified for veterinary assays)"]
+    cat:
+      dose_basis: unverified
+      doses: [{need: skin_coat, status: unverified}]
+      notes: "FEDIAF adult cat recommended minimum 7.00 ug/100 g DM."
+      sul: {value: null}
+
+  - id: l_lysine
+    name: "L-lysine"
+    dog:
+      dose_basis: unverified
+      doses: [{need: none_established, status: unverified, notes: "No canine supplemental use identified."}]
+      sul: {value: 2.80, unit: "g/100 g DM, nutritional max for growing puppies only", source: "FEDIAF 2025", status: verified}
+    cat:
+      dose_basis: per_animal_fixed
+      doses:
+        - need: feline_herpesvirus_1
+          target: 500
+          unit: "mg lysine HCl PO q12h (experimental FHV-1 conjunctivitis; less severe signs, well tolerated)"
+          status: verified
+          refs: [stiles_2002]
+        - need: feline_herpesvirus_1_latent
+          target: 400
+          unit: "mg PO q24h in food, 30 days (reduced shedding after rehousing stress)"
+          status: verified
+          refs: [maggs_2003]
+        - need: evidence_summary
+          notes: "Systematic review: lysine is not effective for prevention or treatment of FHV-1; dietary supplementation at 51 g/kg diet was associated with more FHV-1 DNA detection and lower plasma arginine (Maggs 2007)."
+          status: verified
+          refs: [bol_bunnik_2015, maggs_2007, drazenovich_2009]
+      sul: {value: null}
+      adverse_effects_high_dose: ["Lysine-arginine antagonism (lower plasma arginine at high dietary lysine); possible worsening of URD in shelter cats"]
+
+  - id: beta_glucan
+    name: "Beta-glucan (yeast beta-1,3/1,6-glucan; mushroom/seaweed)"
+    dog:
+      dose_basis: mg_per_kg
+      doses:
+        - need: immune_gut_support_puppies
+          target: 65
+          unit: "mg/kg/day purified S. cerevisiae beta-1,3/1,6-glucan for 120 days"
+          status: verified
+          refs: [de_souza_2025]
+        - need: adult_dogs_functional
+          min: 15
+          max: 30
+          unit: "mg beta-glucan/kg/day (yeast 0.115% or seaweed 0.155-0.310% of diet)"
+          status: verified
+          refs: [theodoro_2026]
+        - need: mucosal_immunity
+          target: "150 mg/dog/day (MacroGard tablets, 4 weeks)"
+          status: verified
+          refs: [stuyven_2010]
+        - need: vaccine_response
+          target: "0.012-0.023% of kibble"
+          status: verified
+          refs: [fries_craft_2023]
+      sul: {value: null}
+      adverse_effects_high_dose: ["Well tolerated; high-dose seaweed beta-glucan delayed postprandial insulin peak (Theodoro 2026)"]
+    cat:
+      dose_basis: unverified
+      doses: [{need: immune, status: unverified}]
+      sul: {value: null}
+
+  - id: bovine_colostrum
+    name: "Bovine colostrum"
+    dog:
+      dose_basis: mg_per_kg_0.75   # diet inclusion
+      doses:
+        - need: immune_vaccine_response
+          target: "0.1% spray-dried bovine colostrum in diet"
+          status: verified
+          refs: [satyaraj_2013]
+        - need: post_weaning_faecal_quality_puppies
+          notes: "Giffard 2004; inclusion level not extracted."
+          status: verified
+          refs: [giffard_2004]
+        - need: combined_with_mushroom_beta_glucan
+          target: "1.8 g/day blend top-dressed (dogs ~9.6 kg)"
+          status: verified
+          refs: [wang_2026]
+      sul: {value: null}
+      adverse_effects_high_dose: ["Well tolerated in studies; dairy-protein allergy theoretical"]
+      refs: [yu_2025]
+    cat:
+      dose_basis: unverified
+      doses: [{need: immune, status: unverified}]
+      sul: {value: null}
+
+  - id: vitamin_d3
+    name: "Vitamin D3 (cholecalciferol)"
+    dog:
+      dose_basis: mg_per_kg_0.75   # limits are per kg DM / per 1000 kcal
+      doses:
+        - need: supplementation
+          notes: "No routine supplemental dose recommended for dogs on complete diets; any supplementation should be vet-directed with 25(OH)D and calcium monitoring. Not to be confused with calcitriol therapy in CKD."
+          status: verified_secondary
+      sul:
+        - {source: "NRC 2006 (via Jewell 2023)", value: "3,200 IU/kg DM (recommended allowance 552-3,200 IU/kg DM)", status: verified_secondary}
+        - {source: "AAFCO (via Jewell 2023)", value: "max 3,000 IU/kg DM (reduced from 5,000 IU/kg in 2016)", status: verified_secondary}
+        - {source: "FEDIAF 2025", value: "nutritional max 320 IU/100 g DM (= 3,200 IU/kg DM; 800 IU/1,000 kcal); EU legal max 227 IU/100 g DM", status: verified}
+        - {source: "FEDIAF 2025 rationale", value: "435 IU/100 g DM affected Ca absorption/ossification in Great Dane puppies; 425 IU/100 g DM considered safe for small-breed puppies; same max applied to adults for lack of data", status: verified}
+        - {source: "Jewell & Panickar 2023 (Hill's)", value: "food at 9,992.5 IU/kg for 26 weeks: no observable adverse effects in adult dogs", status: verified}
+      adverse_effects_high_dose:
+        - "Hypercalcaemia, hyperphosphataemia, PU/PD, vomiting, anorexia, acute kidney injury, soft-tissue mineralisation"
+        - "Acute cholecalciferol toxicosis: signs reported from 0.1 mg/kg (~4,000 IU/kg) and toxicosis at 0.5 mg/kg (~20,000 IU/kg) (MSD/Merck Vet Manual)"
+      recall_context: "Hill's canned dog food recall for excessive vitamin D (supplier error): initiated late Jan 2019, expanded 20 Mar 2019 to 85 lots of 33 varieties (~1.08 million cases / 21.6 million cans); products bought 1 Sep 2018-21 Mar 2019."
+      adverse_refs: [merck_vet_cholecalciferol, avma_hills_recall_2019]
+    cat:
+      dose_basis: mg_per_kg_0.75
+      doses:
+        - need: supplementation
+          notes: "No routine supplemental dose; cats rely entirely on diet (inefficient cutaneous synthesis)."
+          status: verified_secondary
+          refs: [vecchiato_2021]
+      sul:
+        - {source: "FEDIAF 2025", value: "nutritional max 3,000 IU/100 g DM (30,000 IU/kg DM; 7,500 IU/1,000 kcal), based on Sih 2001; EU legal max 227 IU/100 g DM", status: verified}
+        - {source: "NRC 2006 (as applied in Vecchiato 2021)", value: "per-cat SUL ~1,900 IU/day for a 4 kg adult cat eating 253 kcal (~7,500 IU/1,000 kcal, derived)", status: derived}
+        - {source: "AAFCO", value: "cat max 30,000 IU/kg DM commonly cited", status: unverified}
+      adverse_effects_high_dose: ["Acute toxicosis in 5 young cats fed kitten food with 27,300 IU/100 g as fed (>40x NRC SUL): hypercalcaemia, azotaemia, persistent CKD in 2 cats"]
+      adverse_refs: [vecchiato_2021]
+
+references:
+  # --- regulatory / guidelines
+  fediaf_2025: {author: "FEDIAF EuropeanPetFood", year: 2025, title: "Nutritional Guidelines for Complete and Complementary Pet Food for Cats and Dogs", url: "https://europeanpetfood.org/wp-content/uploads/2025/09/FEDIAF-Nutritional-Guidelines_2025-ONLINE.pdf"}
+  acvim_chronic_hepatitis_2019: {author: "Webster CRL et al.", year: 2019, title: "ACVIM consensus statement on the diagnosis and treatment of chronic hepatitis in dogs", journal: "J Vet Intern Med 33:1173", pmid: "30844094", doi: "10.1111/jvim.15467", pmcid: "PMC6524396"}
+  # --- omega-3
+  lenox_bauer_2013: {author: "Lenox CE, Bauer JE", year: 2013, title: "Potential adverse effects of omega-3 fatty acids in dogs and cats", journal: "J Vet Intern Med 27:217-226", pmid: "23323770", doi: "10.1111/jvim.12033"}
+  bauer_2011: {author: "Bauer JE", year: 2011, title: "Therapeutic use of fish oils in companion animals", journal: "J Am Vet Med Assoc 239:1441-1451", pmid: "22087720", doi: "10.2460/javma.239.11.1441"}
+  raditic_gaylord_2020: {author: "Raditic DM, Gaylord L", year: 2020, title: "Fish oil dosing in pet diets and supplements", publisher: "Today's Veterinary Practice", url: "https://todaysveterinarypractice.com/nutrition/fish-oil-dosing-in-pet-diets-and-supplements"}
+  vendramini_2025: {author: "Vendramini THA et al.", year: 2025, title: "Exploring the efficacy and optimal dosages of omega-3 supplementation for companion animals", journal: "Nutr Res Rev", pmid: "40495687", doi: "10.1017/S0954422425100115"}
+  fritsch_2010: {author: "Fritsch D et al.", year: 2010, title: "Dose-titration effects of fish oil in osteoarthritic dogs", journal: "J Vet Intern Med 24:1020-1026", pmid: "20707845", doi: "10.1111/j.1939-1676.2010.0572.x"}
+  freeman_1998: {author: "Freeman LM et al.", year: 1998, title: "Nutritional alterations and the effect of fish oil supplementation in dogs with heart failure", journal: "J Vet Intern Med 12:440-448", pmid: "9857337", doi: "10.1111/j.1939-1676.1998.tb02148.x"}
+  freeman_vin_proceedings: {author: "Freeman LM", title: "VIN proceedings (cardiac nutrition)", url: "https://vin.com/doc/?id=3846598", note: "seen only as a search-result snippet; not opened"}
+  brown_1998: {author: "Brown SA et al.", year: 1998, title: "Beneficial effects of chronic administration of dietary omega-3 polyunsaturated fatty acids in dogs with renal insufficiency", journal: "J Lab Clin Med", pmid: "9605110", doi: "10.1016/s0022-2143(98)90146-9"}
+  plantinga_2005: {author: "Plantinga EA et al.", year: 2005, journal: "Vet Rec 157:185", pmid: "16100367", doi: "10.1136/vr.157.7.185"}
+  lascelles_2010: {author: "Lascelles BD et al.", year: 2010, title: "Evaluation of a therapeutic diet for feline degenerative joint disease", journal: "J Vet Intern Med", pmid: "20337921", doi: "10.1111/j.1939-1676.2010.0495.x"}
+  welactin_label: {publisher: "Nutramax (via 1-800-PetMeds/Cheshire Horse listings)", url: "https://www.1800petmeds.com/dog/otc-vitamins-and-supplements/product/nutramax-welactin-omega3-fish-oil-skin-coat-health-for/prod11837.html"}
+  # --- joint
+  bhathal_2017: {author: "Bhathal A et al.", year: 2017, title: "Glucosamine and chondroitin use in canines for osteoarthritis: a review", journal: "Open Vet J 7:36-49", pmid: "28331832", doi: "10.4314/ovj.v7i1.6"}
+  adebowale_2002: {author: "Adebowale A et al.", year: 2002, journal: "Biopharm Drug Dispos 23:217-225", pmid: "12214321", doi: "10.1002/bdd.315"}
+  mccarthy_2007: {author: "McCarthy G et al.", year: 2007, journal: "Vet J 174:54-61", pmid: "16647870", doi: "10.1016/j.tvjl.2006.02.015"}
+  khan_2010: {author: "Khan SA, McLean MK, Gwaltney-Brant S", year: 2010, title: "Accidental overdosage of joint supplements in dogs (letter)", journal: "J Am Vet Med Assoc 236:509-510", pmid: "20344826"}
+  cosequin_ds_label: {publisher: "Nutramax (via 1-800-PetMeds)", url: "https://www.1800petmeds.com/-10059.html?sku=CDS132"}
+  dasuquin_advanced_label: {publisher: "Nutramax", url: "https://www.dasuquin.com/en/dasuquin-advanced-chewable-tablets/"}
+  dasuquin_cat_label: {publisher: "Nutramax (via 1-800-PetMeds)", url: "https://www.1800petmeds.com/Dasuquin+Cats+84+Capsules-11026.html"}
+  hielm_bjorkman_2009: {author: "Hielm-Bjorkman A et al.", year: 2009, journal: "Evid Based Complement Alternat Med 6:365-373", pmid: "18955269", doi: "10.1093/ecam/nem136", pmcid: "PMC2722199"}
+  bierer_2002: {author: "Bierer TL, Bui LM", year: 2002, journal: "J Nutr 132:1634S", pmid: "12042477", doi: "10.1093/jn/132.6.1634S"}
+  pollard_2006: {author: "Pollard B et al.", year: 2006, journal: "N Z Vet J", pmid: "16751841", doi: "10.1080/00480169.2006.36622"}
+  corbee_2022: {author: "Corbee RJ", year: 2022, journal: "Vet Med Sci", pmid: "35274496", doi: "10.1002/vms3.779"}
+  deparle_2005: {author: "Deparle LA et al.", year: 2005, journal: "J Vet Pharmacol Ther", pmid: "16050819", doi: "10.1111/j.1365-2885.2005.00668.x"}
+  d_altilio_2007: {author: "D'Altilio M et al.", year: 2007, journal: "Toxicol Mech Methods", pmid: "20020968", doi: "10.1080/15376510600910469"}
+  varney_2022: {author: "Varney JL, Fowler JW, Coon CN", year: 2022, journal: "Transl Anim Sci 6:txac123", pmid: "36172458", doi: "10.1093/tas/txac123"}
+  stabile_2019: {author: "Stabile M et al.", year: 2019, journal: "Vet Sci 6:72", pmid: "31487772", doi: "10.3390/vetsci6030072"}
+  zapata_2023: {author: "Zapata A, Fernandez-Parra R", year: 2023, journal: "Animals 13:870", pmid: "36899726", doi: "10.3390/ani13050870"}
+  horvath_2002: {author: "Horvath K et al.", year: 2002, title: "Toxicity of methylsulfonylmethane in rats", journal: "Food Chem Toxicol", pmid: "12387309", doi: "10.1016/s0278-6915(02)00086-8"}
+  boileau_2009: {author: "Boileau C et al.", year: 2009, journal: "Arthritis Res Ther 11:R41", pmid: "19291317", doi: "10.1186/ar2649"}
+  comblain_2017: {author: "Comblain F et al.", year: 2017, journal: "BMC Vet Res 13:395", pmid: "29262825", doi: "10.1186/s12917-017-1317-8"}
+  comblain_2016: {author: "Comblain F et al.", year: 2016, journal: "J Vet Pharmacol Ther", pmid: "26205697", doi: "10.1111/jvp.12251"}
+  song_2022: {author: "Song W et al.", year: 2022, journal: "Molecules 27:2998", pmid: "35566349", doi: "10.3390/molecules27092998"}
+  anand_2007: {author: "Anand P et al.", year: 2007, title: "Bioavailability of curcumin: problems and promises", journal: "Mol Pharm", pmid: "17999464", doi: "10.1021/mp700113r"}
+  reichling_2004: {author: "Reichling J et al.", year: 2004, journal: "Schweiz Arch Tierheilkd 146:71", pmid: "14994484", doi: "10.1024/0036-7281.146.2.71"}
+  miscioscia_2019: {author: "Miscioscia E et al.", year: 2019, journal: "BMC Vet Res 15:270", pmid: "31370899", doi: "10.1186/s12917-019-2021-7"}
+  serra_aguado_2021: {author: "Serra Aguado CI et al.", year: 2021, journal: "Animals 11:1264", pmid: "33925642", doi: "10.3390/ani11051264"}
+  ruff_2016: {author: "Ruff KJ et al.", year: 2016, journal: "Vet Med (Auckl) 7:113-121", pmid: "30050844", doi: "10.2147/VMRR.S101842"}
+  muller_2019: {author: "Muller C et al.", year: 2019, journal: "Vet J 253:105379", pmid: "31685140", doi: "10.1016/j.tvjl.2019.105379"}
+  ragetly_2025: {author: "Ragetly GR et al.", year: 2025, journal: "Front Vet Sci", pmid: "40530040", doi: "10.3389/fvets.2025.1561793"}
+  # --- liver
+  center_2005_dogs: {author: "Center SA et al.", year: 2005, journal: "Am J Vet Res 66:330", pmid: "15757136", doi: "10.2460/ajvr.2005.66.330"}
+  center_2005_cats: {author: "Center SA et al.", year: 2005, journal: "J Vet Intern Med 19:303", pmid: "15954543", doi: "10.1892/0891-6640(2005)19[303:teosoc]2.0.co;2"}
+  reme_2008: {author: "Reme CA et al.", year: 2008, journal: "Vet Ther 9:69", pmid: "18597245"}
+  filburn_2007: {author: "Filburn CR, Kettenacker R, Griffin DW", year: 2007, journal: "J Vet Pharmacol Ther 30:132-138", pmid: "17348898", doi: "10.1111/j.1365-2885.2007.00834.x"}
+  webb_2009: {author: "Webb CB et al.", year: 2009, journal: "Am J Vet Res 70:57", pmid: "19119949", doi: "10.2460/ajvr.70.1.57"}
+  skorupski_2011: {author: "Skorupski KA et al.", year: 2011, journal: "J Vet Intern Med", pmid: "21689156", doi: "10.1111/j.1939-1676.2011.0743.x"}
+  denamarin_label: {publisher: "Nutramax (via 1-800-PetMeds/VetRxDirect)", url: "https://www.1800petmeds.com/denamarin+tablets+-11011.html"}
+  plevnik_kapun_2014: {author: "Plevnik Kapun A et al.", year: 2014, journal: "Vet Rec", pmid: "25205675", doi: "10.1136/vr.102547"}
+  # --- GI / probiotics / fibre
+  fortiflora_label: {publisher: "Purina (US label via 1-800-PetMeds; UK purina.co.uk)", url: "https://www.1800petmeds.com/purina+fortiflora-prod10376.html"}
+  bybee_2011: {author: "Bybee SN, Scorza AV, Lappin MR", year: 2011, journal: "J Vet Intern Med", pmid: "21689152", doi: "10.1111/j.1939-1676.2011.0738.x"}
+  torres_henderson_2017: {author: "Torres-Henderson C et al.", year: 2017, journal: "Top Companion Anim Med", pmid: "29291771", doi: "10.1053/j.tcam.2017.11.002"}
+  calming_care_label: {publisher: "Purina (purina.co.nz feline page; 1-800-PetMeds canine page)", url: "https://www.purina.co.nz/food/cat/pro-plan-veterinary-diets-supplements-feline-calming-care"}
+  rossi_2014: {author: "Rossi G et al.", year: 2014, journal: "PLoS One 9:e94699", pmid: "24722235", doi: "10.1371/journal.pone.0094699"}
+  hart_2012: {author: "Hart ML et al.", year: 2012, journal: "J Feline Med Surg", pmid: "22412160", doi: "10.1177/1098612X11434386"}
+  proviable_label: {publisher: "Nutramax (via drugs.com/vet listing)", url: "https://drugs.com/vet/proviable-dc-capsules.html"}
+  leib_2000: {author: "Leib MS", year: 2000, journal: "J Vet Intern Med 14:27", pmid: "10668813", doi: "10.1892/0891-6640(2000)014<0027:tocilb>2.3.co;2"}
+  alves_2021: {author: "Alves JC et al.", year: 2021, journal: "BMC Vet Res 17:100", pmid: "33653329", doi: "10.1186/s12917-021-02809-w"}
+  keller_2024: {author: "Keller E et al.", year: 2024, journal: "J Feline Med Surg", pmid: "38635357", doi: "10.1177/1098612X241234151"}
+  freiche_2011: {author: "Freiche V et al.", year: 2011, journal: "J Feline Med Surg", pmid: "21944542", doi: "10.1016/j.jfms.2011.07.008"}
+  rochon_2026: {author: "Rochon J et al.", year: 2026, journal: "J Feline Med Surg", pmid: "41631677", doi: "10.1177/1098612X261420519"}
+  flickinger_2003: {author: "Flickinger EA et al.", year: 2003, journal: "J Anim Sci 81:2008", pmid: "12926783", doi: "10.2527/2003.8182008x"}
+  sparkes_1998: {author: "Sparkes AH et al.", year: 1998, journal: "Am J Vet Res", pmid: "9563627"}
+  # --- cobalamin
+  toresson_2016: {author: "Toresson L et al.", year: 2016, journal: "J Vet Intern Med 30:101-107", pmid: "26648590", doi: "10.1111/jvim.13797"}
+  toresson_2018: {author: "Toresson L et al.", year: 2018, journal: "Vet J 232:27-32", pmid: "29428088", doi: "10.1016/j.tvjl.2017.12.010"}
+  toresson_2017: {author: "Toresson L et al.", year: 2017, journal: "J Feline Med Surg 19:1302-1306", pmid: "28128683", doi: "10.1177/1098612X16689406"}
+  kather_2020: {author: "Kather S et al.", year: 2020, journal: "J Vet Intern Med 34:13", pmid: "31758868", doi: "10.1111/jvim.15638"}
+  kook_2019: {author: "Kook PH, Hersberger M", year: 2019, journal: "J Vet Intern Med 33:751-757", pmid: "30554416", doi: "10.1111/jvim.15380"}
+  # --- behaviour
+  anxitane_label_uk: {publisher: "Virbac UK", url: "https://uk.virbac.com/products/anxitane-for-dogs-cats-help-calm-reduce-anxiety"}
+  anxitane_label_us: {publisher: "Virbac (via 1-800-PetMeds)", url: "https://www.1800petmeds.com/dog-or-cat/otc-calming-and-anxiety/product/virbac-anxitane/11509.html"}
+  araujo_2010: {author: "Araujo JA et al.", year: 2010, title: "Anxitane tablets reduce fear of human beings in a laboratory model of anxiety-related behavior", journal: "J Vet Behav 5:268-275", note: "not PubMed-indexed; DOI not verified"}
+  dramard_2018: {author: "Dramard V et al.", year: 2018, journal: "Ir Vet J 71:21", pmid: "30338056", doi: "10.1186/s13620-018-0130-4"}
+  beata_2007_dogs: {author: "Beata C et al.", year: 2007, title: "Effects of alpha-casozepine (Zylkene) versus selegiline hydrochloride (Selgian, Anipryl) on anxiety disorders in dogs", journal: "J Vet Behav 2:175-183", doi: "10.1016/j.jveb.2007.08.001", note: "read in full (publisher PDF); not PubMed-indexed"}
+  beata_2007_cats: {author: "Beata C et al.", year: 2007, title: "Effect of alpha-casozepine (Zylkene) on anxiety in cats", journal: "J Vet Behav 2:40-46", note: "citation via Makawey 2020; DOI not verified"}
+  makawey_2020: {author: "Makawey A, Iben C, Palme R", year: 2020, journal: "Animals 10:2047", pmid: "33167443", doi: "10.3390/ani10112047"}
+  zylkene_label: {publisher: "Vetoquinol (via drugs.com/vet)", url: "https://www.drugs.com/vet/zylkene-75-mg.html"}
+  chen_2019: {author: "Chen M et al.", year: 2019, journal: "J Am Anim Hosp Assoc", pmid: "31433224", doi: "10.5326/JAAHA-MS-6895"}
+  frank_2004: {author: "Frank LA et al.", year: 2004, journal: "Vet Dermatol 15:278", pmid: "15500479", doi: "10.1111/j.1365-3164.2004.00372.x"}
+  abdous_2025: {author: "Abdous A et al.", year: 2025, journal: "Vet Med Sci", pmid: "40358664", doi: "10.1002/vms3.70410"}
+  niggemann_2019: {author: "Niggemann JR et al.", year: 2019, journal: "Vet Anaesth Analg", pmid: "31351807", doi: "10.1016/j.vaa.2019.02.009"}
+  fda_xylitol: {publisher: "US FDA", title: "Paws Off Xylitol; It's Dangerous for Dogs", url: "https://www.fda.gov/consumers/consumer-updates/paws-xylitol-its-dangerous-dogs"}
+  # --- urinary / renal
+  olby_2017: {author: "Olby NJ et al.", year: 2017, journal: "J Vet Intern Med 31:60", pmid: "27914106", doi: "10.1111/jvim.14613", pmcid: "PMC5259620"}
+  chou_2016: {author: "Chou HI et al.", year: 2016, journal: "Am J Vet Res 77:421", pmid: "27027843", doi: "10.2460/ajvr.77.4.421"}
+  weese_2026: {author: "Weese JS et al.", year: 2026, journal: "J Vet Pharmacol Ther", pmid: "41676867", doi: "10.1111/jvp.70050"}
+  colombino_2022: {author: "Colombino E et al.", year: 2022, journal: "Nat Prod Res", pmid: "34039227", doi: "10.1080/14786419.2021.1925273"}
+  carvajal_campos_2024: {author: "Carvajal-Campos A et al.", year: 2024, journal: "J Vet Res", pmid: "39776678", doi: "10.2478/jvetres-2024-0055"}
+  epakitin_label_vetoquinol: {publisher: "Vetoquinol USA", url: "https://www.vetoquinolusa.com/products/epakitin"}
+  wagner_2004: {author: "Wagner E et al.", year: 2004, journal: "Berl Munch Tierarztl Wochenschr", pmid: "15298059"}
+  biasibetti_2018: {author: "Biasibetti E et al.", year: 2018, journal: "Vet Res Commun", pmid: "29582226", doi: "10.1007/s11259-018-9719-z"}
+  # --- neuro / metabolic / cardiac
+  berk_2020: {author: "Berk BA et al.", year: 2020, journal: "J Vet Intern Med", pmid: "32293065", doi: "10.1111/jvim.15756"}
+  law_2015: {author: "Law TH et al.", year: 2015, journal: "Br J Nutr", pmid: "26337751", doi: "10.1017/S000711451500313X"}
+  pan_2010: {author: "Pan Y et al.", year: 2010, journal: "Br J Nutr", pmid: "20141643", doi: "10.1017/S0007114510000097"}
+  gordon_2026: {author: "Gordon BN et al.", year: 2026, journal: "J Anim Sci", pmid: "42687438", doi: "10.1093/jas/skag193"}
+  stern_lab_2018: {author: "Stern JA (UC Davis Stern Cardiac Genetics Laboratory)", year: 2018, title: "Frequently requested information regarding taurine & DCM in Golden Retrievers (9 Aug 2018)", url: "https://ccah.vetmed.ucdavis.edu/sites/g/files/dgvnsk4586/files/local_resources/pdfs/stern-lab-taurine-recommendations.pdf"}
+  kittleson_1997: {author: "Kittleson MD et al.", year: 1997, journal: "J Vet Intern Med 11:204-211", pmid: "9298474", doi: "10.1111/j.1939-1676.1997.tb00092.x"}
+  kaplan_2018: {author: "Kaplan JL et al.", year: 2018, journal: "PLoS One", pmid: "30543707", doi: "10.1371/journal.pone.0209112"}
+  pion_1987: {author: "Pion PD et al.", year: 1987, journal: "Science 237:764", pmid: "3616607", doi: "10.1126/science.3616607"}
+  pion_1992: {author: "Pion PD et al.", year: 1992, journal: "J Am Vet Med Assoc 201:275-284", pmid: "1500324"}
+  blanchard_2002: {author: "Blanchard G et al.", year: 2002, journal: "J Nutr 132:204", pmid: "11823579", doi: "10.1093/jn/132.2.204"}
+  christiansen_2020: {author: "Christiansen LB et al.", year: 2020, journal: "Antioxidants 9:827", pmid: "32899633", doi: "10.3390/antiox9090827"}
+  bousquet_2025: {author: "Bousquet W et al.", year: 2025, journal: "J Vet Cardiol", pmid: "41580384", doi: "10.1016/j.jvc.2025.12.004"}
+  # --- minerals / vitamins / immune
+  white_2001: {author: "White SD et al.", year: 2001, journal: "Vet Dermatol 12:101", pmid: "11360336", doi: "10.1046/j.1365-3164.2001.00233.x"}
+  henke_2023: {author: "Henke CS et al.", year: 2023, journal: "J Vet Emerg Crit Care", pmid: "37846884", doi: "10.1111/vec.13330"}
+  ambar_2022: {author: "Ambar N et al.", year: 2022, journal: "J Vet Emerg Crit Care", pmid: "34450683", doi: "10.1111/vec.13110"}
+  foote_2020: {author: "Foote K et al.", year: 2020, journal: "Can Vet J", pmid: "32020932"}
+  frigg_1989: {author: "Frigg M et al.", year: 1989, title: "Clinical study on the effect of biotin on skin conditions in dogs", journal: "Schweiz Arch Tierheilkd", pmid: "2602924", note: "dose from secondary summary of the abstract"}
+  stiles_2002: {author: "Stiles J et al.", year: 2002, journal: "Am J Vet Res 63:99", pmid: "16206789", doi: "10.2460/ajvr.2002.63.99"}
+  maggs_2003: {author: "Maggs DJ et al.", year: 2003, journal: "Am J Vet Res 64:37", pmid: "12518876", doi: "10.2460/ajvr.2003.64.37"}
+  maggs_2007: {author: "Maggs DJ et al.", year: 2007, journal: "J Feline Med Surg", pmid: "17055313", doi: "10.1016/j.jfms.2006.08.005"}
+  drazenovich_2009: {author: "Drazenovich TL et al.", year: 2009, journal: "Am J Vet Res", pmid: "19878022", doi: "10.2460/ajvr.70.11.1391"}
+  bol_bunnik_2015: {author: "Bol S, Bunnik EM", year: 2015, journal: "BMC Vet Res 11:284", pmid: "26573523", doi: "10.1186/s12917-015-0594-3"}
+  de_souza_2025: {author: "de Souza RBMDS et al.", year: 2025, journal: "PLoS One 20:e0331843", pmid: "40920667", doi: "10.1371/journal.pone.0331843"}
+  theodoro_2026: {author: "Theodoro SS et al.", year: 2026, journal: "J Anim Physiol Anim Nutr", pmid: "42152695", doi: "10.1111/jpn.70074"}
+  stuyven_2010: {author: "Stuyven E et al.", year: 2010, journal: "Clin Vaccine Immunol", pmid: "20032218", doi: "10.1128/CVI.00344-09"}
+  fries_craft_2023: {author: "Fries-Craft K et al.", year: 2023, journal: "J Anim Sci", pmid: "36694365", doi: "10.1093/jas/skad029"}
+  satyaraj_2013: {author: "Satyaraj E et al.", year: 2013, journal: "Br J Nutr", pmid: "23773360", doi: "10.1017/S000711451300175X"}
+  giffard_2004: {author: "Giffard CJ et al.", year: 2004, journal: "J Nutr 134:2126S", pmid: "15284417", doi: "10.1093/jn/134.8.2126S"}
+  wang_2026: {author: "Wang TL et al.", year: 2026, journal: "J Anim Sci", pmid: "42799681", doi: "10.1093/jas/skag312"}
+  yu_2025: {author: "Yu P et al.", year: 2025, journal: "Animals 15:185", pmid: "39858185", doi: "10.3390/ani15020185"}
+  jewell_2023: {author: "Jewell DE, Panickar KS", year: 2023, journal: "Front Vet Sci 10:1242851", pmid: "37621865", doi: "10.3389/fvets.2023.1242851"}
+  vecchiato_2021: {author: "Vecchiato CG et al.", year: 2021, journal: "Front Vet Sci 8:707741", pmid: "34490396", doi: "10.3389/fvets.2021.707741"}
+  merck_vet_cholecalciferol: {publisher: "MSD/Merck Veterinary Manual", title: "Cholecalciferol (vitamin D3) poisoning in animals", url: "https://www.merckvetmanual.com/toxicology/rodenticide-poisoning/cholecalciferol-vitamin-d3-poisoning-in-animals"}
+  avma_hills_recall_2019: {publisher: "AVMA JAVMA News", year: 2019, title: "In March, Hill's expands canned dog food recall", url: "https://www.avma.org/News/JAVMANews/Pages/190515k.aspx"}

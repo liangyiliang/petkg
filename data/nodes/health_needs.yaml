@@ -1,0 +1,63 @@
+# The unit of formulation. Step 1 rules emit these; step 2 formulates against them.
+- id: need:joint_mobility
+  name: Joint mobility and comfort
+  customer_label: Joint comfort and mobility
+  description: Osteoarthritis signs, stiffness, reduced activity; cartilage and synovial support.
+- id: need:skin_coat_barrier
+  name: Skin barrier and coat
+  customer_label: Skin and coat health
+  description: Pruritus, dry or flaky skin, poor coat, atopic dermatitis adjunct.
+- id: need:gi_microbiome_stool_quality
+  name: Gut microbiome and stool quality
+  customer_label: Digestive balance
+  description: Loose stool, diarrhoea episodes, antibiotic-associated or stress diarrhoea.
+- id: need:gi_mucosal_inflammation
+  name: GI mucosal inflammation
+  parent: need:gi_microbiome_stool_quality
+  customer_label: Gut lining support
+  description: Chronic enteropathy / IBD adjunct.
+- id: need:cobalamin_repletion
+  name: Cobalamin repletion
+  customer_label: Vitamin B12 support
+  description: Low serum cobalamin, typically secondary to chronic enteropathy or EPI.
+- id: need:renal_support
+  name: Renal support
+  customer_label: Kidney support
+  description: CKD or rising SDMA/creatinine; slowing progression, proteinuria, uraemic signs.
+- id: need:phosphate_management
+  name: Phosphate management
+  parent: need:renal_support
+  customer_label: Kidney support (phosphorus)
+  description: Hyperphosphataemia in CKD despite renal diet.
+- id: need:hepatic_support
+  name: Hepatic support
+  customer_label: Liver support
+  description: Elevated liver enzymes, hepatopathy, oxidative liver injury.
+- id: need:cognitive_aging
+  name: Cognitive ageing
+  customer_label: Healthy brain ageing
+  description: Canine/feline cognitive dysfunction signs in seniors.
+- id: need:anxiety_stress
+  name: Anxiety and stress
+  customer_label: Calm and relaxed behaviour
+  description: Situational anxiety, noise or travel stress, stress-related behaviour.
+- id: need:cardiac_support
+  name: Cardiac support
+  customer_label: Heart health
+  description: Cardiomyopathy or valve disease adjunct, cardiac cachexia.
+- id: need:urinary_tract_health
+  name: Urinary tract health
+  customer_label: Urinary tract health
+  description: Recurrent UTI prevention, lower urinary tract signs.
+- id: need:weight_lean_mass
+  name: Weight and lean mass
+  customer_label: Healthy weight and muscle
+  description: Overweight with need to preserve lean mass; sarcopenia.
+- id: need:immune_support
+  name: Immune support
+  customer_label: Immune support
+  description: Vaccine response, senior immune function, recurrent infections.
+- id: need:oral_dental_health
+  name: Oral and dental health
+  customer_label: Teeth and gums
+  description: Plaque, gingivitis, halitosis.

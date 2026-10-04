@@ -1,0 +1,39 @@
+# Hard ceilings, applied after dose rules. A formula line is clipped to the lowest applicable
+# ceiling; if that falls below the rule's minimum, the ingredient is dropped and reported.
+- id: limit:omega3_dog_nrc_sul
+  ingredient: ingredient:omega3_epa_dha
+  species: species:dog
+  basis: per_kg_0.75
+  unit: mg
+  max: 370
+  kind: safe_upper_limit
+  notes: "NRC 2006 SUL 2,800 mg/1,000 kcal ~ 370 mg/kg^0.75. No SUL set for cats. Diet EPA+DHA counts toward it."
+  sources: [source:pmid_23323770, source:raditic_gaylord_2020]
+  curation: {status: draft, notes: "NRC book not read directly; two secondary sources agree."}
+- id: limit:vitamin_e_dog_per_animal
+  ingredient: ingredient:vitamin_e
+  species: species:dog
+  basis: per_animal
+  unit: IU
+  max: 400
+  kind: company_policy
+  notes: "ACVIM 2019 chronic hepatitis cap (do not exceed 400 IU per dog), applied to all dogs as Freyja policy."
+  sources: [source:pmid_30844094]
+- id: limit:casozepine_cat
+  ingredient: ingredient:alpha_casozepine
+  species: species:cat
+  basis: per_kg
+  unit: mg
+  max: 45
+  kind: noael
+  notes: "Highest dose with documented tolerance in cats (3-day course); not a long-term NOAEL."
+  sources: [source:pmid_33167443]
+- id: limit:theanine_dog
+  ingredient: ingredient:l_theanine
+  species: species:dog
+  basis: per_animal
+  unit: mg
+  max: 400
+  kind: company_policy
+  notes: "Curator cap at 2x the top label band pending safety data."
+  sources: [source:freyja_curator_reasoning]

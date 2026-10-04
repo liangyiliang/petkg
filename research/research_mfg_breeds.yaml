@@ -1,0 +1,861 @@
+# Research: manufacturability (Part A) and breed predispositions (Part B)
+# For the pet supplement knowledge graph (dogs and cats).
+# Compiled 2026-10-03.
+#
+# What the status labels mean (each value carries one):
+#   verified          - I read the number or claim myself on the cited page/PDF.
+#   verified_snippet  - the number came from a web-search summary of the named source;
+#                       I did not open the full text. Medium confidence; check before using as a hard limit.
+#   rule_of_thumb     - industry practice or product-label pattern, not a standard;
+#                       the source is named.
+#   unverified        - general formulation or veterinary knowledge; I checked no source
+#                       in this session. Do not use as a hard constraint without checking.
+# Citations from memory (author/year/journal not re-checked this session) are tagged
+# "citation_from_memory: true".
+
+meta:
+  version: 1
+  scope: [dog, cat]
+  jurisdiction_for_regulatory: US
+  caveat: >
+    Dosage-form limits are engineering ranges taken from patents, excipient-maker case studies
+    and commercial labels. They are not regulatory limits. Contract manufacturers seldom
+    publish chew weights, maximum loads or MOQs, so most MOQ fields are unverified.
+
+# =====================================================================================
+# PART A - MANUFACTURABILITY
+# =====================================================================================
+
+dosage_forms:
+
+  soft_chew:
+    description: Dough of starch/flour absorption base + humectant (glycerin) + palatant + oil/lecithin + actives, formed by cold-feed extrusion, cold forming or thermal extrusion, then cured.
+    unit_mass_g:
+      typical_range: [2.0, 7.5]
+      status: rule_of_thumb
+      evidence:
+        - {value_g: 2.5, what: "Colorcon glucosamine/MSM veterinary soft chew case study, final chew weight", status: verified, source: "https://www.colorcon.com/hubfs/Formulating%20Veterinary%20Soft%20Chews%20for%20Texture%20and%20Palatability%20Case%20Study.pdf"}
+        - {value_g: 7.2, what: "Adroitin-M Soft Chews (TRP Advanced Soft Chew Technology), per-chew weight", status: verified_snippet, source: "https://drugs.com/vet/adroitin-m-soft-chews.html"}
+        - {value_g: 3.0, what: "retail soft chew, 60 chews per 180 g container", status: verified_snippet, source: "search result summary (PetDine / retail listings); product not identified"}
+      cat_note: "Cat products are usually sold as 'bite-sized' chews (e.g., Probiotic Daily Cat bite-sized soft chew). I found no published unit mass; assume about 1-2 g (unverified)."
+    max_active_load_pct:
+      practical_ceiling: 35
+      status: rule_of_thumb
+      rationale: >
+        The binder/absorption base (about 35% starch), humectant (about 11% glycerin), palatant
+        (about 5%), lecithin (about 4%), oil and water take up about 60-65% of the mass. The chew
+        has to stay cohesive, chewable and palatable, and must not harden or crack as it cures.
+      evidence:
+        - {value_pct: 36.5, what: "Colorcon Formulation 1: glucosamine HCl 22.45% + MSM 14.03%; Starch 1500 35.90%; vegetable glycerin 10.83%; Palasurance palatant 5.00%; salmon oil 3.50%; sunflower lecithin 4.00%; water 3.69%; Previon 0.60%", status: verified, source: "Colorcon case study PDF (above)"}
+        - {value_pct: 30.0, what: "Colorcon Formulation 2: glucosamine 19.48% + MSM 10.50% with 10% salmon oil", status: verified, source: "Colorcon case study PDF (above)"}
+        - {range_pct: [0.1, 25], what: "active agent range claimed in a low-water-activity soft chew patent", status: verified, source: "US 12,194,144 B2 https://patents.google.com/patent/US12194144B2/en"}
+        - {range_pct: [0.01, 20], what: "active range in a soft chewable veterinary formulation patent application; starch 2-50%, carbohydrates 5-25%, flavour 5-15%", status: verified_snippet, source: "https://patents.justia.com/patent/20200030232 (Starch-Free Soft Chew for Veterinary Applications) / related family"}
+      model_hint: "Use 35% w/w of chew mass as the default actives ceiling, and flag above 40% as 'needs manufacturer feasibility'."
+    max_oil_load_pct:
+      practical_range: [3.5, 10]
+      status: verified
+      source: "Colorcon case study (salmon oil 3.5% and 10%; the starch grade was varied to absorb the oil)"
+      note: "Emulsion-type chewable patents claim an omega-3 oil phase of 5-75% of the unit, about 40% in one example (US 10,383,818 / 11,123,288 'Emulsion', verified_snippet). That is a gelled chewable rather than a typical starch-based soft chew. Above about 10% oil, expect texture and oil-weeping problems (rule_of_thumb)."
+    processing:
+      cold_feed_extrusion:
+        temperature: "ambient; no added steam; cured on racks about 24 h before packaging (Colorcon)"
+        status: verified
+        source: "Colorcon case study; https://www.petfoodprocessing.net/articles/14069-taking-the-heat-off-pet-food-treats-with-cold-extrusion-applications (cold extrusion at ambient temperature, no water; verified_snippet)"
+      thermal_extrusion:
+        temperature_c: [60, 95]
+        note: "Pre-mix preconditioned with humectant, water and steam (about 26%) for a partial cook (patent description, verified_snippet). Kills non-spore probiotics and stresses heat-labile actives."
+        status: verified_snippet
+        source: "USPTO patent full text retrieved via search (soft chew / pet chew family, e.g., US 12,075,799 / 11,766,051)"
+      low_aw_hot_melt_then_cool:
+        temperature_c: "non-aqueous carrier heated to at least 50 C (up to 100 C), cooled to 30-40 C before heat-labile actives are added"
+        status: verified
+        source: "US 12,194,144 B2"
+      baked:
+        note: "Some contract makers (e.g., Bimini Pet Health) list 'baked goods' as a form. Baking temperatures are not published; treat as high heat (unverified)."
+        source: "https://www.nasc.cc/preferred-suppliers/bimini-pet-health/"
+    water_activity:
+      conventional: "> 0.6"
+      low_aw_target: "<= 0.6; patent example about 0.30 or below"
+      pet_chew_patent_preferred_range: [0.60, 0.80]
+      moisture_pct_range: [10, 20]
+      status: verified
+      source: "US 12,194,144 B2 (aw); pet chew patents retrieved via search for moisture 10-20% and aw 0.60-0.75 preferred (verified_snippet)"
+      implication: "At aw above about 0.6, moisture-labile actives (probiotics, SAMe, some vitamins) degrade, and microbial growth must be controlled with glycerin/propylene glycol humectants and preservatives (US 12,194,144)."
+    shelf_life:
+      typical_months: [12, 24]
+      status: rule_of_thumb
+      evidence: "Patents cite at least 12 months for shelf-stable chewables. One supplier listing states 2 years."
+      issues: [texture hardening on curing/aging (Colorcon tracked days 0-60), oil oxidation/rancidity, probiotic CFU loss, Maillard browning, mould if aw is high]
+    palatability: "Palatant needed (about 5% in Colorcon; 5-15% flavour in patents). Bitter actives (MSM, curcumin, some botanicals) and fishy oils need masking."
+    species_suitability: {dog: high, cat: "low-moderate; cats are selective, so use a small bite-size chew with a strong animal-digest palatant (rule_of_thumb)"}
+    moq_notes:
+      - {note: "Bewdley LLC (contract maker, TX) advertises 'low MOQs'; no number published", source: "https://www.nasc.cc/preferred-suppliers/bewdley-llc/", status: verified_snippet}
+      - {note: "One overseas private-label listing gives a soft chew MOQ of 700 kg and a 2-year shelf life", source: "https://attendees.supplysideshow.com/event/supplyside-west-2024/product/UHJvZHVjdF8xMTYxODY5", status: verified_snippet}
+      - {note: "Catalent: cold-process soft chews, 'high active dose loading', pilot to commercial scale; specs only on request", source: "https://www.catalent.com/self-care/dietary-supplements/manufacturing/soft-chews", status: verified}
+    incompatible_with: [SAMe_tosylate (enteric coating required), non_spore_probiotics (unless cold process + low aw), very_high_dose_bulk_fibres (psyllium swells), oil_loads_above_about_10pct]
+
+  chewable_tablet:
+    description: Directly compressed or granulated flavoured tablet (liver/pork flavour). Can be scored for splitting.
+    unit_mass_g: {typical_range: [0.5, 5.0], status: unverified, note: "No published tablet weights found for Dasuquin, Cosequin or Nutri-Vet in this session."}
+    max_active_load_pct: {typical: [50, 80], status: unverified, rationale: "Needs no oil phase or humectant. Binder, flow aid, lubricant and flavour (about 15-30%) set the ceiling. Compressibility of the actives is the main limit."}
+    commercial_examples:
+      - {product: "Dasuquin chewable tablets small/medium dog", actives_mg: {glucosamine_hcl: 600, sodium_chondroitin_sulfate: 250, ASU: 45}, status: verified_snippet, source: "https://www.vetuk.co.uk/dog-supplements-cat-supplements-joint-supplements-c-5_4/dasuquin-chewable-tablets-for-dogs-p-20976"}
+      - {product: "Dasuquin chewable tablets large dog", actives_mg: {glucosamine_hcl: 900, sodium_chondroitin_sulfate: 350, ASU: 90}, status: verified_snippet, source: "same"}
+      - {product: "Anxitane (Virbac) L-theanine chewable", strengths_mg: [50, 100], dosing: "cats & dogs <22 lb: 1/2 tablet BID (tablet is split)", status: verified_snippet, source: "https://vet-us.virbac.com/home/products/behavior/anxitane-l-theanine-chewable-tab.html"}
+      - {product: "Marin for dogs (silybin phytosome) chewable tablet", silybin_mg: 43, status: verified_snippet, source: "https://drugs.com/vet/marin-for-cats.html / vetrxdirect listing"}
+    processing: {temperature: "ambient; compression causes only slight friction heating (unverified)", moisture: "low; dry granulation or direct compression preferred for moisture-sensitive actives (unverified)"}
+    shelf_life: {typical_months: [24, 36], status: unverified}
+    palatability: "Flavoured tablets are accepted by many dogs. Cats often refuse tablets."
+    species_suitability: {dog: high, cat: "low-moderate (half tablet for small cats, as with Anxitane)"}
+    incompatible_with: [oils above a few % (tablets soften), SAMe unless enteric-coated non-chewable]
+
+  capsule:
+    description: Hard two-piece gelatin or HPMC capsule. Can be swallowed (pilled) or opened.
+    capsule_size_table:
+      status: verified_snippet
+      source: "Capsugel/Lonza Coni-Snap capsule size chart https://www.capsugel.com/cpsl-web/kc/Coni-Snap®-Gelatin-Capsule-Sizes.pdf"
+      volumes_ml: {"000": 1.37, "00": 0.95, "0": 0.68, "1": 0.50, "2": 0.37, "3": 0.30, "4": 0.21, "5": 0.13}
+      fill_mg_at_density: {"0.6_g_per_ml": {"000": 822, "5": 78}, "0.8_g_per_ml": {"000": 1096, "5": 104}, "1.0_g_per_ml": {"000": 1370, "5": 130}, "1.2_g_per_ml": {"000": 1644, "5": 156}}
+      formula: "fill_mg = volume_ml x tapped_density_g_per_ml x 1000"
+    unit_mass_g: {typical_range: [0.1, 1.4], status: verified_snippet, basis: "size table x density"}
+    max_active_load_pct: {typical: [90, 99], status: rule_of_thumb, rationale: "Only a flow agent (silica, Mg stearate) and sometimes a filler are needed."}
+    processing: {temperature: ambient, moisture: "gelatin shells hold about 13-16% water and can dry out or soften with hygroscopic fills; HPMC is better for hygroscopic fills (unverified)"}
+    shelf_life: {typical_months: [24, 36], status: unverified}
+    species_suitability: {dog: "moderate (pilling or hiding in food)", cat: "low if pilled. In the Taylor 2022 survey (JFMS, doi:10.1177/1098612X221083752), 78.7% of owners reported the cat spitting out tablets, 77.0% biting/scratching, 71.7% refusing medication in food, and 53.0% preferred liquids (verified_snippet)"}
+
+  sprinkle_capsule:
+    description: Capsule designed to be opened and sprinkled on food. Pilling is not required.
+    unit_fill_mg_typical: [100, 500]
+    status: rule_of_thumb
+    commercial_examples:
+      - {product: "Cosequin for Cats sprinkle capsule", per_capsule_mg: {glucosamine_hcl: 125, sodium_chondroitin_sulfate_bovine: 100, manganese: 1}, dosing: "<=10 lb: 1 cap/day for 4-6 wk then every other day; >10 lb: 2 caps/day then 1/day", status: verified_snippet, source: "https://drugs.com/vet/cosequin-for-cats.html"}
+      - {product: "Zylkene (alpha-casozepine) capsules", strengths_mg: [75, 225, 450], note: "Palatable water-soluble powder. Give whole or open and mix with food. Example: 75 mg for 0-5 kg.", status: verified_snippet, source: "https://www.drugs.com/vet/zylkene-75-mg.html"}
+    palatability_constraint: "Contents must be near taste/odour-neutral or palatable on food. Bitter (MSM, curcumin), pungent (garlic) or fishy powders lower acceptance, especially in cats (unverified)."
+    species_suitability: {dog: moderate, cat: "high (preferred non-pill route for cats)"}
+
+  powder_sachet:
+    aliases: [scoop_powder, top_dress_powder]
+    unit_mass_g: {typical_range: [0.5, 5.0], status: rule_of_thumb, examples: ["FortiFlora 1 g sachet", "Epakitin 1 g per 5 kg BID scoop"]}
+    max_active_load_pct: {typical: [10, 100], status: rule_of_thumb, note: "Probiotic sachets are mostly palatant/carrier (FortiFlora is a probiotic plus animal digest palatant). Single-ingredient scoop powders can be about 100% active."}
+    commercial_examples:
+      - {product: "Purina Pro Plan FortiFlora", active: "Enterococcus faecium SF68 (NCIMB 10415, EU 4b1705)", cfu: "1 x 10^8 CFU per 1 g sachet (some markets state 5 x 10^8 CFU/g)", storage: "2-25 C", status: verified_snippet, source: "https://vetcentre.purina.co.uk/sites/default/files/vet_materials/fortiflora_vet_sales_presenter_2024.pdf"}
+      - {product: "Epakitin (phosphate binder)", composition: "10% calcium carbonate, 8% chitosan, lactose, hydrolysed soy protein", dose: "1 g per 5 kg BW BID with food", status: verified_snippet, source: "https://cats.com/?p=38367 (secondary)"}
+    processing: {temperature: "ambient blending", moisture: "low-moisture blend; foil sachets protect hygroscopic and probiotic contents (rule_of_thumb)"}
+    species_suitability: {dog: high, cat: "high if palatable; a large volume on food causes refusal (rule_of_thumb)"}
+    dose_volume_limit_note: "A powder dose should be small relative to a meal. Cats eat about 50-80 g dry food per day (unverified), so multi-gram scoops of bulky actives (psyllium, glucosamine at canine doses) are unrealistic for cats."
+
+  liquid_oil:
+    aliases: [pump_oil, liquid]
+    unit_volume_ml: {examples: [5.0, 6.0], note: "Nordic Naturals Omega-3 Pet doses by teaspoon (5 mL); Welactin canine uses a 6 mL scoop; Welactin feline ships with a pump. Pump stroke volume not verified (often about 1-2 mL, unverified)."}
+    commercial_examples:
+      - {product: "Nordic Naturals Omega-3 Pet liquid", spec: "EPA >=16%, DHA >=11%; 1 tsp (5 mL) gives 736 mg EPA + 506 mg DHA", status: verified_snippet, source: "https://www.cheshirehorse.com/p/nordic-naturals-omega-3-pet-supplement---liquid/KW79237.html"}
+      - {product: "Welactin Canine", spec: "per 6 mL scoop: total omega-3 >=1770 mg, EPA >=870 mg, DHA >=570 mg", status: verified_snippet, source: "https://www.vetrxdirect.com/product/view/welactin-canine-for-dogs-otc"}
+    max_active_load_pct: {typical: [95, 100], status: rule_of_thumb, note: "Oil is the active. Antioxidant (mixed tocopherols, rosemary) and flavour make up the rest."}
+    processing: {temperature: ambient, oxygen: "nitrogen flush and opaque bottle; oxidation rises after opening (rule_of_thumb)"}
+    shelf_life: {unopened_months: [18, 24], after_opening: "often labelled to use within about 1-3 months, refrigerated (unverified)"}
+    palatability: "Dogs usually accept fish oil on food. For cats, an atenolol formulation study and the Taylor 2022 survey favour liquids/suspensions over tablets. Oil-based flavours were reported as better accepted than water-based (search summary; primary source not identified, unverified)."
+    species_suitability: {dog: high, cat: "high (liquids preferred by 53% of cat owners, Taylor 2022)"}
+    compatible_actives: [fish_oil, krill_oil, algal_DHA_oil, MCT_oil, vitamin_E, CoQ10 (dissolved in oil), PCSO-524 (diluted in oil)]
+
+  softgel:
+    unit_mass_g: {typical_range: [0.2, 1.6], status: rule_of_thumb, evidence: "1000 mg fish-oil softgel, size 20 oblong, total mass about 1337 mg (third-party COA, verified_snippet)"}
+    max_active_load_pct: {typical: [70, 80], basis: "fill / total mass (1000/1337 = 75%)", status: verified_snippet}
+    processing:
+      shell_moisture: "newly formed softgels hold 35-40% w/w water, dried to about 20-25% and then 10-15% (verified_snippet, supplysidesj.com 'Achieving Equilibrium in Softgel Encapsulation')"
+      fill_constraints: "Hydrophobic oils are ideal. Water-soluble or hygroscopic fills migrate into the shell and cause softening/leaking. Aldehydes and oxidised oils cross-link gelatin (rule_of_thumb)."
+      temperature: "gelatin ribbons are warm (about 60 C, unverified); fill handled near ambient (unverified)"
+    commercial_examples:
+      - {product: "Antinol (PCSO-524) softgel", spec: "50 mg PCSO-524 green-lipped mussel oil per softgel in olive oil, d-alpha-tocopherol, gelatin, glycerin", dosing: "<20 kg: 2/day for 15 days then 1/day; >20 kg: 4/day then 2/day", status: verified_snippet, source: "https://www.vetrxdirect.com/product/view/antinol-joint-supplement-for-dogs-cats-otc"}
+    species_suitability: {dog: "high (swallowed or chewed)", cat: "low as a whole unit; moderate if pierced and squeezed onto food (unverified)"}
+
+# -------------------------------------------------------------------------------------
+ingredients:
+
+  fish_oil:
+    physical_form: liquid oil (TG or EE); also microencapsulated powder
+    standardization:
+      - {grade: "18/12 natural TG", spec: "18% EPA, 12% DHA (about 30% EPA+DHA)", note: "Mostly anchovy (Engraulis ringens), self-affirmed GRAS, precursor for most concentrates", status: verified_snippet, source: "https://bulknaturaloils.com/fish-oil-18-epa-12-dha-1-0-m2100-m2100.html (Jedwards)"}
+      - {grade: "concentrate rTG/EE", spec: "commonly about 50-70% total omega-3 (e.g., '60% rTG')", status: unverified}
+      - {grade: "salmon oil (pet)", spec: "Nordic Naturals Omega-3 Pet: EPA >=16% DHA >=11%", status: verified_snippet}
+    oxidation_limits_GOED: {PV_meq_per_kg_max: 5, pAV_max: 20, TOTOX_max: 26, acid_value_mg_KOH_per_g_max: 3, formula: "TOTOX = 2*PV + pAV", status: verified_snippet, source: "GOED Voluntary Monograph https://goedomega3.com/storage/app/media/Governance docs/GOED Monograph - 2022 01 06.pdf"}
+    heat_sensitivity: high (PUFA oxidation accelerates with heat/oxygen/light)
+    moisture_sensitivity: low (but water + metal ions speed oxidation)
+    antioxidant_required: "Mixed tocopherols and/or rosemary extract are the industry norm. Iron and copper ions sharply reduce fish-oil oxidative stability, with Fe3+ a stronger pro-oxidant than Cu2+ (verified_snippet; e.g., UBC thesis https://open.library.ubc.ca/cIRcle/collections/831/items/1.0091636)"
+    taste_odour: fishy odour/aftertaste; dogs/cats generally accept, humans object
+    max_load_in_soft_chew_pct: "3.5-10% (Colorcon, verified). Above about 10% needs a special absorption base."
+    incompatible_with: [iron_salts, copper_salts (pro-oxidant in the same matrix), high_heat_processing, oxygen_exposure]
+    compatible_forms: [liquid_oil, softgel, soft_chew (<=10% oil), powder_sachet (as microencapsulated powder), sprinkle_capsule (powder form)]
+    safety_note: "Dose-dependent GI upset, platelet effects and vitamin E depletion are reported in the literature (unverified here; see the dosing research file)."
+
+  krill_oil:
+    physical_form: viscous red oil (phospholipid-bound omega-3 + astaxanthin)
+    standardization:
+      - {spec: "phospholipids >=40% w/w, omega-3 >=15% w/w, contains astaxanthin", status: verified_snippet, source: "US patent 8,383,675 (natural marine phospholipids)"}
+      - {spec: "QRILL Pet (krill meal) fat fraction: about 40% phospholipids, about 25% omega-3 (about 11% EPA, about 7% DHA), about 114 ppm astaxanthin", status: verified_snippet, source: "Aker QRILL Pet product information via search"}
+    heat_sensitivity: moderate-high (astaxanthin is a natural antioxidant but degrades with heat/light)
+    taste_odour: shrimp/fishy; less 'fish burp' than fish oil (unverified)
+    allergen_note: shellfish/crustacean
+    compatible_forms: [softgel, liquid_oil, soft_chew]
+    soft_chew_example: "Full Strength Krill Soft Chews (https://drugs.com/vet/full-strength-krill-soft-chews.html)"
+    note: "Omega-3 per gram is lower than fish-oil concentrates, so large doses need many units."
+
+  algal_dha_oil:
+    physical_form: oil (Schizochytrium sp.); also algal powder
+    standardization: {spec: "DHA >=40.5% (>=350 mg/g), EPA <=3% for common grades; pet algal powders 40-50% DHA claimed", status: verified_snippet, source: "TGA compositional guideline https://www.tga.gov.au/sites/default/files/cm-cg-dha-rich-oil-derived-from-microalgae-schizochytrium.pdf"}
+    heat_sensitivity: high (as for fish oil)
+    note: "Mostly DHA with little EPA, so it does not substitute for EPA-targeted joint/anti-inflammatory dosing. Vegan/sustainability claim."
+    compatible_forms: [softgel, liquid_oil, soft_chew]
+
+  glucosamine_hcl:
+    physical_form: white crystalline powder, freely water soluble
+    potency: {glucosamine_base_pct: 83, purity: ">=98-99%", status: verified_snippet, source: "https://www.nutriavenue.com/nn/glucosamine-hcl-vs-glucosamine-sulfate/ (secondary); stoichiometry: MW glucosamine 179.2 / glucosamine HCl 215.6 = 0.831 (my calculation)"}
+    heat_sensitivity: low-moderate (Maillard browning with reducing sugars/proteins at heat; unverified)
+    moisture_sensitivity: low (not very hygroscopic, unverified)
+    taste: slightly salty/sweet; acceptable
+    sources: [shellfish (crab/shrimp), corn fermentation (vegetarian)]
+    compatible_forms: [soft_chew, chewable_tablet, capsule, sprinkle_capsule, powder_sachet]
+
+  glucosamine_sulfate:
+    physical_form: powder stabilised with KCl or NaCl (pure sulfate is hygroscopic/unstable)
+    potency:
+      - {form: "glucosamine sulfate 2KCl", note: "about 74% glucosamine sulfate + about 26% KCl stabiliser. One secondary source gives about 47.8% 'active glucosamine' vs 81.3% for HCl; exact numbers depend on the salt", status: verified_snippet, source: "https://www.nutriavenue.com/nn/glucosamine-hcl-vs-glucosamine-sulfate/ ; US 5,843,923 (GS-KCl process)"}
+      - {calc: "glucosamine base fraction of (GlcN)2.H2SO4 = 2x179.2/456.4 = 0.785 before the KCl/NaCl diluent; with 2KCl (MW 605.5) = 0.59; with 2NaCl (MW 573.3) = 0.63", status: "derived (stoichiometric calculation, not a vendor spec)"}
+    moisture_sensitivity: high (reason for the salt stabiliser)
+    model_hint: "Store a 'glucosamine_base_fraction' per salt form: HCl 0.83, sulfate-2KCl 0.59, sulfate-2NaCl 0.63 (derived)."
+    compatible_forms: [capsule, chewable_tablet, powder_sachet, soft_chew]
+
+  chondroitin_sulfate:
+    physical_form: off-white hygroscopic powder (sodium salt)
+    standardization: {spec: "USP: 90-105% by CPC titration (the CPC method is non-specific; other GAGs respond too, and high-MW material reads lower)", status: verified_snippet, source: "https://zpd.dk/hubfs/ZPD%20Product%20Presentation%20USP-2.pdf ; NASC-posted CoA https://nasc.cc/wp-content/uploads/2016/10/AIDP_COA_CS20160811.pdf"}
+    sources: [bovine trachea, porcine, chicken (sternal) cartilage, shark cartilage]
+    molecular_weight: "about 10-15 kDa typical bovine (verified_snippet); shark and chicken differ"
+    quality_issue: "Adulteration/mislabelling is common in chondroitin. Specify an HPLC/enzymatic assay, not CPC alone (unverified recommendation)."
+    moisture_sensitivity: moderate-high (hygroscopic, unverified)
+    heat_sensitivity: low
+    compatible_forms: [soft_chew, chewable_tablet, capsule, sprinkle_capsule, powder_sachet]
+
+  green_lipped_mussel_powder:
+    physical_form: freeze-dried whole-meat powder (Perna canaliculus)
+    composition: "One supplier spec: protein >60%, total fat >10%, GAGs >4% (verified_snippet, greenjeeva.com). Another product: fat 2.4 g/100 g. Composition varies widely by process and harvest."
+    heat_sensitivity: "high for bioactivity (freeze-drying preferred; heat-dried powders are reported to lose activity, unverified)"
+    taste_odour: strong marine odour; dogs generally accept
+    allergen: shellfish
+    dose_bulk: "Gram-scale doses limit small-chew and cat use."
+    compatible_forms: [soft_chew, chewable_tablet, capsule, powder_sachet]
+
+  green_lipped_mussel_CO2_extract_PCSO524:
+    physical_form: oil (supercritical CO2 extract, stabilised, blended in olive oil + vitamin E)
+    standard_unit: "50 mg PCSO-524 per softgel (Antinol)"
+    status: verified_snippet
+    source: "https://www.vetuk.co.uk/antinol-joint-care-pro-soft-gel-capsules-for-dogs-p-50235.html"
+    heat_sensitivity: high (extraction is heat-free to protect lipids)
+    compatible_forms: [softgel, liquid_oil]
+    note: "Doses are mg-scale, unlike gram-scale GLM powder. Do not treat the two as interchangeable on a mg basis."
+
+  UC_II_undenatured_type_II_collagen:
+    physical_form: powder from chicken sternum cartilage
+    ingredient_dose_vs_active:
+      - {statement: "40 mg UC-II delivered 1.2 mg undenatured type II collagen by a newly developed, validated extraction-ELISA", status: verified, source: "Lugo JP et al. Nutr J 2016;15:14. doi:10.1186/s12937-016-0130-8, PMC4731911"}
+      - {statement: "'40 mg UC-II (10 mg collagen type II / min. 3% undenatured type II collagen; Lonza)' fed to Labrador Retrievers", status: verified, source: "Varney JL, Fowler JW, Coon CN. Transl Anim Sci 2021. doi:10.1093/tas/txab084, PMC8191485"}
+      - {statement: "Older literature/marketing: '40 mg UC-II contains 10 mg active undenatured collagen'. This reflects the older assay and total type II collagen; it is NOT the current 3% undenatured spec", status: verified_snippet}
+      - {statement: "Bioiberica Collavant n2 (a competing native type II collagen): 40 mg/day in supplements, 25 ppm in pet food for dogs", status: verified_snippet, source: "https://www.bioiberica.com/en/products/animal-health/collavant-n2"}
+    resolution: "Model: 40 mg UC-II ingredient = about 10 mg type II collagen (25%) = 1.2 mg (3%) undenatured/native type II collagen."
+    canine_doses_in_literature: "Gupta et al. 2012 and earlier Deparle 2005 (PMID 16050819) used 10 mg UC-II/day per dog. Stabile 2019 (Vet Sci 6:72, PMC6789547) used 1 tablet/day. Lonza marketing for dogs says 40 mg/day; dose is described as weight-independent (oral-tolerance mechanism) (verified_snippet)."
+    heat_sensitivity: "high. Undenatured triple helix is lost on heating/denaturation, so cold processing is required (rule_of_thumb; mechanism consistent with Lonza/Bioiberica claims)"
+    compatible_forms: [capsule, chewable_tablet, soft_chew (cold process), powder_sachet]
+
+  MSM:
+    physical_form: white crystalline powder (methylsulfonylmethane)
+    standardization: "OptiMSM 99.9% purity (distilled) (verified_snippet)"
+    heat_sensitivity: low (stable at high temperature, per OptiMSM marketing)
+    moisture_sensitivity: low
+    taste: slightly bitter
+    dose_bulk: high (hundreds of mg to grams), which takes up soft-chew mass (14% of the Colorcon chew)
+    compatible_forms: [soft_chew, chewable_tablet, capsule, powder_sachet, liquid (water soluble)]
+
+  curcumin_95:
+    physical_form: orange-yellow powder, 95% curcuminoids (curcumin, demethoxy-, bisdemethoxy-)
+    bioavailability: poor (low water solubility, rapid conjugation)
+    phytosome_form: {spec: "Meriva: curcumin-phosphatidylcholine complex standardised to about 18-22% curcuminoids. 450 mg Meriva gave plasma curcumin similar to 4 g standard extract in a human PK study", status: verified_snippet, source: "https://uk.thorne.com/ingredients/curcumin-phytosome"}
+    heat_sensitivity: moderate
+    light_sensitivity: "curcumin is photolabile (unverified)"
+    taste_colour: bitter, strong staining yellow colour (affects chew appearance)
+    cat_note: "Curcumin is a phenolic. Cats lack UGT1A6 glucuronidation (see cat_metabolism). Treat cat use as caution/unverified safety."
+    compatible_forms: [capsule, soft_chew, chewable_tablet, powder_sachet]
+
+  SAMe_tosylate:
+    physical_form: hygroscopic powder (S-adenosyl-L-methionine disulfate tosylate or 1,4-butanedisulfonate)
+    potency: {spec: "800 mg SAMe disulfate tosylate = 400 mg SAMe ion (about 50%); quality specs require >=70% (S,S)-diastereomer", status: verified_snippet, source: "https://www.vitasave.ca/products/same-400-mg-1 (AOR label)"}
+    moisture_sensitivity: very high. Methacrylic enteric-coated tablets absorb moisture at 25 C/60% RH, the core swells, and contents ooze (patent summary, verified_snippet)
+    heat_sensitivity: high
+    processing_requirement: "Enteric-coated tablet, made at low temperature/low humidity, sold in individual moisture-resistant blister packs. Denosyl: do not split or crumble; keep in blister until use (verified_snippet, https://www.drugs.com/vet/denosyl-can.html)."
+    combination_limit: "The reactive nature of SAMe 'prevents it from being used in combination nutrient products'. It can be stabilised only as a single ingredient with an enteric coat (verified_snippet). Denamarin co-packages SAMe + silybin-PC in one enteric-coated tablet, so the combination is possible in a coated tablet format (verified_snippet)."
+    commercial_strengths: "Denosyl 90/225/425 mg. Denamarin: 90 mg SAMe + 31 mg SPC (9 mg silybin A+B) cats/small dogs; 225 mg + 82 mg SPC (24 mg silybin); 425 mg + 120 mg SPC (35 mg silybin)"
+    administration: "Given on an empty stomach per label (unverified here)"
+    compatible_forms: [enteric_coated_tablet (only)]
+    incompatible_forms: [soft_chew, chewable_tablet, powder_sachet, sprinkle_capsule, liquid_oil, capsule (uncoated)]
+
+  silybin_phytosome:
+    physical_form: powder (silybin A+B complexed with phosphatidylcholine, e.g., Siliphos)
+    standardization: "In Denamarin, 31 mg SPC = 9 mg silybin A+B (about 29%); 82 mg = 24 mg; 120 mg = 35 mg. Marin cats 9 mg silybin per capsule; Marin dogs 43 mg silybin per chewable tablet (verified_snippet)"
+    heat_sensitivity: moderate (phospholipid oxidation, unverified)
+    compatible_forms: [chewable_tablet, capsule, sprinkle_capsule, coated_tablet (with SAMe)]
+
+  probiotics_lactic_acid_bacteria:
+    physical_form: freeze-dried powder (Lactobacillus, Bifidobacterium, Enterococcus faecium SF68)
+    heat_sensitivity: "very high. Non-spore strains showed 0% survival in a heat-shock comparison vs >85% for Bacillus coagulans/subtilis (manufacturer claim, petfoodindustry.com, verified_snippet)"
+    moisture_sensitivity: "very high. Viability falls quickly when aw is above about 0.25-0.3 (unverified); moisture-labile actives degrade above aw 0.6 (US 12,194,144)"
+    overage_practice: "The label CFU is the minimum at end of shelf life, so excess CFU is added at manufacture to cover losses over shelf life (often >12 months) (verified_snippet; PMC7464440, Microorganisms 2020). Overage size is set per strain/matrix from stability data; 2-10x is commonly cited (unverified)."
+    packaging: foil sachets, desiccant, blister; some need refrigeration
+    incompatible_with: [thermal_extrusion, baking, high_aw_soft_chews, "antimicrobial_botanicals (garlic; oregano/thyme essential oils; high-dose berberine) - plausible, no pet data found (unverified)", "co-administered antibiotics (give 2+ h apart; unverified)"]
+    compatible_forms: [powder_sachet, capsule, sprinkle_capsule]
+
+  bacillus_coagulans_spores:
+    physical_form: spore powder (e.g., GanedenBC30 / B. coagulans GBI-30, 6086)
+    heat_sensitivity: "low. Survives baking, boiling, extrusion and roll-forming; added to petfood before extrusion and survives the full process (verified_snippet, https://www.petfoodindustry.com/articles/680-probiotic-powered-palatants)"
+    soft_chew_note: "Described as the only probiotic proven stable long-term in a soft chew (marketing claim, verified_snippet). Example label: 1.2 x 10^8 CFU per chew; recommended 2 x 10^8/day large dogs, 1 x 10^8/day cats/small dogs (product-level, verified_snippet)."
+    compatible_forms: [soft_chew, chewable_tablet, powder_sachet, capsule, baked_treat]
+
+  psyllium:
+    physical_form: husk powder (Plantago ovata), swelling fibre
+    standardization: "Purity grades 85/95/98/99%. Swell volume >=50 mL/g (95%) and >=60 mL/g (98%); moisture <=12% (verified_snippet, girirajpsyllium.in supplier spec)"
+    moisture_sensitivity: "high. Gels on contact with water, so it is unsuitable for liquids and problematic in moist soft chew dough (rule_of_thumb)"
+    dose_bulk: very high (gram-scale)
+    compatible_forms: [powder_sachet, capsule (low dose only), soft_chew (low inclusion)]
+    note: "Fibre can bind or slow absorption of co-administered actives/minerals (unverified)."
+
+  L_theanine:
+    physical_form: white crystalline powder (synthetic L-theanine e.g., Suntheanine; Anxitane uses a 'pure synthetic form')
+    heat_sensitivity: low (unverified)
+    moisture_sensitivity: low
+    taste: mild umami/sweet, palatable
+    commercial: "Anxitane 50 mg and 100 mg chewable tablets (verified_snippet)"
+    compatible_forms: [chewable_tablet, soft_chew, capsule, powder_sachet]
+
+  alpha_casozepine:
+    physical_form: palatable water-soluble powder (tryptic hydrolysate of bovine alpha-s1 casein, Lactium)
+    commercial: "Zylkene 75/225/450 mg capsules. Open and mix with food or treats; label weight bands (e.g., 75 mg for <=5 kg) (verified_snippet)"
+    heat_sensitivity: "moderate (peptide; unverified)"
+    allergen: milk protein
+    compatible_forms: [sprinkle_capsule, capsule, soft_chew, chewable_tablet, powder_sachet]
+
+  melatonin:
+    physical_form: powder, potent (mg doses)
+    heat_sensitivity: low-moderate (unverified)
+    light_sensitivity: "photolabile in solution (unverified)"
+    content_uniformity: "Very low dose per unit, so trituration/premix is needed for blend uniformity (rule_of_thumb)"
+    safety_formulation: "Never formulate or recommend human gummies/fast-dissolve melatonin that contains xylitol. Xylitol causes hypoglycaemia and liver failure in dogs (FDA: https://www.fda.gov/animal-veterinary/animal-health-literacy/paws-xylitol-toxic-dogs, verified_snippet)."
+    compatible_forms: [chewable_tablet, soft_chew, capsule, liquid]
+
+  cranberry_extract_PAC:
+    physical_form: red-purple powder
+    standardization: "PAC content must name the assay. BL-DMAC is the accepted non-proprietary method. Human clinical reference dose 36 mg PAC/day (DMAC). Example: an extract with 27-33% PAC (DMAC) needs 120 mg for 36 mg PAC (Indena Anthocran) (verified_snippet; https://www.indena.com/indena_files/2021/03/anthocran_ss_us.pdf)"
+    assay_warning: "PAC values by the older European Pharmacopoeia or Porter/BL-DMAC methods are not interchangeable. Store the method with the value (verified_snippet)."
+    taste: astringent/tart
+    hygroscopic: "yes, extract powders cake (unverified)"
+    compatible_forms: [soft_chew, chewable_tablet, capsule, powder_sachet]
+
+  chitosan:
+    physical_form: powder (deacetylated chitin, crustacean)
+    use: "Phosphate binder with calcium carbonate in Epakitin (8% chitosan, 10% CaCO3) (verified_snippet, secondary source)"
+    allergen: shellfish
+    interaction: "Binds dietary phosphate and possibly fat-soluble vitamins/minerals (unverified). Give with meals."
+    compatible_forms: [powder_sachet]
+
+  MCT_oil:
+    physical_form: clear liquid oil (C8/C10 triglycerides)
+    heat_sensitivity: low (saturated; oxidatively stable)
+    dosing_evidence: "Canine epilepsy RCT used MCT at 9% of metabolisable energy (Berk et al. 2020 JVIM, PMID 32293065, verified_snippet). Law et al. 2015 used a 5.5% MCT ketogenic diet."
+    tolerability: "GI upset (diarrhoea, flatulence, bloating) and reduced palatability; titrate slowly (VCA, verified_snippet). Cats: reported aversion to MCT (unverified)."
+    compatible_forms: [liquid_oil, softgel, powder_sachet (as spray-dried MCT powder)]
+
+  taurine:
+    physical_form: white crystalline powder, water soluble
+    heat_sensitivity: low (heat stable; losses in canned food are mainly from leaching, unverified)
+    moisture_sensitivity: low
+    taste: neutral-slightly bitter
+    compatible_forms: [all]
+
+  L_carnitine:
+    physical_form: powder
+    forms:
+      - {form: "L-carnitine base (inner salt)", hygroscopic: "highly hygroscopic", status: verified_snippet}
+      - {form: "L-carnitine L-tartrate (Carnipure Tartrate)", carnitine_pct: 68, hygroscopic: "non-hygroscopic", status: verified_snippet, source: "https://www.ulprospector.com/en/eu/Food/Detail/3383/94682/Carnipure-Tartrate"}
+      - {form: "L-carnitine fumarate", carnitine_pct: 51, status: verified_snippet}
+    model_hint: "Use L-tartrate in chews/tablets/capsules and apply a 0.68 conversion. The base form only suits liquids or protected packaging."
+    compatible_forms: [capsule, chewable_tablet, soft_chew (tartrate), powder_sachet (tartrate), liquid (base)]
+
+  CoQ10:
+    physical_form: orange crystalline powder (ubiquinone); ubiquinol is an oil/reduced form
+    melting_point_c: 49
+    light_sensitivity: photolabile
+    solubility: very poorly water soluble (MW 864); oil solutions/emulsions/solid dispersions/cyclodextrin used for bioavailability
+    status: verified_snippet
+    source: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7997171 (CoQ10 formulation review)"
+    heat_note: "Melts at about 49 C, so hot-process chews can cause recrystallisation/segregation (rule_of_thumb). Ubiquinol oxidises readily (unverified)."
+    compatible_forms: [softgel, capsule, chewable_tablet, soft_chew]
+    form_note: "softgel in oil is best for bioavailability; soft chew only if cold-processed (melting point about 49 C)"
+
+  vitamin_E:
+    forms:
+      - {form: "RRR-alpha-tocopherol (d-alpha, natural)", iu_per_mg: 1.49, status: verified_snippet, source: "NIH ODS Vitamin E fact sheet https://ods.od.nih.gov/factsheets/VitaminE-HealthProfessional/"}
+      - {form: "all-rac-alpha-tocopheryl acetate (dl-, synthetic)", iu_per_mg: 1.0, status: verified_snippet, source: "NIH ODS"}
+      - {form: "d-alpha-tocopheryl acetate", iu_per_mg: 1.36, status: unverified}
+      - {form: "mixed tocopherols", note: "Used mainly as a process antioxidant for oils (gamma/delta-rich). Low vitamin E activity per mg; do not count toward the vitamin E dose in IU (rule_of_thumb)"}
+    stability: "Acetate esters are stable in premixes/chews. Free tocopherols are consumed as they protect oils (unverified)."
+    compatible_forms: [all]
+
+  cobalamin:
+    forms: [cyanocobalamin, hydroxocobalamin, methylcobalamin]
+    light_sensitivity: "Methylcobalamin is highly photolabile and degrades to hydroxocobalamin. Stability: cyanocobalamin > hydroxocobalamin > methylcobalamin. 100 C for 60 min caused 38% cyanocobalamin loss. Ascorbic acid increases methylcobalamin loss (70-76%); sorbitol protects (verified_snippet, IJVNR 90(5-6) doi:10.1024/0300-9831/a000578; IJPS methylcobalamin photodegradation)"
+    model_hint: "Use cyanocobalamin in heated/light-exposed forms and opaque packaging. Avoid co-formulating methylcobalamin with ascorbic acid."
+    compatible_forms: [chewable_tablet, capsule, soft_chew (cyanocobalamin), liquid (opaque)]
+
+# -------------------------------------------------------------------------------------
+interactions_and_incompatibilities:
+  - id: zinc_reduces_copper_absorption
+    type: absorption_competition
+    detail: "Oral zinc induces enterocyte metallothionein, which binds copper and is shed in faeces. This is used therapeutically (zinc acetate/gluconate) in copper-associated hepatopathy. High zinc in a blend lowers copper status (verified_snippet, VIN/Auburn proceedings)."
+    use_in_graph: "Allowed and intended for copper_storage_hepatopathy breeds. Flag as a risk of copper deficiency with chronic high-dose zinc in others."
+    source: "https://www.vin.com/doc/?id=3850149 ; ACVIM consensus on copper-associated hepatitis in dogs: Webster CRL et al. J Vet Intern Med 2019 (doi:10.1111/jvim.15516, citation_from_memory: true)"
+  - id: avoid_copper_in_copper_hepatopathy_breeds
+    type: breed_safety
+    detail: "ACVIM panel linked NRC/AAFCO copper levels and bioavailable copper chelates to rising hepatic copper accumulation in dogs. Avoid added copper (esp. chelated) for Bedlington, Labrador, Doberman, WHWT and Dalmatian (verified_snippet)."
+  - id: calcium_phytate_reduce_zinc
+    type: absorption_competition
+    detail: "Excess dietary calcium and phytate bind zinc and lower absorption (zinc-responsive dermatosis syndrome II in fast-growing large/giant breeds, e.g., Great Dane, GSD, Labrador, Doberman) (verified_snippet; https://open.lib.umn.edu/animaldermatology2/chapter/nutritional-related-keratinization-disorders-zinc-responsive-dermatosis-dogs/)"
+  - id: calcium_iron_competition
+    type: absorption_competition
+    detail: "Calcium inhibits non-haem iron absorption (human data; not verified for dogs/cats, unverified)."
+  - id: metal_ions_oxidise_PUFA_oils
+    type: chemical_incompatibility
+    detail: "Fe3+ and Cu2+ catalyse fish-oil oxidation in a concentration-dependent way. Keep iron/copper premixes physically separate from omega-3 oils, or use chelated/encapsulated minerals plus antioxidants (verified_snippet)."
+  - id: probiotics_vs_heat_and_antimicrobials
+    type: viability
+    detail: "Non-spore probiotics do not survive thermal extrusion/baking. Use cold process + low aw, or use spore-formers. Antimicrobial botanicals (garlic/allicin, oregano/thyme oils) in the same matrix may reduce viability (unverified)."
+  - id: SAMe_requires_enteric_single_unit
+    type: dosage_form_constraint
+    detail: "SAMe must be an enteric-coated, blister-packed tablet that is not split or crushed. It cannot go in a chew, powder or capsule blend (verified_snippet). It can be co-formulated with silybin-PC in a coated tablet (Denamarin)."
+  - id: chitosan_fibre_binding
+    type: absorption_interference
+    detail: "Chitosan/psyllium may reduce absorption of co-dosed minerals and fat-soluble actives (unverified). Separate dosing in time."
+  - id: methylcobalamin_ascorbate
+    type: chemical_incompatibility
+    detail: "Ascorbic acid accelerates methylcobalamin degradation (70-76% loss); sorbitol mitigates (verified_snippet)."
+  - id: garlic_allium_toxicity
+    type: species_safety
+    detail: "Allium (garlic is 3-5x more toxic than onion) causes Heinz-body haemolytic anaemia. Cats are most susceptible, then dogs. Concentrated powders/supplements are the main risk. Onion toxicosis reported in cats at 5 g/kg raw onion, and in dogs at 15-30 g/kg raw onion (verified_snippet, MSD/Merck Vet Manual https://www.msdvetmanual.com/toxicology/food-hazards/allium-spp-toxicosis-in-animals). NRC 2009 could not set a safe upper limit for garlic and gave historical/presumed safe intakes only."
+  - id: cat_UGT1A6_phenolics
+    type: species_safety
+    detail: "All cats carry a fixed UGT1A6 pseudogene and lack phenol glucuronidation, so they are very sensitive to acetaminophen, aspirin/salicylates and phenolic essential oils (tea tree, etc.). Treat phenolic botanicals (essential oils, high-dose polyphenols) as cat-caution (verified_snippet; OMIA 001586-9685)."
+  - id: alpha_lipoic_acid_cats
+    type: species_safety
+    detail: "Lipoic acid is about 10x more acutely toxic to cats. Maximum tolerated dose <30 mg/kg, hepatocellular toxicity (Hill AS et al. 2004, verified_snippet). Pet Poison Helpline cites a minimum toxic dose of about 13 mg/kg in cats. Exclude from cat formulas or cap well below this."
+  - id: xylitol_dogs
+    type: excipient_safety
+    detail: "Xylitol is a banned excipient for dog products (hypoglycaemia, liver failure); watch for it in human-derived melatonin/gummy ingredients (FDA, verified_snippet)."
+  - id: MDR1_breed_drug_note
+    type: breed_safety
+    detail: "MDR1 (ABCB1) affects drug transport (ivermectin, loperamide, etc.). No common supplement ingredient is a known P-gp substrate problem, but cannabinoid/hemp and some botanicals that modulate P-gp are uncertain (unverified)."
+
+# -------------------------------------------------------------------------------------
+regulatory_us:
+  fda_cvm_status:
+    summary: "DSHEA (1994) does not apply to animals; CVM stated this in a Federal Register notice on 22 April 1996. There is no 'dietary supplement' category for animals: products are legally animal food or animal drugs, depending on intended use and claims. Structure/function claims beyond nutrition, taste or aroma can make a product an unapproved new animal drug."
+    status: verified_snippet
+    sources: ["https://www.nasc.cc/historical-summary/ (verified)", "https://www.aafco.org/resources/startups/definition-of-food-drugs/"]
+    ingredient_status: "Animal-food ingredients must be GRAS for the intended use, an approved food additive, or otherwise sanctioned (e.g., an AAFCO OP definition). Many supplement ingredients have none of these and are sold under historical FDA enforcement discretion for low-risk products (verified_snippet re ingredient requirement; enforcement-discretion detail unverified)."
+  aafco_and_afic:
+    summary: "The FDA-AAFCO MOU (ingredient definitions reviewed by CVM) expired 1 October 2024. AAFCO stopped accepting new definition requests on 1 September 2024. FDA created the Animal Food Ingredient Consultation (AFIC) process; Guidance for Industry #294 was finalised 6 January 2025. Existing AAFCO OP definitions remain under an FDA enforcement-policy guidance."
+    status: verified_snippet
+    sources: ["https://www.khlaw.com/insights/fda-end-mou-aafco-impact-animal-food-ingredient-review", "https://www.venable.com/insights/publications/2024/08/the-fdaaafco-mou-will-not-be-renewed"]
+    graph_use: "Store per ingredient: aafco_defined (bool/OP section), gras_animal (bool), afic_status, and fda_enforcement_discretion_note."
+  nasc:
+    summary: >
+      NASC (formed 2002) runs the voluntary NASC Quality Seal. Requirements include a quality
+      control manual with SOPs, adverse event reporting through NAERS (monitors >1,400
+      ingredients and >6,000 products; data shared with FDA-CVM), labelling/claims compliance and
+      audits. The NASC Preferred Supplier program vets raw-material suppliers and contract
+      manufacturers. NASC ingredient data sheets follow the SIDI protocol and test 5 lots per
+      ingredient. 'Preferred ingredient list' concept: NASC keeps ingredient-safety information
+      and uses the NRC 2009 'historical safe intake (HSI)' and 'presumed safe intake (PSI)'
+      framework. Example (NRC 2009 lutein): dog PSI 1.8 mg/kg BW, HSI 0.45 mg/kg; cat PSI
+      7.2 mg/kg, HSI 0.85 mg/kg.
+    status: verified_snippet
+    sources: ["https://www.petfoodindustry.com/articles/449-online-extra-nasc-and-supplement-safety", "https://www.nasc.cc/wp-content/uploads/2017/04/ABC-HerbalEGram-_-Feb-2017_NASC-PS-Program-Focuses-On-Quality-Standards.pdf", "NRC. Safety of Dietary Supplements for Horses, Dogs, and Cats. National Academies Press 2009. https://nap.nationalacademies.org/catalog/12461"]
+    unverified: "Whether NASC publishes a formal 'preferred ingredient list' or maximum-inclusion table is unverified. NASC hemp-specific labelling guidelines exist per industry reports but were not checked."
+  cbd_hemp:
+    federal: "CBD and other hemp-derived substances have no FDA approval as animal drugs and no approved food additive petition, AAFCO definition or GRAS conclusion for animal food. FDA considers CBD-containing animal food adulterated, and CBD products with therapeutic claims are unapproved new animal drugs. CVM has issued warning letters (verified_snippet; https://atwork.avma.org/news/fda-issues-warnings-over-cbd-animals)."
+    federal_hemp_definition_change: "P.L. 119-37 (FY2026 Agriculture appropriations, enacted 12 November 2025) redefines hemp to <0.3% total THC (not only delta-9) and excludes final hemp-derived cannabinoid products with >0.4 mg total THC per container. Effective 12 November 2026 (verified_snippet; CRS IN12620 https://www.congress.gov/crs_external_products/IN/PDF/IN12620/IN12620.2.pdf). Check for later amendments or delays near that date."
+    california: "AB 45 (signed 6 October 2021) bars restricting the sale of food, dietary supplements, cosmetics or pet food solely because they contain industrial hemp/cannabinoids. Processed pet food manufacturers must register with CDPH (Food and Drug Branch). CDFA regulates hemp cultivation (verified_snippet; https://vicentellp.com/insights/california-ab45-allowing-manufacture-sale-hemp-derived-products-cbd)."
+    other_states: "State laws vary. Some (e.g., Montana feed policy) bar hemp in commercial feed except where AAFCO-defined. Treat hemp/CBD as 'excluded from formulation' in the graph unless a state-specific mode is added (verified_snippet re Montana: https://agr.mt.gov/_docs/feed-docs/MT_Hemp_Feed_Policy.pdf)."
+    graph_rule: "Exclude CBD/hemp extracts as formulation ingredients for US output (not FDA-permitted). Hemp seed oil/hemp seed products may be treated differently by states; they are also not AAFCO-defined for pet food (unverified for current status)."
+
+# =====================================================================================
+# PART B - BREED PREDISPOSITIONS
+# =====================================================================================
+
+life_stage_senior_thresholds:
+  dog:
+    definition: "AAHA 2019 Canine Life Stage Guidelines: senior = 'the last 25% of estimated lifespan through end of life'. AAHA proposes no fixed ages for mature adult and senior because variation is large."
+    status: verified
+    sources: ["Creevy KE et al. 2019 AAHA Canine Life Stage Guidelines. JAAHA 2019;55(6):267-290. doi:10.5326/JAAHA-MS-6999 (citation_from_memory: true for vol/pages/DOI)", "2023 AAHA Senior Care Guidelines (Dhaliwal R et al., JAAHA 2023;59:1-21, doi:10.5326/JAAHA-MS-7343), which restate the 25% rule (verified from PDF)"]
+    other_stages_aaha2019: "puppy: birth to cessation of rapid growth (about 6-9 months); young adult: to completion of physical/social maturation (about 3-4 years); mature adult: to the start of the last 25% of lifespan (citation_from_memory: true; consistent with AAHA definitions page)"
+    computed_rule: "senior_start_years = 0.75 x estimated breed/size median lifespan"
+    lifespan_reference: "McMillan KM et al. Sci Rep 2024 'Longevity of companion dog breeds: those at risk from early death' (UK, 584,734 dogs): median 12.5 y overall; purebreds 12.7 y vs crossbreds 12.0 y; large breeds 20% higher hazard of early death than small; brachycephalic breeds median 11.2 y (verified_snippet; doi:10.1038/s41598-023-50458-w)"
+    rule_of_thumb_by_size:
+      source: "AVMA Senior Pets client brochure: 'Cats and small dogs are generally considered senior at seven years of age... larger-breed dogs ... often considered senior when they are 5 to 6 years of age' (verified_snippet, https://ebusiness.avma.org/files/productdownloads/SeniorPets_En.pdf)"
+      derived_defaults_years:
+        note: "Defaults from 0.75 x typical lifespan. The lifespans are rule-of-thumb assumptions (unverified), except overall/brachy medians from McMillan 2024."
+        toy: {assumed_lifespan_y: 14, senior_start_y: 10.5}
+        small: {assumed_lifespan_y: 13.5, senior_start_y: 10}
+        medium: {assumed_lifespan_y: 12.5, senior_start_y: 9.5}
+        large: {assumed_lifespan_y: 11.5, senior_start_y: 8.5}
+        giant: {assumed_lifespan_y: 9, senior_start_y: 7}
+      conservative_avma_style_defaults_years: {toy: 7, small: 7, medium: 7, large: 6, giant: 5}
+      recommendation: "Use the 0.75 x lifespan rule, with breed-specific lifespan where known. The AVMA ages are a cruder, more conservative trigger (earlier screening)."
+  cat:
+    stages: {kitten: "birth-1 y", young_adult: "1-6 y", mature_adult: "7-10 y", senior: ">10 y", end_of_life: "any age"}
+    status: verified
+    sources: ["Quimby J et al. 2021 AAHA/AAFP Feline Life Stage Guidelines. J Feline Med Surg 2021;23(3):211-233. doi:10.1177/1098612X21993657 (citation_from_memory: true for vol/pages/DOI)", "https://catvets.com/life-stage", "2023 AAHA Senior Care Guidelines restate senior = cats >10 y (verified from PDF)"]
+
+breed_sources_general:
+  - "Gough A, Thomas A, O'Neill D. Breed Predispositions to Disease in Dogs and Cats. 3rd ed. Wiley-Blackwell; 2018. ISBN 9781119225546 (verified)"
+  - "AKC breed weight chart https://www.akc.org/expert-advice/nutrition/breed-weight-chart/ (verified; lb converted to kg at 0.4536)"
+  - "OFA breed statistics https://ofa.org (hip/elbow)"
+  - "UC Davis VGL test pages https://vgl.ucdavis.edu"
+  - "WSU Veterinary Clinical Pharmacology Lab MDR1 https://prime.vetmed.wsu.edu/2021/10/19/breeds-commonly-affected-by-mdr1-mutation/"
+
+size_class_definitions_dog:
+  note: "Adult weight cut-offs used here (rule_of_thumb; pet-food industry convention, no single standard)"
+  toy: "<5 kg"
+  small: "5-10 kg"
+  medium: "10-25 kg"
+  large: "25-45 kg"
+  giant: ">45 kg"
+
+breeds:
+
+  - breed: Labrador Retriever
+    species: dog
+    size_class: large
+    adult_weight_kg: [25, 36]
+    weight_source: "AKC 55-80 lb (verified)"
+    predispositions:
+      - {id: obesity, strength: strong, evidence: "POMC 14-bp deletion, allele freq 12%; about 23% of Labradors carry >=1 copy; +1.9 kg per allele; linked to food motivation (Raffan E et al. Cell Metab 2016, doi:10.1016/j.cmet.2016.04.012). Obesity is among the most common disorders in UK Labradors (McGreevy PD et al. Canine Genet Epidemiol 2018, VetCompass)", status: verified_snippet}
+      - {id: osteoarthritis, strength: strong, evidence: "Predisposed in VetCompass appendicular OA study (Anderson KL et al. Sci Rep 2018;8:5641, doi:10.1038/s41598-018-23940-z); OA is a top disorder in McGreevy 2018", status: verified_snippet}
+      - {id: hip_dysplasia, strength: moderate, evidence: "OFA registry, Gough & Thomas 2018", status: unverified_numbers}
+      - {id: elbow_dysplasia, strength: moderate, evidence: "OFA: about 10.1% ED (birth years 1998-2001)", status: verified_snippet}
+      - {id: cranial_cruciate_ligament_rupture, strength: moderate, evidence: "Gough & Thomas 2018; VetCompass (Taylor-Brown FE et al. Vet Surg 2015, PMID 26118493)", status: unverified_numbers}
+      - {id: copper_storage_hepatopathy, strength: moderate, evidence: "ATP7B p.Arg1453Gln raises and ATP7A p.Thr327Ile partly lowers hepatic copper (Fieten H et al. Dis Model Mech 2016)", status: verified_snippet}
+      - {id: atopic_dermatitis, strength: moderate, evidence: "MSD Vet Manual breed list", status: verified_snippet}
+      - {id: cystinuria, strength: weak, evidence: "Type I-A (SLC3A1) reported in Labradors; UC Davis VGL test https://vgl.ucdavis.edu/test/cystinuria-type-ia-labrador", status: verified_snippet}
+    supplement_relevance: "Weight-aware dosing; joint support; avoid added copper; calorie density of chews matters."
+
+  - breed: Golden Retriever
+    species: dog
+    size_class: large
+    adult_weight_kg: [25, 34]
+    weight_source: "AKC 55-75 lb (verified)"
+    predispositions:
+      - {id: hip_dysplasia, strength: moderate, evidence: "OFA / Gough & Thomas", status: unverified_numbers}
+      - {id: elbow_dysplasia, strength: moderate, evidence: "OFA about 10.1% (1998-2001 birth years); about 11.6% affected through 2003 (GRCA)", status: verified_snippet}
+      - {id: cranial_cruciate_ligament_rupture, strength: moderate, evidence: "VetCompass: golden retriever x1.69 risk (verified_snippet)"}
+      - {id: atopic_dermatitis, strength: moderate, evidence: "MSD Vet Manual", status: verified_snippet}
+      - {id: hypothyroidism, strength: moderate, evidence: "Breed lists; Gough & Thomas", status: verified_snippet}
+      - {id: dilated_cardiomyopathy, strength: moderate, evidence: "Taurine-deficient DCM over-represented in goldens; diet-associated (Kaplan JL et al. PLoS One 2018, PMC6292607; family report PMID 16141179)", status: verified_snippet}
+      - {id: osteoarthritis, strength: moderate, evidence: "secondary to dysplasia; Gough & Thomas", status: unverified_numbers}
+      - {id: obesity, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    supplement_relevance: "Taurine/carnitine support is relevant where diet-associated DCM is a concern (vet supervision). Omega-3 for skin/joints."
+
+  - breed: German Shepherd Dog
+    species: dog
+    size_class: large
+    adult_weight_kg: [22, 41]
+    weight_source: "AKC 50-90 lb (verified)"
+    predispositions:
+      - {id: exocrine_pancreatic_insufficiency, strength: strong, evidence: "Pancreatic acinar atrophy; GSDs make up about two-thirds of PAA-EPI cases (MSD Vet Manual; Batchelor DJ et al. JVIM 2007)", status: verified_snippet}
+      - {id: hip_dysplasia, strength: strong, evidence: "OFA / Gough & Thomas", status: unverified_numbers}
+      - {id: elbow_dysplasia, strength: strong, evidence: "OFA: 17.2% (1998-2001 birth years); 18.9% of 36,523 evaluations (later data)", status: verified_snippet}
+      - {id: chronic_enteropathy, strength: moderate, evidence: "IBD / antibiotic-responsive enteropathy over-represented (Gough & Thomas 2018)", status: unverified}
+      - {id: atopic_dermatitis, strength: moderate, evidence: "Gough & Thomas", status: unverified}
+      - {id: mdr1_mutation, strength: weak, evidence: "WSU: about 10% (white/long-haired lines more often)", status: verified_snippet}
+      - {id: osteoarthritis, strength: moderate, evidence: "secondary to HD/ED", status: unverified}
+      - {id: epilepsy, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    notes: "CCL rupture LOWER risk in GSD (VetCompass x0.43, verified_snippet). Degenerative myelopathy (SOD1) is common but not in the ID list."
+    supplement_relevance: "With EPI, enzyme replacement is needed and fat-soluble vitamin/cobalamin status matters; powder forms mixed into food suit this."
+
+  - breed: Dalmatian
+    species: dog
+    size_class: large
+    adult_weight_kg: [20, 32]
+    weight_source: "AKC 45-70 lb (verified)"
+    predispositions:
+      - {id: urate_urolithiasis, strength: strong, evidence: "All Dalmatians are homozygous for SLC2A9 hyperuricosuria (Bannasch D et al. PLoS Genet 2008, PMID 18989453)", status: verified_snippet}
+      - {id: atopic_dermatitis, strength: moderate, evidence: "MSD Vet Manual breed list", status: verified_snippet}
+      - {id: copper_storage_hepatopathy, strength: moderate, evidence: "Copper-associated hepatitis recognised in Dalmatians (ACVIM consensus / Fieten reviews)", status: verified_snippet}
+    notes: "Congenital deafness is common (not in ID list)."
+    supplement_relevance: "Avoid high-purine ingredients (organ meats, yeast/brewer's yeast, fish/krill/GLM powders are moderate-high purine, unverified) and urine-acidifying actives. Prefer low-purine excipients/palatants."
+
+  - breed: Bedlington Terrier
+    species: dog
+    size_class: small
+    adult_weight_kg: [7.7, 10.4]
+    weight_source: "AKC 17-23 lb (verified)"
+    predispositions:
+      - {id: copper_storage_hepatopathy, strength: strong, evidence: "Autosomal recessive COMMD1 (MURR1) deletion impairs biliary copper excretion (van de Sluis B et al. Hum Mol Genet 2002, citation_from_memory: true; VIN/Auburn proceedings verified_snippet)", status: verified_snippet}
+    supplement_relevance: "Exclude copper. Zinc (acetate/gluconate) may be indicated under vet care. Avoid copper-rich ingredients (liver, shellfish/GLM, some organ-meat palatants; unverified ranking)."
+
+  - breed: Doberman Pinscher
+    species: dog
+    size_class: large
+    adult_weight_kg: [27, 45]
+    weight_source: "AKC 60-100 lb (verified)"
+    predispositions:
+      - {id: dilated_cardiomyopathy, strength: strong, evidence: "Cumulative prevalence 58.2% in European Dobermans; 44% at >8 y (Wess G et al. JVIM 2010)", status: verified_snippet}
+      - {id: hypothyroidism, strength: strong, evidence: "OR 17.02 vs other breeds (VetCompass/UK primary care hypothyroidism study, Canine Genet Epidemiol 2022, doi:10.1186/s40575-022-00123-8)", status: verified_snippet}
+      - {id: copper_storage_hepatopathy, strength: moderate, evidence: "ATP7B c.4358G>A associated with raised hepatic copper (Fieten et al.)", status: verified_snippet}
+      - {id: cranial_cruciate_ligament_rupture, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    notes: "von Willebrand disease type 1 is common; be cautious with high-dose fish oil/anti-platelet botanicals (unverified)."
+    supplement_relevance: "Cardiac (taurine, carnitine, omega-3, CoQ10) and liver support; avoid copper."
+
+  - breed: Cavalier King Charles Spaniel
+    species: dog
+    size_class: small
+    adult_weight_kg: [5.9, 8.2]
+    weight_source: "AKC 13-18 lb (verified)"
+    predispositions:
+      - {id: myxomatous_mitral_valve_disease, strength: strong, evidence: "Up to about 90% affected by 10 years; about 20x more prevalent than in other breeds (UFAW Genetic Welfare Problems)", status: verified_snippet}
+      - {id: obesity, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    notes: "Syringomyelia/Chiari-like malformation is common (not in ID list)."
+    supplement_relevance: "Cardiac support; small unit size."
+
+  - breed: Miniature Schnauzer
+    species: dog
+    size_class: small
+    adult_weight_kg: [5, 9]
+    weight_source: "AKC 11-20 lb (verified)"
+    predispositions:
+      - {id: hyperlipidemia, strength: strong, evidence: "Primary hypertriglyceridaemia in 32.8% of 192 US Mini Schnauzers, rising with age (Xenoulis PG et al. JVIM 2007)", status: verified_snippet}
+      - {id: pancreatitis_history, strength: strong, evidence: "Severe HTG (>862 mg/dL) gave 4.5x odds of raised cPLI. After pancreatitis, 71% vs 33% had HTG (OR 5.02) (Xenoulis PG et al. JAAHA 2010, PMID 20610694)", status: verified_snippet}
+      - {id: calcium_oxalate_urolithiasis, strength: strong, evidence: "Odds of CaOx uroliths 11.8x (UMVTH) / 2x (MUC) vs other breeds", status: verified_snippet}
+      - {id: diabetes_mellitus, strength: moderate, evidence: "Gough & Thomas", status: unverified}
+      - {id: hypothyroidism, strength: weak, evidence: "Breed lists", status: verified_snippet}
+    supplement_relevance: "Fat-restricted formulations: avoid high-fat chews/oil carriers; omega-3 may help lower triglycerides. Avoid high-dose vitamin C (oxalate precursor, unverified)."
+
+  - breed: Yorkshire Terrier
+    species: dog
+    size_class: toy
+    adult_weight_kg: [2.0, 3.2]
+    weight_source: "AKC 'up to 7 lb' (verified); lower bound unverified"
+    predispositions:
+      - {id: pancreatitis_history, strength: strong, evidence: "Increased risk of fatal acute pancreatitis (Hess RS et al. JAVMA 1999;214(1):46-51)", status: verified_snippet}
+      - {id: calcium_oxalate_urolithiasis, strength: moderate, evidence: "Listed with Lhasa, Schnauzers, Bichon, Shih Tzu as CaOx-predisposed (IVIS Veterinary Focus 28.2 urolith review)", status: verified_snippet}
+      - {id: myxomatous_mitral_valve_disease, strength: moderate, evidence: "small-breed predisposition; Gough & Thomas", status: unverified}
+    notes: "Congenital portosystemic shunt and tracheal collapse are strongly predisposed (not in ID list). PSS changes hepatic metabolism of supplements."
+    supplement_relevance: "Toy units (small chews, liquids). Low fat."
+
+  - breed: Boxer
+    species: dog
+    size_class: large
+    adult_weight_kg: [23, 36]
+    weight_source: "AKC breed standard: males 65-80 lb, females about 15 lb less (the AKC chart's '15-80' is an error; status: unverified for the female range)"
+    predispositions:
+      - {id: dilated_cardiomyopathy, strength: moderate, evidence: "Boxer cardiomyopathy is mostly arrhythmogenic right ventricular cardiomyopathy (ARVC, STRN-linked; PMC4433500). ARVC is not in the ID list; mapped here to the closest cardiomyopathy ID. Some Boxers progress to a DCM phenotype (unverified).", status: verified_snippet}
+      - {id: hypothyroidism, strength: strong, evidence: "OR 10.44 (Canine Genet Epidemiol 2022)", status: verified_snippet}
+      - {id: chronic_enteropathy, strength: moderate, evidence: "Granulomatous (histiocytic ulcerative) colitis of Boxers, associated with invasive E. coli", status: verified_snippet}
+      - {id: atopic_dermatitis, strength: moderate, evidence: "MSD Vet Manual", status: verified_snippet}
+      - {id: cranial_cruciate_ligament_rupture, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    notes: "High cancer burden (mast cell tumour, lymphoma). Consider adding an 'arrhythmogenic_right_ventricular_cardiomyopathy' ID."
+    supplement_relevance: "Omega-3 is used in Boxer ARVC (arrhythmia reduction, vet-directed, unverified); L-carnitine-responsive myocardial disease reported in Boxers (unverified)."
+
+  - breed: West Highland White Terrier
+    species: dog
+    size_class: small
+    adult_weight_kg: [6.8, 9.1]
+    weight_source: "AKC 15-20 lb (verified)"
+    predispositions:
+      - {id: atopic_dermatitis, strength: strong, evidence: "MSD Vet Manual breed list", status: verified_snippet}
+      - {id: copper_storage_hepatopathy, strength: moderate, evidence: "Copper-associated hepatitis recognised (VIN, ACVIM)", status: verified_snippet}
+      - {id: cranial_cruciate_ligament_rupture, strength: moderate, evidence: "VetCompass x1.80 risk", status: verified_snippet}
+      - {id: calcium_oxalate_urolithiasis, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    notes: "Idiopathic pulmonary fibrosis and craniomandibular osteopathy (not in ID list)."
+    supplement_relevance: "Skin (omega-3) focus; avoid copper."
+
+  - breed: Shih Tzu
+    species: dog
+    size_class: small
+    adult_weight_kg: [4.0, 7.3]
+    weight_source: "AKC 9-16 lb (verified)"
+    predispositions:
+      - {id: calcium_oxalate_urolithiasis, strength: strong, evidence: "Hypercalciuria associated with CaOx stones in Shih Tzus; males form oxalate (MUC literature)", status: verified_snippet}
+      - {id: atopic_dermatitis, strength: moderate, evidence: "MSD Vet Manual", status: verified_snippet}
+      - {id: chronic_kidney_disease, strength: moderate, evidence: "Hereditary renal dysplasia seen most often in Shih Tzu (juvenile CKD) (VIN)", status: verified_snippet}
+      - {id: struvite_urolithiasis, strength: moderate, evidence: "females tend to form struvite (MUC)", status: verified_snippet}
+    notes: "Brachycephalic: small kibble-like units help; avoid large chews (choking). CCL rupture LOWER risk (VetCompass x0.41)."
+    supplement_relevance: "Urinary support; avoid calcium/vitamin D/vitamin C excess (oxalate) (unverified)."
+
+  - breed: English Bulldog
+    species: dog
+    size_class: medium
+    adult_weight_kg: [18, 23]
+    weight_source: "AKC 40-50 lb (verified)"
+    predispositions:
+      - {id: hip_dysplasia, strength: strong, evidence: "OFA: 71.6% dysplastic (n=564, 1974-2013), worst-ranked breed (OFA data via secondary source; radiograph submission bias)", status: verified_snippet}
+      - {id: elbow_dysplasia, strength: moderate, evidence: "OFA: 32.7% (n=159)", status: verified_snippet}
+      - {id: cystinuria, strength: strong, evidence: "SLC3A1 and SLC7A9 variants (Harnevik 2006; Brons AK et al. JVIM 2013)", status: verified_snippet}
+      - {id: urate_urolithiasis, strength: moderate, evidence: "SLC2A9 allele freq 0.16; about 3% affected, 25.5% carriers (Karmi N et al. JVIM 2010, citation_from_memory: true; PMC5551899 table, verified_snippet)"}
+      - {id: atopic_dermatitis, strength: moderate, evidence: "Gough & Thomas / breed lists", status: unverified}
+      - {id: osteoarthritis, strength: moderate, evidence: "secondary to HD", status: unverified}
+      - {id: obesity, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    notes: "BOAS, so heat intolerance and choking risk. Prefer small chews/powders."
+    supplement_relevance: "Avoid high-purine and high-methionine/cystine loads for stone formers (unverified); joint support."
+
+  - breed: Dachshund
+    species: dog
+    size_class: small
+    adult_weight_kg: [5, 14.5]
+    weight_source: "AKC 11-32 lb (miniature <=11 lb, standard 16-32 lb) (verified)"
+    predispositions:
+      - {id: obesity, strength: moderate, evidence: "Gough & Thomas; DachsLife 2015 lifestyle factors (Packer RMA et al. PLoS One 2016, PMC5097381)", status: unverified_numbers}
+      - {id: diabetes_mellitus, strength: weak, evidence: "Gough & Thomas", status: unverified}
+      - {id: hypothyroidism, strength: moderate, evidence: "historical breed lists", status: verified_snippet}
+      - {id: myxomatous_mitral_valve_disease, strength: moderate, evidence: "small-breed MMVD; Gough & Thomas", status: unverified}
+      - {id: cystinuria, strength: weak, evidence: "older reports (citation not verified)", status: unverified}
+    notes: "IVDD dominates: relative risk 10-12x; 19-24% show signs in their lifetime; DachsLife prevalence 15.7% (verified_snippet). Consider adding an 'intervertebral_disc_disease' ID. Hyperadrenocorticism also over-represented (unverified)."
+    supplement_relevance: "Weight management. Joint/IVDD claims are drug-like (avoid disease claims)."
+
+  - breed: Border Collie
+    species: dog
+    size_class: medium
+    adult_weight_kg: [14, 25]
+    weight_source: "AKC 30-55 lb (verified)"
+    predispositions:
+      - {id: epilepsy, strength: strong, evidence: "Predisposed to idiopathic epilepsy with often poor outcome (Hülsmeyer V et al. JVIM 2010, citation_from_memory: true; snippet verified)", status: verified_snippet}
+      - {id: mdr1_mutation, strength: weak, evidence: "WSU: <5% of Border Collies", status: verified_snippet}
+      - {id: hip_dysplasia, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    supplement_relevance: "MCT oil (epilepsy adjunct, vet-directed). MDR1 test advised before ivermectin-class drugs."
+
+  - breed: Collie (Rough/Smooth)
+    species: dog
+    size_class: large
+    adult_weight_kg: [23, 34]
+    weight_source: "AKC 50-75 lb (verified)"
+    predispositions:
+      - {id: mdr1_mutation, strength: strong, evidence: "WSU: about 70% of Collies carry the MDR1 mutation", status: verified_snippet}
+      - {id: exocrine_pancreatic_insufficiency, strength: moderate, evidence: "PAA-EPI in rough collies (MSD Vet Manual)", status: verified_snippet}
+    supplement_relevance: "Flag P-gp-interacting botanicals as caution (unverified). Avoid loperamide/ivermectin-type drugs (not supplements)."
+
+  - breed: Great Dane
+    species: dog
+    size_class: giant
+    adult_weight_kg: [50, 79]
+    weight_source: "AKC 110-175 lb (verified)"
+    predispositions:
+      - {id: dilated_cardiomyopathy, strength: strong, evidence: "Over-represented; familial, possibly X-linked (Meurs KM et al. JVIM 2001, citation_from_memory: true; Cornell/LMU summaries verified_snippet)", status: verified_snippet}
+      - {id: hip_dysplasia, strength: moderate, evidence: "Gough & Thomas / OFA", status: unverified_numbers}
+      - {id: osteoarthritis, strength: moderate, evidence: "giant-breed joint load", status: unverified}
+      - {id: hypothyroidism, strength: weak, evidence: "Gough & Thomas", status: unverified}
+    notes: "GDV (bloat) and osteosarcoma (not in ID list). Zinc-responsive dermatosis syndrome II in growing Danes (calcium/phytate)."
+    supplement_relevance: "Avoid excess calcium in growing dogs (developmental orthopaedic disease, unverified). Cardiac support. Unit size is not limiting."
+
+  - breed: Persian
+    species: cat
+    adult_weight_kg: [3.2, 5.4]
+    weight_source: "7-12 lb (secondary breed chart, verified_snippet; no registry standard checked)"
+    predispositions:
+      - {id: polycystic_kidney_disease, strength: strong, evidence: "PKD1 c.10063C>A, autosomal dominant. Prevalence 16-49% worldwide in Persians/related breeds (UK 49%, Germany/Australia 43%, France 42%, Italy 41%, Japan 40%) (PMC review, verified_snippet; Lyons LA et al. JASN 2004, citation_from_memory: true)"}
+      - {id: chronic_kidney_disease, strength: strong, evidence: "secondary to PKD; breed lists", status: verified_snippet}
+      - {id: calcium_oxalate_urolithiasis, strength: moderate, evidence: "Higher CaOx risk vs expected breed frequency (Grauer, Today's Vet Practice)", status: verified_snippet}
+      - {id: struvite_urolithiasis, strength: weak, evidence: "Higher struvite risk at the California lab", status: verified_snippet}
+    notes: "Brachycephalic (prehension of chews is hard; powders/liquids preferred)."
+    supplement_relevance: "Renal-safe formulas: low phosphorus, avoid high-dose vitamin D/calcium; omega-3 is fine."
+
+  - breed: Maine Coon
+    species: cat
+    adult_weight_kg: [4.5, 8.2]
+    weight_source: "15-25 lb on a secondary chart is likely inflated; 10-18 lb (4.5-8.2 kg) used as a conservative range (unverified)"
+    predispositions:
+      - {id: hypertrophic_cardiomyopathy, strength: strong, evidence: "MYBPC3 A31P. About 34% heterozygous in tested, non-phenotyped cats (UC Davis VGL https://vgl.ucdavis.edu/test/maine-coon-hcm)", status: verified_snippet}
+      - {id: hip_dysplasia, strength: strong, evidence: "37.4% of 5,038 pedigree Maine Coons (Swedish SLU study); OFA feline registry 24.9%", status: verified_snippet}
+      - {id: osteoarthritis, strength: moderate, evidence: "secondary to HD", status: unverified}
+      - {id: chronic_kidney_disease, strength: weak, evidence: "older breed lists", status: verified_snippet}
+      - {id: obesity, strength: weak, evidence: "large-frame breed; unverified"}
+    notes: "Spinal muscular atrophy (not in ID list)."
+    supplement_relevance: "Joint support with feline-safe actives (glucosamine/chondroitin, omega-3, UC-II). Cardiac (taurine is already essential in diet)."
+
+  - breed: Siamese
+    species: cat
+    adult_weight_kg: [2.5, 4.5]
+    weight_source: "8-10 lb secondary chart (verified_snippet); extended range unverified"
+    predispositions:
+      - {id: renal_amyloidosis, strength: moderate, evidence: "Familial amyloidosis in Siamese/Oriental lines is mainly HEPATIC, with renal involvement possible (UFAW). Mapped to renal_amyloidosis as the closest ID; consider adding 'hepatic_amyloidosis'.", status: verified_snippet}
+      - {id: chronic_kidney_disease, strength: weak, evidence: "older breed lists", status: verified_snippet}
+      - {id: diabetes_mellitus, strength: weak, evidence: "Gough & Thomas (Siamese and Burmese reported in some populations)", status: unverified}
+    notes: "Asthma, mediastinal lymphoma, psychogenic alopecia, highest periodontal disease prevalence in UK cats (18.7%, VetCompass) (not in ID list). Lower struvite risk (MUC)."
+    supplement_relevance: "Dental and respiratory focus. Lean, small cats need small dose volumes."
+
+  - breed: Abyssinian
+    species: cat
+    adult_weight_kg: [2.7, 5.4]
+    weight_source: "8-12 lb secondary chart (verified_snippet)"
+    predispositions:
+      - {id: renal_amyloidosis, strength: strong, evidence: "Familial AA amyloidosis (renal medullary) in Abyssinians; not a simple monogenic trait (Sci Rep 2021 multi-omic study, PMC8052419)", status: verified_snippet}
+      - {id: chronic_kidney_disease, strength: moderate, evidence: "secondary to amyloidosis; breed lists", status: verified_snippet}
+    notes: "Pyruvate kinase deficiency, PRA (rdAc) (not in ID list). Lower struvite risk (MUC)."
+    supplement_relevance: "Renal-safe formulation; omega-3."
+
+  - breed: Burmese
+    species: cat
+    adult_weight_kg: [2.7, 6.4]
+    weight_source: "6-14 lb secondary chart (verified_snippet)"
+    predispositions:
+      - {id: diabetes_mellitus, strength: strong, evidence: "OR 3.0 (95% CI 2.0-4.4) vs crossbreds in 193,435 UK cats (O'Neill DG et al. JVIM 2016;30(4):964)", status: verified_snippet}
+      - {id: calcium_oxalate_urolithiasis, strength: weak, evidence: "Some reports; MUC lists Burmese as LOWER struvite risk. CaOx predisposition unverified", status: unverified}
+      - {id: obesity, strength: weak, evidence: "unverified"}
+    notes: "Hypokalaemic periodic polymyopathy (WNK4 c.2899C>T, PMC3532348), Burmese head defect, orofacial pain syndrome (not in ID list)."
+    supplement_relevance: "Avoid sugars/maltodextrin carriers and high-calorie palatants (diabetes). Potassium status matters."
+
+  - breed: Ragdoll
+    species: cat
+    adult_weight_kg: [3.8, 9.0]
+    weight_source: "VetCompass Ragdoll study: median adult weight 4.46 kg (males 4.97, females 3.83) (verified_snippet); secondary chart upper 15-20 lb"
+    predispositions:
+      - {id: hypertrophic_cardiomyopathy, strength: strong, evidence: "MYBPC3 R820W (Ragdoll-specific) (UC Davis VGL https://vgl.ucdavis.edu/node/2171)", status: verified_snippet}
+      - {id: struvite_urolithiasis, strength: moderate, evidence: "MUC breed predilection for struvite", status: verified_snippet}
+      - {id: calcium_oxalate_urolithiasis, strength: moderate, evidence: "listed among CaOx-predisposed breeds", status: verified_snippet}
+      - {id: obesity, strength: weak, evidence: "6.91% recorded obese (VetCompass Ragdoll)", status: verified_snippet}
+    supplement_relevance: "Urinary support (but struvite and CaOx push urine pH targets in opposite directions; avoid blanket acidifiers). Cardiac."
+
+  - breed: Domestic Shorthair
+    species: cat
+    role: baseline
+    adult_weight_kg: [3.5, 5.5]
+    weight_source: "unverified typical lean adult range; O'Neill 2016 found diabetes odds rose above 4 kg bodyweight"
+    predispositions:
+      - {id: obesity, strength: moderate, evidence: "Common in UK primary care cats (O'Neill DG et al. 'Prevalence of disorders recorded in cats attending primary-care veterinary practices in England' Vet J 2014, citation_from_memory: true)", status: unverified_numbers}
+      - {id: chronic_kidney_disease, strength: moderate, evidence: "Age-related; a leading cause of death in older cats (VetCompass longevity work, citation_from_memory: true)", status: unverified_numbers}
+      - {id: diabetes_mellitus, strength: moderate, evidence: "Period prevalence 0.58% in English cats (O'Neill 2016)", status: verified_snippet}
+      - {id: struvite_urolithiasis, strength: moderate, evidence: "DSH among MUC struvite-predisposed groups", status: verified_snippet}
+      - {id: osteoarthritis, strength: moderate, evidence: "Radiographic DJD in about 90% of cats >12 y (Hardie EM et al. JAVMA 2002, citation_from_memory: true)", status: unverified}
+      - {id: cognitive_dysfunction, strength: weak, evidence: "Age-related in senior cats >10 y (unverified prevalence)", status: unverified}
+    notes: "Hyperthyroidism is the commonest feline endocrinopathy (not in ID list). Avoid iodine-rich kelp in hyperthyroid cats (unverified)."
+
+# -------------------------------------------------------------------------------------
+cat_formulation_rules_summary:
+  - "Preferred forms for cats: liquid_oil/pump, powder_sachet or sprinkle_capsule mixed into food, small palatable soft chew. Tablets/capsules for pilling rank lowest (Taylor 2022)."
+  - "Keep dose volume small: about <=0.5-1 g of powder or <=1-2 mL of liquid per day as a starting heuristic (unverified)."
+  - "Exclude: alpha-lipoic acid (or cap far below 13 mg/kg), garlic/onion, phenolic essential oils, xylitol, high-dose salicylate-like botanicals (willow bark) (UGT1A6 deficiency)."
+  - "Taurine is fine. Cats have an obligate dietary taurine requirement."
+
+least_certain_values:
+  - "Soft chew practical active-load ceiling (35%) is drawn from one excipient-maker case study plus patents. Real ceilings depend on the actives and the manufacturer."
+  - "Chewable tablet unit mass and active-load ranges are unverified (no tablet weights found)."
+  - "Probiotic overage multiplier (2-10x) is unverified. Only the practice of adding overage is sourced."
+  - "Pump stroke volume for liquid oils is unverified."
+  - "MOQs: only qualitative ('low MOQ') or a single 700 kg overseas listing."
+  - "Size-class senior ages are derived (0.75 x assumed lifespan) or AVMA rule of thumb. AAHA gives no fixed canine ages."
+  - "Cat breed weight ranges come from secondary charts, not CFA/TICA standards."
+  - "Boxer DCM mapping (really ARVC), Siamese renal_amyloidosis mapping (mainly hepatic), Dachshund cystinuria and Burmese CaOx are weak or uncertain."
+  - "Glucosamine sulfate base fractions (0.59 KCl / 0.63 NaCl) are my stoichiometric calculations, not vendor specs."
+  - "Several journal volume/page/DOI details are tagged citation_from_memory and should be checked."

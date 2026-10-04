@@ -1,0 +1,452 @@
+# DoseRule: daily amount of one ingredient for one species, optionally for one need.
+# Engine: for each need an ingredient serves, use the need-specific rule if present, else the
+# general rule (need omitted); take the highest target, then clip to SafetyLimits.
+# basis: per_kg (x BW), per_kg_0.75 (x BW^0.75), per_animal (fixed), weight_band (lookup).
+# curation.notes says whether a number is verified, derived, or a Freyja choice within a range.
+
+# ================================ DOG =================================================
+- id: dose:omega3_dog_general
+  ingredient: ingredient:omega3_epa_dha
+  species: species:dog
+  basis: per_kg
+  unit: mg
+  min: 50
+  target: 100
+  max: 220
+  sources: [source:pmid_23323770, source:pmid_22087720]
+  curation: {status: draft, notes: "Bauer 50-220 mg EPA+DHA/kg/day (verified_secondary). Target 100 is a Freyja midpoint choice."}
+- id: dose:omega3_dog_joint
+  ingredient: ingredient:omega3_epa_dha
+  species: species:dog
+  need: need:joint_mobility
+  basis: per_kg_0.75
+  unit: mg
+  min: 150
+  target: 310
+  max: 370
+  sources: [source:pmid_22087720, source:pmid_27269707, source:pmid_40495687]
+  curation: {status: draft, notes: "310 mg/kg^0.75 (Bauer 2011, verified_secondary). Min 150 derived from Mehler 2016 (~69 mg/kg in a 30 kg dog). Max = NRC SUL."}
+- id: dose:omega3_dog_skin
+  ingredient: ingredient:omega3_epa_dha
+  species: species:dog
+  need: need:skin_coat_barrier
+  basis: per_kg
+  unit: mg
+  min: 20
+  target: 50
+  max: 73
+  sources: [source:pmid_40495687]
+  curation: {status: draft, notes: "Trial range 1.65-73 mg/kg (Vendramini 2025 review). Min/target are Freyja choices within the range."}
+- id: dose:omega3_dog_cardiac
+  ingredient: ingredient:omega3_epa_dha
+  species: species:dog
+  need: need:cardiac_support
+  basis: per_kg
+  unit: mg
+  min: 45
+  target: 65
+  max: 95
+  sources: [source:pmid_40495687, source:pmid_9857337]
+  curation: {status: draft, notes: "Trial range 45-95; target 65 = Freeman EPA 40 + DHA 25 mg/kg (verified_secondary)."}
+- id: dose:omega3_dog_renal
+  ingredient: ingredient:omega3_epa_dha
+  species: species:dog
+  need: need:renal_support
+  basis: per_kg
+  unit: mg
+  min: 50
+  target: 50
+  max: 100
+  sources: [source:pmid_23323770, source:pmid_9605110]
+  curation: {status: draft, notes: "UNVERIFIED: no CKD-specific dog dose found; lower end of Bauer range used."}
+- id: dose:glm_dog_joint
+  ingredient: ingredient:green_lipped_mussel
+  species: species:dog
+  need: need:joint_mobility
+  basis: per_kg
+  unit: mg
+  min: 10
+  target: 25
+  max: 49
+  sources: [source:pmid_18955269]
+  curation: {status: draft, notes: "Hielm-Bjorkman 2009: loading 20-49 mg/kg for 10 d then half (~10-25). Target = maintenance upper end."}
+- id: dose:uc2_dog_joint
+  ingredient: ingredient:undenatured_collagen_type_ii
+  species: species:dog
+  need: need:joint_mobility
+  basis: per_animal
+  unit: mg
+  min: 40
+  target: 40
+  max: 40
+  sources: [source:pmid_16050819, source:pmid_31487772, source:pmid_36172458]
+  curation: {status: draft, notes: "40 mg UC-II/dog/day regardless of size (oral tolerance). Verified."}
+- id: dose:esm_dog_joint
+  ingredient: ingredient:eggshell_membrane
+  species: species:dog
+  need: need:joint_mobility
+  basis: per_kg
+  unit: mg
+  target: 13.5
+  sources: [source:pmid_30050844, source:pmid_31685140]
+  curation: {status: draft, notes: "13.5 mg/kg (6 mg/lb) once daily. Verified."}
+- id: dose:ha_dog_joint
+  ingredient: ingredient:hyaluronic_acid
+  species: species:dog
+  need: need:joint_mobility
+  basis: weight_band
+  unit: mg
+  bands: [{min_kg: 0, max_kg: 26, amount: 27}, {min_kg: 26, amount: 54}]
+  sources: [source:pmid_33925642]
+  curation: {status: draft, notes: "Serra Aguado 2021 bands (rooster-comb HMW HA). Verified."}
+- id: dose:curcumin_dog_joint
+  ingredient: ingredient:curcumin
+  species: species:dog
+  need: need:joint_mobility
+  basis: per_kg_0.75
+  unit: mg
+  min: 7
+  target: 8
+  max: 9
+  sources: [source:pmid_29262825]
+  curation: {status: draft, notes: "DERIVED from Comblain 2017 energy-based inclusion (~7-9 mg curcuminoids/kg^0.75). Poor bioavailability (Song 2022)."}
+- id: dose:boswellia_dog_joint
+  ingredient: ingredient:boswellia_serrata
+  species: species:dog
+  need: need:joint_mobility
+  basis: per_kg
+  unit: mg
+  target: 40
+  sources: [source:pmid_14994484]
+  curation: {status: draft, notes: "Reichling 2004: 400 mg extract/10 kg once daily. Verified."}
+- id: dose:asu_dog_joint
+  ingredient: ingredient:avocado_soybean_unsaponifiables
+  species: species:dog
+  need: need:joint_mobility
+  basis: per_kg
+  unit: mg
+  target: 10
+  sources: [source:pmid_19291317]
+  curation: {status: draft, notes: "Experimental OA model only (Boileau 2009)."}
+- id: dose:vitamin_e_dog_general
+  ingredient: ingredient:vitamin_e
+  species: species:dog
+  basis: per_kg
+  unit: IU
+  target: 10
+  sources: [source:pmid_30844094]
+  curation: {status: draft, notes: "ACVIM 2019 chronic hepatitis: 10 IU/kg q24h, max 400 IU/dog. Used as the general rule."}
+- id: dose:vitamin_e_dog_skin
+  ingredient: ingredient:vitamin_e
+  species: species:dog
+  need: need:skin_coat_barrier
+  basis: per_kg
+  unit: IU
+  target: 8.1
+  sources: [source:pmid_25205675]
+  curation: {status: draft, notes: "Plevnik Kapun 2014, 8.1 IU/kg once daily. Verified."}
+- id: dose:sf68_dog
+  ingredient: ingredient:enterococcus_faecium_sf68
+  species: species:dog
+  basis: per_animal
+  unit: CFU
+  min: 1.0e8
+  target: 1.0e8
+  max: 5.0e8
+  sources: [source:fortiflora_label, source:pmid_21689152]
+  curation: {status: draft, notes: "One FortiFlora sachet (1e8 CFU US label; 5e8 CFU/g UK label)."}
+- id: dose:multistrain_dog_ibd
+  ingredient: ingredient:multistrain_probiotic
+  species: species:dog
+  need: need:gi_mucosal_inflammation
+  basis: per_kg
+  unit: CFU
+  min: 1.1e10
+  target: 1.1e10
+  max: 2.25e10
+  sources: [source:pmid_24722235]
+  curation: {status: draft, notes: "Rossi 2014 VSL#3: 112-225 x 10^9 CFU per 10 kg/day. Verified."}
+- id: dose:multistrain_dog_general
+  ingredient: ingredient:multistrain_probiotic
+  species: species:dog
+  basis: per_animal
+  unit: CFU
+  target: 5.0e9
+  sources: [source:proviable_label]
+  curation: {status: draft, notes: "Proviable-DC 1 capsule/day all sizes (verified_secondary)."}
+- id: dose:inulin_dog
+  ingredient: ingredient:inulin_fos
+  species: species:dog
+  basis: per_animal
+  unit: mg
+  min: 1000
+  target: 2000
+  max: 3000
+  sources: [source:pmid_12926783]
+  curation: {status: draft, notes: "Flickinger 2003: 1-3 g scFOS/day. Verified."}
+- id: dose:cobalamin_dog
+  ingredient: ingredient:cobalamin
+  species: species:dog
+  basis: weight_band
+  unit: mg
+  bands: [{min_kg: 0, max_kg: 10, amount: 0.25}, {min_kg: 10, max_kg: 20, amount: 0.5}, {min_kg: 20, amount: 1.0}]
+  sources: [source:pmid_26648590, source:pmid_29428088]
+  curation: {status: draft, notes: "Toresson 2016/2018 oral cyanocobalamin protocol (verified_secondary). Only with documented hypocobalaminaemia."}
+- id: dose:same_dog_hepatic
+  ingredient: ingredient:same
+  species: species:dog
+  need: need:hepatic_support
+  basis: per_kg
+  unit: mg
+  target: 20
+  sources: [source:pmid_30844094, source:pmid_15757136]
+  curation: {status: draft, notes: "ACVIM 2019: 20 mg/kg q24h on an empty stomach. Verified."}
+- id: dose:same_dog_cognitive
+  ingredient: ingredient:same
+  species: species:dog
+  need: need:cognitive_aging
+  basis: per_kg
+  unit: mg
+  target: 18
+  sources: [source:pmid_18597245]
+  curation: {status: draft, notes: "Reme 2008: 18 mg/kg/day SAMe tosylate, 8 weeks. Verified."}
+- id: dose:silybin_dog_hepatic
+  ingredient: ingredient:silybin
+  species: species:dog
+  need: need:hepatic_support
+  basis: per_kg
+  unit: mg
+  min: 0.7
+  target: 2
+  max: 6
+  sources: [source:pmid_30844094]
+  curation: {status: draft, notes: "ACVIM 2019: 0.7-6 mg/kg silybin as PC complex ('not well defined'). Target 2 ~ Denamarin label range (1.6-4 mg/kg)."}
+- id: dose:carnitine_dog_cardiac
+  ingredient: ingredient:l_carnitine
+  species: species:dog
+  need: need:cardiac_support
+  basis: per_kg
+  unit: mg
+  target: 150
+  divided_doses: 3
+  sources: [source:stern_lab_2018, source:pmid_9298474]
+  curation: {status: draft, notes: "50 mg/kg q8h with food. Only for documented DCM / carnitine deficiency."}
+- id: dose:taurine_dog_cardiac
+  ingredient: ingredient:taurine
+  species: species:dog
+  need: need:cardiac_support
+  basis: weight_band
+  unit: mg
+  divided_doses: 2
+  bands: [{min_kg: 0, max_kg: 22.7, amount: 1000}, {min_kg: 22.7, amount: 2000}]
+  sources: [source:stern_lab_2018, source:pmid_30543707]
+  curation: {status: draft, notes: "<50 lb 500 mg q12h, >50 lb 1000 mg q12h. Only with documented DCM or deficiency; recheck at 3 months."}
+- id: dose:coq10_dog_cardiac
+  ingredient: ingredient:coenzyme_q10
+  species: species:dog
+  need: need:cardiac_support
+  basis: per_animal
+  unit: mg
+  target: 200
+  divided_doses: 2
+  sources: [source:pmid_32899633]
+  curation: {status: draft, notes: "Christiansen 2020: 100 mg q12h in CKCS with MMVD (small dogs). Not weight-scaled; review for large dogs."}
+- id: dose:mct_dog_general
+  ingredient: ingredient:mct_oil
+  species: species:dog
+  basis: per_kg_0.75
+  unit: mg
+  min: 600
+  target: 1190
+  max: 1190
+  sources: [source:pmid_32293065, source:pmid_20141643]
+  curation: {status: draft, notes: "DERIVED: 9% of ME as MCT (Berk 2020) at MER 110 kcal/kg^0.75 and 8.3 kcal/g = ~1.19 g/kg^0.75. Titrate up over 1-2 weeks (GI upset)."}
+- id: dose:theanine_dog
+  ingredient: ingredient:l_theanine
+  species: species:dog
+  basis: weight_band
+  unit: mg
+  divided_doses: 2
+  bands: [{min_kg: 0, max_kg: 10, amount: 50}, {min_kg: 10, max_kg: 25, amount: 100}, {min_kg: 25, amount: 200}]
+  sources: [source:anxitane_label_uk, source:anxitane_label_us]
+  curation: {status: draft, notes: "Anxitane UK bands (BID). ~4-10 mg/kg/day."}
+- id: dose:casozepine_dog
+  ingredient: ingredient:alpha_casozepine
+  species: species:dog
+  basis: per_kg
+  unit: mg
+  target: 15
+  sources: [source:beata_2007_dogs]
+  curation: {status: draft, notes: "15 mg/kg q24h (Beata 2007 full text). Verified."}
+- id: dose:melatonin_dog_skin
+  ingredient: ingredient:melatonin
+  species: species:dog
+  need: need:skin_coat_barrier
+  basis: per_kg
+  unit: mg
+  min: 0.2
+  target: 0.4
+  max: 1.0
+  divided_doses: 2
+  sources: [source:pmid_40358664, source:pmid_15500479]
+  curation: {status: draft, notes: "Alopecia X only: 0.1-0.5 mg/kg BID. Not for atopic or allergic skin disease."}
+- id: dose:cranberry_dog
+  ingredient: ingredient:cranberry_pac
+  species: species:dog
+  basis: weight_band
+  unit: mg
+  bands:
+    - {min_kg: 0, max_kg: 4.5, amount: 4}
+    - {min_kg: 4.5, max_kg: 9.1, amount: 8}
+    - {min_kg: 9.1, max_kg: 18.1, amount: 16}
+    - {min_kg: 18.1, max_kg: 27.2, amount: 24}
+    - {min_kg: 27.2, amount: 32}
+  sources: [source:pmid_27914106]
+  curation: {status: draft, notes: "Olby 2017 bands (mg PAC). RCT was underpowered and negative; top band is open-ended by curator."}
+- id: dose:binder_dog
+  ingredient: ingredient:chitosan_calcium_carbonate
+  species: species:dog
+  basis: per_kg
+  unit: mg
+  target: 400
+  divided_doses: 2
+  sources: [source:epakitin_label_vetoquinol]
+  curation: {status: draft, notes: "1 g blend per 5 kg BW twice daily with meals (label). Verified."}
+- id: dose:zinc_dog_skin
+  ingredient: ingredient:zinc
+  species: species:dog
+  need: need:skin_coat_barrier
+  basis: per_kg
+  unit: mg
+  min: 2
+  target: 2
+  max: 3
+  sources: [source:pmid_11360336]
+  curation: {status: draft, notes: "2-3 mg/kg elemental zinc; zinc-responsive dermatosis only (Nordic breeds / deficiency)."}
+- id: dose:biotin_dog_skin
+  ingredient: ingredient:biotin
+  species: species:dog
+  need: need:skin_coat_barrier
+  basis: per_kg
+  unit: mg
+  target: 0.5
+  sources: [source:pmid_2602924]
+  curation: {status: draft, notes: "Frigg 1989 uncontrolled: ~0.5 mg/kg/day."}
+- id: dose:betaglucan_dog
+  ingredient: ingredient:beta_glucan
+  species: species:dog
+  basis: per_kg
+  unit: mg
+  min: 15
+  target: 30
+  max: 65
+  sources: [source:pmid_42152695, source:pmid_40920667]
+  curation: {status: draft, notes: "15-30 mg/kg adults (Theodoro 2026); 65 mg/kg in puppies (de Souza 2025)."}
+
+# ================================ CAT =================================================
+- id: dose:omega3_cat_renal
+  ingredient: ingredient:omega3_epa_dha
+  species: species:cat
+  need: need:renal_support
+  basis: per_kg
+  unit: mg
+  target: 112
+  sources: [source:raditic_gaylord_2020, source:pmid_16100367]
+  curation: {status: draft, notes: "DERIVED from renal diet (~200 mg/100 kcal); not tested as a supplement. No NRC SUL for cats."}
+- id: dose:omega3_cat_joint
+  ingredient: ingredient:omega3_epa_dha
+  species: species:cat
+  need: need:joint_mobility
+  basis: per_kg
+  unit: mg
+  target: 120
+  sources: [source:raditic_gaylord_2020, source:pmid_20337921]
+  curation: {status: draft, notes: "DERIVED from Lascelles 2010 therapeutic diet (188 mg/100 kcal)."}
+- id: dose:sf68_cat
+  ingredient: ingredient:enterococcus_faecium_sf68
+  species: species:cat
+  basis: per_animal
+  unit: CFU
+  target: 1.0e8
+  sources: [source:pmid_21689152, source:fortiflora_label]
+  curation: {status: draft, notes: "One FortiFlora sachet/day (Bybee 2011). Verified."}
+- id: dose:multistrain_cat
+  ingredient: ingredient:multistrain_probiotic
+  species: species:cat
+  basis: per_animal
+  unit: CFU
+  target: 5.0e9
+  sources: [source:pmid_22412160, source:proviable_label]
+  curation: {status: draft, notes: "Proviable-DC 1 capsule/day (Hart 2012, open-label)."}
+- id: dose:cobalamin_cat
+  ingredient: ingredient:cobalamin
+  species: species:cat
+  basis: per_animal
+  unit: mg
+  target: 0.25
+  sources: [source:pmid_28128683]
+  curation: {status: draft, notes: "0.25 mg cyanocobalamin PO daily (Toresson 2017). Verified."}
+- id: dose:binder_cat
+  ingredient: ingredient:chitosan_calcium_carbonate
+  species: species:cat
+  basis: per_kg
+  unit: mg
+  target: 400
+  divided_doses: 2
+  sources: [source:epakitin_label_vetoquinol, source:pmid_15298059]
+  curation: {status: draft, notes: "1 g per 5 kg twice daily with meals (label)."}
+- id: dose:same_cat
+  ingredient: ingredient:same
+  species: species:cat
+  basis: per_animal
+  unit: mg
+  target: 90
+  sources: [source:denamarin_label, source:pmid_15954543]
+  curation: {status: draft, notes: "Denamarin small tablet; 48 mg/kg/day was well tolerated for 113 d (Center 2005)."}
+- id: dose:silybin_cat
+  ingredient: ingredient:silybin
+  species: species:cat
+  basis: per_animal
+  unit: mg
+  target: 9
+  sources: [source:denamarin_label, source:pmid_19119949]
+  curation: {status: draft, notes: "Denamarin small tablet (verified_secondary)."}
+- id: dose:theanine_cat
+  ingredient: ingredient:l_theanine
+  species: species:cat
+  basis: per_animal
+  unit: mg
+  target: 50
+  divided_doses: 2
+  sources: [source:pmid_30338056]
+  curation: {status: draft, notes: "25 mg BID (Dramard 2018, open-label)."}
+- id: dose:casozepine_cat
+  ingredient: ingredient:alpha_casozepine
+  species: species:cat
+  basis: per_kg
+  unit: mg
+  min: 15
+  target: 15
+  max: 45
+  sources: [source:pmid_33167443, source:beata_2007_cats]
+  curation: {status: draft, notes: "15 mg/kg q24h; 45 mg/kg x 3 d tolerated before vet visits (Makawey 2020)."}
+- id: dose:taurine_cat_cardiac
+  ingredient: ingredient:taurine
+  species: species:cat
+  need: need:cardiac_support
+  basis: per_animal
+  unit: mg
+  min: 500
+  target: 500
+  max: 1000
+  divided_doses: 2
+  sources: [source:pmid_1500324, source:pmid_3616607]
+  curation: {status: draft, notes: "250 mg q12h (secondary); Pion 1992 used 500-1000 mg/day."}
+- id: dose:bl999_dog
+  ingredient: ingredient:bifidobacterium_longum_bl999
+  species: species:dog
+  basis: per_animal
+  unit: CFU
+  target: 1.0e9
+  sources: [source:calming_care_label]
+  curation: {status: draft, notes: "1 Calming Care packet/day (verified_secondary)."}

@@ -1,0 +1,23 @@
+# Ingredient <-> ingredient blending / co-dosing issues (from the manufacturing research pass).
+- {a: ingredient:copper, b: ingredient:zinc, kind: absorption_competition, action: vet_review,
+   notes: "Zinc induces enterocyte metallothionein, which traps copper. Used on purpose in copper hepatopathy; chronic high zinc risks copper deficiency otherwise.",
+   sources: [source:webster_2019_acvim_copper]}
+- {a: ingredient:calcium_carbonate, b: ingredient:zinc, kind: absorption_competition, action: separate_units,
+   notes: "Excess calcium (and phytate) binds zinc and lowers absorption.", sources: [source:gough_thomas_2018],
+   curation: {status: draft, notes: "Source is the UMN zinc-responsive dermatosis chapter; add as its own source."}}
+- {a: ingredient:iron, b: ingredient:omega3_epa_dha, kind: chemical_degradation, action: avoid_combination,
+   notes: "Fe3+/Cu2+ catalyse fish-oil oxidation; keep mineral premixes out of the oil phase.", sources: [source:goed_monograph]}
+- {a: ingredient:copper, b: ingredient:omega3_epa_dha, kind: chemical_degradation, action: avoid_combination,
+   notes: "Cu2+ catalyses PUFA oxidation.", sources: [source:goed_monograph]}
+- {a: ingredient:chitosan_calcium_carbonate, b: ingredient:zinc, kind: absorption_competition, action: separate_units,
+   notes: "Calcium-based binders given with meals reduce co-dosed mineral absorption.", sources: [source:pmid_15298059]}
+- {a: ingredient:psyllium, b: ingredient:cobalamin, kind: absorption_competition, action: monitor,
+   notes: "Bulk fibre may slow absorption of co-dosed actives (unverified, mechanism only).", sources: [source:pmid_10668813]}
+- {a: ingredient:omega3_epa_dha, b: ingredient:vitamin_e, kind: additive_risk, action: monitor,
+   notes: "Long-term fish oil increases vitamin E requirement; pair with antioxidant rather than avoid.", sources: [source:pmid_23323770]}
+- {a: ingredient:enterococcus_faecium_sf68, b: ingredient:multistrain_probiotic, kind: redundant_mechanism, action: avoid_combination,
+   notes: "Stacking two probiotic products has no evidence of added benefit; strain evidence is product-specific.", sources: [source:freyja_curator_reasoning]}
+- {a: ingredient:bifidobacterium_longum_bl999, b: ingredient:multistrain_probiotic, kind: redundant_mechanism, action: avoid_combination,
+   notes: "Stacking two probiotic products has no evidence of added benefit.", sources: [source:freyja_curator_reasoning]}
+- {a: ingredient:bifidobacterium_longum_bl999, b: ingredient:enterococcus_faecium_sf68, kind: redundant_mechanism, action: avoid_combination,
+   notes: "Stacking two probiotic products has no evidence of added benefit.", sources: [source:freyja_curator_reasoning]}

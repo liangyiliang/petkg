@@ -1,0 +1,39 @@
+- {id: condition:osteoarthritis, name: Osteoarthritis, category: musculoskeletal}
+- {id: condition:hip_dysplasia, name: Hip dysplasia, category: musculoskeletal, species: [species:dog, species:cat]}
+- {id: condition:elbow_dysplasia, name: Elbow dysplasia, category: musculoskeletal, species: [species:dog]}
+- {id: condition:cranial_cruciate_ligament_rupture, name: Cranial cruciate ligament rupture, category: musculoskeletal, species: [species:dog]}
+- {id: condition:chronic_kidney_disease, name: Chronic kidney disease, aliases: [CKD], category: renal, description: "Stage per IRIS (1-4); the stage is a pet attribute, not a separate node."}
+- {id: condition:polycystic_kidney_disease, name: Polycystic kidney disease, aliases: [PKD], category: renal}
+- {id: condition:renal_amyloidosis, name: Renal amyloidosis, category: renal}
+- {id: condition:hyperphosphatemia, name: Hyperphosphataemia, category: renal}
+- {id: condition:chronic_enteropathy, name: Chronic enteropathy, aliases: [IBD, inflammatory bowel disease], category: gastrointestinal}
+- {id: condition:exocrine_pancreatic_insufficiency, name: Exocrine pancreatic insufficiency, aliases: [EPI], category: gastrointestinal}
+- {id: condition:pancreatitis_history, name: Pancreatitis (current or history), category: gastrointestinal}
+- {id: condition:atopic_dermatitis, name: Atopic dermatitis, category: dermatologic}
+- {id: condition:adverse_food_reaction, name: Adverse food reaction, aliases: [food allergy], category: dermatologic, description: "Specific trigger proteins are recorded as pet allergens."}
+- {id: condition:hepatopathy, name: Hepatopathy / elevated liver enzymes, category: hepatic}
+- {id: condition:copper_storage_hepatopathy, name: Copper-associated hepatopathy, category: hepatic}
+- {id: condition:gallbladder_disease, name: Gallbladder disease / biliary obstruction, aliases: [gallbladder mucocele], category: hepatic}
+- {id: condition:hyperlipidemia, name: Hyperlipidaemia, category: metabolic}
+- {id: condition:diabetes_mellitus, name: Diabetes mellitus, category: endocrine}
+- {id: condition:hyperthyroidism, name: Hyperthyroidism, category: endocrine, species: [species:cat]}
+- {id: condition:hypothyroidism, name: Hypothyroidism, category: endocrine, species: [species:dog]}
+- {id: condition:obesity, name: Obesity / overweight, category: metabolic}
+- {id: condition:bleeding_disorder, name: Bleeding disorder / coagulopathy, aliases: [von Willebrand disease, thrombocytopenia], category: haematologic}
+- {id: condition:scheduled_surgery, name: Surgery scheduled within 2 weeks, category: procedural}
+- {id: condition:immunosuppressed, name: Immunosuppressed / critically ill, category: immune}
+- {id: condition:urate_urolithiasis, name: Urate urolithiasis, category: urinary}
+- {id: condition:calcium_oxalate_urolithiasis, name: Calcium oxalate urolithiasis, category: urinary}
+- {id: condition:struvite_urolithiasis, name: Struvite urolithiasis, category: urinary}
+- {id: condition:cystinuria, name: Cystinuria, category: urinary, species: [species:dog]}
+- {id: condition:recurrent_uti, name: Recurrent urinary tract infection, category: urinary}
+- {id: condition:hypercalcemia, name: Hypercalcaemia, category: metabolic}
+- {id: condition:epilepsy, name: Epilepsy, category: neurologic}
+- {id: condition:cognitive_dysfunction, name: Cognitive dysfunction syndrome, category: neurologic}
+- {id: condition:anxiety_disorder, name: Anxiety / fear-related behaviour, category: behavioural}
+- {id: condition:myxomatous_mitral_valve_disease, name: Myxomatous mitral valve disease, aliases: [MMVD], category: cardiac, species: [species:dog]}
+- {id: condition:dilated_cardiomyopathy, name: Dilated cardiomyopathy, aliases: [DCM], category: cardiac}
+- {id: condition:hypertrophic_cardiomyopathy, name: Hypertrophic cardiomyopathy, aliases: [HCM], category: cardiac, species: [species:cat]}
+- {id: condition:periodontal_disease, name: Periodontal disease, category: oral}
+- {id: condition:mdr1_mutation, name: MDR1 (ABCB1) mutation, category: pharmacogenetic, species: [species:dog]}
+- {id: condition:pregnancy_lactation, name: Pregnancy or lactation, category: reproductive, physiological_state: true}

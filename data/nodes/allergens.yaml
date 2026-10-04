@@ -1,0 +1,12 @@
+# Sources a pet can react to. Raw materials declare derived_from; pet records list allergens.
+- {id: allergen:beef, name: Beef / bovine}
+- {id: allergen:pork, name: Pork / porcine}
+- {id: allergen:chicken, name: Chicken / poultry}
+- {id: allergen:egg, name: Egg}
+- {id: allergen:fish, name: Fish}
+- {id: allergen:shellfish, name: Shellfish / crustacean / mollusc}
+- {id: allergen:dairy, name: Dairy / milk protein}
+- {id: allergen:soy, name: Soy}
+- {id: allergen:wheat, name: Wheat / gluten}
+- {id: allergen:corn, name: Corn}
+- {id: allergen:yeast, name: Yeast}

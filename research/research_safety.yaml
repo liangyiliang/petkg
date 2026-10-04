@@ -1,0 +1,1897 @@
+# research_safety.yaml
+# Safety facts for a veterinary supplement knowledge graph (dogs, cats).
+# Generated 2026-10-03 by a research agent. Every PMID/DOI listed with
+# verified: true was looked up this session (NCBI E-utilities esummary/efetch)
+# and its title, authors and year matched. Label/regulatory citations marked
+# verified: true were read from DailyMed SPL XML, eCFR mirror (LII), the NOAH
+# compendium or the Merck Veterinary Manual online. Anything that rests only on
+# secondary or consumer sources, or that is my own mechanistic inference, is
+# marked verified: false and/or evidence_level: mechanistic_theoretical.
+#
+# Conventions
+#   evidence_level (strongest first):
+#     regulatory            - law/regulation or approved drug label
+#     consensus_guideline   - ACVIM / IRIS consensus statement
+#     controlled_study_target_species
+#     case_series_target_species  (e.g. ASPCA APCC retrospective series)
+#     case_report_target_species
+#     reference_text        - Merck Veterinary Manual etc.
+#     extrapolated_human    - human RCT/cohort/label, no pet data
+#     mechanistic_theoretical - plausible mechanism, no clinical data
+#   species: dog | cat | both
+#   filter_action (species toxicity): exclude | dose_cap | vet_review | none
+#   condition action: exclude | reduce_dose | vet_review | monitor
+#   interaction action: avoid | separate_dosing_by_hours=N | monitor | reduce_dose
+#   1 IU vitamin D3 = 0.025 ug cholecalciferol (so 0.1 mg/kg = 4,000 IU/kg).
+
+meta:
+  version: 1
+  generated: "2026-10-03"
+  scope: [dog, cat]
+  caveats:
+    - "Thresholds are ingestion thresholds for acute toxicosis unless stated; they are NOT safe daily supplement doses. A deterministic filter should exclude well below them."
+    - "Merck Veterinary Manual pages are revised; two current Merck pages give different iron and vitamin D numbers (recorded below)."
+    - "Where only human evidence exists the entry says so (evidence_level: extrapolated_human)."
+
+# ---------------------------------------------------------------------------
+# 1) SPECIES TOXICITY
+# ---------------------------------------------------------------------------
+species_toxicity:
+
+  - id: xylitol__dog
+    ingredient: xylitol
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: hypoglycemia, threshold_mg_per_kg: 100, qualifier: ">", source: merck_xylitol}
+      - {effect: hepatic_failure, threshold_mg_per_kg: 500, qualifier: ">", source: merck_xylitol}
+    clinical_signs: [vomiting, weakness, ataxia, lethargy, seizures, coma, hypoglycemia, acute_hepatic_necrosis, coagulopathy]
+    onset: "within 30 min, may be delayed 12-18 h (sustained-release products); hepatic failure 24-72 h"
+    mechanism: "Potent insulin release in dogs; hepatocellular necrosis mechanism unclear."
+    evidence_level: case_series_target_species
+    citations:
+      - {ref: "Merck Veterinary Manual - Xylitol Toxicosis in Dogs", url: "https://www.merckvetmanual.com/toxicology/food-hazards/xylitol-toxicosis-in-dogs", verified: true}
+      - {pmid: "17014359", doi: "10.2460/javma.229.7.1113", ref: "Dunayer EK, Gwaltney-Brant SM. Acute hepatic failure and coagulopathy associated with xylitol ingestion in eight dogs. JAVMA 2006;229:1113-7", verified: true}
+      - {pmid: "15080212", ref: "Dunayer EK. Hypoglycemia following canine ingestion of xylitol-containing gum. Vet Hum Toxicol 2004;46:87-8", verified: true}
+      - {pmid: "26220654", doi: "10.1111/vec.12350", ref: "DuHadway MR et al. Retrospective evaluation of xylitol ingestion in dogs: 192 cases (2007-2012). JVECC 2015;25:646-54", verified: true}
+      - {pmid: "30064708", doi: "10.1016/j.cvsm.2018.06.004", ref: "Murphy LA, Dunayer EK. Xylitol Toxicosis in Dogs: An Update. Vet Clin Small Anim 2018;48:985-990", verified: true}
+    notes: "Common hidden excipient in human chewables/melatonin/gummies and some peanut butters (VCA melatonin page warns human products may contain xylitol). Filter should also flag 'birch sugar'."
+
+  - id: xylitol__cat
+    ingredient: xylitol
+    species: cat
+    filter_action: vet_review
+    toxic_dose: []
+    clinical_signs: []
+    evidence_level: controlled_study_target_species
+    citations:
+      - {pmid: "29430681", doi: "10.1111/jvp.12479", ref: "Jerzsele A et al. Effects of p.o. administered xylitol in cats. J Vet Pharmacol Ther 2018;41:409-414", verified: true}
+      - {ref: "Merck Veterinary Manual - Xylitol Toxicosis in Dogs (states cats are not at risk for hypoglycemia or liver injury)", verified: true}
+    notes: "6 healthy cats given 100, 500, 1000 mg/kg showed no hematologic/biochemical change. Small n; not proof of safety. Keep out of cat formulas by default (no benefit), but not a hard species toxin."
+
+  - id: alpha_lipoic_acid__cat
+    ingredient: alpha_lipoic_acid
+    species: cat
+    filter_action: exclude
+    toxic_dose:
+      - {effect: hepatocellular_toxicity_and_clinical_toxicity, threshold_mg_per_kg: 60, qualifier: "toxic in all cats at", source: hill_2004}
+      - {effect: maximum_tolerated_dose, threshold_mg_per_kg: 30, qualifier: "MTD <", source: hill_2004}
+    clinical_signs: [hypersalivation_or_vomiting_unverified, lethargy, ataxia_unverified, hepatocellular_injury, hyperammonemia, altered_plasma_amino_acids]
+    mechanism: "Hepatocellular toxicity; precise mechanism not established in the paper (do not attribute solely to glucuronidation deficiency)."
+    evidence_level: controlled_study_target_species
+    citations:
+      - {pmid: "15059240", doi: "10.1111/j.1439-0396.2003.00472.x", ref: "Hill AS, Werner JA, Rogers QR, O'Neill SL, Christopher MM. Lipoic acid is 10 times more toxic in cats than reported in humans, dogs or rats. J Anim Physiol Anim Nutr 2004;88:150-6", verified: true}
+    notes: "Abstract confirms: 60 mg/kg = significant clinical toxicity with ammonia and amino acid changes in all high-dose cats; MTD <30 mg/kg. Specific clinical sign list beyond that is not in the abstract (marked _unverified)."
+
+  - id: alpha_lipoic_acid__dog
+    ingredient: alpha_lipoic_acid
+    species: dog
+    filter_action: dose_cap
+    toxic_dose: []
+    clinical_signs: [hypoglycemia, acute_hepatic_injury, acute_kidney_injury_oliguric, behavioral_change]
+    evidence_level: case_report_target_species
+    citations:
+      - {pmid: "19821894", doi: "10.1111/j.1476-4431.2009.00460.x", ref: "Loftin EG, Herold LV. Therapy and outcome of suspected alpha lipoic acid toxicity in two dogs. JVECC 2009;19:501-6", verified: true}
+    notes: "Overdose toxin in dogs; no verified mg/kg threshold (abstract gives none). Hypoglycemia relevant to insulin interaction."
+
+  - id: allium__dog
+    ingredient: allium_onion_garlic_leek_chive
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: clinical_hemolytic_signs, material: raw_onion, threshold_g_per_kg: "15-30", source: merck_allium}
+      - {effect: heinz_bodies_eccentrocytes_no_frank_anemia, material: whole_garlic_equivalent, threshold_g_per_kg_per_day: 5, duration: "7 days", source: lee_2000}
+    clinical_signs: [lethargy, anorexia, tachypnea, tachycardia, weakness, exercise_intolerance, icterus, hemoglobinuria, collapse, death, heinz_body_anemia, eccentrocytosis, methemoglobinemia]
+    onset: "oxidative RBC injury within 24 h; anemia signs may take several days"
+    mechanism: "Organosulfur compounds (e.g., n-propyl disulfide, allyl thiosulfates) oxidize hemoglobin and RBC membranes."
+    evidence_level: controlled_study_target_species
+    citations:
+      - {ref: "Merck Veterinary Manual - Garlic and Onion (Allium spp) Toxicosis in Animals", url: "https://www.merckvetmanual.com/toxicology/food-hazards/garlic-and-onion-allium-spp-toxicosis-in-animals", verified: true}
+      - {pmid: "11108195", doi: "10.2460/ajvr.2000.61.1446", ref: "Lee KW et al. Hematologic changes associated with the appearance of eccentrocytes after intragastric administration of garlic extract to dogs. Am J Vet Res 2000;61:1446-50", verified: true}
+    notes: "Concentrated forms (powder, dehydrated, garlic supplements/extracts) highest risk. Japanese breeds (Akita, Shiba) reported more sensitive in literature - NOT verified this session."
+
+  - id: allium__cat
+    ingredient: allium_onion_garlic_leek_chive
+    species: cat
+    filter_action: exclude
+    toxic_dose:
+      - {effect: toxicosis, material: raw_onion, threshold_g_per_kg: 5, source: merck_allium}
+      - {effect: toxicosis, material: cooked_onion, threshold: "< 1 teaspoon reported", source: merck_allium}
+      - {effect: heinz_bodies_dose_dependent, material: onion_powder_in_diet, threshold_percent_diet: "0.3-2.5 (Heinz bodies); 2.5% decreased PCV", source: robertson_1998}
+    clinical_signs: [heinz_body_anemia, lethargy, tachypnea, icterus, hemoglobinuria, methemoglobinemia_mild]
+    mechanism: "As dogs; feline hemoglobin is especially susceptible to oxidative Heinz body formation."
+    evidence_level: controlled_study_target_species
+    citations:
+      - {ref: "Merck Veterinary Manual - Garlic and Onion Toxicosis ('Cats are the most susceptible species, followed by dogs')", verified: true}
+      - {pmid: "9569166", ref: "Robertson JE, Christopher MM, Rogers QR. Heinz body formation in cats fed baby food containing onion powder. JAVMA 1998;212:1260-6", verified: true}
+      - {pmid: "2238384", doi: "10.1177/030098589002700501", ref: "Christopher MM, White JG, Eaton JW. Erythrocyte pathology and mechanisms of Heinz body-mediated hemolysis in cats. Vet Pathol 1990;27:299-310", verified: true}
+    notes: "No verified garlic-specific mg/kg threshold for cats; treat any garlic as exclude."
+
+  - id: tea_tree_oil__cat
+    ingredient: tea_tree_oil_melaleuca
+    species: cat
+    filter_action: exclude
+    toxic_dose:
+      - {effect: toxicosis, material: "100% TTO", amount_range_ml: "0.1-85 (across dogs and cats)", threshold_mg_per_kg: null, note: "no mg/kg threshold established"}
+    clinical_signs: [hypersalivation, CNS_depression, lethargy, paresis, ataxia, tremors, hypothermia_unverified, hepatotoxicity_potential]
+    onset: "2-12 h, lasting up to 72 h"
+    evidence_level: case_series_target_species
+    citations:
+      - {pmid: "24344857", doi: "10.2460/javma.244.1.95", ref: "Khan SA, McLean MK, Slater MR. Concentrated tea tree oil toxicosis in dogs and cats: 443 cases (2002-2012). JAVMA 2014;244:95-9", verified: true}
+      - {pmid: "8197716", ref: "Villar D et al. Toxicity of melaleuca oil and related essential oils applied topically on dogs and cats. Vet Hum Toxicol 1994;36:139-42", verified: true}
+    notes: "Younger and lighter cats at greater risk of major illness (Khan 2014). Route: dermal or oral; grooming converts dermal to oral exposure."
+
+  - id: tea_tree_oil__dog
+    ingredient: tea_tree_oil_melaleuca
+    species: dog
+    filter_action: exclude
+    toxic_dose: []
+    clinical_signs: [hypersalivation, CNS_depression, paresis, ataxia, tremors]
+    evidence_level: case_series_target_species
+    citations:
+      - {pmid: "24344857", verified: true, ref: "Khan 2014 (337 dogs included)"}
+    notes: "Exclude concentrated oil from oral formulas; dilute topical use is outside scope."
+
+  - id: essential_oils_phenolic_hepatotoxic_convulsant__cat
+    ingredient: essential_oils_group
+    members:
+      hepatotoxic: [birch_tar, cassia_bark, cinnamon_oil, pennyroyal, tea_tree_melaleuca]
+      seizure_inducing: [birch, cedar, eucalyptus, hyssop, pennyroyal, sage, wintergreen, wormwood]
+      methyl_salicylate_sources: [wintergreen, birch]
+      phenol_rich_additional_unverified: [clove_eugenol, thyme_thymol, oregano_carvacrol]
+    species: cat
+    filter_action: exclude
+    toxic_dose: []
+    clinical_signs: [vomiting, lethargy, drooling, ataxia, anorexia, tremors, hypotension, GI_ulceration, bradycardia, hypothermia, seizures, paralysis, liver_failure, respiratory_signs_if_inhaled]
+    mechanism: "Rapid absorption via GI, skin, lungs; cats deficient in glucuronyl transferase -> very sensitive to phenols/phenolic compounds; methyl salicylate oils cause aspirin toxicosis."
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Toxicoses From Essential Oils in Animals", url: "https://www.merckvetmanual.com/toxicology/toxicoses-from-household-hazards/toxicoses-from-essential-oils-in-animals", verified: true}
+      - {pmid: "1568929", ref: "Sudekum M et al. Pennyroyal oil toxicosis in a dog. JAVMA 1992;200:817-8", verified: true}
+    notes: "Clove/thyme/oregano phenol membership is from general chemistry knowledge, not from the Merck page - marked unverified. Apply same lists to dogs at vet_review level (dogs are also affected, less sensitive)."
+
+  - id: essential_oils_group__dog
+    ingredient: essential_oils_group
+    species: dog
+    filter_action: vet_review
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Toxicoses From Essential Oils in Animals", verified: true}
+      - {pmid: "1568929", ref: "Sudekum 1992 pennyroyal oil toxicosis in a dog", verified: true}
+    notes: "Pennyroyal and concentrated wintergreen/birch should be exclude for dogs too."
+
+  - id: propylene_glycol__cat
+    ingredient: propylene_glycol
+    species: cat
+    filter_action: exclude
+    toxic_dose:
+      - {effect: "Heinz bodies 28%, RBC half-life -18.8%, PCV unchanged", threshold_g_per_kg_bw_per_day: 1.6, diet_fraction: "12% DM", duration: "5 weeks", source: christopher_1989}
+      - {effect: "Heinz bodies 92%, RBC half-life -60%, PCV 33.5->26.3%", threshold_g_per_kg_bw_per_day: 8, diet_fraction: "41% DM", duration: "3 weeks", source: christopher_1989}
+    clinical_signs: [heinz_body_anemia, reticulocytosis, decreased_rbc_survival]
+    evidence_level: regulatory
+    regulatory:
+      - {jurisdiction: US, cite: "21 CFR 589.1001", text: "FDA has determined that propylene glycol in or on cat food has not been shown by adequate scientific data to be safe for use; its use causes the feed to be adulterated.", url: "https://www.law.cornell.edu/cfr/text/21/589.1001", verified: true}
+    citations:
+      - {pmid: "2708106", ref: "Christopher MM, Perman V, Eaton JW. Contribution of propylene glycol-induced Heinz body formation to anemia in cats. JAVMA 1989;194:1045-56", verified: true}
+      - {pmid: "2351602", ref: "Weiss DJ et al. Effects of propylene glycol-containing diets on acetaminophen-induced methemoglobinemia in cats. JAVMA 1990;196:1816-9", verified: true}
+    notes: "Lactating queens and nursing kittens at greater risk (higher intake; Christopher 1989). Common humectant in soft chews and liquid supplements - flag 'propane-1,2-diol', E1520. Not banned for dog food."
+
+  - id: grape_raisin_tartaric_acid__dog
+    ingredient: [grape, raisin, sultana, currant_vitis, tamarind, cream_of_tartar_potassium_bitartrate, tartaric_acid, grape_seed_extract_vet_review]
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: acute_kidney_injury, threshold: "no reliable dose-response; idiosyncratic", source: eubig_2005}
+    clinical_signs: [vomiting, lethargy, anorexia, diarrhea, oliguria_anuria, ataxia, weakness, hypercalcemia, hyperphosphatemia, proximal_tubular_necrosis]
+    mechanism: "Tartaric acid proposed as toxic principle (dogs sensitive to tartaric acid)."
+    evidence_level: case_series_target_species
+    citations:
+      - {pmid: "16231710", doi: "10.1111/j.1939-1676.2005.tb02744.x", ref: "Eubig PA et al. Acute renal failure in dogs after the ingestion of grapes or raisins: a retrospective evaluation of 43 dogs (1992-2002). JVIM 2005;19:663-74", verified: true}
+      - {pmid: "15945377", doi: "10.1177/104063870501700302", ref: "Morrow CM et al. Canine renal pathology associated with grape or raisin ingestion: 10 cases. J Vet Diagn Invest 2005;17:223-31", verified: true}
+      - {pmid: "35869755", doi: "10.1111/vec.13234", ref: "Wegenast CA et al. Acute kidney injury in dogs following ingestion of cream of tartar and tamarinds and the connection to tartaric acid as the proposed toxic principle in grapes and raisins. JVECC 2022;32:812-816", verified: true}
+      - {pmid: "37943068", doi: "10.1111/vec.13349", ref: "Bates N et al. Letter/comment on Wegenast 2022. JVECC 2023;33:722-723", verified: true}
+    notes: "Grape seed extract: tartaric acid content of purified proanthocyanidin extracts is unknown -> vet_review rather than exclude (my judgement, unverified). Cats: anecdotal reports only; treat as vet_review/exclude (unverified)."
+
+  - id: vitamin_d3_cholecalciferol__dog
+    ingredient: vitamin_d3_cholecalciferol
+    species: dog
+    filter_action: dose_cap
+    toxic_dose:
+      - {effect: clinical_signs, threshold_mg_per_kg: 0.1, threshold_iu_per_kg: 4000, source: merck_cholecalciferol_rodenticide}
+      - {effect: hypercalcemia_hyperphosphatemia_soft_tissue_mineralization, threshold_mg_per_kg: 0.5, threshold_iu_per_kg: 20000, qualifier: ">", source: merck_cholecalciferol_rodenticide}
+      - {effect: "clinical signs (alternative Merck page)", threshold_mg_per_kg: 0.5, source: merck_multivitamins}
+      - {effect: LD50, threshold_mg_per_kg: 88, source: merck}
+    clinical_signs: [weakness, anorexia, vomiting, polyuria, polydipsia, dehydration, hypercalcemia, hyperphosphatemia, azotemia, metastatic_mineralization, acute_kidney_injury]
+    onset: "12-48 h"
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Cholecalciferol (rodenticide) poisoning", url: "https://www.merckvetmanual.com/en-ca/toxicology/rodenticide-poisoning/cholecalciferol", verified: true}
+      - {ref: "Merck Veterinary Manual - Multivitamins and Iron Toxicity (L. Stern, ASPCA APCC; reviewed Jun 2025)", url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/multivitamins-and-iron-toxicity", verified: true}
+    notes: "Use the conservative 0.1 mg/kg (4,000 IU/kg) acute value for the filter. Chronic dietary excess (pet food recalls) causes toxicosis at far lower daily doses - cap total daily D3 from supplement + diet (AAFCO/FEDIAF max not researched here)."
+
+  - id: vitamin_d3_cholecalciferol__cat
+    ingredient: vitamin_d3_cholecalciferol
+    species: cat
+    filter_action: dose_cap
+    toxic_dose:
+      - {effect: acute_toxicosis, threshold_mg_per_kg: 0.1, note: "Merck does not give cat-specific acute values; apply dog values (unverified for cats)"}
+      - {effect: chronic_systemic_calcinosis, diet_concentration_iu_per_100g: 6370, comparison: "~10x control food (680 IU/100 g)", source: morita_1995}
+      - {effect: no_adverse_effect, diet_concentration_ug_per_kg_diet: 846, duration: "18 months", note: "cats resistant when diet otherwise complete", source: sih_2001}
+    clinical_signs: [hyperphosphatemia, azotemia, systemic_vascular_calcification, increased_bone_density]
+    evidence_level: controlled_study_target_species
+    citations:
+      - {pmid: "8593288", doi: "10.1292/jvms.57.831", ref: "Morita T et al. Vitamin D toxicosis in cats: natural outbreak and experimental study. J Vet Med Sci 1995;57:831-7", verified: true}
+      - {pmid: "11560284", doi: "10.2460/ajvr.2001.62.1500", ref: "Sih TR, Morris JG, Hickman MA. Chronic ingestion of high concentrations of cholecalciferol in cats. Am J Vet Res 2001;62:1500-6", verified: true}
+      - {pmid: "38046423", ref: "Voss A, Chow R. Intravenous lipid emulsion therapy in 2 dogs and 2 cats with vitamin D toxicosis. Can Vet J 2023;64:1119-1124", verified: true}
+
+  - id: iron__dog_cat
+    ingredient: iron_elemental
+    species: both
+    filter_action: dose_cap
+    toxic_dose:
+      - {effect: decontamination_warranted, threshold_mg_per_kg_elemental: 50, qualifier: ">", source: "Merck multivitamins page (rev. Jun 2025)"}
+      - {effect: additional_treatment_monitoring, threshold_mg_per_kg_elemental: 80, qualifier: ">", source: "Merck multivitamins page (rev. Jun 2025)"}
+      - {effect: "older ASPCA/dvm360 tiers: <20 none; 20-60 mild; >60 serious", threshold_mg_per_kg_elemental: 20, source: "dvm360 Toxicology Brief (via search snippet; not opened)", verified: false}
+    clinical_signs: [vomiting, diarrhea_with_or_without_blood, hypovolemic_shock, depression, fever, metabolic_acidosis, liver_failure, latent_apparent_recovery_phase]
+    onset: "within 6 h; shock/hepatic failure 12-24 h"
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Multivitamins and Iron Toxicity", verified: true}
+      - {pmid: "41104280", doi: "10.3389/fvets.2025.1622800", ref: "Luswanto E et al. Iron EDTA ingestion and toxicosis in 61 dogs. Front Vet Sci 2025", verified: true}
+    notes: "Compute on ELEMENTAL iron (ferrous sulfate ~20% Fe, gluconate ~12%, fumarate ~33% - salt percentages from general chemistry, unverified here). No cat-specific threshold found; apply same."
+
+  - id: vitamin_a__dog_cat
+    ingredient: vitamin_a_retinol
+    species: both
+    filter_action: dose_cap
+    toxic_dose:
+      - {effect: safe_dietary_upper, species: cat, iu_per_kg_diet: 100000, source: merck_multivitamins}
+      - {effect: safe_dietary_upper, species: dog, iu_per_kg_diet: 333300, source: merck_multivitamins}
+      - {effect: toxicosis, general: "10-1000x dietary requirement"}
+    clinical_signs: [malaise, anorexia, nausea, peeling_skin, weakness, tremors, seizures, paralysis, death, cervical_spondylosis_cat_chronic, hepatic_fibrosis_cat]
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Multivitamins and Iron Toxicity", verified: true}
+      - {pmid: "24563496", doi: "10.1177/1098612X13516121", ref: "Guerra JM et al. Hypervitaminosis A-induced hepatic fibrosis in a cat. JFMS 2014;16:243-8", verified: true}
+      - {pmid: "15994105", doi: "10.1016/j.jfms.2005.05.004", ref: "Polizopoulou ZS et al. Hypervitaminosis A in the cat: a case report and review. JFMS 2005;7:363-8", verified: true}
+    notes: "Cod liver oil and liver-based ingredients are hidden vitamin A sources."
+
+  - id: salicylates_white_willow_bark__cat
+    ingredient: [white_willow_bark_salicin, meadowsweet_unverified, wintergreen_oil_methyl_salicylate, birch_oil, aspirin_like_salicylates]
+    species: cat
+    filter_action: exclude
+    toxic_dose:
+      - {effect: "aspirin toxicosis (chronic)", threshold_mg_per_kg: "80-120 for 10-12 days (aspirin)", source: "dvm360 proceedings / Cornell toxcat via search summary", verified: false}
+      - {effect: half_life, value: "22-45 h in cats (dose-dependent) vs much shorter in dogs", verified: false}
+    clinical_signs: [vomiting, anorexia, gastric_ulceration, hyperthermia, respiratory_alkalosis_then_metabolic_acidosis, anemia, bone_marrow_suppression, hepatotoxicity, seizures]
+    mechanism: "Salicylate conjugation requires glucuronidation; cats are deficient -> prolonged half-life and accumulation. Salicin is converted to salicylic acid."
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Essential oils (wintergreen and birch oils produce aspirin toxicosis)", verified: true}
+      - {pmid: "10849251", doi: "10.1046/j.1365-2885.2000.00253.x", ref: "Parton K et al. Pharmacokinetics and effects of IV carprofen and salicylate in healthy cats. J Vet Pharmacol Ther 2000;23:73-9", verified: true}
+      - {pmid: "10862526", doi: "10.1097/00008571-200006000-00009", ref: "Court MH, Greenblatt DJ. Molecular genetic basis for deficient acetaminophen glucuronidation by cats: UGT1A6 is a pseudogene. Pharmacogenetics 2000;10:355-69", verified: true}
+    notes: "No direct willow-bark-in-cat study found; exclusion is by salicylate equivalence. Dose/half-life numbers came from secondary web summaries and need confirmation in Plumb's."
+
+  - id: five_htp__dog
+    ingredient: 5_htp_5_hydroxytryptophan_griffonia
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: minimum_toxic, threshold_mg_per_kg: 23.6, source: gwaltney_brant_2000}
+      - {effect: minimum_lethal, threshold_mg_per_kg: 128, source: gwaltney_brant_2000}
+    clinical_signs: [seizures, depression, tremors, hyperesthesia, ataxia, vomiting, diarrhea, abdominal_pain, hypersalivation, hyperthermia, transient_blindness, serotonin_syndrome]
+    onset: "10 min - 4 h; signs up to 36 h"
+    evidence_level: case_series_target_species
+    citations:
+      - {pmid: "10863592", doi: "10.2460/javma.2000.216.1937", ref: "Gwaltney-Brant SM, Albretsen JC, Khan SA. 5-Hydroxytryptophan toxicosis in dogs: 21 cases (1989-1999). JAVMA 2000;216:1937-40", verified: true}
+      - {pmid: "38407445", doi: "10.1111/vec.13368", ref: "Her J et al. Successful treatment of a severe 5-HTP intoxication using carbon hemoperfusion... in a dog. JVECC 2024;34:186-192", verified: true}
+    notes: "Apply to cats as exclude too (no cat data found; serotonergic mechanism identical) - unverified for cats."
+
+  - id: methylxanthines_caffeine_guarana_green_tea_cocoa__dog
+    ingredient: [caffeine, guarana, yerba_mate, kola_nut, green_tea_extract_caffeinated, cocoa_theobromine, cacao]
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: mild_signs, threshold_mg_per_kg: 20, source: merck_chocolate}
+      - {effect: cardiotoxic, threshold_mg_per_kg: "40-50", source: merck_chocolate}
+      - {effect: seizures, threshold_mg_per_kg: 60, qualifier: ">=", source: merck_chocolate}
+      - {effect: LD50_caffeine_or_theobromine, threshold_mg_per_kg: "100-200", source: merck_chocolate}
+      - {effect: minimum_lethal_guarana_in_combo_product, threshold_mg_per_kg: 19.1, source: ooms_2001}
+    clinical_signs: [vomiting, diarrhea, polydipsia, hyperactivity, restlessness, tachycardia, arrhythmias, hypertension, tremors, seizures, hyperthermia]
+    onset: "6-12 h (chocolate); <8 h for guarana/ma huang product"
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Chocolate Toxicosis in Animals", url: "https://www.merckvetmanual.com/toxicology/food-hazards/chocolate-toxicosis-in-animals", verified: true}
+      - {pmid: "11195828", doi: "10.2460/javma.2001.218.225", ref: "Ooms TG, Khan SA, Means C. Suspected caffeine and ephedrine toxicosis resulting from ingestion of an herbal supplement containing guarana and ma huang in dogs: 47 cases (1997-1999). JAVMA 2001;218:225-9", verified: true}
+      - {pmid: "1158774", ref: "Foor J, Stowe CM. Acute fatal caffeine toxicosis in a dog. JAVMA 1975;167:379", verified: true}
+    notes: "Thresholds are summed methylxanthines (caffeine + theobromine). Merck: ~62 g/kg milk chocolate potentially lethal."
+
+  - id: methylxanthines__cat
+    ingredient: [caffeine, guarana, green_tea_extract_caffeinated, cocoa_theobromine]
+    species: cat
+    filter_action: exclude
+    toxic_dose:
+      - {effect: lethal_range_caffeine, threshold_mg_per_kg: "80-150", source: "vetmeds.org (secondary)", verified: false}
+    clinical_signs: [as_dog]
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck chocolate page notes many species susceptible but gives no cat values", verified: true}
+    notes: "Cat-specific numbers unverified; exclude regardless."
+
+  - id: green_tea_extract_egcg__dog
+    ingredient: green_tea_extract_egcg_decaffeinated
+    species: dog
+    filter_action: dose_cap
+    toxic_dose:
+      - {effect: "extensive morbidity, mortality, multi-organ pathology (fasted dosing)", dose_range_mg_per_kg_day: "200-1000 (study arms)", note: "abstract does not identify a NOAEL", source: kapetanovic_2009}
+    clinical_signs: [multi_organ_toxicity, hepatotoxicity_inferred_from_human_data]
+    mechanism: "Fasting markedly increases catechin exposure; fed dosing lowered exposure and toxicity."
+    evidence_level: controlled_study_target_species
+    citations:
+      - {pmid: "19464566", doi: "10.1016/j.tox.2009.03.007", ref: "Kapetanovic IM et al. Exposure and toxicity of green tea polyphenols in fasted and non-fasted dogs. Toxicology 2009;260:28-36", verified: true}
+      - {pmid: "32625874", doi: "10.2903/j.efsa.2018.5239", ref: "EFSA ANS Panel. Scientific opinion on the safety of green tea catechins. EFSA J 2018;16:e05239 (abstract: >=800 mg EGCG/day as a food supplement significantly increased serum transaminases in clinical trials)", verified: true}
+    notes: "Always give with food; exclude in hepatopathy. EGCG is glucuronidated -> theoretical extra risk in cats (unverified)."
+
+  - id: macadamia__dog
+    ingredient: macadamia_nut
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: clinical_signs, threshold_g_per_kg: 2.4, source: merck_macadamia}
+      - {effect: experimental_reproduction, threshold_g_per_kg: 20, source: hansen_2000}
+    clinical_signs: [weakness, hindlimb_inability_to_rise, CNS_depression, vomiting, ataxia, tremors, hyperthermia, abdominal_pain, lameness, stiffness]
+    onset: "<12 h; resolves 12-48 h"
+    evidence_level: case_series_target_species
+    citations:
+      - {ref: "Merck Veterinary Manual - Macadamia Nut Toxicosis in Dogs", url: "https://www.merckvetmanual.com/toxicology/food-hazards/macadamia-nut-toxicosis-in-dogs", verified: true}
+      - {pmid: "10670081", ref: "Hansen SR et al. Weakness, tremors, and depression associated with macadamia nuts in dogs. Vet Hum Toxicol 2000;42:18-21", verified: true}
+    notes: "Macadamia nut oil: toxic principle unknown, so treat oil as exclude too (judgement)."
+
+  - id: hops__dog
+    ingredient: hops_humulus_lupulus
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: malignant_hyperthermia_like_reaction, threshold: "unknown; spent hops", source: duncan_1997}
+    clinical_signs: [marked_hyperthermia, restlessness, panting, vomiting, abdominal_pain, seizures, rapid_rigor_mortis, death]
+    onset: "mean 3 h"
+    mechanism: "Malignant-hyperthermia-like response (Greyhounds over-represented) or uncoupling of oxidative phosphorylation."
+    evidence_level: case_series_target_species
+    citations:
+      - {pmid: "8977648", ref: "Duncan KL, Hare WR, Buck WB. Malignant hyperthermia-like reaction secondary to ingestion of hops in five dogs. JAVMA 1997;210:51-4", verified: true}
+    notes: "4/5 dogs died. Hops extracts appear in some 'calming' supplements. Cat data: none found (vet_review/exclude by caution)."
+
+  - id: ephedra_ma_huang__dog_cat
+    ingredient: [ephedra_ma_huang, ephedrine, synephrine_bitter_orange_unverified]
+    species: both
+    filter_action: exclude
+    toxic_dose:
+      - {effect: minimum_lethal_in_combination_product, species: dog, threshold_mg_per_kg: 5.8, material: ma_huang, source: ooms_2001}
+    clinical_signs: [hyperactivity, tremors, seizures, behavior_change, vomiting, tachycardia, hyperthermia, death]
+    evidence_level: case_series_target_species
+    citations:
+      - {pmid: "11195828", doi: "10.2460/javma.2001.218.225", ref: "Ooms 2001 (guarana + ma huang, 47 dogs; 17% died/euthanized)", verified: true}
+    notes: "Synephrine grouping is mechanistic (sympathomimetic) and unverified."
+
+  - id: yohimbe__dog_cat
+    ingredient: yohimbe_yohimbine
+    species: both
+    filter_action: exclude
+    toxic_dose: []
+    clinical_signs: [CNS_excitation_expected, tachycardia_expected, hypertension_expected, tremors_expected]
+    mechanism: "Alpha-2 adrenergic antagonist (used veterinary as xylazine reversal)."
+    evidence_level: mechanistic_theoretical
+    citations:
+      - {pmid: "19498277", doi: "10.1292/jvms.71.539", ref: "Talukder H et al. Antagonistic effects of atipamezole and yohimbine on xylazine-induced diuresis in healthy dogs. J Vet Med Sci 2009 (pharmacology only)", verified: true}
+    notes: "No veterinary supplement-toxicosis case series found. Exclusion is mechanistic plus no legitimate indication in pet supplements."
+
+  - id: kava__dog_cat
+    ingredient: kava_piper_methysticum
+    species: both
+    filter_action: exclude
+    toxic_dose: []
+    clinical_signs: [hepatotoxicity_human, sedation_expected]
+    evidence_level: extrapolated_human
+    citations:
+      - {pmid: "34307603", doi: "10.12998/wjcc.v9.i20.5490", ref: "Ballotin VR et al. Herb-induced liver injury: systematic review and meta-analysis. World J Clin Cases 2021 (includes kava)", verified: true}
+      - {pmid: "24315480", doi: "10.1016/j.dld.2013.10.020", ref: "Teschke R et al. Herbal hepatotoxicity: analysis of cases with initially reported positive re-exposure tests. Dig Liver Dis 2014", verified: true}
+    notes: "No dog/cat data found. Human hepatotoxicity basis only."
+
+  - id: nutmeg__dog
+    ingredient: nutmeg_myristicin
+    species: dog
+    filter_action: exclude
+    toxic_dose:
+      - {effect: toxicosis, threshold: "~5 g ground nutmeg reported by consumer/vet-clinic pages", verified: false}
+    clinical_signs: [vomiting, diarrhea, disorientation, hallucination_like_behavior, tachycardia, hypertension, dry_mouth, abdominal_pain, seizures]
+    onset: "3-8 h"
+    evidence_level: mechanistic_theoretical
+    citations:
+      - {ref: "ASPCA/consumer veterinary pages only (gsvs.org, hepper.com); no PubMed source found", verified: false}
+    notes: "Weak evidence; trace culinary amounts in food unlikely to matter, but no reason to include in supplements."
+
+  - id: benzoic_acid_benzoates__cat
+    ingredient: [benzoic_acid, sodium_benzoate]
+    species: cat
+    filter_action: exclude
+    toxic_dose: []
+    clinical_signs: [hyperesthesia, aggression_unverified, convulsions_unverified, death]
+    mechanism: "Cats conjugate benzoate poorly (glucuronidation-limited)."
+    evidence_level: controlled_study_target_species
+    citations:
+      - {pmid: "4672555", doi: "10.1136/vr.90.3.53", ref: "Bedford PG, Clarke EG. Experimental benzoic acid poisoning in the cat. Vet Rec 1972;90:53-8", verified: true}
+      - {pmid: "5104111", doi: "10.1136/vr.88.23.599", ref: "Bedford PG, Clarke EG. Suspected benzoic acid poisoning in the cat. Vet Rec 1971;88:599-601", verified: true}
+    notes: "No abstract online; dose and sign list not verified. Preservative in some liquid supplements."
+
+  - id: zinc__dog_cat
+    ingredient: zinc_high_dose
+    species: both
+    filter_action: dose_cap
+    toxic_dose: []
+    clinical_signs: [hemolysis, icterus, pancreatitis, acute_kidney_injury, vomiting]
+    evidence_level: reference_text
+    citations:
+      - {ref: "Merck Veterinary Manual - Toxicoses in Animals From Human Multivitamins and Supplements (zinc: hemolysis, icterus, pancreatitis, AKI)", verified: true}
+      - {pmid: "23180148", doi: "10.1136/vr.100376", ref: "Blundell R, Adam F. Haemolytic anaemia and acute pancreatitis associated with zinc toxicosis in a dog. Vet Rec 2013", verified: true}
+    notes: "Supplement-dose zinc toxicosis threshold not established; most reports are metallic foreign bodies."
+
+  # ---- Feline glucuronidation deficiency: summary node -------------------------
+  - id: feline_ugt_deficiency_group__cat
+    ingredient: glucuronidation_dependent_compounds
+    species: cat
+    filter_action: vet_review
+    mechanism: "UGT1A6 is a pseudogene in domestic cats (and other Felidae) -> deficient glucuronidation of planar phenols (acetaminophen, salicylate, phenols)."
+    members:
+      established_toxic: [salicylates_incl_white_willow_bark_and_wintergreen, phenolic_essential_oils, benzoic_acid_benzoates]
+      cat_specific_other_mechanism: [propylene_glycol_heinz_bodies, alpha_lipoic_acid_hepatotoxicity, allium_heinz_bodies]
+      theoretical_caution_no_cat_toxicity_data: [curcumin, egcg_green_tea, resveratrol, quercetin, silymarin_silybin, other_high_dose_polyphenols, menthol_peppermint_oil]
+    evidence_level: controlled_study_target_species
+    citations:
+      - {pmid: "10862526", doi: "10.1097/00008571-200006000-00009", ref: "Court MH, Greenblatt DJ 2000 Pharmacogenetics", verified: true}
+      - {pmid: "21464924", doi: "10.1371/journal.pone.0018046", ref: "Shrestha B et al. Evolution of a major drug metabolizing enzyme defect in the domestic cat and other Felidae. PLoS One 2011;6:e18046", verified: true}
+      - {ref: "Merck Veterinary Manual - Essential oils (cats deficient in glucuronyl transferase; very sensitive to phenols)", verified: true}
+    notes: "The 'theoretical_caution' list is inference: these polyphenols are glucuronidated in other species, but no cat toxicity data were found. Recommend dose_cap + vet_review, not hard exclusion."
+
+# ---------------------------------------------------------------------------
+# 2) CONDITION CONTRAINDICATIONS
+# ---------------------------------------------------------------------------
+# New condition IDs introduced: acute_pancreatitis_severe, critically_ill,
+# gallbladder_disease_biliary_obstruction, protein_losing_enteropathy,
+# on_iodine_restricted_diet (modifier), krill/crustacean handled under shellfish_allergy.
+condition_contraindications:
+
+  # ---- omega-3 ------------------------------------------------------------
+  - id: omega3_fish_oil__pancreatitis_history
+    ingredient: omega3_fish_oil_high_dose
+    condition: pancreatitis_history
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Fish oil adds long-chain fat; high-fat intake is the usual dietary concern in pancreatitis-prone dogs. Lenox & Bauer list GI adverse effects; no study shows fish oil causes pancreatitis in dogs/cats."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {pmid: "23323770", doi: "10.1111/jvim.12033", ref: "Lenox CE, Bauer JE. Potential adverse effects of omega-3 fatty acids in dogs and cats. JVIM 2013;27:217-26", verified: true}
+    notes: "Count fish oil toward the total dietary fat budget; prefer concentrated EPA/DHA (less total fat per mg)."
+
+  - id: omega3_fish_oil__hyperlipidemia
+    ingredient: omega3_fish_oil
+    condition: hyperlipidemia
+    species: dog
+    severity: none
+    action: monitor
+    rationale: "NOT a contraindication: omega-3 fatty acids are a listed lipid-lowering therapy for primary hyperlipidemia (e.g., Miniature Schnauzer hypertriglyceridemia) alongside ultra-low-fat diet."
+    evidence_level: reference_text
+    evidence_strength: moderate
+    citations:
+      - {pmid: "26456868", doi: "10.1111/jsap.12396", ref: "Xenoulis PG, Steiner JM. Canine hyperlipidaemia. JSAP 2015;56:595-605", verified: true}
+    notes: "The filter must NOT exclude omega-3 for hyperlipidemia. It is the vehicle fat (e.g., whole-fish/coconut/MCT oils) that matters."
+
+  - id: omega3_fish_oil__bleeding_disorder
+    ingredient: omega3_fish_oil_high_dose
+    condition: bleeding_disorder
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Altered platelet function is a listed potential adverse effect. In cats, high-dose purified EPA/DHA for 2 months did not change bleeding time or platelet aggregation. Human perioperative RCT (8-10 g EPA+DHA) showed no excess bleeding."
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "23323770", ref: "Lenox & Bauer 2013", verified: true}
+      - {pmid: "7983618", doi: "10.1111/j.1939-1676.1994.tb03227.x", ref: "Bright JM et al. Effects of n-3 fatty acid supplementation on bleeding time, plasma fatty acid composition, and in vitro platelet aggregation in cats. JVIM 1994;8:247-52", verified: true}
+      - {pmid: "9868228", doi: "10.1093/jn/128.12.2645S", ref: "Saker KE et al. Manipulation of dietary n-6 and n-3 fatty acids alters platelet function in cats. J Nutr 1998", verified: true}
+      - {pmid: "30571332", doi: "10.1161/CIRCOUTCOMES.118.004584", ref: "Akintoye E et al. Fish oil and perioperative bleeding. Circ Cardiovasc Qual Outcomes 2018 (n=1516; OR 0.81 for major bleeding)", verified: true}
+    notes: "Saker 1998 did report altered platelet function with diet n-6:n-3 manipulation (abstract not read; direction/magnitude unverified)."
+
+  - id: omega3_fish_oil__scheduled_surgery
+    ingredient: omega3_fish_oil_high_dose
+    condition: scheduled_surgery
+    species: both
+    severity: relative
+    action: monitor
+    rationale: "Theoretical bleeding/wound-healing concern (Lenox & Bauer list detrimental effects on wound healing). Largest human RCT found no increase in perioperative bleeding."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "30571332", ref: "Akintoye 2018", verified: true}
+      - {pmid: "23323770", ref: "Lenox & Bauer 2013", verified: true}
+
+  - id: omega3_fish_oil__obesity
+    ingredient: omega3_fish_oil
+    condition: obesity
+    species: both
+    severity: relative
+    action: monitor
+    rationale: "Weight gain from added calories is a listed adverse effect; account for kcal."
+    evidence_level: reference_text
+    evidence_strength: weak
+    citations:
+      - {pmid: "23323770", ref: "Lenox & Bauer 2013", verified: true}
+
+  - id: omega3_fish_oil__diabetes_mellitus
+    ingredient: omega3_fish_oil_high_dose
+    condition: diabetes_mellitus
+    species: both
+    severity: relative
+    action: monitor
+    rationale: "Effects on glycemic control/insulin sensitivity listed as potential adverse effect; direction unclear."
+    evidence_level: reference_text
+    evidence_strength: weak
+    citations:
+      - {pmid: "23323770", ref: "Lenox & Bauer 2013", verified: true}
+
+  - id: omega3_fish_oil__dose_ceiling_all
+    ingredient: omega3_fish_oil
+    condition: any
+    species: dog
+    severity: relative
+    action: reduce_dose
+    rationale: "NRC 2006 safe upper limit for EPA+DHA in dogs: 2,800 mg/1,000 kcal (= 280 mg/100 kcal, ~370 mg/kg^0.75 BW). No NRC SUL for cats was found."
+    evidence_level: reference_text
+    evidence_strength: moderate
+    citations:
+      - {ref: "NRC 2006 Nutrient Requirements of Dogs and Cats, as quoted by Raditic D, Gaylord L, Today's Veterinary Practice 2020 ('280 mg/100 kcal') and dvm360 Journal Scan ('370 mg/kg^0.75')", url: "https://todaysveterinarypractice.com/nutrition/fish-oil-dosing-in-pet-diets-and-supplements", verified: true}
+    notes: "NRC book itself not read; numbers from two secondary sources that agree."
+
+  # ---- glucosamine / shellfish-derived ----------------------------------------
+  - id: glucosamine__diabetes_mellitus
+    ingredient: glucosamine
+    condition: diabetes_mellitus
+    species: dog
+    severity: relative
+    action: monitor
+    rationale: "Weak evidence. 21-day glucosamine-chondroitin did not change serum fructosamine in 12 healthy dogs. No study in diabetic dogs/cats found. Concern is extrapolated from early human/rodent insulin-resistance data."
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "20074008", doi: "10.2460/javma.236.2.183", ref: "Lenox CE, Lunn KF. Effects of glucosamine-chondroitin sulfate supplementation on serum fructosamine concentration in healthy dogs. JAVMA 2010;236:183-6", verified: true}
+    notes: "Do not exclude; monitor glucose/fructosamine after starting in a diabetic patient."
+
+  - id: glucosamine__shellfish_allergy
+    ingredient: glucosamine_crustacean_derived
+    condition: shellfish_allergy
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Most glucosamine is made from crustacean chitin; the allergen is the protein (tropomyosin), which is largely removed. Small human study suggested shellfish-allergic patients tolerated glucosamine. Prefer non-shellfish (fermented/vegetable) glucosamine."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "15341031", doi: "10.1016/j.jaci.2004.05.050", ref: "Gray HC, Hutcheson PS, Slavin RG. Is glucosamine safe in patients with seafood allergy? J Allergy Clin Immunol 2004;114:459-60 (letter; content summarised from memory, abstract not available)", verified: true}
+
+  - id: green_lipped_mussel__shellfish_allergy
+    ingredient: green_lipped_mussel_perna_canaliculus
+    condition: shellfish_allergy
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Whole mollusc material; allergenic proteins actin, tropomyosin and paramyosin identified in GLM extract."
+    evidence_level: extrapolated_human
+    evidence_strength: moderate
+    citations:
+      - {pmid: "36640062", doi: "10.18502/ijaai.v21i6.11532", ref: "Kage P et al. Identification of New Potential Allergens from Green-lipped Mussel (Perna canaliculus). Iran J Allergy Asthma Immunol 2022;21:711-715", verified: true}
+    notes: "Mollusc vs crustacean cross-reactivity is via tropomyosin; treat any shellfish allergy (crustacean or mollusc) as exclude."
+
+  - id: krill_oil__shellfish_allergy
+    ingredient: krill_oil
+    condition: shellfish_allergy
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Crustacean-derived; residual protein possible."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+    notes: "No citation found; mechanistic."
+
+  - id: chitosan__shellfish_allergy
+    ingredient: chitosan
+    condition: shellfish_allergy
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Crustacean-shell-derived polysaccharide; human studies found chitosan bandages and chitosan-fined wine safe in shellfish-allergic people."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "22128651", doi: "10.7205/milmed-d-11-00150", ref: "Waibel KH et al. Safety of chitosan bandages in shellfish allergic patients. Mil Med 2011;176:1153-6", verified: true}
+      - {pmid: "27009439", doi: "10.1016/j.anai.2016.02.004", ref: "Amaral L et al. Safety of chitosan processed wine in shrimp allergic patients. Ann Allergy Asthma Immunol 2016", verified: true}
+
+  # ---- copper / liver -------------------------------------------------------
+  - id: copper__copper_storage_hepatopathy
+    ingredient: [copper_any_form, copper_rich_ingredients_liver_organ_meat_shellfish]
+    condition: copper_storage_hepatopathy
+    species: dog
+    severity: absolute
+    action: exclude
+    rationale: "Copper-associated chronic hepatitis needs lifelong dietary Cu restriction (<0.12 mg/100 kcal; restricted 0.09-0.12 vs AAFCO 0.18 mg/100 kcal) plus chelation. Predisposed: Bedlington Terrier, Labrador Retriever, Doberman Pinscher, Dalmatian, West Highland White Terrier."
+    evidence_level: consensus_guideline
+    evidence_strength: strong
+    citations:
+      - {pmid: "30844094", doi: "10.1111/jvim.15467", pmcid: "PMC6524396", ref: "Webster CRL et al. ACVIM consensus statement on the diagnosis and treatment of chronic hepatitis in dogs. JVIM 2019;33:1173-1200", verified: true}
+    notes: "Consensus: Cu-restricted diet recommended in all dogs with hepatic Cu >600 ug/g dw. Also flag copper-containing multivitamin/mineral premixes."
+
+  - id: copper__hepatopathy_breed_risk
+    ingredient: copper_supplemental
+    condition: hepatopathy
+    species: dog
+    severity: relative
+    action: vet_review
+    rationale: "Any chronic hepatitis may have Cu accumulation until biopsy Cu quantified; avoid adding supplemental Cu."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30844094", ref: "ACVIM 2019 chronic hepatitis consensus", verified: true}
+
+  - id: kava__hepatopathy
+    ingredient: kava
+    condition: hepatopathy
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Human herb-induced liver injury."
+    evidence_level: extrapolated_human
+    evidence_strength: moderate
+    citations:
+      - {pmid: "34307603", ref: "Ballotin 2021", verified: true}
+
+  - id: green_tea_extract__hepatopathy
+    ingredient: green_tea_extract_egcg
+    condition: hepatopathy
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Human EGCG hepatotoxicity (EFSA 2018); multi-organ toxicity in fasted dogs."
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "32625874", ref: "EFSA 2018 green tea catechins", verified: true}
+      - {pmid: "19464566", ref: "Kapetanovic 2009", verified: true}
+
+  - id: alpha_lipoic_acid__hepatopathy
+    ingredient: alpha_lipoic_acid
+    condition: hepatopathy
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Hepatotoxic in cats (exclude for cats regardless); hepatic injury in dog overdose cases."
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "15059240", ref: "Hill 2004", verified: true}
+      - {pmid: "19821894", ref: "Loftin 2009", verified: true}
+
+  - id: vitamin_a__hepatopathy
+    ingredient: vitamin_a_high_dose_incl_cod_liver_oil
+    condition: hepatopathy
+    species: both
+    severity: relative
+    action: reduce_dose
+    rationale: "Hepatic stellate-cell storage; hypervitaminosis A hepatic fibrosis reported in a cat."
+    evidence_level: case_report_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "24563496", ref: "Guerra 2014", verified: true}
+
+  - id: milk_thistle__hepatopathy
+    ingredient: silymarin_milk_thistle
+    condition: hepatopathy
+    species: dog
+    severity: none
+    action: monitor
+    rationale: "NOT contraindicated (used as hepatoprotectant; toxicity rare), but efficacy equivocal and silymarin inhibits some CYP450/P-gp - caution with polypharmacy."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30844094", ref: "ACVIM 2019 chronic hepatitis consensus", verified: true}
+
+  # ---- urolithiasis ----------------------------------------------------------
+  - id: high_purine__urate_urolithiasis
+    ingredient: [brewers_yeast, yeast_extract, nucleotides, organ_meats_liver_kidney, sardine_anchovy_fish_meal, high_purine_protein_powders]
+    condition: urate_urolithiasis
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "ACVIM: limit purine intake, promote alkaline urine (pH >=7) and dilute urine to prevent urate recurrence; high-purine foods include organ meats and fish. Highest risk: SLC2A9 hyperuricosuria (Dalmatian, Bulldog) and portovascular anomalies (Yorkshire Terrier, Pug)."
+    evidence_level: consensus_guideline
+    evidence_strength: strong
+    citations:
+      - {pmid: "27611724", doi: "10.1111/jvim.14559", pmcid: "PMC5032870", ref: "Lulich JP et al. ACVIM Small Animal Consensus Recommendations on the Treatment and Prevention of Uroliths in Dogs and Cats. JVIM 2016;30:1564-1574", verified: true}
+    notes: "The consensus names organ meats and fish; brewer's yeast is included because yeast is nucleic-acid rich (general nutrition knowledge, not named in the consensus). Also: allopurinol-treated dogs on high-purine intake risk xanthine uroliths."
+
+  - id: urinary_acidifiers__urate_urolithiasis
+    ingredient: [dl_methionine, ammonium_chloride, cranberry_high_dose, vitamin_c_high_dose]
+    condition: urate_urolithiasis
+    species: both
+    severity: relative
+    action: exclude
+    rationale: "Urate prevention requires alkaline urine; acidifiers oppose this."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "27611724", ref: "ACVIM 2016 urolith consensus", verified: true}
+    notes: "Whether cranberry meaningfully acidifies pet urine is not established."
+
+  - id: vitamin_c__calcium_oxalate_urolithiasis
+    ingredient: vitamin_c_ascorbic_acid_supplemental
+    condition: calcium_oxalate_urolithiasis
+    species: both
+    severity: relative
+    action: exclude
+    rationale: "Ascorbate is metabolized to oxalate. Human cohort: supplemental ascorbic acid associated with ~2x kidney stone incidence in men. No dog/cat outcome data."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "23381591", doi: "10.1001/jamainternmed.2013.2296", ref: "Thomas LD et al. Ascorbic acid supplements and kidney stone incidence among men: a prospective study. JAMA Intern Med 2013;173:386-8", verified: true}
+      - {pmid: "26463139", doi: "10.1053/j.ajkd.2015.09.005", ref: "Ferraro PM et al. Total, dietary, and supplemental vitamin C intake and risk of incident kidney stones. Am J Kidney Dis 2016", verified: true}
+    notes: "The ~2x figure is from my recollection of Thomas 2013 (abstract not available in PubMed) - verify. Dogs/cats synthesize vitamin C; no requirement."
+
+  - id: urinary_acidifiers__calcium_oxalate_urolithiasis
+    ingredient: [dl_methionine, ammonium_chloride, cranberry_high_dose]
+    condition: calcium_oxalate_urolithiasis
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "ACVIM: to minimize CaOx recurrence, avoid urine acidification and excessive protein; consider citrate if urine persistently acidic."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "27611724", ref: "ACVIM 2016 urolith consensus (Recommendation 3.3)", verified: true}
+
+  - id: cranberry__calcium_oxalate_urolithiasis
+    ingredient: cranberry_extract
+    condition: calcium_oxalate_urolithiasis
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Conflicting human data: cranberry concentrate tablets raised urinary oxalate by a mean 43.4% in 5 volunteers (Terris 2001), whereas cranberry juice lowered oxalate and CaOx supersaturation (McHarg 2003); Gettman 2005 mixed. No dog/cat data."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "11164137", doi: "10.1016/s0090-4295(00)00884-0", ref: "Terris MK et al. Dietary supplementation with cranberry concentrate tablets may increase the risk of nephrolithiasis. Urology 2001;57:26-9", verified: true}
+      - {pmid: "14616463", doi: "10.1046/j.1464-410x.2003.04472.x", ref: "McHarg T et al. Influence of cranberry juice on the urinary risk factors for calcium oxalate kidney stone formation. BJU Int 2003;92:765-8", verified: true}
+      - {pmid: "16006907", doi: "10.1097/01.ju.0000165168.68054.f8", ref: "Gettman MT et al. Effect of cranberry juice consumption on urinary stone risk factors. J Urol 2005;174:590-4", verified: true}
+    notes: "Supplement extracts (concentrated) are closer to the Terris tablet scenario."
+
+  - id: vitamin_d_calcium__calcium_oxalate_urolithiasis
+    ingredient: [vitamin_d3_supplemental, calcium_supplemental]
+    condition: calcium_oxalate_urolithiasis
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "CaOx is driven mainly by hypercalciuria (with hypercalcemia or normocalcemia); controlling hypercalcemia aids prevention. Supplemental vitamin D/calcium can raise urinary calcium."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "27611724", ref: "ACVIM 2016 urolith consensus", verified: true}
+    notes: "Consensus does not explicitly name vitamin D supplements; inference from hypercalciuria mechanism."
+
+  - id: alkalinizers__struvite_urolithiasis
+    ingredient: [potassium_citrate, sodium_bicarbonate, alkalinizing_supplements]
+    condition: struvite_urolithiasis
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Struvite precipitates in alkaline urine; dissolution/prevention diets acidify urine. Alkalinizers oppose this."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {pmid: "27611724", ref: "ACVIM 2016 urolith consensus (struvite dissolution)", verified: true}
+    notes: "Phosphate/magnesium-rich supplements also relevant (mechanistic)."
+
+  # ---- calcium / phosphorus / kidney -------------------------------------------
+  - id: calcium_binders__hypercalcemia
+    ingredient: [calcium_carbonate, calcium_lactate_gluconate, calcium_containing_phosphate_binders, chitosan_calcium_carbonate_binders]
+    condition: hypercalcemia
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "IRIS: calcium-containing phosphate binders should be avoided in hypercalcaemia and in patients receiving vitamin D/calcitriol; monitor ionised calcium."
+    evidence_level: consensus_guideline
+    evidence_strength: strong
+    citations:
+      - {ref: "IRIS Treatment Recommendations for CKD in Cats (2023)", url: "https://ca.idexx.com/files/iris-cat-treatment-recommendations-2023-en.pdf", verified: false, note: "PDF located but text could not be extracted; wording taken from secondary summaries of IRIS (vettimes, veterinary-practice). Re-verify."}
+      - {pmid: "29582226", doi: "10.1007/s11259-018-9719-z", ref: "Biasibetti E et al. Long term feed supplementation based on phosphate binders in feline CKD (calcium carbonate, calcium lactate-gluconate, chitosan, sodium bicarbonate). Vet Res Commun 2018", verified: true}
+
+  - id: vitamin_d__hypercalcemia
+    ingredient: [vitamin_d3, vitamin_d2, calcitriol_containing_products]
+    condition: hypercalcemia
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Vitamin D excess causes hypercalcemia and metastatic mineralization."
+    evidence_level: reference_text
+    evidence_strength: strong
+    citations:
+      - {ref: "Merck Veterinary Manual - Cholecalciferol", verified: true}
+
+  - id: calcium_binders__chronic_kidney_disease
+    ingredient: calcium_containing_phosphate_binders
+    condition: chronic_kidney_disease
+    species: both
+    severity: relative
+    action: monitor
+    rationale: "Useful for hyperphosphatemia but can promote hypercalcaemia; recheck phosphate and calcium every 4-6 weeks until stable."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {ref: "IRIS 2023 treatment recommendations (secondary summary)", verified: false}
+
+  - id: phosphorus_sources__hyperphosphatemia
+    ingredient: [bone_meal, dicalcium_phosphate, sodium_phosphate, phosphorus_rich_protein_powders]
+    condition: hyperphosphatemia
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "IRIS: hyperphosphataemia managed first by dietary phosphate restriction (cat target <1.5 mmol/L but not <0.9)."
+    evidence_level: consensus_guideline
+    evidence_strength: strong
+    citations:
+      - {ref: "IRIS 2023 (secondary summary)", verified: false}
+
+  - id: phosphorus_sources__chronic_kidney_disease
+    ingredient: [bone_meal, dicalcium_phosphate, phosphorus_supplements]
+    condition: chronic_kidney_disease
+    species: both
+    severity: relative
+    action: exclude
+    rationale: "Phosphate restriction is core CKD management."
+    evidence_level: consensus_guideline
+    evidence_strength: strong
+    citations:
+      - {ref: "IRIS 2023 (secondary summary)", verified: false}
+
+  - id: vitamin_d__chronic_kidney_disease
+    ingredient: vitamin_d3_supplemental
+    condition: chronic_kidney_disease
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Risk of hypercalcemia/mineralization; calcitriol only under vet protocol."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: moderate
+    citations:
+      - {ref: "Merck Veterinary Manual - Cholecalciferol (renal mineralization)", verified: true}
+
+  - id: salicylate_herbs__chronic_kidney_disease
+    ingredient: [white_willow_bark, meadowsweet]
+    condition: chronic_kidney_disease
+    species: both
+    severity: relative
+    action: exclude
+    rationale: "Salicylates inhibit renal prostaglandins like NSAIDs (mechanistic); cats additionally glucuronidation-deficient."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  - id: potassium__chronic_kidney_disease
+    ingredient: potassium_gluconate_citrate
+    condition: chronic_kidney_disease
+    species: both
+    severity: none
+    action: monitor
+    rationale: "NOT a blanket contraindication: hypokalemic CKD cats are commonly supplemented. Risk arises only with hyperkalemia or concurrent ACEi/ARB/spironolactone - see interactions."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {ref: "IRIS 2023 (secondary summary)", verified: false}
+
+  # ---- diabetes ---------------------------------------------------------------
+  - id: melatonin__diabetes_mellitus
+    ingredient: melatonin
+    condition: diabetes_mellitus
+    species: both
+    severity: relative
+    action: monitor
+    rationale: "Secondary veterinary sources state melatonin 'could cause insulin resistance in diabetic animals'; rodent data show the opposite. No dog/cat study found."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {ref: "Statement attributed to Plumb's in consumer/vet-blog sources (pawlicy, hepper); Plumb's not read", verified: false}
+      - {pmid: "31433224", doi: "10.5326/JAAHA-MS-6895", ref: "Chen M, Stone R. Lack of effect of oral melatonin on platelet parameters in normal healthy dogs. JAAHA 2019 (safety, not glycemia)", verified: true}
+    notes: "VCA melatonin monograph (read): caution in pregnant/nursing/breeding pets, severe liver disease, immature pets; caution with benzodiazepines, succinylcholine, warfarin, fluvoxamine. Does not mention diabetes. Human melatonin products may contain xylitol."
+
+  - id: high_sugar_carriers__diabetes_mellitus
+    ingredient: [molasses, honey, glucose_syrup, maltodextrin_high_load]
+    condition: diabetes_mellitus
+    species: both
+    severity: relative
+    action: monitor
+    rationale: "Simple sugars in chews/palatants disrupt glycemic control."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  - id: alpha_lipoic_acid__diabetes_mellitus
+    ingredient: alpha_lipoic_acid
+    condition: diabetes_mellitus
+    species: dog
+    severity: relative
+    action: monitor
+    rationale: "Persistent hypoglycemia in dog ALA overdose; additive with insulin."
+    evidence_level: case_report_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "19821894", ref: "Loftin 2009", verified: true}
+
+  # ---- fat sources / pancreas ----------------------------------------------
+  - id: mct_oil__pancreatitis_history
+    ingredient: mct_oil_coconut_oil
+    condition: pancreatitis_history
+    species: dog
+    severity: relative
+    action: vet_review
+    rationale: "Healthy-dog studies found no significant difference in pancreatic markers (cPLI, cTLI, gastrin) with MCT vs LCFA or low-fat meals; no data in dogs with pancreatitis. Still adds fat/kcal."
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "37624816", doi: "10.1371/journal.pone.0290555", ref: "Zhang Y et al. Impact of fatty acid composition on markers of exocrine pancreatic stimulation in dogs. PLoS One 2023;18:e0290555", verified: true}
+      - {pmid: "19405900", doi: "10.2460/ajvr.70.5.614", ref: "James FE et al. Pancreatic response in healthy dogs fed diets of various fat compositions. Am J Vet Res 2009;70:614-8", verified: true}
+
+  - id: mct_oil__hyperlipidemia
+    ingredient: mct_oil_coconut_oil
+    condition: hyperlipidemia
+    species: dog
+    severity: relative
+    action: monitor
+    rationale: "High-MCT meal raised serum triglycerides vs a 3% ME fat control (lower than LCFA meals)."
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "37624816", ref: "Zhang 2023", verified: true}
+
+  - id: mct_oil__exocrine_pancreatic_insufficiency
+    ingredient: mct_oil
+    condition: exocrine_pancreatic_insufficiency
+    species: dog
+    severity: none
+    action: monitor
+    rationale: "NOT contraindicated; MCT exchange for LCT was evaluated in EPI dogs."
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "15478780", doi: "10.2460/ajvr.2004.65.1293", ref: "Rutz GM et al. Effects of exchange of dietary MCT for LCT on serum biochemical variables and well-being of dogs with EPI. Am J Vet Res 2004;65:1293-302", verified: true}
+    notes: "Outcome direction of Rutz 2004 not read; listed only to block a false exclusion."
+
+  - id: high_fat_oils__obesity
+    ingredient: [mct_oil, coconut_oil, fish_oil, salmon_oil]
+    condition: obesity
+    species: both
+    severity: relative
+    action: reduce_dose
+    rationale: "Energy-dense (~9 kcal/g); count within calorie plan."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: moderate
+    citations: []
+
+  # ---- probiotics -----------------------------------------------------------
+  - id: probiotics__immunosuppressed
+    ingredient: [probiotics_live_bacteria, saccharomyces_boulardii]
+    condition: immunosuppressed
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Human reports of Saccharomyces fungemia (often linked to S. boulardii products) and Lactobacillus bacteremia in immunocompromised/critically ill patients. No dog/cat case reports were found."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "36806741", doi: "10.1093/mmy/myad014", ref: "Vinayagamoorthy K et al. Epidemiology of Saccharomyces fungemia: a systematic review. Med Mycol 2023;61", verified: true}
+      - {pmid: "33934809", doi: "10.1016/j.idnow.2020.12.003", ref: "Poncelet A et al. S. cerevisiae fungemia: risk factors, outcome and links with S. boulardii-containing probiotic administration. Infect Dis Now 2021", verified: true}
+    notes: "Includes patients on cyclosporine, high-dose glucocorticoids, chemotherapy, neutropenia, central lines."
+
+  - id: probiotics__critically_ill
+    ingredient: probiotics_live
+    condition: critically_ill
+    new_condition_id: true
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Human RCT (PROPATRIA): probiotic prophylaxis in predicted severe acute pancreatitis increased mortality (incl. bowel ischaemia)."
+    evidence_level: extrapolated_human
+    evidence_strength: moderate
+    citations:
+      - {pmid: "18279948", doi: "10.1016/S0140-6736(08)60207-X", ref: "Besselink MG et al. Probiotic prophylaxis in predicted severe acute pancreatitis: a randomised, double-blind, placebo-controlled trial. Lancet 2008;371:651-659", verified: true}
+    notes: "Abstract confirmed: mortality 24/152 (16%) probiotics vs 9/144 (6%) placebo; infectious complications not reduced (RR 1.06). Bowel ischaemia detail not re-read. Applies also to new ID acute_pancreatitis_severe."
+
+  # ---- vitamin E, curcumin, garlic, ginkgo: haemostasis --------------------------
+  - id: vitamin_e_high_dose__bleeding_disorder
+    ingredient: vitamin_e_high_dose
+    condition: bleeding_disorder
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Human data: high-dose vitamin E can antagonize vitamin K-dependent coagulation and potentiate warfarin. No dog/cat data found."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "25225959", doi: "10.1017/S0954422414000146", ref: "Podszun M, Frank J. Vitamin E-drug interactions: molecular basis and clinical relevance. Nutr Res Rev 2014;27:215-31", verified: true}
+      - {pmid: "39099617", doi: "10.2903/j.efsa.2024.8953", ref: "EFSA NDA Panel. Scientific opinion on the tolerable upper intake level for vitamin E. EFSA J 2024", verified: true}
+    notes: "Same logic for scheduled_surgery (relative, monitor)."
+
+  - id: curcumin__gallbladder_disease_biliary_obstruction
+    ingredient: turmeric_curcumin
+    condition: gallbladder_disease_biliary_obstruction
+    new_condition_id: true
+    species: both
+    severity: relative
+    action: exclude
+    rationale: "Curcumin induces gallbladder contraction in humans (dose-dependent); avoid with biliary obstruction / gallbladder mucocele."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "10102956", doi: "10.1046/j.1365-2036.1999.00464.x", ref: "Rasyid A, Lelo A. The effect of curcumin and placebo on human gall-bladder function: an ultrasound study. Aliment Pharmacol Ther 1999;13:245-9", verified: true}
+      - {pmid: "12495265", doi: "10.1046/j.1440-6047.2002.00296.x", ref: "Rasyid A et al. Effect of different curcumin dosages on human gall bladder. Asia Pac J Clin Nutr 2002;11:314-8", verified: true}
+
+  - id: curcumin__bleeding_disorder
+    ingredient: turmeric_curcumin
+    condition: bleeding_disorder
+    species: both
+    severity: relative
+    action: monitor
+    rationale: "In-vitro antiplatelet activity; in rats curcumin altered warfarin/clopidogrel PK but did not change anticoagulation or platelet aggregation."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {pmid: "23807811", doi: "10.1055/s-0032-1328652", ref: "Liu AC et al. Curcumin alters the pharmacokinetics of warfarin and clopidogrel in Wistar rats but has no effect on anticoagulation or antiplatelet aggregation. Planta Med 2013;79:971-7", verified: true}
+
+  - id: antiplatelet_herbs__scheduled_surgery
+    ingredient: [ginkgo, garlic, ginger_high_dose, curcumin_high_dose, vitamin_e_high_dose, white_willow_bark]
+    condition: scheduled_surgery
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Human perioperative herbal guidance commonly recommends stopping antiplatelet herbs before surgery; evidence is mostly theoretical/case-based."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "38613937", doi: "10.1016/j.jclinane.2024.111473", ref: "Elvir Lazo OL et al. Use of herbal medication in the perioperative period: potential adverse drug interactions. J Clin Anesth 2024", verified: true}
+    notes: "Garlic is excluded for dogs/cats anyway (species toxicity)."
+
+  - id: salicylate_herbs__bleeding_disorder
+    ingredient: white_willow_bark
+    condition: bleeding_disorder
+    species: dog
+    severity: relative
+    action: exclude
+    rationale: "Salicylate antiplatelet effect (mechanistic; salicin weaker than aspirin)."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  # ---- St John's wort -------------------------------------------------------
+  - id: st_johns_wort__immunosuppressed_on_cyclosporine
+    ingredient: st_johns_wort_hypericum
+    condition: immunosuppressed
+    species: dog
+    severity: absolute
+    action: exclude
+    rationale: "Repeated SJW lowered cyclosporine Cmax/AUC in dogs (CYP3A/P-gp induction) - risk of transplant/immune-disease relapse. Encoded as drug interaction too."
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "22091645", doi: "10.1111/j.1365-2885.2011.01348.x", ref: "Fukunaga K, Orito K. Time-course effects of St John's wort on the pharmacokinetics of cyclosporine in dogs. J Vet Pharmacol Ther 2012;35:446-51", verified: true}
+
+  - id: st_johns_wort__pregnancy_lactation
+    ingredient: st_johns_wort_hypericum
+    condition: pregnancy_lactation
+    species: both
+    severity: relative
+    action: exclude
+    rationale: "No safety data in pregnant/lactating dogs or cats; potent enzyme inducer; photosensitizing hypericin (livestock)."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  # ---- neuro ----------------------------------------------------------------
+  - id: convulsant_essential_oils__epilepsy
+    ingredient: [eucalyptus_oil, sage_oil, hyssop_oil, pennyroyal, wintergreen_oil, wormwood, birch_oil, cedar_oil, camphor_unverified, rosemary_oil_unverified]
+    condition: epilepsy
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Merck lists birch, cedar, eucalyptus, hyssop, pennyroyal, sage, wintergreen, wormwood as seizure-inducing."
+    evidence_level: reference_text
+    evidence_strength: moderate
+    citations:
+      - {ref: "Merck Veterinary Manual - Toxicoses From Essential Oils", verified: true}
+    notes: "Camphor and rosemary are NOT on the Merck list I read; included as unverified."
+
+  - id: stimulants__epilepsy
+    ingredient: [caffeine, guarana, green_tea_extract_caffeinated, ephedra, yohimbe, 5_htp]
+    condition: epilepsy
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Seizures are a principal sign of methylxanthine, ephedrine and 5-HTP toxicosis."
+    evidence_level: case_series_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "11195828", ref: "Ooms 2001", verified: true}
+      - {pmid: "10863592", ref: "Gwaltney-Brant 2000", verified: true}
+
+  - id: ginkgo__epilepsy
+    ingredient: ginkgo_biloba
+    condition: epilepsy
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Human case reports/reviews link ginkgo (ginkgotoxin) to seizures; animal models conflicting; no dog/cat data."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations: []
+    notes: "No specific citation verified this session (PubMed hits were reviews of mixed direction)."
+
+  # ---- cardiac --------------------------------------------------------------
+  - id: sodium__myxomatous_mitral_valve_disease
+    ingredient: [salt_sodium_chloride, high_sodium_treat_bases, sodium_bicarbonate]
+    condition: myxomatous_mitral_valve_disease
+    species: dog
+    severity: relative
+    action: reduce_dose
+    rationale: "ACVIM 2019: mild sodium restriction from Stage B2; Stage C: modestly restrict sodium from ALL sources incl. treats and foods used to give medications (Class I, LOE moderate)."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30974015", doi: "10.1111/jvim.15488", pmcid: "PMC6524084", ref: "Keene BW et al. ACVIM consensus guidelines for the diagnosis and treatment of myxomatous mitral valve disease in dogs. JVIM 2019;33:1127-1140", verified: true}
+
+  - id: potassium__myxomatous_mitral_valve_disease
+    ingredient: potassium_supplements
+    condition: myxomatous_mitral_valve_disease
+    species: dog
+    severity: relative
+    action: vet_review
+    rationale: "ACVIM 2019: supplement potassium only if hypokalemia is identified; avoid high-K diets/foods when hyperkalemic; hyperkalemia rare even with ACEi + spironolactone."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30974015", ref: "Keene 2019", verified: true}
+
+  - id: omega3__myxomatous_mitral_valve_disease
+    ingredient: omega3_fish_oil
+    condition: myxomatous_mitral_valve_disease
+    species: dog
+    severity: none
+    action: monitor
+    rationale: "NOT contraindicated: ACVIM 2019 suggests considering omega-3 in Stage C (decreased appetite, muscle loss, arrhythmia; Class IIa)."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30974015", ref: "Keene 2019", verified: true}
+
+  - id: stimulants__cardiac_disease
+    ingredient: [caffeine, guarana, ephedra, yohimbe, synephrine_unverified]
+    condition: [myxomatous_mitral_valve_disease, dilated_cardiomyopathy]
+    species: both
+    severity: absolute
+    action: exclude
+    rationale: "Tachycardia, arrhythmias (methylxanthines cardiotoxic at 40-50 mg/kg); sympathomimetic load."
+    evidence_level: reference_text
+    evidence_strength: moderate
+    citations:
+      - {ref: "Merck chocolate toxicosis", verified: true}
+      - {pmid: "11195828", ref: "Ooms 2001 (tachycardia 30%)", verified: true}
+
+  # ---- thyroid --------------------------------------------------------------
+  - id: iodine_kelp__hyperthyroidism
+    ingredient: [kelp, seaweed, iodine, potassium_iodide, bladderwrack]
+    condition: hyperthyroidism
+    species: cat
+    severity: absolute
+    action: exclude
+    rationale: "Iodine-restricted diet alone controlled moderate-severe hyperthyroidism in 6/8 cats by 4 weeks; any added iodine defeats the diet; excess iodine also a confounder for methimazole and radioiodine therapy."
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30859084", doi: "10.2147/VMRR.S189709", ref: "Loftus JP et al. One-year study evaluating efficacy of an iodine-restricted diet for the treatment of moderate-to-severe hyperthyroidism in cats. Vet Med (Auckl) 2019;10:9-16", verified: true}
+      - {pmid: "31517826", doi: "10.1097/MD.0000000000017058", ref: "Gherbon A et al. Transient hyperthyroidism following ingestion of complementary medications containing kelp. Medicine 2019 (human)", verified: true}
+
+  - id: iodine_kelp__hypothyroidism
+    ingredient: [kelp, iodine]
+    condition: hypothyroidism
+    species: dog
+    severity: relative
+    action: vet_review
+    rationale: "Iodine excess can disturb thyroid function in either direction (human case reports); kelp iodine content variable."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "9876004", doi: "10.3122/jabfm.11.6.478", ref: "Eliason BC. Transient hyperthyroidism in a patient taking dietary supplements containing kelp. J Am Board Fam Pract 1998", verified: true}
+
+  - id: soy_isoflavones__hyperthyroidism
+    ingredient: soy_isoflavones_genistein
+    condition: hyperthyroidism
+    species: cat
+    severity: relative
+    action: vet_review
+    rationale: "Dietary soy raised total and free T4 in healthy cats (8% and 14%) and increased the proportion with fT4 above reference range."
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "15141877", doi: "10.2460/ajvr.2004.65.586", ref: "White HL et al. Effect of dietary soy on serum thyroid hormone concentrations in healthy adult cats. Am J Vet Res 2004;65:586-91", verified: true}
+      - {pmid: "11843115", doi: "10.2460/ajvr.2002.63.181", ref: "Court MH, Freeman LM. Identification and concentration of soy isoflavones in commercial cat foods. Am J Vet Res 2002", verified: true}
+    notes: "Also confounds thyroid testing."
+
+  # ---- reproduction -----------------------------------------------------------
+  - id: herbals_vitamin_a__pregnancy_lactation
+    ingredient: [vitamin_a_high_dose, kava, yohimbe, st_johns_wort, essential_oils, 5_htp, melatonin, propylene_glycol_cat]
+    condition: pregnancy_lactation
+    species: both
+    severity: relative
+    action: exclude
+    rationale: "Vitamin A excess is teratogenic (general); no reproductive safety data for listed herbals; propylene glycol risk highest in lactating queens/nursing kittens (Christopher 1989); VCA lists melatonin as use-with-caution in pregnant/nursing/breeding pets."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {pmid: "2708106", ref: "Christopher 1989 (propylene glycol)", verified: true}
+      - {ref: "VCA Animal Hospitals - Melatonin monograph", url: "https://vcahospitals.com/know-your-pet/melatonin", verified: true}
+
+  # ---- allergy / GI -------------------------------------------------------------
+  - id: animal_protein_excipients__adverse_food_reaction
+    ingredient: [flavored_chewable_bases_pork_liver_chicken_beef, gelatin, collagen, chicken_cartilage, egg_membrane, fish_protein, dairy_colostrum, whey]
+    condition: adverse_food_reaction
+    species: both
+    severity: relative
+    action: vet_review
+    rationale: "Intact protein sources can break an elimination diet trial; choose supplements whose protein sources match the elimination diet or are hydrolysed/protein-free."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: moderate
+    citations: []
+    notes: "No specific citation verified this session (ICADA/Olivry papers not retrieved)."
+
+  - id: animal_protein_excipients__atopic_dermatitis
+    ingredient: [flavored_chewable_bases, beef_gelatin, chicken_cartilage]
+    condition: atopic_dermatitis
+    species: dog
+    severity: relative
+    action: monitor
+    rationale: "Food-induced flares overlap with atopic dermatitis in many dogs; same logic as adverse_food_reaction."
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  - id: fish_oil_high_dose__chronic_enteropathy
+    ingredient: omega3_fish_oil_high_dose
+    condition: chronic_enteropathy
+    species: both
+    severity: relative
+    action: reduce_dose
+    rationale: "GI adverse effects (diarrhea, vomiting) are listed for fish oil; titrate up. For protein-losing enteropathy/lymphangiectasia, long-chain fat load matters (new ID protein_losing_enteropathy)."
+    evidence_level: reference_text
+    evidence_strength: weak
+    citations:
+      - {pmid: "23323770", ref: "Lenox & Bauer 2013", verified: true}
+
+  - id: cranberry__recurrent_uti
+    ingredient: cranberry_extract
+    condition: recurrent_uti
+    species: both
+    severity: none
+    action: monitor
+    rationale: "NOT unsafe, but efficacy unproven: systematic review (3 studies, 106 dogs, 16 cats) found no significant effect; certainty low/very low. Should not replace culture-guided therapy."
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "41676867", doi: "10.1111/jvp.70050", ref: "Weese JS, Weese HE. Effectiveness of cranberry supplementation for prevention and treatment of infectious urinary tract disease in dogs and cats: a systematic review. J Vet Pharmacol Ther 2026;49:102-109", verified: true}
+      - {pmid: "27914106", doi: "10.1111/jvim.14613", ref: "Olby NJ et al. Effect of cranberry extract on the frequency of bacteriuria in dogs with acute thoracolumbar disk herniation: RCT. JVIM 2017", verified: true}
+
+  # ---- explicitly-checked "generally safe" items --------------------------------
+  - id: l_theanine__general
+    ingredient: l_theanine
+    condition: any
+    species: both
+    severity: none
+    action: monitor
+    rationale: "No contraindications identified; open-label cat field study without safety concerns reported in abstract title context. Evidence base small."
+    evidence_level: case_series_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "30338056", doi: "10.1186/s13620-018-0130-4", ref: "Dramard V et al. Effect of l-theanine tablets in reducing stress-related emotional signs in cats: an open-label field study. Ir Vet J 2018;71:21", verified: true}
+
+  - id: tryptophan__general
+    ingredient: l_tryptophan
+    condition: any
+    species: both
+    severity: none
+    action: monitor
+    rationale: "Generally safe at dietary-supplement doses; tested in dog behavior trials. Main risk is additive serotonergic effect with drugs (see interactions)."
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "10953712", doi: "10.2460/javma.2000.217.504", ref: "DeNapoli JS et al. Effect of dietary protein content and tryptophan supplementation on dominance aggression, territorial aggression, and hyperactivity in dogs. JAVMA 2000;217:504-8", verified: true}
+
+# ---------------------------------------------------------------------------
+# 3) DRUG-SUPPLEMENT INTERACTIONS
+# ---------------------------------------------------------------------------
+# New drug IDs introduced: d_penicillamine, digoxin (mentioned only), warfarin
+# (subsumed in antiplatelet_anticoagulant), allopurinol, amitraz (MAOI, topical).
+drug_interactions:
+
+  # ---- NSAIDs / antiplatelets ------------------------------------------------
+  - id: omega3__nsaid
+    ingredient: omega3_fish_oil
+    drug: nsaid
+    drug_examples: [carprofen, meloxicam, deracoxib, grapiprant]
+    mechanism: "Additive anti-inflammatory effect (EPA/DHA eicosanoid shift); theoretical additive platelet/GI-bleeding effect."
+    severity: minor
+    action: monitor
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak_for_harm
+    citations:
+      - {pmid: "20187817", doi: "10.2460/javma.236.5.535", ref: "Fritsch DA et al. A multicenter study of the effect of dietary supplementation with fish oil omega-3 fatty acids on carprofen dosage in dogs with osteoarthritis. JAVMA 2010;236:535-9", verified: true}
+      - {pmid: "23323770", ref: "Lenox & Bauer 2013 (lists nutrient-drug interactions)", verified: true}
+      - {ref: "Raditic D, Gaylord L. Today's Veterinary Practice 2020 - speculative association of NSAIDs + omega-3 and/or glucosamine with chronic blood loss", verified: true}
+    notes: "Evidence of harm is weak (speculation/case-level); evidence of benefit (NSAID dose reduction) exists. Answer to caller: the bleeding-risk evidence is weak."
+
+  - id: omega3__antiplatelet_anticoagulant
+    ingredient: omega3_fish_oil_high_dose
+    drug: antiplatelet_anticoagulant
+    drug_examples: [clopidogrel, aspirin, rivaroxaban]
+    mechanism: "Possible additive platelet inhibition."
+    severity: minor
+    action: monitor
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "7983618", ref: "Bright 1994 - no change in bleeding time/aggregation in cats on high-dose EPA/DHA", verified: true}
+      - {pmid: "30571332", ref: "Akintoye 2018 human RCT - no excess bleeding", verified: true}
+    notes: "No dog/cat study of fish oil + clopidogrel/rivaroxaban found."
+
+  - id: salicylate_herbs__nsaid
+    ingredient: [white_willow_bark, meadowsweet, wintergreen]
+    drug: nsaid
+    mechanism: "Salicylate is itself a COX inhibitor -> additive GI ulceration and renal risk; NSAID labels prohibit combining NSAIDs/aspirin."
+    severity: major
+    action: avoid
+    evidence_level: mechanistic_theoretical
+    evidence_strength: moderate
+    citations: []
+    notes: "Mechanistic; NSAID label language not retrieved this session."
+
+  - id: salicylate_herbs__glucocorticoid
+    ingredient: white_willow_bark
+    drug: glucocorticoid
+    mechanism: "Additive GI ulceration risk (NSAID + steroid analogue)."
+    severity: moderate
+    action: avoid
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  - id: vitamin_e__antiplatelet_anticoagulant
+    ingredient: vitamin_e_high_dose
+    drug: antiplatelet_anticoagulant
+    mechanism: "Vitamin E metabolites antagonize vitamin K; human warfarin potentiation reports."
+    severity: moderate
+    action: monitor
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "25225959", ref: "Podszun & Frank 2014", verified: true}
+
+  - id: curcumin__antiplatelet_anticoagulant
+    ingredient: turmeric_curcumin
+    drug: antiplatelet_anticoagulant
+    mechanism: "In vitro antiplatelet; altered warfarin/clopidogrel PK in rats without change in anticoagulation/aggregation."
+    severity: minor
+    action: monitor
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {pmid: "23807811", ref: "Liu 2013 Planta Med (rat)", verified: true}
+
+  - id: ginkgo_garlic_ginger__antiplatelet_anticoagulant
+    ingredient: [ginkgo, garlic, ginger_high_dose]
+    drug: antiplatelet_anticoagulant
+    mechanism: "Antiplatelet constituents (human data)."
+    severity: moderate
+    action: avoid
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "38613937", ref: "Elvir Lazo 2024 perioperative herbal interactions review", verified: true}
+
+  - id: melatonin__antiplatelet_anticoagulant
+    ingredient: melatonin
+    drug: antiplatelet_anticoagulant
+    mechanism: "VCA monograph lists warfarin as caution; oral melatonin did not change platelet parameters in healthy dogs."
+    severity: minor
+    action: monitor
+    evidence_level: controlled_study_target_species
+    evidence_strength: weak
+    citations:
+      - {ref: "VCA melatonin monograph", verified: true}
+      - {pmid: "31433224", ref: "Chen & Stone 2019 JAAHA", verified: true}
+
+  # ---- antibiotics / chelation ------------------------------------------------
+  - id: probiotics__antibiotics_general
+    ingredient: [probiotics_live_bacteria, synbiotics]
+    drug: antibiotics_general
+    mechanism: "Antibiotic kills co-administered bacterial probiotic organisms in the gut lumen (yeast probiotics like S. boulardii are not affected by antibacterials)."
+    severity: minor
+    action: separate_dosing_by_hours=1
+    action_note: "Canine/feline RCTs gave the synbiotic 1 h after the antibiotic and reduced antibiotic-associated GI signs; product labels (e.g., Proviable) and common practice say 1-2 h; use 2 h as the conservative default."
+    recommended_default: separate_dosing_by_hours=2
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate_for_benefit_weak_for_timing
+    citations:
+      - {pmid: "31268578", doi: "10.1111/jvim.15553", ref: "Whittemore JC et al. Randomized, controlled, crossover trial of prevention of antibiotic-induced GI signs using a synbiotic mixture in healthy research dogs. JVIM 2019;33:1619-1626 (synbiotic 1 h after enrofloxacin/metronidazole)", verified: true}
+      - {pmid: "28755457", doi: "10.1111/jvim.14795", ref: "Stokes JE et al. Prevention of clindamycin-induced GI signs using a synbiotic in healthy research cats. JVIM 2017;31:1406-1413 (synbiotic 1 h after clindamycin)", verified: true}
+      - {ref: "Proviable-Forte product page (separate 1-2 h)", url: "https://shop.banfield.com/proviable-forte-capsules.html", verified: false}
+    notes: "No study compared different separation intervals; timing is pragmatic."
+
+  - id: multivalent_cations__fluoroquinolone
+    ingredient: [calcium, magnesium, aluminum, iron, zinc, sucralfate, antacids, mineral_supplements, calcium_containing_phosphate_binders, chitosan_calcium_binders, dairy_colostrum_unverified]
+    drug: fluoroquinolone
+    drug_examples: [enrofloxacin, marbofloxacin, pradofloxacin_unverified, ciprofloxacin]
+    mechanism: "Chelation of quinolone by di/trivalent cations reduces oral bioavailability."
+    severity: major
+    action: separate_dosing_by_hours=2
+    action_note: "Zeniquin label: 'concomitant oral administration ... should be avoided'. Baytril label: metal cations may reduce absorption. 2 h separation is the commonly cited practice (vet pharmacy sources) - if dosing cannot be separated, avoid."
+    evidence_level: regulatory
+    evidence_strength: strong
+    citations:
+      - {ref: "ZENIQUIN (marbofloxacin) tablets label, Zoetis - DailyMed setid 05196313-2371-45ad-a6fb-6269f8ef94c5: 'Compounds (e.g., sucralfate, antacids, and mineral supplements) containing divalent and trivalent cations (e.g., iron, aluminum, calcium, magnesium, and zinc) can interfere with the absorption of quinolones ... concomitant oral administration ... should be avoided.'", verified: true}
+      - {ref: "BAYTRIL (enrofloxacin) Taste Tabs label, Elanco - DailyMed setid 606b1dd3-24ed-4f8c-8885-6b22fd7b8883: 'Compounds that contain metal cations (e.g., aluminum, calcium, iron, magnesium) may reduce the absorption of some quinolone-class drugs'", verified: true}
+    notes: "Chitosan itself is not a cation; risk comes from calcium carbonate in chitosan-based binder products."
+
+  - id: multivalent_cations__tetracycline_doxycycline
+    ingredient: [calcium, magnesium, aluminum, iron, zinc, antacids, oral_absorbents_kaolin_activated_charcoal, calcium_containing_phosphate_binders]
+    drug: tetracycline_doxycycline
+    mechanism: "Chelation reduces doxycycline availability."
+    severity: major
+    action: separate_dosing_by_hours=3
+    action_note: "Doxybactin SPC (UK, dogs/cats): multivalent cations such as antacids and iron salts should not be used from 3 hours before to 3 hours after doxycycline."
+    evidence_level: regulatory
+    evidence_strength: strong
+    citations:
+      - {ref: "Doxybactin Tablets (doxycycline) SPC, NOAH Compendium (UK) - '...should not be used from 3 hours before to 3 hours after the administration of doxycycline.'", url: "https://www.noahcompendium.co.uk/?id=-469614", verified: true}
+
+  - id: multivalent_cations__levothyroxine
+    ingredient: [calcium_carbonate, iron_ferrous_sulfate, phosphate_binders, soy_unverified, high_fibre_unverified]
+    drug: levothyroxine
+    mechanism: "Binding/chelation in the gut reduces levothyroxine absorption."
+    severity: moderate
+    action: separate_dosing_by_hours=4
+    action_note: "Human levothyroxine label: administer at least 4 h apart from phosphate binders (calcium carbonate, ferrous sulfate, sevelamer, lanthanum). No veterinary-specific interval found."
+    evidence_level: extrapolated_human
+    evidence_strength: moderate
+    citations:
+      - {ref: "Levothyroxine sodium tablets label (DailyMed setid 31a31756-68aa-4e01-bbb1-9d181f8d9181), section 7.1", verified: true}
+      - {pmid: "28153426", doi: "10.1016/j.clinthera.2017.01.005", ref: "Skelin M et al. Factors affecting gastrointestinal absorption of levothyroxine: a review. Clin Ther 2017;39:378-403", verified: true}
+
+  - id: antacid_mg_al__gabapentin
+    ingredient: [magnesium_hydroxide, aluminum_hydroxide, magnesium_supplements_unverified]
+    drug: gabapentin
+    mechanism: "Mg/Al antacid reduced gabapentin bioavailability ~20% (~10% when gabapentin given 2 h after antacid)."
+    severity: minor
+    action: separate_dosing_by_hours=2
+    evidence_level: extrapolated_human
+    evidence_strength: moderate
+    citations:
+      - {ref: "NEURONTIN (gabapentin) label, section 7.3 - 'It is recommended that gabapentin be taken at least 2 hours following Maalox administration' (DailyMed setid 97935fd9-1d4a-43b6-a5d9-de994591187b)", verified: true}
+    notes: "Extrapolation of magnesium supplements from Maalox data is unverified."
+
+  - id: zinc__d_penicillamine
+    ingredient: zinc
+    drug: d_penicillamine
+    new_drug_id: true
+    mechanism: "Zinc and penicillamine interfere (co-treatment listed as contraindicated in ACVIM table); zinc is used only after chelation completes."
+    severity: major
+    action: avoid
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30844094", ref: "ACVIM 2019 chronic hepatitis consensus, D-penicillamine table: 'Co-treatment with zinc contraindicated'", verified: true}
+
+  # ---- serotonergic / MAOI ---------------------------------------------------
+  - id: serotonergic_supplements__serotonergic_drugs
+    ingredient: [5_htp, l_tryptophan_high_dose, st_johns_wort, same_s_adenosylmethionine]
+    drug: serotonergic_drugs
+    drug_examples: [fluoxetine, clomipramine, trazodone]
+    mechanism: "Additive serotonergic activity -> serotonin syndrome (agitation, tremors, hyperthermia, seizures)."
+    severity_by_ingredient:
+      5_htp: {severity: major, action: avoid}
+      st_johns_wort: {severity: major, action: avoid}
+      same_s_adenosylmethionine: {severity: moderate, action: monitor}
+      l_tryptophan_high_dose: {severity: moderate, action: monitor}
+    evidence_level: extrapolated_human
+    evidence_strength: weak_to_moderate
+    citations:
+      - {pmid: "10863592", ref: "Gwaltney-Brant 2000 - 5-HTP alone causes serotonin-syndrome-like toxicosis in dogs", verified: true}
+      - {pmid: "23796482", doi: "10.1053/j.tcam.2013.03.003", ref: "Fitzgerald KT, Bronstein AC. Selective serotonin reuptake inhibitor exposure. Top Companion Anim Med 2013", verified: true}
+    notes: "No dog/cat case of supplement+SSRI serotonin syndrome found; SAMe serotonergic interaction is human-pharmacology based. Tryptophan at dietary-level doses is low risk."
+
+  - id: serotonergic_supplements__tramadol
+    ingredient: [5_htp, l_tryptophan_high_dose, st_johns_wort, same_s_adenosylmethionine]
+    drug: tramadol
+    mechanism: "Tramadol inhibits serotonin reuptake; additive serotonin syndrome risk."
+    severity: major
+    action: avoid
+    evidence_level: case_report_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "24966282", doi: "10.1177/1098612X14539088", ref: "Indrawirawan Y, McAlees T. Tramadol toxicity in a cat: case report and literature review of serotonin syndrome. JFMS 2014;16:572-8", verified: true}
+    notes: "Severity major applied to 5-HTP and SJW; tryptophan/SAMe moderate+monitor (same split as above)."
+
+  - id: serotonergic_supplements__selegiline
+    ingredient: [5_htp, l_tryptophan, st_johns_wort, same_s_adenosylmethionine, tyramine_rich_ingredients_aged_cheese_yeast_extract_unverified]
+    drug: selegiline
+    mechanism: "Selegiline is an MAO-B inhibitor; fluoxetine and clomipramine labels prohibit combination and require a 14-day washout. Precursor/serotonergic supplements carry the same theoretical risk. Tyramine 'cheese reaction' rare at selective doses (human label)."
+    severity: major
+    action: avoid
+    evidence_level: regulatory
+    evidence_strength: moderate
+    citations:
+      - {ref: "RECONCILE (fluoxetine) chewable tablets label - 'should not be given in combination with a monoamine oxidase inhibitor (MAOI) [e.g., selegiline hydrochloride (L-deprenyl) or amitraz], or within a minimum of 14 days...' (DailyMed setid 006035a8-b8da-47cb-924b-524c05da8641)", verified: true}
+      - {ref: "CLOMICALM (clomipramine) label - same MAOI restriction (DailyMed setid bed54123-2083-465f-97f3-0a796f2a37c7)", verified: true}
+      - {ref: "Selegiline HCl human label (tyramine/hypertensive reactions; DailyMed setid 1924db3d-6a16-4496-cfd0-6903be146925)", verified: true}
+    notes: "Labels address drug-drug, not supplements; supplement extension is mechanistic. Relevant to cognitive_dysfunction patients on selegiline. Amitraz (MAOI in tick collars/dips) belongs in the same group."
+
+  # ---- anticonvulsants -----------------------------------------------------------
+  - id: chloride_salt__potassium_bromide
+    ingredient: [sodium_chloride_salt, potassium_chloride, high_chloride_supplements, electrolyte_powders]
+    drug: potassium_bromide
+    mechanism: "Bromide and chloride compete for renal reabsorption; raising dietary chloride from 0.2% to 1.3% DM cut bromide half-life from 69 to 24 days and required ~3x dose; a dog lost seizure control after a high-chloride diet change. Conversely abrupt chloride reduction can push bromide toward toxicity."
+    severity: major
+    action: avoid
+    action_note: "Avoid starting/stopping chloride-containing supplements; if unavoidable keep chloride intake constant and monitor serum bromide."
+    evidence_level: controlled_study_target_species
+    evidence_strength: strong
+    citations:
+      - {pmid: "7659851", doi: "10.1016/0034-5288(95)90112-4", ref: "Trepanier LA, Babish JG. Effect of dietary chloride content on the elimination of bromide by dogs. Res Vet Sci 1995;58:252-5", verified: true}
+      - {pmid: "8567379", ref: "Shaw N et al. High dietary chloride content associated with loss of therapeutic serum bromide concentrations in an epileptic dog. JAVMA 1996;208:234-6", verified: true}
+      - {ref: "KBROVET (potassium bromide) label - 'Increased dietary consumption of chloride can promote loss of bromide in the urine...' (DailyMed setid 70e3e339-ba69-4439-9c93-c8193fd507c9)", verified: true}
+
+  - id: st_johns_wort__phenobarbital
+    ingredient: st_johns_wort
+    drug: phenobarbital
+    mechanism: "Both are enzyme inducers; unpredictable effects on co-medications; no dog data."
+    severity: moderate
+    action: avoid
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  - id: sedative_herbs__phenobarbital
+    ingredient: [kava, valerian, melatonin, hops]
+    drug: phenobarbital
+    mechanism: "Additive CNS depression (mechanistic). Kava and hops are excluded anyway."
+    severity: minor
+    action: monitor
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {ref: "VCA melatonin monograph - caution with benzodiazepines (other CNS depressants)", verified: true}
+
+  # ---- endocrine ---------------------------------------------------------------
+  - id: chromium__insulin
+    ingredient: chromium_picolinate
+    drug: insulin
+    mechanism: "Proposed insulin-sensitizing effect. Dogs: 20-60 ug/kg/d produced no beneficial or harmful glycemic effect. Cats: small dose-dependent improvement in glucose tolerance in healthy cats."
+    severity: minor
+    action: monitor
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "11467597", ref: "Schachter S, Nelson RW, Kirk CA. Oral chromium picolinate and control of glycemia in insulin-treated diabetic dogs. JVIM 2001;15:379-84", verified: true}
+      - {pmid: "11869052", doi: "10.1053/jfms.2001.0157", ref: "Appleton DJ et al. Dietary chromium tripicolinate supplementation reduces glucose concentrations and improves glucose tolerance in normal-weight cats. JFMS 2002;4:13-25", verified: true}
+    notes: "Monitor more closely in cats (theoretical hypoglycemia)."
+
+  - id: fibre__insulin
+    ingredient: [psyllium, insoluble_fibre_cellulose, soluble_fibre]
+    drug: insulin
+    mechanism: "Fibre slows glucose absorption; may change insulin requirement (high-fibre diets studied in diabetic dogs)."
+    severity: minor
+    action: monitor
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "10754666", doi: "10.2460/javma.2000.216.1076", ref: "Kimmel SE et al. Effects of insoluble and soluble dietary fiber on glycemic control in dogs with naturally occurring insulin-dependent diabetes mellitus. JAVMA 2000;216:1076-81", verified: true}
+      - {pmid: "11873951", doi: "10.1111/j.1748-5827.2002.tb00031.x", ref: "Graham PA et al. Influence of a high fibre diet on glycaemic control and quality of life in dogs with diabetes mellitus. JSAP 2002;43:67-73", verified: true}
+    notes: "Kimmel 2000 abstract confirmed: high insoluble-fibre diet lowered mean/max glucose and fructosamine in diabetic dogs (insulin dose unchanged in study). Key point: insulin needs may change when fibre is started or stopped."
+
+  - id: cinnamon__insulin
+    ingredient: cinnamon_cassia
+    drug: insulin
+    mechanism: "Human data suggest modest glucose lowering; cassia contains coumarin; cinnamon oil hepatotoxic per Merck essential oils."
+    severity: minor
+    action: monitor
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {ref: "Merck essential oils page lists cassia bark and cinnamon oil as hepatotoxic oils", verified: true}
+    notes: "No dog/cat glycemia data found."
+
+  - id: alpha_lipoic_acid__insulin
+    ingredient: alpha_lipoic_acid
+    drug: insulin
+    mechanism: "Hypoglycemia observed in dog ALA toxicosis -> additive hypoglycemia."
+    severity: moderate
+    action: monitor
+    evidence_level: case_report_target_species
+    evidence_strength: weak
+    citations:
+      - {pmid: "19821894", ref: "Loftin 2009", verified: true}
+    notes: "Cats: ALA excluded regardless."
+
+  - id: iodine_kelp__methimazole
+    ingredient: [kelp, iodine, seaweed]
+    drug: methimazole
+    mechanism: "Excess iodine substrate for thyroid hormone synthesis counteracts antithyroid therapy (mechanistic) and invalidates iodine-restricted diets."
+    severity: moderate
+    action: avoid
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations:
+      - {pmid: "30859084", ref: "Loftus 2019 (iodine restriction alone controls hyperthyroidism in most cats)", verified: true}
+    notes: "No direct methimazole+iodine study in cats found."
+
+  - id: iodine_kelp__levothyroxine
+    ingredient: [kelp, iodine]
+    drug: levothyroxine
+    mechanism: "Variable iodine load can alter endogenous thyroid function and confound dose titration."
+    severity: minor
+    action: monitor
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "9876004", ref: "Eliason 1998 (human kelp thyroid case)", verified: true}
+
+  - id: soy__levothyroxine
+    ingredient: soy_isoflavones
+    drug: levothyroxine
+    mechanism: "Soy reduces levothyroxine absorption in humans; soy alters T4 in cats."
+    severity: minor
+    action: monitor
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "28153426", ref: "Skelin 2017 review (soy listed among absorption factors - assumed, not re-read)", verified: true}
+      - {pmid: "15141877", ref: "White 2004 (cats)", verified: true}
+
+  - id: licorice__glucocorticoid
+    ingredient: licorice_root_glycyrrhizin
+    drug: glucocorticoid
+    mechanism: "Glycyrrhizin inhibits 11-beta-HSD2 -> mineralocorticoid excess, hypokalemia, potentiated corticosteroid effects (human pharmacology)."
+    severity: moderate
+    action: avoid
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations: []
+    notes: "No citation verified this session."
+
+  # ---- cardio-renal ---------------------------------------------------------------
+  - id: potassium__ace_inhibitor
+    ingredient: [potassium_chloride, potassium_gluconate, potassium_citrate, salt_substitutes]
+    drug: ace_inhibitor
+    drug_examples: [benazepril, enalapril]
+    mechanism: "ACEi reduce aldosterone -> potassium retention; additive with K supplements."
+    severity: moderate
+    action: monitor
+    action_note: "Supplement potassium only if hypokalemia is documented (ACVIM MMVD 2019); recheck serum K."
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30974015", ref: "Keene 2019 ACVIM MMVD - hyperkalemia relatively rare even with ACEi + spironolactone; avoid high-K foods if hyperkalemic", verified: true}
+      - {pmid: "17983885", doi: "10.1016/j.jvc.2007.08.002", ref: "Thomason JD et al. ACEi + spironolactone did not change serum K+ in small dogs with MVD. J Vet Cardiol 2007;9:103-8", verified: true}
+
+  - id: potassium__spironolactone
+    ingredient: [potassium_chloride, potassium_gluconate, potassium_citrate]
+    drug: spironolactone
+    mechanism: "Potassium-sparing diuretic; label warns of increased hyperkalemia risk and recommends serum K monitoring."
+    severity: moderate
+    action: monitor
+    evidence_level: regulatory
+    evidence_strength: moderate
+    citations:
+      - {ref: "CARDALIS (spironolactone/benazepril) label, Ceva - 'Regular monitoring of renal function and serum potassium levels is recommended as there may be an increased risk of hyperkalemia' (DailyMed setid ac236e67-f9b0-462d-886a-b7dac45dab89)", verified: true}
+      - {pmid: "23869534", doi: "10.1111/jvim.12141", ref: "Lefebvre HP et al. Safety of spironolactone in dogs with chronic heart failure because of degenerative valvular disease. JVIM 2013", verified: true}
+
+  - id: licorice__furosemide
+    ingredient: licorice_root_glycyrrhizin
+    drug: furosemide
+    mechanism: "Additive hypokalemia (pseudo-hyperaldosteronism + loop diuretic)."
+    severity: moderate
+    action: avoid
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations: []
+
+  - id: sodium__furosemide
+    ingredient: [salt_sodium_chloride, high_sodium_supplements]
+    drug: furosemide
+    mechanism: "High sodium intake is a listed cause of diuretic resistance in MMVD."
+    severity: moderate
+    action: reduce_dose
+    evidence_level: consensus_guideline
+    evidence_strength: moderate
+    citations:
+      - {pmid: "30974015", ref: "Keene 2019 (diuretic resistance causes include high sodium intake)", verified: true}
+
+  - id: pimobendan__supplements_none_known
+    ingredient: [hawthorn_crataegus_unverified]
+    drug: pimobendan
+    mechanism: "No documented supplement interactions found. Hawthorn has positive-inotrope/vasodilator claims in humans - theoretical additive effect only."
+    severity: minor
+    action: monitor
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+
+  # ---- immunosuppressants / CYP --------------------------------------------------------
+  - id: st_johns_wort__cyclosporine
+    ingredient: st_johns_wort
+    drug: cyclosporine
+    mechanism: "CYP3A/P-gp induction; in dogs repeated SJW (300 mg/day x14 d) significantly lowered cyclosporine Cmax and AUC and increased CL/F."
+    severity: major
+    action: avoid
+    evidence_level: controlled_study_target_species
+    evidence_strength: moderate
+    citations:
+      - {pmid: "22091645", ref: "Fukunaga & Orito 2012 J Vet Pharmacol Ther", verified: true}
+      - {ref: "ATOPICA (cyclosporine) label - extensively metabolized by CYP450; metabolism altered by co-administered agents (DailyMed setid 99642708-0a9f-4ff0-bc08-f2b18691927e)", verified: true}
+
+  - id: milk_thistle__cyp_substrates
+    ingredient: silymarin_silybin_milk_thistle
+    drug: [cyclosporine, chemotherapy, phenobarbital, oclacitinib_unverified]
+    mechanism: "Silymarin can inhibit certain CYP450 enzymes and P-glycoprotein; ACVIM advises caution with high-dose silybin in polypharmacy."
+    severity: minor
+    action: monitor
+    evidence_level: consensus_guideline
+    evidence_strength: weak
+    citations:
+      - {pmid: "30844094", ref: "ACVIM 2019 chronic hepatitis consensus", verified: true}
+    notes: "No dog PK interaction study found; a SAMe/silymarin product protected against lomustine hepatotoxicity (so not a reason to exclude with lomustine)."
+
+  - id: probiotics__cyclosporine_oclacitinib_glucocorticoid
+    ingredient: probiotics_live
+    drug: [cyclosporine, oclacitinib, glucocorticoid, chemotherapy]
+    mechanism: "Immunosuppression -> theoretical translocation/bacteremia/fungemia (human data)."
+    severity: minor
+    action: monitor
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "36806741", ref: "Vinayagamoorthy 2023 Saccharomyces fungemia SR", verified: true}
+
+  - id: oclacitinib__supplements_none_known
+    ingredient: none_documented
+    drug: oclacitinib
+    mechanism: "No supplement interactions identified on the Apoquel label search; label notes immunosuppression-related infections at high doses."
+    severity: minor
+    action: monitor
+    evidence_level: regulatory
+    evidence_strength: weak
+    citations:
+      - {ref: "APOQUEL label (DailyMed setid 275a2c51-9679-4f42-b8cc-21b04369a056)", verified: true}
+
+  # ---- oncology ----------------------------------------------------------------
+  - id: antioxidants__chemotherapy
+    ingredient: [vitamin_e_high_dose, vitamin_c_high_dose, beta_carotene, n_acetylcysteine, selenium_high_dose, coq10_high_dose, alpha_lipoic_acid, high_dose_polyphenols]
+    drug: chemotherapy
+    mechanism: "Possible tumour protection against oxidative cytotoxic drugs/radiation; human review concluded supplemental antioxidants during chemo/radiation should be discouraged; evidence mixed."
+    severity: moderate
+    action: avoid
+    action_note: "Vet oncologist review; dietary-level antioxidants not affected."
+    evidence_level: extrapolated_human
+    evidence_strength: weak
+    citations:
+      - {pmid: "18505970", doi: "10.1093/jnci/djn148", ref: "Lawenda BD et al. Should supplemental antioxidant administration be avoided during chemotherapy and radiation therapy? J Natl Cancer Inst 2008;100:773-83", verified: true}
+    notes: "No dog/cat RCT found. Applies also to radiation therapy."
+
+  - id: st_johns_wort__chemotherapy
+    ingredient: st_johns_wort
+    drug: chemotherapy
+    mechanism: "CYP3A/P-gp induction can lower exposure to CYP3A/P-gp substrate cytotoxics and TKIs (human); shown for cyclosporine in dogs."
+    severity: major
+    action: avoid
+    evidence_level: extrapolated_human
+    evidence_strength: moderate
+    citations:
+      - {pmid: "22091645", ref: "Fukunaga & Orito 2012 (dog CYP induction proof-of-principle)", verified: true}
+
+  - id: green_tea_egcg__chemotherapy
+    ingredient: green_tea_extract_egcg
+    drug: chemotherapy
+    mechanism: "EGCG reported to antagonize boronic-acid proteasome inhibitors (bortezomib) in human cell/xenograft studies; also hepatotoxicity overlap."
+    severity: minor
+    action: avoid
+    evidence_level: mechanistic_theoretical
+    evidence_strength: weak
+    citations: []
+    notes: "Golden 2009 (Blood) not verified this session; bortezomib is rarely used in veterinary oncology."
+
+  - id: allopurinol__high_purine
+    ingredient: [brewers_yeast, organ_meats, high_purine_ingredients]
+    drug: allopurinol
+    new_drug_id: true
+    mechanism: "Allopurinol with high purine intake predisposes to xanthine uroliths; ACVIM: avoid xanthine oxidase inhibitors in dogs not on reduced-purine diets."
+    severity: major
+    action: avoid
+    evidence_level: consensus_guideline
+    evidence_strength: strong
+    citations:
+      - {pmid: "27611724", ref: "ACVIM 2016 urolith consensus", verified: true}
+
+# ---------------------------------------------------------------------------
+# Index of items resting on weak / unverified evidence (for the reviewer)
+# ---------------------------------------------------------------------------
+weak_or_unverified_index:
+  species_toxicity:
+    - "nutmeg (dog): threshold from consumer pages only; no PubMed source"
+    - "yohimbe (dog/cat): mechanistic only"
+    - "kava (dog/cat): human hepatotoxicity only"
+    - "salicylate/white willow bark (cat): half-life and toxic dose from secondary web summaries; no willow-in-cat study"
+    - "methylxanthines (cat): cat lethal range from secondary site"
+    - "iron: old 20/60 mg/kg tiers from dvm360 snippet; current Merck says >50/>80 mg/kg"
+    - "vitamin D3 (cat): no cat-specific acute threshold; cats resistant to chronic intake in Sih 2001"
+    - "grape/raisin (cat): anecdotal only; grape seed extract tartaric acid content unknown"
+    - "benzoic acid (cat): dose/signs not verified (no abstract)"
+    - "feline glucuronidation 'theoretical_caution' polyphenols list (curcumin, EGCG, resveratrol, quercetin, silymarin, menthol): inference"
+    - "5-HTP (cat) and hops (cat): extrapolated from dog data"
+  condition_contraindications:
+    - "omega-3 in pancreatitis history: no causal data"
+    - "omega-3 in bleeding/surgery: cat study and human RCT show no effect; weak"
+    - "glucosamine in diabetes: one 21-day healthy-dog study, null"
+    - "glucosamine/chitosan in shellfish allergy: human tolerance data only"
+    - "krill oil in shellfish allergy: mechanistic"
+    - "vitamin C in CaOx: human cohort only"
+    - "cranberry in CaOx: conflicting human data"
+    - "melatonin in diabetes: only secondary statement attributed to Plumb's"
+    - "MCT in pancreatitis: healthy-dog marker studies, null"
+    - "probiotics in immunosuppressed/critically ill: human data"
+    - "vitamin E high dose and coagulation: human data"
+    - "turmeric/curcumin with biliary obstruction and anticoagulants: human/rat data"
+    - "ginkgo in epilepsy: no verified citation"
+    - "IRIS calcium binder / phosphate statements: IRIS PDF text not extracted; secondary summaries"
+    - "adverse food reaction excipient rule: no citation"
+  drug_interactions:
+    - "omega-3 + NSAID/antiplatelet: evidence for harm weak; benefit (carprofen dose reduction) shown"
+    - "probiotic-antibiotic separation interval: RCTs used 1 h; 2 h is convention, not tested"
+    - "fluoroquinolone 2 h separation: labels say avoid concomitant use; interval from practice sources"
+    - "serotonergic supplements + SSRIs/TCAs/tramadol/selegiline: label restrictions are for drugs; supplements extrapolated"
+    - "iodine + methimazole/levothyroxine: mechanistic"
+    - "cinnamon + insulin, licorice + steroids/furosemide, SJW + phenobarbital, hawthorn + pimobendan: mechanistic/human"
+    - "antioxidants + chemotherapy: human review, controversial"
+    - "milk thistle CYP: consensus caution, no dog PK data"
+    - "magnesium supplements + gabapentin: extrapolated from Maalox label data"

@@ -1,0 +1,124 @@
+
+=== demo-luna  (KG 2250bf89b8d6, life stage lifestage:dog_senior_large) ===
+breed predispositions: condition:atopic_dermatitis, condition:copper_storage_hepatopathy, condition:cranial_cruciate_ligament_rupture, condition:cystinuria, condition:elbow_dysplasia, condition:hip_dysplasia, condition:obesity, condition:osteoarthritis
+
+Formula (per day):
+  - Omega-3 EPA + DHA (marine)                  3,874 mg   via rm:fish_oil_concentrate_rtg_60 (6,457 mg raw) -> need:joint_mobility, need:cognitive_aging
+        dose:omega3_dog_joint: 310 mg x 29^0.75 = 12.50 kg^0.75 = 3,874.0 mg
+        limit:omega3_dog_nrc_sul: safe_upper_limit 370 mg x 29^0.75 = 12.50 kg^0.75 = 4,623.8
+  - Curcumin (turmeric extract)                   100 mg   via rm:curcumin_95 (105 mg raw) -> need:joint_mobility
+        dose:curcumin_dog_joint: 8 mg x 29^0.75 = 12.50 kg^0.75 = 100.0 mg
+  - S-adenosylmethionine (SAMe)                   580 mg   via rm:same_tosylate (1,160 mg raw) -> need:hepatic_support, need:cognitive_aging
+        dose:same_dog_hepatic: 20 mg x 29 kg = 580.0 mg
+        dose:same_dog_cognitive: 18 mg x 29 kg = 522.0 mg
+
+Unmet needs: need:weight_lean_mass
+
+Not recommended (negative evidence):
+  - Glucosamine (as HCl) -> need:joint_mobility: evidence of no benefit. The meta-analysis found a 'very marked non-effect' of glucosamine/chond
+  - Chondroitin sulfate (sodium) -> need:joint_mobility: evidence of no benefit. Same evidence base as glucosamine: the meta-analysis concludes 
+
+Flags for vet review:
+  - [monitor] Omega-3 EPA + DHA (marine) in condition:obesity: Weight gain from added calories is a listed adverse effect; account for kcal.
+  - [monitor] Omega-3 EPA + DHA (marine) + med:nsaid (minor): Additive anti-inflammatory effect (EPA/DHA eicosanoid shift); theoretical additive platelet/GI-bleeding effect.
+
+Manufacturing: feasible
+  - form:soft_chew_cold: 1 x 2.0 g/day (0.105 g actives)
+  - form:softgel: 6 x 1.43 g/day (6.457 g actives)
+  - form:enteric_tablet: 2 x 0.83 g/day (1.16 g actives)
+
+Closest in-market products:
+  - 0.30 Denamarin tablets (large dogs 35 lb+) (1/day): same 73%
+  - 0.21 Welactin Omega-3 Canine liquid (6 mL scoop) (1.5/day): omega3_epa_dha 51%
+  - 0.20 Nordic Naturals Omega-3 Pet liquid (7.5/day): omega3_epa_dha 48%
+  - 0.11 Welactin Omega-3 Canine softgels (4/day): omega3_epa_dha 26%
+  - 0.00 Dasuquin Advanced Soft Chews (large dogs >= 60 lb) (1/day): omega3_epa_dha 2%
+        ! contains ingredient:green_tea_extract: contraindicated in condition:hepatopathy
+
+12 KG facts used, 21 sources cited
+
+=== demo-miso  (KG 2250bf89b8d6, life stage lifestage:cat_senior) ===
+breed predispositions: condition:chronic_kidney_disease, condition:cognitive_dysfunction, condition:diabetes_mellitus, condition:obesity, condition:osteoarthritis, condition:struvite_urolithiasis
+
+Formula (per day):
+  - Omega-3 EPA + DHA (marine)                    504 mg   via rm:fish_oil_concentrate_rtg_60 (840 mg raw) -> need:renal_support, need:joint_mobility
+        dose:omega3_cat_renal: 112 mg x 4.2 kg = 470.4 mg
+        dose:omega3_cat_joint: 120 mg x 4.2 kg = 504.0 mg
+  - Chitosan + calcium carbonate phosphate binder      1,680 mg   via rm:chitosan_calcium_carbonate_blend (1,680 mg raw) -> need:phosphate_management
+        dose:binder_cat: 400 mg x 4.2 kg = 1,680.0 mg
+
+Not recommended (negative evidence):
+  - Glucosamine (as HCl) -> need:joint_mobility: evidence of no benefit. In a placebo-controlled RCT of feline OA (30 cats), glucosamine-chondro
+
+Flags for vet review:
+  - [monitor] Chitosan + calcium carbonate phosphate binder in condition:chronic_kidney_disease: Useful for hyperphosphatemia but can promote hypercalcaemia; recheck phosphate and calcium every 4-6 weeks until stable.
+
+Manufacturing: feasible
+  - form:powder_sachet: 1 x 1.87 g/day (1.68 g actives)
+  - form:liquid_oil: 1 x 0.9 g/day (0.84 g actives)
+
+Closest in-market products:
+  - 0.50 Epakitin (phosphate binder powder) (2/day): chitosan_calcium_carbonate 119%
+  - 0.33 Welactin Omega-3 Feline liquid (1/day): omega3_epa_dha 53%
+  - 0.31 Nordic Naturals Omega-3 Pet liquid (1/day): omega3_epa_dha 49%
+
+7 KG facts used, 9 sources cited
+
+=== demo-pepper  (KG 2250bf89b8d6, life stage lifestage:dog_adult_toy_small) ===
+breed predispositions: condition:calcium_oxalate_urolithiasis, condition:diabetes_mellitus, condition:hyperlipidemia, condition:hypothyroidism, condition:pancreatitis_history
+
+Formula (per day):
+  - Multi-strain lactic acid bacteria (Visbiome/SLAB51-type)   8.80e+10 CFU  via rm:probiotic_multistrain (1,760 mg raw) -> need:gi_microbiome_stool_quality, need:gi_mucosal_inflammation
+        dose:multistrain_dog_ibd: 1.1e+10 CFU x 8 kg = 88,000,000,000.0 CFU
+  - Inulin / fructooligosaccharides             2,000 mg   via rm:inulin_chicory (2,222 mg raw) -> need:gi_microbiome_stool_quality
+        dose:inulin_dog: 2000 mg x 1 animal = 2,000.0 mg
+  - Cobalamin (vitamin B12, cyanocobalamin)       0.25 mg   via rm:cyanocobalamin_1pct (25 mg raw) -> need:cobalamin_repletion
+        dose:cobalamin_dog: weight band 0.0-10.0 kg -> 0.25 mg
+  - Omega-3 EPA + DHA (marine)                    400 mg   via rm:fish_oil_concentrate_rtg_60 (667 mg raw) -> need:skin_coat_barrier
+        dose:omega3_dog_skin: 50 mg x 8 kg = 400.0 mg
+        limit:omega3_dog_nrc_sul: safe_upper_limit 370 mg x 8^0.75 = 4.76 kg^0.75 = 1,760.0
+        relative contraindication caps at 50% of limit -> 880.0
+
+Flags for vet review:
+  - [separate_dosing] Multi-strain lactic acid bacteria (Visbiome/SLAB51-type) + med:antibiotics_general (minor): Antibiotic kills co-administered bacterial probiotic organisms in the gut lumen (yeast probiotics like S. boulardii are not affected by antibacterials). -> give at least 2 h apart
+  - [vet_review] Omega-3 EPA + DHA (marine) in condition:pancreatitis_history: Fish oil adds long-chain fat; high-fat intake is the usual dietary concern in pancreatitis-prone dogs. Lenox & Bauer list GI adverse effects; no study shows fish oil causes pancreatitis in dogs/cats.
+  - [reduce_dose] Omega-3 EPA + DHA (marine) in condition:chronic_enteropathy: GI adverse effects (diarrhea, vomiting) are listed for fish oil; titrate up. For protein-losing enteropathy/lymphangiectasia, long-chain fat load matters (new ID protein_losing_enteropathy).
+
+Manufacturing: feasible
+  - form:powder_sachet: 1 x 4.45 g/day (4.007 g actives)
+  - form:liquid_oil: 1 x 0.9 g/day (0.667 g actives)
+
+Closest in-market products:
+  - 0.25 Nordic Naturals Omega-3 Pet liquid (2/day): omega3_epa_dha 124%
+  - 0.25 Welactin Omega-3 Canine liquid (6 mL scoop) (0.5/day): omega3_epa_dha 166%
+  - 0.20 Welactin Omega-3 Canine softgels (1/day): omega3_epa_dha 64%
+  - 0.03 Dasuquin Advanced Soft Chews (small/medium dogs < 60 lb) (0.5/day): omega3_epa_dha 8%
+  - 0.02 Proviable-DC capsules (1/day): multistrain_probiotic 6%
+
+13 KG facts used, 20 sources cited
+
+=== demo-biscuit  (KG 2250bf89b8d6, life stage lifestage:dog_adult_large) ===
+breed predispositions: condition:atopic_dermatitis, condition:copper_storage_hepatopathy, condition:urate_urolithiasis
+
+Formula (per day):
+  - Alpha-casozepine (casein hydrolysate)         375 mg   via rm:alpha_casozepine_hydrolysate (375 mg raw) -> need:anxiety_stress
+        dose:casozepine_dog: 15 mg x 25 kg = 375.0 mg
+  - L-theanine                                    200 mg   via rm:l_theanine (202 mg raw) -> need:anxiety_stress
+        dose:theanine_dog: weight band 25.0-∞ kg -> 200 mg
+        limit:theanine_dog: company_policy 400 mg x 1 animal = 400.0
+  - Omega-3 EPA + DHA (marine)                  1,250 mg   via rm:fish_oil_concentrate_rtg_60 (2,083 mg raw) -> need:skin_coat_barrier
+        dose:omega3_dog_skin: 50 mg x 25 kg = 1,250.0 mg
+        limit:omega3_dog_nrc_sul: safe_upper_limit 370 mg x 25^0.75 = 11.18 kg^0.75 = 4,136.7
+
+Manufacturing: feasible
+  - form:soft_chew_cold: 1 x 2.0 g/day (0.577 g actives)
+  - form:softgel: 2 x 1.39 g/day (2.083 g actives)
+
+Closest in-market products:
+  - 0.33 Anxitane M/L 100 mg chewable tablets (2/day): l_theanine 100%
+  - 0.33 Nordic Naturals Omega-3 Pet liquid (5/day): omega3_epa_dha 99%
+  - 0.33 Solliquin soft chews (medium/large dogs > 31 lb) (2/day): l_theanine 102%
+  - 0.33 Welactin Omega-3 Canine liquid (6 mL scoop) (1.5/day): omega3_epa_dha 160%
+  - 0.33 Zylkene 450 mg capsules (1/day): alpha_casozepine 120%
+
+8 KG facts used, 17 sources cited

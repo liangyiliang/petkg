@@ -1,0 +1,106 @@
+# Manufacturing envelopes. Numbers marked rule_of_thumb in notes must be replaced with the
+# contract manufacturer's own specs before production use.
+- id: form:soft_chew_cold
+  name: Soft chew, cold-formed
+  description: Starch/glycerin/palatant dough, cold-feed extruded or cold formed, cured ~24 h.
+  unit_mass_g: {min: 2.0, max: 5.0}
+  max_active_load: 0.35
+  max_oil_fraction: 0.10
+  process_max_temp_c: 40
+  species_use:
+    - {species: species:dog, max_units_per_day: 4, acceptance: high}
+  notes: >-
+    35% actives ceiling and 3.5-10% oil from a Colorcon case study (36.5% actives, 2.5 g chew);
+    rule_of_thumb. aw typically >0.6, so moisture-labile actives (non-spore probiotics, SAMe) are
+    excluded via raw-material compatibility, not via temperature.
+  sources: [source:colorcon_soft_chew_case_study, source:us12194144_low_aw_chew]
+- id: form:soft_chew_extruded
+  name: Soft chew, thermally extruded
+  unit_mass_g: {min: 2.0, max: 7.5}
+  max_active_load: 0.35
+  max_oil_fraction: 0.10
+  process_max_temp_c: 95
+  species_use:
+    - {species: species:dog, max_units_per_day: 4, acceptance: high}
+  notes: Steam-preconditioned partial cook 60-95 C; kills non-spore probiotics, stresses heat-labile actives.
+  sources: [source:colorcon_soft_chew_case_study]
+- id: form:chewable_tablet
+  name: Chewable tablet (flavoured)
+  unit_mass_g: {min: 0.5, max: 3.0}
+  max_active_load: 0.60
+  max_oil_fraction: 0.03
+  process_max_temp_c: 30
+  species_use:
+    - {species: species:dog, max_units_per_day: 4, acceptance: high}
+    - {species: species:cat, max_units_per_day: 1, acceptance: low}
+  notes: Unit mass and 50-80% load are unverified; 60% used as a conservative default.
+  sources: [source:dasuquin_tablet_listing]
+- id: form:capsule
+  name: Hard capsule (swallowed)
+  unit_mass_g: {min: 0.1, max: 1.3}
+  max_active_load: 0.95
+  max_oil_fraction: 0.0
+  process_max_temp_c: 25
+  species_use:
+    - {species: species:dog, max_units_per_day: 4, acceptance: moderate}
+    - {species: species:cat, max_units_per_day: 1, acceptance: low}
+  notes: Fill mass = capsule volume x tapped density; size 000 (1.37 mL) at ~0.95 g/mL ~ 1.3 g.
+  sources: [source:capsugel_size_chart, source:taylor_2022_cat_medication]
+- id: form:sprinkle_capsule
+  name: Sprinkle capsule (opened onto food)
+  unit_mass_g: {min: 0.1, max: 0.5}
+  max_active_load: 0.95
+  max_oil_fraction: 0.0
+  process_max_temp_c: 25
+  species_use:
+    - {species: species:dog, max_units_per_day: 4, acceptance: moderate}
+    - {species: species:cat, max_units_per_day: 2, max_daily_mass_g: 1.0, acceptance: high}
+  notes: Preferred non-pill route for cats (e.g. Cosequin for Cats, Zylkene). Contents must be near taste-neutral.
+  sources: [source:cosequin_cats_listing, source:taylor_2022_cat_medication]
+- id: form:powder_sachet
+  name: Powder sachet / scoop (top-dressed)
+  unit_mass_g: {min: 0.5, max: 5.0}
+  max_active_load: 0.90
+  max_oil_fraction: 0.0
+  process_max_temp_c: 25
+  species_use:
+    - {species: species:dog, max_units_per_day: 2, acceptance: high}
+    - {species: species:cat, max_units_per_day: 2, max_daily_mass_g: 2.0, acceptance: high}
+  notes: >-
+    Foil sachet protects hygroscopic and probiotic contents. Cat limit: split over 2 meals, <=2 g/day
+    total, anchored on the Epakitin label (1 g per 5 kg twice daily); acceptance above ~1 g per meal is
+    unverified.
+  sources: [source:fortiflora_vet_presenter_2024, source:taylor_2022_cat_medication]
+- id: form:liquid_oil
+  name: Liquid oil (pump bottle)
+  unit_mass_g: {min: 0.9, max: 0.92}
+  max_active_load: 1.0
+  max_oil_fraction: 1.0
+  process_max_temp_c: 25
+  species_use:
+    - {species: species:dog, max_units_per_day: 15, acceptance: high}
+    - {species: species:cat, max_units_per_day: 2, max_daily_mass_g: 2.0, acceptance: high}
+  notes: One unit = one 1 mL pump stroke (stroke volume unverified). Only oil-phase raw materials. Nitrogen flush, opaque bottle.
+  sources: [source:nordic_naturals_pet_listing, source:taylor_2022_cat_medication]
+- id: form:softgel
+  name: Softgel
+  unit_mass_g: {min: 0.2, max: 1.6}
+  max_active_load: 0.75
+  max_oil_fraction: 0.75
+  process_max_temp_c: 35
+  species_use:
+    - {species: species:dog, max_units_per_day: 6, acceptance: high}
+    - {species: species:cat, max_units_per_day: 1, acceptance: low}
+  notes: Fill/total mass ~75% (1000 mg fill in ~1337 mg softgel). Hydrophobic fills only.
+  sources: [source:antinol_listing]
+- id: form:enteric_tablet
+  name: Enteric-coated tablet (blister)
+  unit_mass_g: {min: 0.2, max: 1.2}
+  max_active_load: 0.70
+  max_oil_fraction: 0.0
+  process_max_temp_c: 40
+  species_use:
+    - {species: species:dog, max_units_per_day: 3, acceptance: moderate}
+    - {species: species:cat, max_units_per_day: 1, acceptance: low}
+  notes: Required for SAMe (acid and moisture labile); cannot be split or crushed; given on an empty stomach. Load is unverified.
+  sources: [source:denamarin_label]

@@ -1,0 +1,107 @@
+# Ingredients = what doses and safety rules are written about.
+#   kind: active     may be dosed in a formula (still subject to every safety edge)
+#   kind: excipient  carrier / palatant / preservative; screened in products, never dosed
+#   kind: hazard     never formulated; exists so screens can catch it in products and raw materials
+# dose_unit is the unit every DoseRule / SafetyLimit / Product amount for this ingredient uses.
+
+# ---- actives with efficacy edges ---------------------------------------------------
+- {id: ingredient:omega3_epa_dha, name: "Omega-3 EPA + DHA (marine)", kind: active, category: fatty_acid, dose_unit: mg,
+   aliases: [fish oil, EPA, DHA], description: "Dosed as combined EPA+DHA, not as total oil. Algal oil is DHA-only (see raw materials)."}
+- {id: ingredient:glucosamine, name: "Glucosamine (as HCl)", kind: active, category: aminosugar, dose_unit: mg,
+   description: "Dosed and labelled as glucosamine HCl mass. Graded NEG for joints in both species; kept for product matching."}
+- {id: ingredient:chondroitin_sulfate, name: "Chondroitin sulfate (sodium)", kind: active, category: glycosaminoglycan, dose_unit: mg}
+- {id: ingredient:green_lipped_mussel, name: "Green-lipped mussel powder (Perna canaliculus)", kind: active, category: marine_whole_food, dose_unit: mg,
+   description: "Whole freeze-dried powder. Lipid extracts (PCSO-524, EAB-277) are not interchangeable on a mg basis."}
+- {id: ingredient:undenatured_collagen_type_ii, name: "Undenatured type II collagen (UC-II)", kind: active, category: protein, dose_unit: mg,
+   description: "Dosed as mg of the UC-II ingredient (40 mg ~ 1.2 mg undenatured collagen). Oral-tolerance mechanism; dose is not weight-scaled."}
+- {id: ingredient:msm, name: "Methylsulfonylmethane (MSM)", kind: active, category: sulfur_compound, dose_unit: mg}
+- {id: ingredient:avocado_soybean_unsaponifiables, name: "Avocado/soybean unsaponifiables (ASU)", kind: active, category: botanical, dose_unit: mg}
+- {id: ingredient:curcumin, name: "Curcumin (turmeric extract)", kind: active, category: botanical, dose_unit: mg,
+   description: "Phenolic; cats lack UGT1A6 glucuronidation, so feline use needs vet review."}
+- {id: ingredient:boswellia_serrata, name: "Boswellia serrata extract", kind: active, category: botanical, dose_unit: mg}
+- {id: ingredient:hyaluronic_acid, name: "Hyaluronic acid (oral)", kind: active, category: glycosaminoglycan, dose_unit: mg}
+- {id: ingredient:eggshell_membrane, name: "Natural eggshell membrane", kind: active, category: protein, dose_unit: mg}
+- {id: ingredient:same, name: "S-adenosylmethionine (SAMe)", kind: active, category: methyl_donor, dose_unit: mg,
+   description: "Dosed as SAMe ion. Enteric-coated tablet only."}
+- {id: ingredient:silybin, name: "Silybin A+B (milk thistle)", kind: active, category: botanical, dose_unit: mg,
+   description: "Dosed as silybin A+B; phosphatidylcholine complex improves bioavailability."}
+- {id: ingredient:vitamin_e, name: "Vitamin E (alpha-tocopherol)", kind: active, category: vitamin, dose_unit: IU}
+- {id: ingredient:enterococcus_faecium_sf68, name: "Enterococcus faecium SF68 (NCIMB 10415)", kind: active, category: probiotic, dose_unit: CFU,
+   description: "Strain-specific evidence."}
+- {id: ingredient:bifidobacterium_longum_bl999, name: "Bifidobacterium longum BL999", kind: active, category: probiotic, dose_unit: CFU,
+   description: "Proprietary strain; evidence is one manufacturer abstract."}
+- {id: ingredient:multistrain_probiotic, name: "Multi-strain lactic acid bacteria (Visbiome/SLAB51-type)", kind: active, category: probiotic, dose_unit: CFU,
+   description: "Evidence is product-specific; do not transfer across strain sets."}
+- {id: ingredient:psyllium, name: "Psyllium husk", kind: active, category: fibre, dose_unit: mg}
+- {id: ingredient:inulin_fos, name: "Inulin / fructooligosaccharides", kind: active, category: prebiotic, dose_unit: mg}
+- {id: ingredient:cobalamin, name: "Cobalamin (vitamin B12, cyanocobalamin)", kind: active, category: vitamin, dose_unit: mg}
+- {id: ingredient:l_theanine, name: "L-theanine", kind: active, category: amino_acid, dose_unit: mg}
+- {id: ingredient:alpha_casozepine, name: "Alpha-casozepine (casein hydrolysate)", kind: active, category: peptide, dose_unit: mg}
+- {id: ingredient:melatonin, name: "Melatonin", kind: active, category: hormone, dose_unit: mg}
+- {id: ingredient:cranberry_pac, name: "Cranberry proanthocyanidins (PAC)", kind: active, category: botanical, dose_unit: mg,
+   description: "Dosed as mg PAC by BL-DMAC; values by other assays are not comparable."}
+- {id: ingredient:chitosan_calcium_carbonate, name: "Chitosan + calcium carbonate phosphate binder", kind: active, category: phosphate_binder, dose_unit: mg,
+   description: "Dosed as mg of the Epakitin-type blend."}
+- {id: ingredient:mct_oil, name: "Medium-chain triglycerides", kind: active, category: fatty_acid, dose_unit: mg}
+- {id: ingredient:l_carnitine, name: "L-carnitine", kind: active, category: amino_acid_derivative, dose_unit: mg}
+- {id: ingredient:taurine, name: "Taurine", kind: active, category: amino_acid, dose_unit: mg}
+- {id: ingredient:coenzyme_q10, name: "Coenzyme Q10", kind: active, category: antioxidant, dose_unit: mg}
+- {id: ingredient:zinc, name: "Zinc (elemental)", kind: active, category: mineral, dose_unit: mg}
+- {id: ingredient:biotin, name: "Biotin", kind: active, category: vitamin, dose_unit: mg}
+- {id: ingredient:l_lysine, name: "L-lysine", kind: active, category: amino_acid, dose_unit: mg,
+   description: "Graded NEG for feline herpesvirus; kept so it is never recommended."}
+- {id: ingredient:beta_glucan, name: "Beta-1,3/1,6-glucan (yeast)", kind: active, category: polysaccharide, dose_unit: mg}
+- {id: ingredient:bovine_colostrum, name: "Bovine colostrum", kind: active, category: whole_food, dose_unit: mg}
+
+# ---- actives without efficacy edges (appear in products and safety rules) ------------
+- {id: ingredient:vitamin_d3, name: "Vitamin D3 (cholecalciferol)", kind: active, category: vitamin, dose_unit: IU, regulatory_status: restricted,
+   regulatory_notes: "Narrow safety margin; Freyja policy is not to add vitamin D to supplements (2019 FDA vitamin D dog food recalls)."}
+- {id: ingredient:vitamin_a, name: "Vitamin A (retinol)", kind: active, category: vitamin, dose_unit: IU, regulatory_status: restricted,
+   regulatory_notes: "Narrow margin; cumulative with diet and cod liver oil."}
+- {id: ingredient:vitamin_c, name: "Vitamin C (ascorbic acid)", kind: active, category: vitamin, dose_unit: mg}
+- {id: ingredient:iron, name: "Iron (elemental)", kind: active, category: mineral, dose_unit: mg, regulatory_status: restricted,
+   regulatory_notes: "Not added to supplements; pro-oxidant for fish oil."}
+- {id: ingredient:copper, name: "Copper (elemental)", kind: active, category: mineral, dose_unit: mg, regulatory_status: restricted,
+   regulatory_notes: "Not added to supplements (copper-associated hepatitis, ACVIM 2019)."}
+- {id: ingredient:manganese, name: "Manganese (elemental)", kind: active, category: mineral, dose_unit: mg}
+- {id: ingredient:calcium_carbonate, name: "Calcium carbonate (supplemental calcium)", kind: active, category: mineral, dose_unit: mg}
+- {id: ingredient:potassium_citrate, name: "Potassium salts (citrate, gluconate, chloride)", kind: active, category: mineral, dose_unit: mg}
+- {id: ingredient:alpha_lipoic_acid, name: "Alpha-lipoic acid", kind: active, category: antioxidant, dose_unit: mg,
+   description: "About 10x more toxic to cats than to dogs or humans."}
+- {id: ingredient:green_tea_extract, name: "Green tea extract (EGCG)", kind: active, category: botanical, dose_unit: mg,
+   description: "Hepatotoxic at high, fasted doses in dogs."}
+- {id: ingredient:l_tryptophan, name: "L-tryptophan", kind: active, category: amino_acid, dose_unit: mg}
+- {id: ingredient:dl_methionine, name: "DL-methionine (urinary acidifier)", kind: active, category: amino_acid, dose_unit: mg}
+- {id: ingredient:kelp_iodine, name: "Kelp / iodine sources", kind: active, category: mineral, dose_unit: mg}
+- {id: ingredient:soy_isoflavones, name: "Soy isoflavones", kind: active, category: botanical, dose_unit: mg}
+- {id: ingredient:ginkgo_biloba, name: "Ginkgo biloba", kind: active, category: botanical, dose_unit: mg}
+- {id: ingredient:cbd_hemp, name: "Cannabidiol / hemp extract", kind: active, category: botanical, dose_unit: mg, regulatory_status: not_permitted,
+   regulatory_notes: "Not an FDA-permitted animal food ingredient; FDA considers CBD-containing animal food adulterated.",
+   sources: [source:fda_cvm_cbd]}
+
+# ---- excipients -------------------------------------------------------------
+- {id: ingredient:brewers_yeast, name: "Brewer's yeast (palatant)", kind: excipient, category: palatant,
+   description: "High purine; excluded for urate-forming patients and with allopurinol."}
+- {id: ingredient:propylene_glycol, name: "Propylene glycol (humectant)", kind: excipient, category: humectant,
+   description: "Banned in cat food (21 CFR 589.1001)."}
+- {id: ingredient:benzoic_acid, name: "Benzoic acid / sodium benzoate (preservative)", kind: excipient, category: preservative}
+- {id: ingredient:sodium_chloride, name: "Sodium chloride (salt)", kind: excipient, category: mineral}
+- {id: ingredient:bone_meal_phosphates, name: "Bone meal / phosphate salts", kind: excipient, category: mineral}
+
+# ---- hazards (never formulated) ------------------------------------------------------
+- {id: ingredient:xylitol, name: "Xylitol", kind: hazard, category: sweetener}
+- {id: ingredient:allium_garlic_onion, name: "Allium (garlic, onion, leek, chive)", kind: hazard, category: botanical}
+- {id: ingredient:tea_tree_oil, name: "Tea tree oil (Melaleuca)", kind: hazard, category: essential_oil}
+- {id: ingredient:essential_oils, name: "Phenolic / seizure-inducing essential oils", kind: hazard, category: essential_oil,
+   description: "Wintergreen, birch, pennyroyal, eucalyptus, sage, hyssop, wormwood, cedar, cinnamon, cassia."}
+- {id: ingredient:grape_raisin_tartaric_acid, name: "Grape / raisin / tartaric acid", kind: hazard, category: food}
+- {id: ingredient:white_willow_bark, name: "White willow bark (salicin) and salicylate sources", kind: hazard, category: botanical}
+- {id: ingredient:five_htp, name: "5-HTP (Griffonia)", kind: hazard, category: amino_acid}
+- {id: ingredient:caffeine_methylxanthines, name: "Caffeine / guarana / theobromine", kind: hazard, category: stimulant}
+- {id: ingredient:macadamia, name: "Macadamia nut", kind: hazard, category: food}
+- {id: ingredient:hops, name: "Hops (Humulus lupulus)", kind: hazard, category: botanical}
+- {id: ingredient:ephedra, name: "Ephedra (ma huang)", kind: hazard, category: stimulant}
+- {id: ingredient:yohimbe, name: "Yohimbe", kind: hazard, category: stimulant}
+- {id: ingredient:kava, name: "Kava", kind: hazard, category: botanical}
+- {id: ingredient:nutmeg, name: "Nutmeg (myristicin)", kind: hazard, category: spice}
+- {id: ingredient:st_johns_wort, name: "St John's wort", kind: hazard, category: botanical}

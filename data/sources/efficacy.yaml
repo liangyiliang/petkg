@@ -1,0 +1,755 @@
+# Generated from the efficacy research pass. Citation text is author+year; resolve titles via PMID/DOI.
+- id: source:pmid_36142319
+  type: systematic_review
+  citation: Barbeau-Gregoire M et al. 2022.
+  year: 2022
+  pmid: '36142319'
+  notes: 'meta-analysis; omega-3 diets d=0.58, omega-3 supplements d=1.19 | counts one high-quality and one good-quality feline
+    omega-3 trial as effective | recommends these products ''should no longer be recommended for pain management'' | GLM trials
+    pooled into the omega-3 categories, which showed clear efficacy | collagen category: weak efficacy, poor-quality trials
+    | curcumin results ''conflicting'' | one vitamin E trial counted as showing an analgesic effect'
+- id: source:pmid_22404506
+  type: study
+  citation: Vandeweerd JM et al. 2012.
+  year: 2012
+  pmid: '22404506'
+  notes: only nutraceutical with more than low evidence
+- id: source:pmid_27269707
+  type: rct
+  citation: Mehler SJ et al. 2016.
+  year: 2016
+  pmid: '27269707'
+  notes: RCT, 78 dogs, ~69 mg EPA+DHA/kg/day; all clinical outcomes improved vs placebo at day 84
+- id: source:pmid_20043801
+  type: rct
+  citation: Roush JK et al. 2010.
+  year: 2010
+  pmid: '20043801'
+  notes: RCT, 38 dogs; PVF +5.6% vs +0.4%
+- id: source:pmid_20043800
+  type: rct
+  citation: Roush JK et al. 2010.
+  year: 2010
+  pmid: '20043800'
+  notes: multicentre RCT, 127 dogs; owner-rated improvement
+- id: source:pmid_22805303
+  type: study
+  citation: Moreau M et al. 2013.
+  year: 2013
+  pmid: '22805303'
+  notes: 30 dogs; within-group PVF improvement; between-group difference not significant (p=0.211)
+- id: source:pmid_22882740
+  type: rct
+  citation: Corbee RJ et al. 2013.
+  year: 2013
+  pmid: '22882740'
+  notes: RCT crossover, 16 cats; less gait stiffness and higher jumps (p=0.03)
+- id: source:pmid_20337921
+  type: rct
+  citation: Lascelles BD et al. 2010. Evaluation of a therapeutic diet for feline degenerative joint disease. J Vet Intern
+    Med.
+  year: 2010
+  pmid: '20337921'
+  notes: RCT, 40 cats; accelerometer activity rose on test diet and fell on control
+  doi: 10.1111/j.1939-1676.2010.0495.x
+- id: source:pmid_28763523
+  type: rct
+  citation: Scott RM et al. 2017.
+  year: 2017
+  pmid: '28763523'
+  notes: RCT, 60 dogs; no activity difference vs placebo; caregiver placebo effect
+- id: source:pmid_21623931
+  type: rct
+  citation: Gupta RC et al. 2012.
+  year: 2012
+  pmid: '21623931'
+  notes: GLU+CHO reduced observer pain scores but did not change force-plate values | placebo-controlled; force plate improved
+    only with UC-II
+- id: source:pmid_16647870
+  type: rct
+  citation: McCarthy G et al. 2007.
+  year: 2007
+  pmid: '16647870'
+  notes: positive-controlled (carprofen) RCT, no placebo arm; subjective improvement by day 70 | positive but no placebo arm
+- id: source:pmid_28331832
+  type: review
+  citation: 'Bhathal A et al. 2017. Glucosamine and chondroitin use in canines for osteoarthritis: a review. Open Vet J 7:36-49.'
+  year: 2017
+  pmid: '28331832'
+  notes: review; limited and conflicting evidence
+  doi: 10.4314/ovj.v7i1.6
+- id: source:pmid_24146058
+  type: rct
+  citation: Sul RM et al. 2014.
+  year: 2014
+  pmid: '24146058'
+  notes: double-blind RCT, meloxicam vs Glu-Ch vs placebo
+- id: source:pmid_18955269
+  type: rct
+  citation: Hielm-Bjorkman A et al. 2009.
+  year: 2009
+  pmid: '18955269'
+  notes: RCT vs placebo and carprofen; GLM better than placebo, less effective than carprofen
+- id: source:pmid_16751841
+  type: rct
+  citation: Pollard B et al. 2006.
+  year: 2006
+  pmid: '16751841'
+  notes: RCT; benefit at day 56 only (p=0.018)
+- id: source:pmid_12042477
+  type: controlled_trial
+  citation: Bierer TL et al. 2002.
+  year: 2002
+  pmid: '12042477'
+  notes: controlled feeding trial (abstract text not available in PubMed)
+- id: source:pmid_23814358
+  type: study
+  citation: Rialland P et al. 2013.
+  year: 2013
+  pmid: '23814358'
+  notes: GLM-enriched diet (abstract not extracted)
+- id: source:pmid_35274496
+  type: study
+  citation: Corbee RJ et al. 2022.
+  year: 2022
+  pmid: '35274496'
+  notes: 16 cats, partial benefit (grooming, activity, stairs)
+- id: source:pmid_16050819
+  type: study
+  citation: Deparle LA et al. 2005.
+  year: 2005
+  pmid: '16050819'
+  notes: 15 dogs, unblinded control; pain fell, relapse after withdrawal
+- id: source:pmid_31487772
+  type: rct
+  citation: Stabile M et al. 2019.
+  year: 2019
+  pmid: '31487772'
+  notes: 60 dogs, UC-II similar to robenacoxib (no placebo)
+- id: source:pmid_35853328
+  type: study
+  citation: Stabile M et al. 2022.
+  year: 2022
+  pmid: '35853328'
+  notes: 76 dogs, UC-II better than untreated controls on LOAD
+- id: source:pmid_30050844
+  type: study
+  citation: Ruff KJ et al. 2016.
+  year: 2016
+  pmid: '30050844'
+  notes: 51 dogs, 13.5 mg/kg/day; manufacturer-authored
+- id: source:pmid_31685140
+  type: study
+  citation: Muller C et al. 2019.
+  year: 2019
+  pmid: '31685140'
+  notes: 27 dogs pilot; authors say effects 'do not provide definitive evidence'
+- id: source:pmid_33925642
+  type: study
+  citation: Serra Aguado CI et al. 2021.
+  year: 2021
+  pmid: '33925642'
+  notes: author employed by HA supplier (Bioiberica)
+- id: source:pmid_12723628
+  type: rct
+  citation: Innes JF et al. 2003.
+  year: 2003
+  pmid: '12723628'
+  notes: RCT, 61 dogs; PVF NS; investigator p=0.012; owner p=0.063
+- id: source:pmid_29262825
+  type: study
+  citation: Comblain F et al. 2017.
+  year: 2017
+  pmid: '29262825'
+  notes: combination CCOT diet
+- id: source:pmid_14994484
+  type: controlled_trial
+  citation: Reichling J et al. 2004.
+  year: 2004
+  pmid: '14994484'
+  notes: uncontrolled
+- id: source:pmid_39475935
+  type: rct
+  citation: Stabile M et al. 2024.
+  year: 2024
+  pmid: '39475935'
+  notes: RCT crossover of UC-II + Boswellia combination, 17 dogs; owner-rated improvement
+- id: source:pmid_19291317
+  type: study
+  citation: Boileau C et al. 2009.
+  year: 2009
+  pmid: '19291317'
+  notes: structural outcomes only
+- id: source:pmid_17287602
+  type: study
+  citation: Altinel L et al. 2007.
+  year: 2007
+  pmid: '17287602'
+  notes: canine joint-fluid TGF-beta (experimental)
+- id: source:pmid_20344826
+  type: study
+  citation: Khan SA, McLean MK, Gwaltney-Brant S 2010. Accidental overdosage of joint supplements in dogs (letter). J Am Vet
+    Med Assoc 236:509-510.
+  year: 2010
+  pmid: '20344826'
+  notes: joint-supplement overdose report (safety, not efficacy)
+- id: source:pmid_24101795
+  type: study
+  citation: Rhouma M et al. 2013.
+  year: 2013
+  pmid: '24101795'
+  notes: experimental model; pain effects at alpha=0.1
+- id: source:pmid_34645070
+  type: rct
+  citation: Logas D et al. 1994.
+  year: 1994
+  pmid: '34645070'
+  notes: double-blind crossover vs corn oil; pruritus, alopecia and coat improved
+- id: source:pmid_15206474
+  type: rct
+  citation: Mueller RS et al. 2004.
+  year: 2004
+  pmid: '15206474'
+  notes: RCT, 29 dogs; flax oil and EPA/DHA both better than placebo
+- id: source:pmid_15214949
+  type: rct
+  citation: Saevik BK et al. 2004.
+  year: 2004
+  pmid: '15214949'
+  notes: RCT; prednisolone sparing reached significance after day 64
+- id: source:pmid_20456716
+  type: study
+  citation: Olivry T et al. 2010.
+  year: 2010
+  pmid: '20456716'
+  notes: ICADA guidelines recommend EFA supplementation for skin/coat care in atopic dermatitis
+- id: source:pmid_25205675
+  type: study
+  citation: Plevnik Kapun A et al. 2014.
+  year: 2014
+  pmid: '25205675'
+- id: source:pmid_2602924
+  type: study
+  citation: Frigg M et al. 1989. Clinical study on the effect of biotin on skin conditions in dogs. Schweiz Arch Tierheilkd.
+  year: 1989
+  pmid: '2602924'
+  notes: manufacturer (Roche) collaborative study
+- id: source:pmid_11360336
+  type: study
+  citation: White SD et al. 2001.
+  year: 2001
+  pmid: '11360336'
+- id: source:pmid_15500479
+  type: study
+  citation: Frank LA et al. 2004.
+  year: 2004
+  pmid: '15500479'
+  notes: alopecia X; adrenal steroids during melatonin treatment
+- id: source:pmid_36106629
+  type: rct
+  citation: Verschuuren MUMY et al. 2022.
+  year: 2022
+  pmid: '36106629'
+  notes: RCT, efficacy 'uncertain', p=0.40, underpowered
+- id: source:pmid_38861499
+  type: study
+  citation: Amado Martins F et al. 2024.
+  year: 2024
+  pmid: '38861499'
+  notes: melatonin vs photobiomodulation, alopecia X in German Spitz (abstract not extracted)
+- id: source:pmid_21689152
+  type: study
+  citation: Bybee SN et al. 2011.
+  year: 2011
+  pmid: '21689152'
+  notes: null in dogs
+- id: source:pmid_29291771
+  type: study
+  citation: Torres-Henderson C et al. 2017.
+  year: 2017
+  pmid: '29291771'
+- id: source:pmid_29291770
+  type: study
+  citation: Fenimore A et al. 2017.
+  year: 2017
+  pmid: '29291770'
+  notes: adjunct to metronidazole
+- id: source:pmid_30261077
+  type: study
+  citation: Ziese AL et al. 2018.
+  year: 2018
+  pmid: '30261077'
+- id: source:pmid_29065705
+  type: study
+  citation: Rossi G et al. 2018.
+  year: 2018
+  pmid: '29065705'
+- id: source:pmid_10668813
+  type: observational
+  citation: Leib MS et al. 2000.
+  year: 2000
+  pmid: '10668813'
+  notes: retrospective, combined with a highly digestible diet
+- id: source:pmid_33653329
+  type: controlled_trial
+  citation: Alves JC et al. 2021.
+  year: 2021
+  pmid: '33653329'
+  notes: uncontrolled
+- id: source:pmid_21944542
+  type: study
+  citation: Freiche V et al. 2011.
+  year: 2011
+  pmid: '21944542'
+- id: source:pmid_19574565
+  type: study
+  citation: Barry KA et al. 2009.
+  year: 2009
+  pmid: '19574565'
+- id: source:pmid_9563627
+  type: study
+  citation: Sparkes AH et al. 1998.
+  year: 1998
+  pmid: '9563627'
+- id: source:pmid_9563626
+  type: study
+  citation: Sparkes AH et al. 1998.
+  year: 1998
+  pmid: '9563626'
+  notes: duodenal flora
+- id: source:pmid_24722235
+  type: rct
+  citation: Rossi G et al. 2014.
+  year: 2014
+  pmid: '24722235'
+  notes: randomised vs active comparator, no placebo
+- id: source:pmid_28678609
+  type: rct
+  citation: White R et al. 2017.
+  year: 2017
+  pmid: '28678609'
+  notes: RCT, 34 dogs; added to standard therapy
+- id: source:pmid_29428088
+  type: rct
+  citation: Toresson L et al. 2018.
+  year: 2018
+  pmid: '29428088'
+  notes: RCT, oral vs parenteral, 53 dogs
+- id: source:pmid_30606444
+  type: rct
+  citation: Toresson L et al. 2019.
+  year: 2019
+  pmid: '30606444'
+  notes: MMA/homocysteine follow-up of the RCT
+- id: source:pmid_36054643
+  type: rct
+  citation: Chang CH et al. 2022.
+  year: 2022
+  pmid: '36054643'
+  notes: prospective RCT, CE and EPI dogs
+- id: source:pmid_26648590
+  type: observational
+  citation: Toresson L et al. 2016.
+  year: 2016
+  pmid: '26648590'
+  notes: retrospective, all dogs normalised
+- id: source:pmid_30554416
+  type: study
+  citation: Kook PH et al. 2019.
+  year: 2019
+  pmid: '30554416'
+  notes: oral B12 maintains Beagles with Imerslund-Grasbeck syndrome
+- id: source:pmid_39268979
+  type: study
+  citation: Chang CH et al. 2024.
+  year: 2024
+  pmid: '39268979'
+- id: source:pmid_28128683
+  type: study
+  citation: Toresson L et al. 2017.
+  year: 2017
+  pmid: '28128683'
+- id: source:pmid_9605110
+  type: study
+  citation: Brown SA et al. 1998. Beneficial effects of chronic administration of dietary omega-3 polyunsaturated fatty acids
+    in dogs with renal insufficiency. J Lab Clin Med.
+  year: 1998
+  pmid: '9605110'
+  doi: 10.1016/s0022-2143(98)90146-9
+- id: source:pmid_10711867
+  type: study
+  citation: Brown SA et al. 2000.
+  year: 2000
+  pmid: '10711867'
+- id: source:pmid_16100367
+  type: study
+  citation: Plantinga EA et al. 2005.
+  year: 2005
+  pmid: '16100367'
+- id: source:pmid_15298059
+  type: controlled_trial
+  citation: Wagner E et al. 2004.
+  year: 2004
+  pmid: '15298059'
+  notes: uncontrolled, n=6 CKD cats
+- id: source:pmid_24872876
+  type: study
+  citation: Bernachon N et al. 2014.
+  year: 2014
+  pmid: '24872876'
+  notes: palatability only
+- id: source:pmid_22593665
+  type: study
+  citation: Zatelli A et al. 2012.
+  year: 2012
+  pmid: '22593665'
+- id: source:pmid_15757136
+  type: study
+  citation: Center SA et al. 2005.
+  year: 2005
+  pmid: '15757136'
+- id: source:pmid_21689156
+  type: study
+  citation: Skorupski KA et al. 2011.
+  year: 2011
+  pmid: '21689156'
+  notes: Denamarin = SAMe + silybin combination | combination with SAMe
+- id: source:pmid_15954543
+  type: study
+  citation: Center SA et al. 2005.
+  year: 2005
+  pmid: '15954543'
+- id: source:pmid_17348898
+  type: study
+  citation: Filburn CR et al. 2007.
+  year: 2007
+  pmid: '17348898'
+  notes: bioavailability of silybin-phosphatidylcholine complex in dogs
+- id: source:pmid_21395602
+  type: study
+  citation: Au AY et al. 2011.
+  year: 2011
+  pmid: '21395602'
+  notes: in vitro
+- id: source:pmid_20444031
+  type: study
+  citation: Avizeh R et al. 2010.
+  year: 2010
+  pmid: '20444031'
+- id: source:pmid_11823579
+  type: study
+  citation: Blanchard G et al. 2002.
+  year: 2002
+  pmid: '11823579'
+- id: source:pmid_20141643
+  type: study
+  citation: Pan Y et al. 2010.
+  year: 2010
+  pmid: '20141643'
+  notes: lab beagles
+- id: source:pmid_30619873
+  type: rct
+  citation: Pan Y et al. 2018.
+  year: 2018
+  pmid: '30619873'
+  notes: clinical RCT; co-authors Landsberg G, Milgram NW; MCT + 'brain protection blend'
+- id: source:pmid_18597245
+  type: study
+  citation: Reme CA et al. 2008.
+  year: 2008
+  pmid: '18597245'
+  notes: Virbac Novifit; manufacturer-linked
+- id: source:doi_10_1016_j_jveb_2009_10_011
+  type: study
+  citation: Mongillo P et al. 2010.
+  year: 2010
+  doi: 10.1016/j.jveb.2009.10.011
+  notes: J Vet Behav abstract on Novifit in aged beagles; result not verified
+- id: source:pmid_29316985
+  type: study
+  citation: Pan Y et al. 2018.
+  year: 2018
+  pmid: '29316985'
+- id: source:pmid_23211671
+  type: study
+  citation: Pan Y et al. 2013.
+  year: 2013
+  pmid: '23211671'
+- id: source:pmid_15130670
+  type: study
+  citation: Milgram NW et al. 2004.
+  year: 2004
+  pmid: '15130670'
+- id: source:pmid_17303448
+  type: observational
+  citation: Nippak PM et al. 2007.
+  year: 2007
+  pmid: '17303448'
+  notes: spatial ability, same cohort
+- id: source:doi_10_1016_j_jveb_2010_02_003
+  type: study
+  citation: Araujo JA et al. 2010.
+  year: 2010
+  doi: 10.1016/j.jveb.2010.02.003
+  notes: J Vet Behav; abstract not retrievable, design details from summary only
+- id: source:doi_10_1016_j_jveb_2015_04_001
+  type: observational
+  citation: Pike AL et al. 2015.
+  year: 2015
+  doi: 10.1016/j.jveb.2015.04.001
+  notes: open-label
+- id: source:pmid_30338056
+  type: study
+  citation: Dramard V et al. 2018.
+  year: 2018
+  pmid: '30338056'
+- id: source:doi_10_1016_j_jveb_2007_08_001
+  type: study
+  citation: Beata C et al. 2007.
+  year: 2007
+  doi: 10.1016/j.jveb.2007.08.001
+  notes: vs selegiline, J Vet Behav
+- id: source:doi_10_1016_j_jveb_2025_12_008
+  type: rct
+  citation: Puglisi I et al. 2026.
+  year: 2026
+  doi: 10.1016/j.jveb.2025.12.008
+  notes: placebo-controlled crossover; results taken from a web summary of the abstract
+- id: source:doi_10_18849_ve_v2i3_67
+  type: study
+  citation: Buckley L et al. 2017.
+  year: 2017
+  doi: 10.18849/ve.v2i3.67
+  notes: 'Veterinary Evidence knowledge summary: no evidence for short-term situational use; limited low-quality evidence
+    for medium to long term'
+- id: source:doi_10_1016_j_jveb_2011_05_025
+  type: study
+  citation: Kato M et al. 2012.
+  year: 2012
+  doi: 10.1016/j.jveb.2011.05.025
+  notes: prescription diet containing it; combination
+- id: source:doi_10_1016_j_jveb_2007_02_002
+  type: rct
+  citation: Beata C et al. 2007.
+  year: 2007
+  doi: 10.1016/j.jveb.2007.02.002
+  notes: abstract withheld by the publisher; result from the Semantic Scholar TLDR; the placebo-controlled design is unverified
+- id: source:pmid_27677831
+  type: study
+  citation: Landsberg G et al. 2017.
+  year: 2017
+  pmid: '27677831'
+  notes: diet + L-tryptophan combination, lab cats
+- id: source:mcgowan_2018_web
+  type: study
+  citation: McGowan RTS et al. 2018.
+  year: 2018
+  url: https://www.fearfree.com/wp-content/uploads/2024/07/Ragen-McGowan-2018-VBS-Abstract.pdf
+  notes: Veterinary Behavior Symposium abstract
+- id: source:pmid_26773515
+  type: study
+  citation: Packer RM et al. 2016.
+  year: 2016
+  pmid: '26773515'
+- id: source:pmid_26337751
+  type: rct
+  citation: Law TH et al. 2015.
+  year: 2015
+  pmid: '26337751'
+  notes: parent epilepsy RCT
+- id: source:pmid_3616607
+  type: study
+  citation: Pion PD et al. 1987.
+  year: 1987
+  pmid: '3616607'
+  notes: Science
+- id: source:pmid_1500323
+  type: study
+  citation: Pion PD et al. 1992.
+  year: 1992
+  pmid: '1500323'
+  notes: clinical findings and relationship to taurine deficiency
+- id: source:pmid_9298474
+  type: rct
+  citation: Kittleson MD et al. 1997.
+  year: 1997
+  pmid: '9298474'
+  notes: MUST; placebo arm n=5; taurine + carnitine together | combination with taurine
+- id: source:pmid_30543707
+  type: controlled_trial
+  citation: Kaplan JL et al. 2018.
+  year: 2018
+  pmid: '30543707'
+  notes: uncontrolled, diet change plus taurine
+- id: source:pmid_14584742
+  type: study
+  citation: Backus RC et al. 2003.
+  year: 2003
+  pmid: '14584742'
+  notes: taurine deficiency in Newfoundlands
+- id: source:pmid_2019534
+  type: study
+  citation: Keene BW et al. 1991.
+  year: 1991
+  pmid: '2019534'
+  notes: family of boxers
+- id: source:pmid_1949496
+  type: review
+  citation: Keene BW et al. 1991.
+  year: 1991
+  pmid: '1949496'
+  notes: review
+- id: source:pmid_9857337
+  type: study
+  citation: Freeman LM et al. 1998. Nutritional alterations and the effect of fish oil supplementation in dogs with heart
+    failure. J Vet Intern Med 12:440-448.
+  year: 1998
+  pmid: '9857337'
+  doi: 10.1111/j.1939-1676.1998.tb02148.x
+- id: source:pmid_17427387
+  type: study
+  citation: Smith CE et al. 2007.
+  year: 2007
+  pmid: '17427387'
+- id: source:pmid_33764833
+  type: rct
+  citation: Druzhaeva N et al. 2021.
+  year: 2021
+  pmid: '33764833'
+  notes: dose-finding RCT, PK only
+- id: source:pmid_35892628
+  type: rct
+  citation: Druzhaeva N et al. 2022.
+  year: 2022
+  pmid: '35892628'
+  notes: RCT, 43 MMVD dogs, 3 months
+- id: source:pmid_28346005
+  type: study
+  citation: Svete AN et al. 2017.
+  year: 2017
+  pmid: '28346005'
+  notes: observational CoQ10 status
+- id: source:pmid_27027843
+  type: rct
+  citation: Chou HI et al. 2016.
+  year: 2016
+  pmid: '27027843'
+  notes: small, active comparator, not placebo-controlled
+- id: source:pmid_27914106
+  type: rct
+  citation: Olby NJ et al. 2017.
+  year: 2017
+  pmid: '27914106'
+  notes: RCT null, low power
+- id: source:pmid_34039227
+  type: study
+  citation: Colombino E et al. 2022.
+  year: 2022
+  pmid: '34039227'
+- id: source:pmid_15265477
+  type: study
+  citation: Gunn-Moore DA et al. 2004.
+  year: 2004
+  pmid: '15265477'
+- id: source:pmid_11110381
+  type: study
+  citation: Center SA et al. 2000.
+  year: 2000
+  pmid: '11110381'
+- id: source:pmid_22738052
+  type: study
+  citation: Center SA et al. 2012.
+  year: 2012
+  pmid: '22738052'
+- id: source:pmid_26573523
+  type: systematic_review
+  citation: Bol S et al. 2015.
+  year: 2015
+  pmid: '26573523'
+  notes: systematic review; recommends stopping lysine
+- id: source:pmid_19878022
+  type: rct
+  citation: Drazenovich TL et al. 2009.
+  year: 2009
+  pmid: '19878022'
+  notes: shelter RCT
+- id: source:pmid_18547855
+  type: study
+  citation: Rees TM et al. 2008.
+  year: 2008
+  pmid: '18547855'
+  notes: did not prevent URI
+- id: source:pmid_17055313
+  type: study
+  citation: Maggs DJ et al. 2007.
+  year: 2007
+  pmid: '17055313'
+  notes: higher disease score and FHV-1 DNA in supplemented group
+- id: source:pmid_12518876
+  type: study
+  citation: Maggs DJ et al. 2003.
+  year: 2003
+  pmid: '12518876'
+  notes: earlier small positive study (reduced shedding), superseded
+- id: source:pmid_16206789
+  type: study
+  citation: Stiles J et al. 2002.
+  year: 2002
+  pmid: '16206789'
+  notes: earlier small experimental positive study (milder conjunctivitis), superseded
+- id: source:pmid_12672936
+  type: study
+  citation: Benyacoub J et al. 2003.
+  year: 2003
+  pmid: '12672936'
+  notes: Nestle Purina
+- id: source:pmid_18183541
+  type: study
+  citation: Veir JK et al. 2007.
+  year: 2007
+  pmid: '18183541'
+- id: source:pmid_19201238
+  type: study
+  citation: Lappin MR et al. 2009.
+  year: 2009
+  pmid: '19201238'
+  notes: pilot
+- id: source:pmid_23773360
+  type: study
+  citation: Satyaraj E et al. 2013.
+  year: 2013
+  pmid: '23773360'
+  notes: Nestle Purina
+- id: source:pmid_39858185
+  type: review
+  citation: Yu P et al. 2025.
+  year: 2025
+  pmid: '39858185'
+  notes: review
+- id: source:pmid_34447799
+  type: study
+  citation: Gore AM et al. 2021.
+  year: 2021
+  pmid: '34447799'
+  notes: Nestle Purina
+- id: source:pmid_20032218
+  type: study
+  citation: Stuyven E et al. 2010.
+  year: 2010
+  pmid: '20032218'
+- id: source:pmid_21354943
+  type: study
+  citation: Haladova E et al. 2011.
+  year: 2011
+  pmid: '21354943'
+- id: source:pmid_38930453
+  type: review
+  citation: Amaral AR et al. 2024.
+  year: 2024
+  pmid: '38930453'
+  notes: review incl. atopic dermatitis, OA, IBD
+- id: source:pmid_11968899
+  type: study
+  citation: Clarke DE et al. 2001.
+  year: 2001
+  pmid: '11968899'

@@ -1,0 +1,25 @@
+# Drug classes, not products: interactions are curated at class level.
+- {id: med:nsaid, name: NSAIDs, drug_class: anti-inflammatory, examples: [carprofen, meloxicam, deracoxib, robenacoxib, grapiprant]}
+- {id: med:glucocorticoid, name: Glucocorticoids, drug_class: corticosteroid, examples: [prednisolone, prednisone, dexamethasone, budesonide]}
+- {id: med:antiplatelet_anticoagulant, name: Antiplatelets / anticoagulants, drug_class: haemostasis, examples: [clopidogrel, aspirin, rivaroxaban, apixaban]}
+- {id: med:phenobarbital, name: Phenobarbital, drug_class: anticonvulsant, examples: [phenobarbital]}
+- {id: med:potassium_bromide, name: Potassium bromide, drug_class: anticonvulsant, examples: [potassium bromide]}
+- {id: med:insulin, name: Insulin, drug_class: antidiabetic, examples: [Vetsulin, glargine, detemir, NPH]}
+- {id: med:methimazole, name: Methimazole, drug_class: antithyroid, examples: [methimazole, carbimazole]}
+- {id: med:levothyroxine, name: Levothyroxine, drug_class: thyroid hormone, examples: [levothyroxine]}
+- {id: med:serotonergic_drugs, name: Serotonergic drugs, drug_class: behavioural, examples: [fluoxetine, clomipramine, trazodone, paroxetine]}
+- {id: med:selegiline, name: Selegiline, drug_class: MAO-B inhibitor, examples: [selegiline (Anipryl)]}
+- {id: med:tramadol, name: Tramadol, drug_class: opioid analgesic, examples: [tramadol]}
+- {id: med:cyclosporine, name: Cyclosporine, drug_class: immunosuppressant, examples: [Atopica]}
+- {id: med:oclacitinib, name: Oclacitinib, drug_class: JAK inhibitor, examples: [Apoquel]}
+- {id: med:antibiotics_general, name: Antibiotics (any), drug_class: antimicrobial, examples: [amoxicillin-clavulanate, metronidazole, cefpodoxime]}
+- {id: med:fluoroquinolone, name: Fluoroquinolones, drug_class: antimicrobial, examples: [enrofloxacin, marbofloxacin, pradofloxacin]}
+- {id: med:tetracycline_doxycycline, name: Tetracyclines, drug_class: antimicrobial, examples: [doxycycline, minocycline]}
+- {id: med:ace_inhibitor, name: ACE inhibitors, drug_class: cardiovascular / renal, examples: [benazepril, enalapril]}
+- {id: med:pimobendan, name: Pimobendan, drug_class: inodilator, examples: [Vetmedin]}
+- {id: med:furosemide, name: Loop diuretics, drug_class: diuretic, examples: [furosemide, torsemide]}
+- {id: med:spironolactone, name: Spironolactone, drug_class: potassium-sparing diuretic, examples: [spironolactone]}
+- {id: med:chemotherapy, name: Chemotherapy / radiation, drug_class: oncology, examples: [doxorubicin, cyclophosphamide, vincristine, carboplatin]}
+- {id: med:gabapentin, name: Gabapentin, drug_class: analgesic / anxiolytic, examples: [gabapentin]}
+- {id: med:d_penicillamine, name: D-penicillamine, drug_class: copper chelator, examples: [penicillamine]}
+- {id: med:allopurinol, name: Allopurinol, drug_class: xanthine oxidase inhibitor, examples: [allopurinol]}

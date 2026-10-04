@@ -1,0 +1,330 @@
+# Generated from the dosing research pass (references resolved against PubMed). Duplicates of other source files removed.
+- id: source:fediaf_2025
+  type: consensus_guideline
+  citation: FEDIAF EuropeanPetFood 2025. Nutritional Guidelines for Complete and Complementary Pet Food for Cats and Dogs.
+  year: 2025
+  url: https://europeanpetfood.org/wp-content/uploads/2025/09/FEDIAF-Nutritional-Guidelines_2025-ONLINE.pdf
+- id: source:pmid_22087720
+  type: study
+  citation: Bauer JE 2011. Therapeutic use of fish oils in companion animals. J Am Vet Med Assoc 239:1441-1451.
+  year: 2011
+  pmid: '22087720'
+  doi: 10.2460/javma.239.11.1441
+- id: source:raditic_gaylord_2020
+  type: study
+  citation: Raditic DM, Gaylord L 2020. Fish oil dosing in pet diets and supplements.
+  year: 2020
+  url: https://todaysveterinarypractice.com/nutrition/fish-oil-dosing-in-pet-diets-and-supplements
+- id: source:pmid_40495687
+  type: study
+  citation: Vendramini THA et al. 2025. Exploring the efficacy and optimal dosages of omega-3 supplementation for companion
+    animals. Nutr Res Rev.
+  year: 2025
+  pmid: '40495687'
+  doi: 10.1017/S0954422425100115
+- id: source:pmid_20707845
+  type: study
+  citation: Fritsch D et al. 2010. Dose-titration effects of fish oil in osteoarthritic dogs. J Vet Intern Med 24:1020-1026.
+  year: 2010
+  pmid: '20707845'
+  doi: 10.1111/j.1939-1676.2010.0572.x
+- id: source:freeman_vin_proceedings
+  type: study
+  citation: Freeman LM . VIN proceedings (cardiac nutrition).
+  url: https://vin.com/doc/?id=3846598
+  notes: seen only as a search-result snippet; not opened
+- id: source:welactin_label
+  type: product_label
+  citation: . .
+  url: https://www.1800petmeds.com/dog/otc-vitamins-and-supplements/product/nutramax-welactin-omega3-fish-oil-skin-coat-health-for/prod11837.html
+- id: source:pmid_12214321
+  type: study
+  citation: Adebowale A et al. 2002. . Biopharm Drug Dispos 23:217-225.
+  year: 2002
+  pmid: '12214321'
+  doi: 10.1002/bdd.315
+- id: source:cosequin_ds_label
+  type: product_label
+  citation: . .
+  url: https://www.1800petmeds.com/-10059.html?sku=CDS132
+- id: source:dasuquin_advanced_label
+  type: product_label
+  citation: . .
+  url: https://www.dasuquin.com/en/dasuquin-advanced-chewable-tablets/
+- id: source:dasuquin_cat_label
+  type: product_label
+  citation: . .
+  url: https://www.1800petmeds.com/Dasuquin+Cats+84+Capsules-11026.html
+- id: source:pmid_20020968
+  type: study
+  citation: D'Altilio M et al. 2007. . Toxicol Mech Methods.
+  year: 2007
+  pmid: '20020968'
+  doi: 10.1080/15376510600910469
+- id: source:pmid_36172458
+  type: study
+  citation: Varney JL, Fowler JW, Coon CN 2022. . Transl Anim Sci 6:txac123.
+  year: 2022
+  pmid: '36172458'
+  doi: 10.1093/tas/txac123
+- id: source:pmid_36899726
+  type: study
+  citation: Zapata A, Fernandez-Parra R 2023. . Animals 13:870.
+  year: 2023
+  pmid: '36899726'
+  doi: 10.3390/ani13050870
+- id: source:pmid_12387309
+  type: study
+  citation: Horvath K et al. 2002. Toxicity of methylsulfonylmethane in rats. Food Chem Toxicol.
+  year: 2002
+  pmid: '12387309'
+  doi: 10.1016/s0278-6915(02)00086-8
+- id: source:pmid_26205697
+  type: study
+  citation: Comblain F et al. 2016. . J Vet Pharmacol Ther.
+  year: 2016
+  pmid: '26205697'
+  doi: 10.1111/jvp.12251
+- id: source:pmid_35566349
+  type: study
+  citation: Song W et al. 2022. . Molecules 27:2998.
+  year: 2022
+  pmid: '35566349'
+  doi: 10.3390/molecules27092998
+- id: source:pmid_17999464
+  type: study
+  citation: 'Anand P et al. 2007. Bioavailability of curcumin: problems and promises. Mol Pharm.'
+  year: 2007
+  pmid: '17999464'
+  doi: 10.1021/mp700113r
+- id: source:pmid_31370899
+  type: study
+  citation: Miscioscia E et al. 2019. . BMC Vet Res 15:270.
+  year: 2019
+  pmid: '31370899'
+  doi: 10.1186/s12917-019-2021-7
+- id: source:pmid_40530040
+  type: study
+  citation: Ragetly GR et al. 2025. . Front Vet Sci.
+  year: 2025
+  pmid: '40530040'
+  doi: 10.3389/fvets.2025.1561793
+- id: source:pmid_19119949
+  type: study
+  citation: Webb CB et al. 2009. . Am J Vet Res 70:57.
+  year: 2009
+  pmid: '19119949'
+  doi: 10.2460/ajvr.70.1.57
+- id: source:fortiflora_label
+  type: product_label
+  citation: . .
+  url: https://www.1800petmeds.com/purina+fortiflora-prod10376.html
+- id: source:calming_care_label
+  type: product_label
+  citation: . .
+  url: https://www.purina.co.nz/food/cat/pro-plan-veterinary-diets-supplements-feline-calming-care
+- id: source:pmid_22412160
+  type: study
+  citation: Hart ML et al. 2012. . J Feline Med Surg.
+  year: 2012
+  pmid: '22412160'
+  doi: 10.1177/1098612X11434386
+- id: source:proviable_label
+  type: product_label
+  citation: . .
+  url: https://drugs.com/vet/proviable-dc-capsules.html
+- id: source:pmid_38635357
+  type: study
+  citation: Keller E et al. 2024. . J Feline Med Surg.
+  year: 2024
+  pmid: '38635357'
+  doi: 10.1177/1098612X241234151
+- id: source:pmid_41631677
+  type: study
+  citation: Rochon J et al. 2026. . J Feline Med Surg.
+  year: 2026
+  pmid: '41631677'
+  doi: 10.1177/1098612X261420519
+- id: source:pmid_12926783
+  type: study
+  citation: Flickinger EA et al. 2003. . J Anim Sci 81:2008.
+  year: 2003
+  pmid: '12926783'
+  doi: 10.2527/2003.8182008x
+- id: source:pmid_31758868
+  type: study
+  citation: Kather S et al. 2020. . J Vet Intern Med 34:13.
+  year: 2020
+  pmid: '31758868'
+  doi: 10.1111/jvim.15638
+- id: source:anxitane_label_uk
+  type: product_label
+  citation: . .
+  url: https://uk.virbac.com/products/anxitane-for-dogs-cats-help-calm-reduce-anxiety
+- id: source:anxitane_label_us
+  type: product_label
+  citation: . .
+  url: https://www.1800petmeds.com/dog-or-cat/otc-calming-and-anxiety/product/virbac-anxitane/11509.html
+- id: source:araujo_2010
+  type: study
+  citation: Araujo JA et al. 2010. Anxitane tablets reduce fear of human beings in a laboratory model of anxiety-related behavior.
+    J Vet Behav 5:268-275.
+  year: 2010
+  notes: not PubMed-indexed; DOI not verified
+- id: source:beata_2007_dogs
+  type: study
+  citation: Beata C et al. 2007. Effects of alpha-casozepine (Zylkene) versus selegiline hydrochloride (Selgian, Anipryl)
+    on anxiety disorders in dogs. J Vet Behav 2:175-183.
+  year: 2007
+  doi: 10.1016/j.jveb.2007.08.001
+  notes: read in full (publisher PDF); not PubMed-indexed
+- id: source:beata_2007_cats
+  type: study
+  citation: Beata C et al. 2007. Effect of alpha-casozepine (Zylkene) on anxiety in cats. J Vet Behav 2:40-46.
+  year: 2007
+  notes: citation via Makawey 2020; DOI not verified
+- id: source:pmid_33167443
+  type: study
+  citation: Makawey A, Iben C, Palme R 2020. . Animals 10:2047.
+  year: 2020
+  pmid: '33167443'
+  doi: 10.3390/ani10112047
+- id: source:zylkene_label
+  type: product_label
+  citation: . .
+  url: https://www.drugs.com/vet/zylkene-75-mg.html
+- id: source:pmid_40358664
+  type: study
+  citation: Abdous A et al. 2025. . Vet Med Sci.
+  year: 2025
+  pmid: '40358664'
+  doi: 10.1002/vms3.70410
+- id: source:pmid_31351807
+  type: study
+  citation: Niggemann JR et al. 2019. . Vet Anaesth Analg.
+  year: 2019
+  pmid: '31351807'
+  doi: 10.1016/j.vaa.2019.02.009
+- id: source:fda_xylitol
+  type: regulatory
+  citation: . Paws Off Xylitol; It's Dangerous for Dogs.
+  url: https://www.fda.gov/consumers/consumer-updates/paws-xylitol-its-dangerous-dogs
+- id: source:pmid_41676867
+  type: study
+  citation: Weese JS et al. 2026. . J Vet Pharmacol Ther.
+  year: 2026
+  pmid: '41676867'
+  doi: 10.1111/jvp.70050
+- id: source:pmid_39776678
+  type: study
+  citation: Carvajal-Campos A et al. 2024. . J Vet Res.
+  year: 2024
+  pmid: '39776678'
+  doi: 10.2478/jvetres-2024-0055
+- id: source:epakitin_label_vetoquinol
+  type: product_label
+  citation: . .
+  url: https://www.vetoquinolusa.com/products/epakitin
+- id: source:pmid_32293065
+  type: study
+  citation: Berk BA et al. 2020. . J Vet Intern Med.
+  year: 2020
+  pmid: '32293065'
+  doi: 10.1111/jvim.15756
+- id: source:pmid_42687438
+  type: study
+  citation: Gordon BN et al. 2026. . J Anim Sci.
+  year: 2026
+  pmid: '42687438'
+  doi: 10.1093/jas/skag193
+- id: source:stern_lab_2018
+  type: study
+  citation: Stern JA (UC Davis Stern Cardiac Genetics Laboratory) 2018. Frequently requested information regarding taurine
+    & DCM in Golden Retrievers (9 Aug 2018).
+  year: 2018
+  url: https://ccah.vetmed.ucdavis.edu/sites/g/files/dgvnsk4586/files/local_resources/pdfs/stern-lab-taurine-recommendations.pdf
+- id: source:pmid_1500324
+  type: study
+  citation: Pion PD et al. 1992. . J Am Vet Med Assoc 201:275-284.
+  year: 1992
+  pmid: '1500324'
+- id: source:pmid_32899633
+  type: study
+  citation: Christiansen LB et al. 2020. . Antioxidants 9:827.
+  year: 2020
+  pmid: '32899633'
+  doi: 10.3390/antiox9090827
+- id: source:pmid_41580384
+  type: study
+  citation: Bousquet W et al. 2025. . J Vet Cardiol.
+  year: 2025
+  pmid: '41580384'
+  doi: 10.1016/j.jvc.2025.12.004
+- id: source:pmid_37846884
+  type: study
+  citation: Henke CS et al. 2023. . J Vet Emerg Crit Care.
+  year: 2023
+  pmid: '37846884'
+  doi: 10.1111/vec.13330
+- id: source:pmid_34450683
+  type: study
+  citation: Ambar N et al. 2022. . J Vet Emerg Crit Care.
+  year: 2022
+  pmid: '34450683'
+  doi: 10.1111/vec.13110
+- id: source:pmid_32020932
+  type: study
+  citation: Foote K et al. 2020. . Can Vet J.
+  year: 2020
+  pmid: '32020932'
+- id: source:pmid_40920667
+  type: study
+  citation: de Souza RBMDS et al. 2025. . PLoS One 20:e0331843.
+  year: 2025
+  pmid: '40920667'
+  doi: 10.1371/journal.pone.0331843
+- id: source:pmid_42152695
+  type: study
+  citation: Theodoro SS et al. 2026. . J Anim Physiol Anim Nutr.
+  year: 2026
+  pmid: '42152695'
+  doi: 10.1111/jpn.70074
+- id: source:pmid_36694365
+  type: study
+  citation: Fries-Craft K et al. 2023. . J Anim Sci.
+  year: 2023
+  pmid: '36694365'
+  doi: 10.1093/jas/skad029
+- id: source:pmid_15284417
+  type: study
+  citation: Giffard CJ et al. 2004. . J Nutr 134:2126S.
+  year: 2004
+  pmid: '15284417'
+  doi: 10.1093/jn/134.8.2126S
+- id: source:pmid_42799681
+  type: study
+  citation: Wang TL et al. 2026. . J Anim Sci.
+  year: 2026
+  pmid: '42799681'
+  doi: 10.1093/jas/skag312
+- id: source:pmid_37621865
+  type: study
+  citation: Jewell DE, Panickar KS 2023. . Front Vet Sci 10:1242851.
+  year: 2023
+  pmid: '37621865'
+  doi: 10.3389/fvets.2023.1242851
+- id: source:pmid_34490396
+  type: study
+  citation: Vecchiato CG et al. 2021. . Front Vet Sci 8:707741.
+  year: 2021
+  pmid: '34490396'
+  doi: 10.3389/fvets.2021.707741
+- id: source:merck_vet_cholecalciferol
+  type: study
+  citation: . Cholecalciferol (vitamin D3) poisoning in animals.
+  url: https://www.merckvetmanual.com/toxicology/rodenticide-poisoning/cholecalciferol-vitamin-d3-poisoning-in-animals
+- id: source:avma_hills_recall_2019
+  type: study
+  citation: 2019. In March, Hill's expands canned dog food recall.
+  year: 2019
+  url: https://www.avma.org/News/JAVMANews/Pages/190515k.aspx

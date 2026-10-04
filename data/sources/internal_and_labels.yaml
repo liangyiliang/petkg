@@ -1,0 +1,9 @@
+- id: source:freyja_curator_reasoning
+  type: internal
+  citation: "Freyja curation rule reasoned from mechanism or class effect; no citation found. Requires veterinary sign-off before production."
+- {id: source:dasuquin_tablet_listing, type: product_label, citation: "Dasuquin chewable tablets listing (actives per tablet).", url: "https://www.vetuk.co.uk/dog-supplements-cat-supplements-joint-supplements-c-5_4/dasuquin-chewable-tablets-for-dogs-p-20976"}
+- {id: source:cosequin_cats_listing, type: product_label, citation: "Cosequin for Cats sprinkle capsules (label).", url: "https://www.cosequin.com/joint-supplement/cat/sprinkle-capsule/original"}
+- {id: source:fortiflora_vet_presenter_2024, type: product_label, year: 2024, citation: "Purina FortiFlora veterinary sales presenter 2024 (1 g sachet, SF68 CFU).", url: "https://vetcentre.purina.co.uk/sites/default/files/vet_materials/fortiflora_vet_sales_presenter_2024.pdf"}
+- {id: source:nordic_naturals_pet_listing, type: product_label, citation: "Nordic Naturals Omega-3 Pet liquid retailer listing.", url: "https://www.cheshirehorse.com/p/nordic-naturals-omega-3-pet-supplement---liquid/KW79237.html"}
+- {id: source:antinol_listing, type: product_label, citation: "Antinol softgel listing (50 mg PCSO-524 per softgel).", url: "https://www.vetrxdirect.com/product/view/antinol-joint-supplement-for-dogs-cats-otc"}
+- {id: source:denamarin_label, type: product_label, citation: "Denamarin coated tablets label (SAMe + silybin; enteric coated, blister).", url: "https://www.denamarin.com/coated-tablets"}

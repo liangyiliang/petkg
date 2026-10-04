@@ -1,0 +1,12 @@
+- id: species:dog
+  name: Dog
+  aliases: [canine, Canis familiaris]
+  metabolic_exponent: 0.75
+- id: species:cat
+  name: Cat
+  aliases: [feline, Felis catus]
+  metabolic_exponent: 0.75
+  notes: >-
+    Obligate carnivore. Limited hepatic glucuronidation (UGT1A6 pseudogene), so phenolic
+    compounds, salicylates, essential oils and some botanicals clear slowly. Cats are hard to
+    dose: small units, powders on wet food or liquids are preferred over large chews.

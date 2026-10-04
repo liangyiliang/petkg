@@ -1,0 +1,16 @@
+# Dogs: AAHA 2019 defines senior as the last 25% of estimated lifespan with no fixed ages.
+# The per-size thresholds below are 0.75 x an assumed size-class lifespan (derived, not AAHA).
+- {id: lifestage:dog_puppy, name: Puppy, species: species:dog, age_years: {min: 0, max: 1}, sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:dog_adult_toy_small, name: Adult dog (toy/small), species: species:dog, age_years: {min: 1, max: 10}, size_classes: [toy, small], sources: [source:aaha_2019_canine_life_stage, source:mcmillan_2024_dog_longevity]}
+- {id: lifestage:dog_senior_toy_small, name: Senior dog (toy/small), species: species:dog, age_years: {min: 10}, size_classes: [toy, small], sources: [source:aaha_2019_canine_life_stage, source:mcmillan_2024_dog_longevity]}
+- {id: lifestage:dog_adult_medium, name: Adult dog (medium), species: species:dog, age_years: {min: 1, max: 9.5}, size_classes: [medium], sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:dog_senior_medium, name: Senior dog (medium), species: species:dog, age_years: {min: 9.5}, size_classes: [medium], sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:dog_adult_large, name: Adult dog (large), species: species:dog, age_years: {min: 1.5, max: 8.5}, size_classes: [large], sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:dog_senior_large, name: Senior dog (large), species: species:dog, age_years: {min: 8.5}, size_classes: [large], sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:dog_adult_giant, name: Adult dog (giant), species: species:dog, age_years: {min: 1.5, max: 7}, size_classes: [giant], sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:dog_senior_giant, name: Senior dog (giant), species: species:dog, age_years: {min: 7}, size_classes: [giant], sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:dog_puppy_large_giant, name: Growing large/giant puppy, species: species:dog, age_years: {min: 1, max: 1.5}, size_classes: [large, giant], description: "Large and giant breeds keep growing to 18-24 months; calcium and vitamin D excess is a skeletal risk.", sources: [source:aaha_2019_canine_life_stage]}
+- {id: lifestage:cat_kitten, name: Kitten, species: species:cat, age_years: {min: 0, max: 1}, sources: [source:aaha_aafp_2021_feline_life_stage]}
+- {id: lifestage:cat_young_adult, name: Young adult cat, species: species:cat, age_years: {min: 1, max: 7}, sources: [source:aaha_aafp_2021_feline_life_stage]}
+- {id: lifestage:cat_mature_adult, name: Mature adult cat, species: species:cat, age_years: {min: 7, max: 10}, sources: [source:aaha_aafp_2021_feline_life_stage]}
+- {id: lifestage:cat_senior, name: Senior cat, species: species:cat, age_years: {min: 10}, sources: [source:aaha_aafp_2021_feline_life_stage]}

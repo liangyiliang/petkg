@@ -1,0 +1,620 @@
+# In-market products, used to match a computed formula to something a customer can buy.
+# One node per strength/size variant. Amounts are per unit and in the ingredient's dose_unit.
+# Weight bands converted from label pounds (1 lb = 0.4536 kg); "every other day" = 0.5/day.
+# `verified: false` on a component = amount not confirmed on the label.
+# Retrieved 2026-10-03 during the product research pass; re-verify before customer use.
+
+# ---- joint -------------------------------------------------------------------
+- id: product:dasuquin_advanced_soft_chew_sm_md
+  name: Dasuquin Advanced Soft Chews (small/medium dogs < 60 lb)
+  brand: Dasuquin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:soft_chew_cold
+  unit_name: chew
+  actives:
+    - {ingredient: ingredient:glucosamine, label_name: Glucosamine HCl, amount_per_unit: 600, unit: mg}
+    - {ingredient: ingredient:msm, label_name: MSM, amount_per_unit: 400, unit: mg}
+    - {ingredient: ingredient:chondroitin_sulfate, label_name: Sodium chondroitin sulfate, amount_per_unit: 250, unit: mg}
+    - {ingredient: ingredient:avocado_soybean_unsaponifiables, label_name: ASU powder (min 30% ASU), amount_per_unit: 45, unit: mg}
+    - {ingredient: ingredient:omega3_epa_dha, label_name: "EPA, DHA, ETA (combined)", amount_per_unit: 65, unit: mg}
+    - {ingredient: null, label_name: "Proprietary blend: Boswellia, Curcuma longa, green tea extract (EGCG), alpha-lipoic acid", amount_per_unit: 70, unit: mg}
+    - {ingredient: ingredient:manganese, label_name: Manganese (ascorbate), amount_per_unit: 1, unit: mg}
+  inactives_of_note: [allergen:fish, allergen:soy, ingredient:alpha_lipoic_acid, ingredient:green_tea_extract]
+  dosing:
+    - {min_kg: 4.5, max_kg: 13.6, units_per_day: 1, phase: loading}
+    - {min_kg: 4.5, max_kg: 13.6, units_per_day: 0.5}
+    - {min_kg: 13.6, max_kg: 27.2, units_per_day: 2, phase: loading}
+    - {min_kg: 13.6, max_kg: 27.2, units_per_day: 1}
+  claims: [need:joint_mobility]
+  nasc_seal: false
+  source_url: https://www.dasuquin.com/en/dasuquin-advanced-soft-chews/
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Glucosamine source not stated. Proprietary blend amounts per component not disclosed.
+- id: product:dasuquin_advanced_soft_chew_lg
+  name: Dasuquin Advanced Soft Chews (large dogs >= 60 lb)
+  brand: Dasuquin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:soft_chew_cold
+  unit_name: chew
+  actives:
+    - {ingredient: ingredient:glucosamine, label_name: Glucosamine HCl, amount_per_unit: 900, unit: mg}
+    - {ingredient: ingredient:msm, label_name: MSM, amount_per_unit: 800, unit: mg}
+    - {ingredient: ingredient:chondroitin_sulfate, label_name: Sodium chondroitin sulfate, amount_per_unit: 350, unit: mg}
+    - {ingredient: ingredient:avocado_soybean_unsaponifiables, label_name: ASU powder, amount_per_unit: 90, unit: mg}
+    - {ingredient: ingredient:omega3_epa_dha, label_name: "EPA, DHA, ETA (combined)", amount_per_unit: 85, unit: mg}
+    - {ingredient: null, label_name: "Proprietary blend: Boswellia, Curcuma longa, green tea extract, alpha-lipoic acid", amount_per_unit: 140, unit: mg}
+    - {ingredient: ingredient:manganese, label_name: Manganese (ascorbate), amount_per_unit: 3, unit: mg}
+  inactives_of_note: [allergen:fish, allergen:soy, ingredient:alpha_lipoic_acid, ingredient:green_tea_extract]
+  dosing:
+    - {min_kg: 27.2, max_kg: 54.4, units_per_day: 2, phase: loading}
+    - {min_kg: 27.2, max_kg: 54.4, units_per_day: 1}
+  claims: [need:joint_mobility]
+  nasc_seal: false
+  source_url: https://www.dasuquin.com/en/dasuquin-advanced-soft-chews/
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:cosequin_max_strength_msm_tablet
+  name: Cosequin Maximum Strength Plus MSM chewable tablets
+  brand: Cosequin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:chewable_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:glucosamine, label_name: Glucosamine HCl, amount_per_unit: 600, unit: mg}
+    - {ingredient: ingredient:chondroitin_sulfate, label_name: Sodium chondroitin sulfate, amount_per_unit: 300, unit: mg}
+    - {ingredient: ingredient:msm, label_name: MSM, amount_per_unit: 250, unit: mg}
+    - {ingredient: ingredient:manganese, label_name: Manganese (ascorbate), amount_per_unit: 3, unit: mg}
+  inactives_of_note: [ingredient:brewers_yeast, allergen:shellfish, allergen:beef]
+  dosing:
+    - {min_kg: 0, max_kg: 6.8, units_per_day: 0.25}
+    - {min_kg: 6.8, max_kg: 13.6, units_per_day: 0.5}
+    - {min_kg: 13.6, max_kg: 27.2, units_per_day: 1}
+    - {min_kg: 27.2, units_per_day: 1.5}
+  claims: [need:joint_mobility]
+  nasc_seal: false
+  source_url: https://www.cosequin.com/joint-supplement/dog/chewable-tablet/msm
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Inactive ingredients (brewers yeast, shellfish glucosamine, bovine chondroitin) from PetMeds listing.
+- id: product:antinol_plus_dog
+  name: Antinol Plus for dogs (softgel)
+  brand: Antinol
+  manufacturer: Vetz Petz
+  species: [species:dog]
+  form: form:softgel
+  unit_name: softgel
+  actives:
+    - {ingredient: null, label_name: "EAB-277 blend: green-lipped mussel lipid extract, krill oil, plant oils", amount_per_unit: 50, unit: mg}
+  inactives_of_note: [allergen:shellfish]
+  dosing:
+    - {min_kg: 0, max_kg: 20, units_per_day: 2, phase: loading}
+    - {min_kg: 0, max_kg: 20, units_per_day: 1}
+    - {min_kg: 20, units_per_day: 4, phase: loading}
+    - {min_kg: 20, units_per_day: 2}
+  claims: [need:joint_mobility]
+  nasc_seal: true
+  source_url: https://antinolplus.com/products/antinol-plus-for-dogs
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: >-
+    Lipid extract dosed in tens of mg, not comparable on a mg basis with freeze-dried mussel powder,
+    so it is deliberately not mapped to ingredient:green_lipped_mussel.
+- id: product:zesty_paws_hip_joint_bites
+  name: Zesty Paws Hip & Joint Mobility Bites
+  brand: Zesty Paws
+  manufacturer: Zesty Paws (H&H Group)
+  species: [species:dog]
+  form: form:soft_chew_extruded
+  unit_name: chew
+  actives:
+    - {ingredient: null, label_name: "Proprietary Hip & Joint Blend (glucosamine HCl, chondroitin, ...)", amount_per_unit: 1510, unit: mg, verified: false}
+    - {ingredient: ingredient:msm, label_name: OptiMSM, amount_per_unit: 250, unit: mg}
+  inactives_of_note: [allergen:shellfish, allergen:chicken]
+  dosing:
+    - {min_kg: 0, max_kg: 11.3, units_per_day: 1}
+    - {min_kg: 11.3, max_kg: 34, units_per_day: 2}
+    - {min_kg: 34, units_per_day: 3}
+  claims: [need:joint_mobility]
+  nasc_seal: true
+  source_url: https://www.zestypaws.com/products/mobility-bites
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Mass-market contrast case; glucosamine/chondroitin split not disclosed; unclear if 1510 mg is per chew.
+- id: product:flexadin_advanced_uc_ii
+  name: Flexadin Advanced with UC-II
+  brand: Flexadin
+  manufacturer: Vetoquinol
+  species: [species:dog, species:cat]
+  form: form:soft_chew_cold
+  unit_name: chew
+  actives:
+    - {ingredient: ingredient:undenatured_collagen_type_ii, label_name: UC-II undenatured type II collagen, amount_per_unit: 40, unit: mg}
+  inactives_of_note: [ingredient:brewers_yeast, allergen:chicken, allergen:fish, allergen:wheat, allergen:soy]
+  dosing:
+    - {min_kg: 0, units_per_day: 1}
+  claims: [need:joint_mobility]
+  source_url: https://www.vetoquinolusa.com/products/flexadin-advanced-with-uc-ii
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:dasuquin_sprinkle_cat
+  name: Dasuquin sprinkle capsules for cats
+  brand: Dasuquin
+  manufacturer: Nutramax Laboratories
+  species: [species:cat]
+  form: form:sprinkle_capsule
+  unit_name: capsule
+  actives:
+    - {ingredient: ingredient:glucosamine, label_name: Glucosamine HCl, amount_per_unit: 125, unit: mg}
+    - {ingredient: ingredient:chondroitin_sulfate, label_name: Sodium chondroitin sulfate, amount_per_unit: 100, unit: mg}
+    - {ingredient: ingredient:avocado_soybean_unsaponifiables, label_name: ASU powder, amount_per_unit: 25, unit: mg}
+    - {ingredient: ingredient:boswellia_serrata, label_name: Boswellia serrata extract, amount_per_unit: 11, unit: mg}
+    - {ingredient: ingredient:green_tea_extract, label_name: Green tea extract, amount_per_unit: 9, unit: mg}
+  inactives_of_note: [allergen:soy]
+  dosing:
+    - {min_kg: 0, max_kg: 4.5, units_per_day: 0.5}
+    - {min_kg: 4.5, units_per_day: 1}
+  claims: [need:joint_mobility]
+  nasc_seal: false
+  source_url: https://www.dasuquin.com/product/dasuquin-sprinkle-capsules-for-cats
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:cosequin_sprinkle_cat
+  name: Cosequin sprinkle capsules for cats
+  brand: Cosequin
+  manufacturer: Nutramax Laboratories
+  species: [species:cat]
+  form: form:sprinkle_capsule
+  unit_name: capsule
+  actives:
+    - {ingredient: ingredient:glucosamine, label_name: Glucosamine HCl, amount_per_unit: 125, unit: mg}
+    - {ingredient: ingredient:chondroitin_sulfate, label_name: Sodium chondroitin sulfate, amount_per_unit: 100, unit: mg}
+    - {ingredient: ingredient:manganese, label_name: Manganese (ascorbate), amount_per_unit: 1, unit: mg}
+  dosing:
+    - {min_kg: 0, max_kg: 4.5, units_per_day: 0.5}
+    - {min_kg: 4.5, units_per_day: 1}
+  claims: [need:joint_mobility]
+  nasc_seal: false
+  source_url: https://www.cosequin.com/joint-supplement/cat/sprinkle-capsule/original
+  retrieved: 2026-10-03
+  verification: label_confirmed
+
+# ---- omega-3 -------------------------------------------------------------------
+- id: product:welactin_canine_liquid
+  name: Welactin Omega-3 Canine liquid (6 mL scoop)
+  brand: Welactin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:liquid_oil
+  unit_name: 6 mL scoop
+  actives:
+    - {ingredient: ingredient:omega3_epa_dha, label_name: EPA + DHA, amount_per_unit: 1330, unit: mg}
+  inactives_of_note: [allergen:fish]
+  dosing:
+    - {min_kg: 2.3, max_kg: 4.5, units_per_day: 0.25}
+    - {min_kg: 4.5, max_kg: 9.1, units_per_day: 0.5}
+    - {min_kg: 9.1, max_kg: 20.4, units_per_day: 1}
+    - {min_kg: 20.4, max_kg: 36.3, units_per_day: 1.5}
+    - {min_kg: 36.3, max_kg: 52.2, units_per_day: 2}
+    - {min_kg: 52.2, units_per_day: 2.5}
+  claims: [need:skin_coat_barrier, need:immune_support, need:cardiac_support, need:renal_support, need:joint_mobility]
+  nasc_seal: false
+  source_url: https://www.welactin.com/omega-3-supplements/dogs/liquid
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:welactin_canine_softgel
+  name: Welactin Omega-3 Canine softgels
+  brand: Welactin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:softgel
+  unit_name: softgel
+  actives:
+    - {ingredient: ingredient:omega3_epa_dha, label_name: EPA 155 mg + DHA 100 mg, amount_per_unit: 255, unit: mg}
+  inactives_of_note: [allergen:fish]
+  dosing:
+    - {min_kg: 0, max_kg: 9.1, units_per_day: 1}
+    - {min_kg: 9.1, max_kg: 18.1, units_per_day: 2}
+    - {min_kg: 18.1, max_kg: 27.2, units_per_day: 3}
+    - {min_kg: 27.2, max_kg: 36.3, units_per_day: 4}
+    - {min_kg: 36.3, max_kg: 45.4, units_per_day: 5}
+    - {min_kg: 45.4, units_per_day: 6}
+  claims: [need:skin_coat_barrier, need:immune_support, need:cardiac_support, need:renal_support]
+  nasc_seal: false
+  source_url: https://www.welactin.com/omega-3-supplements/dogs/softgels
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Label rule is 1 softgel per 20 lb, expanded here into bands.
+- id: product:welactin_feline_liquid
+  name: Welactin Omega-3 Feline liquid
+  brand: Welactin
+  manufacturer: Nutramax Laboratories
+  species: [species:cat]
+  form: form:liquid_oil
+  unit_name: ~1.25 mL scoop
+  actives:
+    - {ingredient: ingredient:omega3_epa_dha, label_name: EPA + DHA, amount_per_unit: 265, unit: mg}
+  inactives_of_note: [allergen:fish]
+  dosing:
+    - {min_kg: 0, max_kg: 2.7, units_per_day: 0.5}
+    - {min_kg: 2.7, units_per_day: 1}
+  claims: [need:skin_coat_barrier]
+  nasc_seal: false
+  source_url: https://www.welactin.com/omega-3-supplements/cats/liquid
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:nordic_naturals_omega3_pet
+  name: Nordic Naturals Omega-3 Pet liquid
+  brand: Nordic Naturals
+  manufacturer: Nordic Naturals
+  species: [species:dog, species:cat]
+  form: form:liquid_oil
+  unit_name: mL
+  actives:
+    - {ingredient: ingredient:omega3_epa_dha, label_name: EPA 147 mg + DHA 101 mg per mL, amount_per_unit: 248, unit: mg}
+  inactives_of_note: [allergen:fish]
+  dosing:
+    - {min_kg: 0.9, max_kg: 2.3, units_per_day: 0.5}
+    - {min_kg: 2.3, max_kg: 4.5, units_per_day: 1}
+    - {min_kg: 4.5, max_kg: 9.1, units_per_day: 2}
+    - {min_kg: 9.1, max_kg: 18.1, units_per_day: 2.5}
+    - {min_kg: 18.1, max_kg: 27.2, units_per_day: 5}
+    - {min_kg: 27.2, units_per_day: 7.5}
+  claims: [need:skin_coat_barrier, need:joint_mobility, need:cognitive_aging, need:cardiac_support]
+  source_url: https://www.cheshirehorse.com/p/nordic-naturals-omega-3-pet-supplement---liquid/KW79237.html
+  retrieved: 2026-10-03
+  verification: retailer_listing
+  notes: >-
+    Dog bands shown (cat bands are lower: 0.25-1.25 mL by weight and are not encoded). A second
+    retailer shows 142/92 mg EPA/DHA per mL. Large-dog bands above 40 lb are extrapolated from the
+    label's tsp increments; confirm.
+
+# ---- GI ------------------------------------------------------------------
+- id: product:fortiflora_canine
+  name: Purina Pro Plan Veterinary Supplements FortiFlora Canine
+  brand: Purina Pro Plan Veterinary Supplements
+  manufacturer: Nestle Purina PetCare
+  species: [species:dog]
+  form: form:powder_sachet
+  unit_name: 1 g sachet
+  actives:
+    - {ingredient: ingredient:enterococcus_faecium_sf68, label_name: Enterococcus faecium SF68 (min), amount_per_unit: 1.0e8, unit: CFU}
+    - {ingredient: ingredient:vitamin_e, label_name: Vitamin E supplement, verified: false}
+    - {ingredient: ingredient:zinc, label_name: Zinc proteinate, verified: false}
+  inactives_of_note: [ingredient:brewers_yeast]
+  dosing:
+    - {min_kg: 0, units_per_day: 1}
+  claims: [need:gi_microbiome_stool_quality, need:immune_support]
+  source_url: https://www.1800petmeds.com/dog-or-cat/otc-vitamins-and-supplements/product/purina-fortiflora/prod10376.html
+  retrieved: 2026-10-03
+  verification: retailer_listing
+  notes: Contains animal digest palatant (species not stated).
+- id: product:fortiflora_feline
+  name: Purina Pro Plan Veterinary Supplements FortiFlora Feline
+  brand: Purina Pro Plan Veterinary Supplements
+  manufacturer: Nestle Purina PetCare
+  species: [species:cat]
+  form: form:powder_sachet
+  unit_name: 1 g sachet
+  actives:
+    - {ingredient: ingredient:enterococcus_faecium_sf68, label_name: Enterococcus faecium SF68 (min), amount_per_unit: 1.0e8, unit: CFU}
+    - {ingredient: ingredient:taurine, label_name: Taurine, verified: false}
+  inactives_of_note: [ingredient:brewers_yeast]
+  dosing:
+    - {min_kg: 0, units_per_day: 1}
+  claims: [need:gi_microbiome_stool_quality, need:immune_support]
+  source_url: https://www.1800petmeds.com/dog-or-cat/otc-vitamins-and-supplements/product/purina-fortiflora/prod10376.html
+  retrieved: 2026-10-03
+  verification: retailer_listing
+- id: product:proviable_dc
+  name: Proviable-DC capsules
+  brand: Proviable
+  manufacturer: Nutramax Laboratories
+  species: [species:dog, species:cat]
+  form: form:sprinkle_capsule
+  unit_name: capsule
+  actives:
+    - {ingredient: ingredient:multistrain_probiotic, label_name: 7-strain blend (min), amount_per_unit: 5.0e9, unit: CFU}
+    - {ingredient: ingredient:inulin_fos, label_name: Fructooligosaccharide, verified: false}
+  dosing:
+    - {min_kg: 0, units_per_day: 1}
+  claims: [need:gi_microbiome_stool_quality]
+  nasc_seal: false
+  source_url: https://www.proviable.com/proviable-dc-capsules-for-dogs
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Strain set differs from Visbiome/SLAB51; ingredient-level match is approximate.
+- id: product:cobalequin_small
+  name: Cobalequin chewable (cats and small dogs)
+  brand: Cobalequin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog, species:cat]
+  form: form:chewable_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:cobalamin, label_name: Cyanocobalamin 250 mcg, amount_per_unit: 0.25, unit: mg}
+    - {ingredient: null, label_name: 5-MTHF 50 mcg, amount_per_unit: 0.05, unit: mg}
+  inactives_of_note: [allergen:chicken]
+  dosing:
+    - {min_kg: 0, max_kg: 10, units_per_day: 1}
+  claims: [need:cobalamin_repletion]
+  nasc_seal: false
+  source_url: https://www.cobalequin.com/
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:cobalequin_large
+  name: Cobalequin chewable (medium and large dogs)
+  brand: Cobalequin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:chewable_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:cobalamin, label_name: Cyanocobalamin 1000 mcg, amount_per_unit: 1.0, unit: mg}
+    - {ingredient: null, label_name: 5-MTHF 175 mcg, amount_per_unit: 0.175, unit: mg}
+  inactives_of_note: [allergen:chicken]
+  dosing:
+    - {min_kg: 10, max_kg: 45.4, units_per_day: 1}
+    - {min_kg: 45.4, units_per_day: 2}
+  claims: [need:cobalamin_repletion]
+  nasc_seal: false
+  source_url: https://www.cobalequin.com/
+  retrieved: 2026-10-03
+  verification: label_confirmed
+
+# ---- liver -----------------------------------------------------------------
+- id: product:denamarin_tablet_small
+  name: Denamarin tablets (cats and small dogs up to 12 lb)
+  brand: Denamarin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog, species:cat]
+  form: form:enteric_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:same, label_name: S-Adenosylmethionine, amount_per_unit: 90, unit: mg}
+    - {ingredient: ingredient:silybin, label_name: Silybin A+B (from 31 mg SPC), amount_per_unit: 9, unit: mg}
+  dosing:
+    - {min_kg: 0, max_kg: 5.5, units_per_day: 1}
+    - {min_kg: 5.5, max_kg: 6, units_per_day: 2}
+  claims: [need:hepatic_support]
+  nasc_seal: false
+  source_url: https://www.denamarin.com/coated-tablets
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Give on an empty stomach.
+- id: product:denamarin_tablet_medium
+  name: Denamarin tablets (medium dogs 13-34 lb)
+  brand: Denamarin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:enteric_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:same, label_name: S-Adenosylmethionine, amount_per_unit: 225, unit: mg}
+    - {ingredient: ingredient:silybin, label_name: Silybin A+B (from 82 mg SPC), amount_per_unit: 24, unit: mg}
+  dosing:
+    - {min_kg: 6, max_kg: 15.5, units_per_day: 1}
+  claims: [need:hepatic_support]
+  nasc_seal: false
+  source_url: https://www.denamarin.com/coated-tablets
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:denamarin_tablet_large
+  name: Denamarin tablets (large dogs 35 lb+)
+  brand: Denamarin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:enteric_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:same, label_name: S-Adenosylmethionine, amount_per_unit: 425, unit: mg}
+    - {ingredient: ingredient:silybin, label_name: Silybin A+B (from 120 mg SPC), amount_per_unit: 35, unit: mg}
+  dosing:
+    - {min_kg: 16, max_kg: 30, units_per_day: 1}
+    - {min_kg: 30, max_kg: 54.5, units_per_day: 2}
+    - {min_kg: 54.5, units_per_day: 3}
+  claims: [need:hepatic_support]
+  nasc_seal: false
+  source_url: https://www.denamarin.com/coated-tablets
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Give on an empty stomach.
+
+# ---- behaviour -------------------------------------------------------------
+- id: product:zylkene_75
+  name: Zylkene 75 mg capsules
+  brand: Zylkene
+  manufacturer: Vetoquinol
+  species: [species:dog, species:cat]
+  form: form:sprinkle_capsule
+  unit_name: capsule
+  actives:
+    - {ingredient: ingredient:alpha_casozepine, label_name: Alpha-casozepine (hydrolysed milk protein), amount_per_unit: 75, unit: mg}
+  inactives_of_note: [allergen:dairy]
+  dosing:
+    - {min_kg: 0, max_kg: 5, units_per_day: 1}
+  claims: [need:anxiety_stress]
+  source_url: https://www.vetoquinolusa.com/products/zylkene
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:zylkene_225
+  name: Zylkene 225 mg capsules
+  brand: Zylkene
+  manufacturer: Vetoquinol
+  species: [species:dog, species:cat]
+  form: form:sprinkle_capsule
+  unit_name: capsule
+  actives:
+    - {ingredient: ingredient:alpha_casozepine, label_name: Alpha-casozepine, amount_per_unit: 225, unit: mg}
+  inactives_of_note: [allergen:dairy]
+  dosing:
+    - {min_kg: 5, max_kg: 15, units_per_day: 1}
+  claims: [need:anxiety_stress]
+  source_url: https://www.vetoquinolusa.com/products/zylkene
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Weight band follows the 15 mg/kg label convention; confirm band edges on the package.
+- id: product:zylkene_450
+  name: Zylkene 450 mg capsules
+  brand: Zylkene
+  manufacturer: Vetoquinol
+  species: [species:dog]
+  form: form:sprinkle_capsule
+  unit_name: capsule
+  actives:
+    - {ingredient: ingredient:alpha_casozepine, label_name: Alpha-casozepine, amount_per_unit: 450, unit: mg}
+  inactives_of_note: [allergen:dairy]
+  dosing:
+    - {min_kg: 15, max_kg: 30, units_per_day: 1}
+    - {min_kg: 30, max_kg: 60, units_per_day: 2}
+  claims: [need:anxiety_stress]
+  source_url: https://www.vetoquinolusa.com/products/zylkene
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Weight band follows the 15 mg/kg label convention; confirm band edges on the package.
+- id: product:solliquin_small
+  name: Solliquin soft chews (small dogs and cats < 30 lb)
+  brand: Solliquin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog, species:cat]
+  form: form:soft_chew_cold
+  unit_name: chew
+  actives:
+    - {ingredient: ingredient:l_theanine, label_name: L-Theanine, amount_per_unit: 35, unit: mg}
+    - {ingredient: null, label_name: Magnolia and Phellodendron extracts, amount_per_unit: 75, unit: mg}
+    - {ingredient: null, label_name: Whey protein concentrate, amount_per_unit: 25, unit: mg}
+  inactives_of_note: [allergen:dairy]
+  dosing:
+    - {min_kg: 0, max_kg: 3.6, units_per_day: 0.5}
+    - {min_kg: 3.6, max_kg: 6.8, units_per_day: 1}
+    - {min_kg: 6.8, max_kg: 13.6, units_per_day: 2}
+  claims: [need:anxiety_stress]
+  nasc_seal: false
+  source_url: https://www.solliquin.com/calming-soft-chews-for-small-dogs-and-cats
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:solliquin_large
+  name: Solliquin soft chews (medium/large dogs > 31 lb)
+  brand: Solliquin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:soft_chew_cold
+  unit_name: chew
+  actives:
+    - {ingredient: ingredient:l_theanine, label_name: L-Theanine, amount_per_unit: 102, unit: mg}
+    - {ingredient: null, label_name: Magnolia and Phellodendron extracts, amount_per_unit: 225, unit: mg}
+    - {ingredient: null, label_name: Whey protein concentrate, amount_per_unit: 50, unit: mg}
+  inactives_of_note: [allergen:dairy]
+  dosing:
+    - {min_kg: 13.6, max_kg: 20.4, units_per_day: 1}
+    - {min_kg: 20.4, max_kg: 40.8, units_per_day: 2}
+    - {min_kg: 40.8, units_per_day: 3}
+  claims: [need:anxiety_stress]
+  nasc_seal: false
+  source_url: https://www.solliquin.com/calming-soft-chews-for-small-dogs-and-cats
+  retrieved: 2026-10-03
+  verification: label_confirmed
+- id: product:anxitane_100
+  name: Anxitane M/L 100 mg chewable tablets
+  brand: Anxitane
+  manufacturer: Virbac
+  species: [species:dog]
+  form: form:chewable_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:l_theanine, label_name: L-Theanine (Suntheanine), amount_per_unit: 100, unit: mg}
+  inactives_of_note: [allergen:chicken]
+  dosing:
+    - {min_kg: 10, max_kg: 25, units_per_day: 1}
+    - {min_kg: 25, units_per_day: 2}
+  claims: [need:anxiety_stress]
+  source_url: https://vet-us.virbac.com/home/products/behavior/anxitane-l-theanine-chewable-tab.html
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Label dose is BID (twice daily); units_per_day counts both doses. Band edges from PetMeds; confirm.
+- id: product:calming_care_canine
+  name: Purina Pro Plan Veterinary Supplements Calming Care (canine)
+  brand: Purina Pro Plan Veterinary Supplements
+  manufacturer: Nestle Purina PetCare
+  species: [species:dog]
+  form: form:powder_sachet
+  unit_name: packet
+  actives:
+    - {ingredient: ingredient:bifidobacterium_longum_bl999, label_name: Bifidobacterium longum BL999, amount_per_unit: 1.0e9, unit: CFU}
+  dosing:
+    - {min_kg: 0, units_per_day: 1}
+  claims: [need:anxiety_stress]
+  source_url: https://www.1800petmeds.com/dog/otc-calming-and-anxiety/product/purina-pro-plan-calming-care/prod12104.html
+  retrieved: 2026-10-03
+  verification: retailer_listing
+  notes: Liver-flavour palatant (species not stated).
+
+# ---- renal / urinary ---------------------------------------------------------
+- id: product:epakitin
+  name: Epakitin (phosphate binder powder)
+  brand: Epakitin
+  manufacturer: Vetoquinol
+  species: [species:dog, species:cat]
+  form: form:powder_sachet
+  unit_name: 1 g scoop
+  actives:
+    - {ingredient: ingredient:chitosan_calcium_carbonate, label_name: Chitosan + calcium carbonate blend, amount_per_unit: 1000, unit: mg, verified: false}
+  inactives_of_note: [allergen:shellfish, allergen:soy]
+  dosing:
+    - {min_kg: 0, max_kg: 5, units_per_day: 2}
+    - {min_kg: 5, max_kg: 10, units_per_day: 4}
+    - {min_kg: 10, max_kg: 15, units_per_day: 6}
+  claims: [need:phosphate_management, need:renal_support]
+  source_url: https://www.vetoquinolusa.com/products/epakitin
+  retrieved: 2026-10-03
+  verification: unverified
+  notes: >-
+    Label rule 1 g per 5 kg twice daily (bands expanded to 15 kg). Per-gram composition conflicts
+    between sources (80 mg chitosan + 100 mg CaCO3 vs 200 mg chitosan + 330 mg CaCO3).
+- id: product:azodyl
+  name: Azodyl capsules
+  brand: Azodyl
+  manufacturer: Vetoquinol
+  species: [species:dog, species:cat]
+  form: form:capsule
+  unit_name: capsule
+  actives:
+    - {ingredient: null, label_name: "S. thermophilus KB19, L. acidophilus KB27, B. longum KB31 (15 x 10^9 CFU total)", amount_per_unit: 1.5e10, unit: CFU}
+  inactives_of_note: []
+  dosing:
+    - {min_kg: 0, max_kg: 2.3, units_per_day: 1}
+    - {min_kg: 2.3, max_kg: 4.5, units_per_day: 2}
+    - {min_kg: 4.5, units_per_day: 3}
+  claims: [need:renal_support]
+  source_url: https://www.vetoquinolusa.com/products/azodyl
+  retrieved: 2026-10-03
+  verification: retailer_listing
+  notes: >-
+    Not mapped to ingredient:multistrain_probiotic: different strains and no renal efficacy edge
+    in the KG. Given whole, not opened; refrigerate.
+- id: product:crananidin_dog
+  name: Crananidin chewable tablets
+  brand: Crananidin
+  manufacturer: Nutramax Laboratories
+  species: [species:dog]
+  form: form:chewable_tablet
+  unit_name: tablet
+  actives:
+    - {ingredient: ingredient:cranberry_pac, label_name: Proanthocyanidins (from 93 mg cranberry extract), amount_per_unit: 16, unit: mg}
+  inactives_of_note: []
+  dosing:
+    - {min_kg: 0, max_kg: 4.5, units_per_day: 0.25}
+    - {min_kg: 4.5, max_kg: 9.1, units_per_day: 0.5}
+    - {min_kg: 9.1, max_kg: 18.1, units_per_day: 1}
+    - {min_kg: 18.1, max_kg: 27.2, units_per_day: 1.5}
+    - {min_kg: 27.2, max_kg: 36.3, units_per_day: 2}
+    - {min_kg: 36.3, max_kg: 45.4, units_per_day: 2.5}
+  claims: [need:urinary_tract_health]
+  nasc_seal: false
+  source_url: https://www.crananidin.com/
+  retrieved: 2026-10-03
+  verification: label_confirmed
+  notes: Natural liver flavour (species not stated); PAC assay method not stated.

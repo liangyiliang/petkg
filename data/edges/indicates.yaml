@@ -1,0 +1,22 @@
+# Condition -> HealthNeed bridge consumed by the step-1 rules (priority 1 = primary).
+# Rules may also emit needs from lab values without a diagnosed condition.
+- {condition: condition:osteoarthritis, need: need:joint_mobility, priority: 1, sources: [source:pmid_36142319]}
+- {condition: condition:hip_dysplasia, need: need:joint_mobility, priority: 2, sources: [source:gough_thomas_2018]}
+- {condition: condition:elbow_dysplasia, need: need:joint_mobility, priority: 2, sources: [source:gough_thomas_2018]}
+- {condition: condition:cranial_cruciate_ligament_rupture, need: need:joint_mobility, priority: 2, sources: [source:gough_thomas_2018]}
+- {condition: condition:atopic_dermatitis, need: need:skin_coat_barrier, priority: 1, sources: [source:pmid_34645070]}
+- {condition: condition:chronic_enteropathy, need: need:gi_mucosal_inflammation, priority: 1, sources: [source:pmid_24722235]}
+- {condition: condition:chronic_enteropathy, need: need:cobalamin_repletion, priority: 2, sources: [source:pmid_29428088],
+   curation: {status: draft, notes: "Only when serum cobalamin is low; step-1 rule should require the lab value."}}
+- {condition: condition:exocrine_pancreatic_insufficiency, need: need:cobalamin_repletion, priority: 1, sources: [source:pmid_29428088]}
+- {condition: condition:chronic_kidney_disease, need: need:renal_support, priority: 1, sources: [source:pmid_9605110]}
+- {condition: condition:hyperphosphatemia, need: need:phosphate_management, priority: 1, sources: [source:pmid_15298059]}
+- {condition: condition:hepatopathy, need: need:hepatic_support, priority: 1, sources: [source:pmid_21689156]}
+- {condition: condition:cognitive_dysfunction, need: need:cognitive_aging, priority: 1, sources: [source:pmid_20141643]}
+- {condition: condition:anxiety_disorder, need: need:anxiety_stress, priority: 1, sources: [source:doi_10_1016_j_jveb_2010_02_003]}
+- {condition: condition:dilated_cardiomyopathy, need: need:cardiac_support, priority: 1, sources: [source:pmid_9298474]}
+- {condition: condition:myxomatous_mitral_valve_disease, need: need:cardiac_support, priority: 1, sources: [source:pmid_33764833]}
+- {condition: condition:hypertrophic_cardiomyopathy, need: need:cardiac_support, priority: 2, sources: [source:gough_thomas_2018]}
+- {condition: condition:recurrent_uti, need: need:urinary_tract_health, priority: 1, sources: [source:pmid_27027843]}
+- {condition: condition:obesity, need: need:weight_lean_mass, priority: 1, sources: [source:pmid_11110381]}
+- {condition: condition:periodontal_disease, need: need:oral_dental_health, priority: 1, sources: [source:gough_thomas_2018]}

@@ -1,0 +1,858 @@
+# Efficacy evidence: veterinary supplement knowledge graph (dogs and cats)
+# Generated 2026-10-03.
+# How citations were checked: every PMID below was looked up live through NCBI E-utilities
+# (esearch/esummary/efetch). The first author, year, journal, DOI and title were matched,
+# and the abstract was read before writing effect_summary. DOIs given without a PMID were
+# matched through the Crossref API. Items marked "unverified" could not be confirmed this way.
+#
+# Grade scale:
+#   A   = multiple RCTs or a systematic review/meta-analysis in the target species, consistent positive results
+#   B   = at least one controlled trial in the target species, or mixed RCT results
+#   C   = uncontrolled/open-label studies in the species, or strong data extrapolated from other species
+#   D   = mechanistic/in-vitro, anecdote, or expert opinion only
+#   NEG = good-quality evidence in the species showing no effect
+# Convention: if the only controlled evidence is for a multi-ingredient product, the
+# ingredient-level grade is usually lowered one step and the caveat says so.
+
+meta:
+  scope: "34 ingredients x 15 needs x {dog, cat}; only pairs with real literature are recorded"
+  systematic_reviews_used:
+    - {id: "PMID:22404506", doi: "10.1111/j.1939-1676.2012.00901.x", first_author: "Vandeweerd JM", year: 2012, note: "JVIM systematic review, nutraceuticals for OA in horses, dogs and cats (22 papers: 16 dog, 1 cat). Strength of evidence was low for everything except omega-3 diets in dogs."}
+    - {id: "PMID:36142319", doi: "10.3390/ijms231810384", first_author: "Barbeau-Gregoire M", year: 2022, note: "Systematic review/meta-analysis (PROSPERO CRD42021279368), 72 trials. Clear analgesic efficacy for omega-3 diets and supplements (green-lipped mussel was counted in the omega-3 categories), weak efficacy for collagen, and a 'very marked non-effect' for chondroitin-glucosamine. Only 3 feline trials."}
+    - {id: "PMID:28331832", doi: "10.4314/ovj.v7i1.6", first_author: "Bhathal A", year: 2017, note: "Narrative/critical review of glucosamine/chondroitin in dogs: 'limited and conflicting evidence'."}
+    - {id: "PMID:17302547", doi: "10.2460/javma.230.4.514", first_author: "Aragon CL", year: 2007, note: "Systematic review of OA treatments in dogs."}
+    - {id: "PMID:26573523", doi: "10.1186/s12917-015-0594-3", first_author: "Bol S", year: 2015, note: "Systematic review: lysine not effective against FHV-1. The requested 'Bol 2017' is most likely this 2015 paper."}
+    - {id: "PMID:22087720", doi: "10.2460/javma.239.11.1441", first_author: "Bauer JE", year: 2011, note: "JAVMA review: therapeutic use of fish oils in companion animals (background; abstract not extracted)."}
+
+pairs:
+
+  # ------------------------------------------------------------------ JOINT MOBILITY
+  - ingredient: omega3_epa_dha
+    need: joint_mobility
+    species: dog
+    grade: A
+    effect_summary: "Several RCTs found improved force-plate peak vertical force, owner-rated mobility and veterinary lameness scores in dogs with OA given high-EPA/DHA diets or fish-oil supplements; meta-analysis shows clear analgesic efficacy."
+    mechanism: "EPA/DHA displace arachidonic acid in cell membranes, which lowers PGE2/LTB4 and inflammatory cytokines and raises pro-resolving mediators."
+    citations:
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022, note: "meta-analysis; omega-3 diets d=0.58, omega-3 supplements d=1.19"}
+      - {id: "PMID:22404506", first_author: "Vandeweerd JM", year: 2012, note: "only nutraceutical with more than low evidence"}
+      - {id: "PMID:27269707", first_author: "Mehler SJ", year: 2016, note: "RCT, 78 dogs, ~69 mg EPA+DHA/kg/day; all clinical outcomes improved vs placebo at day 84"}
+      - {id: "PMID:20043801", first_author: "Roush JK", year: 2010, note: "RCT, 38 dogs; PVF +5.6% vs +0.4%"}
+      - {id: "PMID:20043800", first_author: "Roush JK", year: 2010, note: "multicentre RCT, 127 dogs; owner-rated improvement"}
+      - {id: "PMID:22805303", first_author: "Moreau M", year: 2013, note: "30 dogs; within-group PVF improvement; between-group difference not significant (p=0.211)"}
+    caveats: "Much of the evidence is for therapeutic diets (Hill's/Purina), which change several nutrients at once; diets and supplements are separate categories in the meta-analysis. The dose that works is high (roughly 50-100+ mg EPA+DHA/kg/day). Several trials are industry funded."
+
+  - ingredient: omega3_epa_dha
+    need: joint_mobility
+    species: cat
+    grade: B
+    effect_summary: "Small controlled trials in cats with DJD found better owner-perceived locomotion (fish oil vs corn oil) and objectively measured activity (accelerometry) on a high-EPA/DHA diet."
+    mechanism: "Same eicosanoid/resolvin modulation as in dogs."
+    citations:
+      - {id: "PMID:22882740", first_author: "Corbee RJ", year: 2013, note: "RCT crossover, 16 cats; less gait stiffness and higher jumps (p=0.03)"}
+      - {id: "PMID:20337921", first_author: "Lascelles BD", year: 2010, note: "RCT, 40 cats; accelerometer activity rose on test diet and fell on control"}
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022, note: "counts one high-quality and one good-quality feline omega-3 trial as effective"}
+    caveats: "Very few cats studied. The Lascelles diet also contained green-lipped mussel and glucosamine/chondroitin, so the effect cannot be credited to omega-3 alone."
+
+  - ingredient: glucosamine
+    need: joint_mobility
+    species: dog
+    grade: NEG
+    effect_summary: "The meta-analysis found a 'very marked non-effect' of glucosamine/chondroitin on OA pain (88.9% of trials showed no effect). Placebo-controlled trials with objective outcomes (activity monitors, force plate) are negative."
+    mechanism: "Proposed: supplies substrate for cartilage glycosaminoglycans and has mild anti-catabolic effects (not shown clinically)."
+    citations:
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022, note: "recommends these products 'should no longer be recommended for pain management'"}
+      - {id: "PMID:28763523", first_author: "Scott RM", year: 2017, note: "RCT, 60 dogs; no activity difference vs placebo; caregiver placebo effect"}
+      - {id: "PMID:21623931", first_author: "Gupta RC", year: 2012, note: "GLU+CHO reduced observer pain scores but did not change force-plate values"}
+      - {id: "PMID:16647870", first_author: "McCarthy G", year: 2007, note: "positive-controlled (carprofen) RCT, no placebo arm; subjective improvement by day 70"}
+      - {id: "PMID:28331832", first_author: "Bhathal A", year: 2017, note: "review; limited and conflicting evidence"}
+    caveats: "Almost all canine trials test glucosamine and chondroitin together, so the evidence is the same for both. Positive results come from trials that are subjective or have no placebo arm."
+
+  - ingredient: chondroitin_sulfate
+    need: joint_mobility
+    species: dog
+    grade: NEG
+    effect_summary: "Same evidence base as glucosamine: the meta-analysis concludes chondroitin-glucosamine nutraceuticals have no analgesic effect in canine OA."
+    mechanism: "Proposed: glycosaminoglycan substrate, inhibits MMPs and aggrecanases."
+    citations:
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022}
+      - {id: "PMID:28763523", first_author: "Scott RM", year: 2017}
+      - {id: "PMID:16647870", first_author: "McCarthy G", year: 2007, note: "positive but no placebo arm"}
+    caveats: "Evidence is almost entirely for the glucosamine+chondroitin combination; there is no good stand-alone chondroitin RCT in dogs."
+
+  - ingredient: glucosamine
+    need: joint_mobility
+    species: cat
+    grade: NEG
+    effect_summary: "In a placebo-controlled RCT of feline OA (30 cats), glucosamine-chondroitin did not improve mobility the way meloxicam did. The meta-analysis classes this good-quality feline trial as showing no effect."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:24146058", first_author: "Sul RM", year: 2014, note: "double-blind RCT, meloxicam vs Glu-Ch vs placebo"}
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022}
+    caveats: "Single small trial of a combination product; low power. Grade NEG rests on one study."
+
+  - ingredient: green_lipped_mussel
+    need: joint_mobility
+    species: dog
+    grade: B
+    effect_summary: "Several placebo-controlled trials found improved owner and veterinary mobility/pain scores (some with force-plate outcomes) in dogs with OA given green-lipped mussel (GLM) powder or extract; results vary between trials."
+    mechanism: "Supplies omega-3 fatty acids (incl. ETA) and furan fatty acids that inhibit COX/LOX; also contains glycosaminoglycans."
+    citations:
+      - {id: "PMID:18955269", first_author: "Hielm-Bjorkman A", year: 2009, note: "RCT vs placebo and carprofen; GLM better than placebo, less effective than carprofen"}
+      - {id: "PMID:16751841", first_author: "Pollard B", year: 2006, note: "RCT; benefit at day 56 only (p=0.018)"}
+      - {id: "PMID:12042477", first_author: "Bierer TL", year: 2002, note: "controlled feeding trial (abstract text not available in PubMed)"}
+      - {id: "PMID:23814358", first_author: "Rialland P", year: 2013, note: "GLM-enriched diet (abstract not extracted)"}
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022, note: "GLM trials pooled into the omega-3 categories, which showed clear efficacy"}
+    caveats: "Product-specific: extraction and stabilisation change potency. Effects are slower and smaller than NSAIDs. Vandeweerd 2012 rated the evidence low. Grade A was not given because results are inconsistent and some trials are industry-linked."
+
+  - ingredient: green_lipped_mussel
+    need: joint_mobility
+    species: cat
+    grade: C
+    effect_summary: "The only feline data are for combination products: a GLM + curcumin + blackcurrant leaf supplement improved some owner-reported activities in a small crossover RCT, and a high-omega-3 diet with GLM and Glu/CS improved activity."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:35274496", first_author: "Corbee RJ", year: 2022, note: "16 cats, partial benefit (grooming, activity, stairs)"}
+      - {id: "PMID:20337921", first_author: "Lascelles BD", year: 2010}
+    caveats: "Evidence is for combination products only; no GLM-alone feline trial was found."
+
+  - ingredient: undenatured_collagen_type_ii
+    need: joint_mobility
+    species: dog
+    grade: B
+    effect_summary: "Several small trials found lower observational pain/lameness scores, and in one trial better force-plate values, with UC-II 10 mg/day. Two Italian RCTs found UC-II comparable to robenacoxib/cimicoxib on LOAD scores. The meta-analysis rates collagen efficacy as weak."
+    mechanism: "Oral tolerance: undenatured type II collagen epitopes induce gut-associated regulatory T-cells that dampen immune reactions against joint cartilage."
+    citations:
+      - {id: "PMID:16050819", first_author: "Deparle LA", year: 2005, note: "15 dogs, unblinded control; pain fell, relapse after withdrawal"}
+      - {id: "PMID:21623931", first_author: "Gupta RC", year: 2012, note: "placebo-controlled; force plate improved only with UC-II"}
+      - {id: "PMID:31487772", first_author: "Stabile M", year: 2019, note: "60 dogs, UC-II similar to robenacoxib (no placebo)"}
+      - {id: "PMID:35853328", first_author: "Stabile M", year: 2022, note: "76 dogs, UC-II better than untreated controls on LOAD"}
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022, note: "collagen category: weak efficacy, poor-quality trials"}
+    caveats: "Gupta/Bagchi trials are tiny, come from one group and have commercial ties. Non-inferiority trials without placebo cannot separate the effect from natural recovery or placebo. The 2024 Stabile trial (PMID:39475935) tested UC-II plus Boswellia."
+
+  - ingredient: eggshell_membrane
+    need: joint_mobility
+    species: dog
+    grade: B
+    effect_summary: "Two placebo-controlled RCTs: NEM improved CBPI function/pain at week 1 but only trended at week 6; a pilot RCT found lower LOAD scores at day 84 but no CBPI difference."
+    mechanism: "Supplies collagen, glycosaminoglycans (hyaluronan, chondroitin) and elastin; proposed anti-inflammatory (IL-2 trend) and anti-catabolic effects (CTX-II)."
+    citations:
+      - {id: "PMID:30050844", first_author: "Ruff KJ", year: 2016, note: "51 dogs, 13.5 mg/kg/day; manufacturer-authored"}
+      - {id: "PMID:31685140", first_author: "Muller C", year: 2019, note: "27 dogs pilot; authors say effects 'do not provide definitive evidence'"}
+    caveats: "Small, short, partly manufacturer-run trials; primary endpoints only partly met. The meta-analysis grouped eggshell-membrane products with collagen (weak efficacy)."
+
+  - ingredient: hyaluronic_acid
+    need: joint_mobility
+    species: dog
+    grade: B
+    effect_summary: "In a double-blind RCT after TTA surgery (55 dogs), oral HA for 10 weeks raised synovial-fluid HA and lowered paraoxonase-1 versus baseline; clinical outcomes were not the primary measure."
+    mechanism: "Oral HA is partly absorbed or acts via gut signalling; proposed to restore synovial viscoelasticity and be anti-inflammatory."
+    citations:
+      - {id: "PMID:33925642", first_author: "Serra Aguado CI", year: 2021, note: "author employed by HA supplier (Bioiberica)"}
+    caveats: "Biomarker outcomes only, measured within groups; no validated clinical pain endpoint. Industry-affiliated."
+
+  - ingredient: curcumin
+    need: joint_mobility
+    species: dog
+    grade: B
+    effect_summary: "Results are mixed. A turmeric extract (P54FP) RCT found no force-plate benefit but a positive investigator assessment; a curcuminoid/collagen/green-tea diet RCT reduced pain on manipulation but did not change ground reaction forces."
+    mechanism: "Inhibits NF-kB/COX-2 and lowers inflammatory cytokines; antioxidant."
+    citations:
+      - {id: "PMID:12723628", first_author: "Innes JF", year: 2003, note: "RCT, 61 dogs; PVF NS; investigator p=0.012; owner p=0.063"}
+      - {id: "PMID:29262825", first_author: "Comblain F", year: 2017, note: "combination CCOT diet"}
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022, note: "curcumin results 'conflicting'"}
+    caveats: "Poor oral bioavailability of native curcumin, so formulation matters. The Comblain trial tested a combination."
+
+  - ingredient: curcumin
+    need: joint_mobility
+    species: cat
+    grade: C
+    effect_summary: "Only one combination supplement (GLM + curcumin + blackcurrant) has been tested in cats, with partial owner-reported benefit."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:35274496", first_author: "Corbee RJ", year: 2022}
+    caveats: "Combination product only. Cats have limited glucuronidation capacity, so curcumin pharmacokinetics may differ from dogs (unverified for curcumin specifically)."
+
+  - ingredient: boswellia_serrata
+    need: joint_mobility
+    species: dog
+    grade: C
+    effect_summary: "In an open multicentre trial (29 dogs, 6 weeks), Boswellia resin reduced lameness, local pain and stiff gait from baseline; 71% responded by week 2."
+    mechanism: "Boswellic acids (AKBA) inhibit 5-lipoxygenase and NF-kB."
+    citations:
+      - {id: "PMID:14994484", first_author: "Reichling J", year: 2004, note: "uncontrolled"}
+      - {id: "PMID:39475935", first_author: "Stabile M", year: 2024, note: "RCT crossover of UC-II + Boswellia combination, 17 dogs; owner-rated improvement"}
+    caveats: "No placebo-controlled trial of Boswellia alone. Transient GI upset was reported in 5 of 29 dogs."
+
+  - ingredient: avocado_soybean_unsaponifiables
+    need: joint_mobility
+    species: dog
+    grade: C
+    effect_summary: "In the experimental ACL-transection dog model (placebo-controlled), ASU reduced macroscopic and histologic cartilage lesions and subchondral bone loss; there is no clinical pain trial in dogs with naturally occurring OA."
+    mechanism: "Inhibits iNOS and MMP-13; raises TGF-beta in joint fluid."
+    citations:
+      - {id: "PMID:19291317", first_author: "Boileau C", year: 2009, note: "structural outcomes only"}
+      - {id: "PMID:17287602", first_author: "Altinel L", year: 2007, note: "canine joint-fluid TGF-beta (experimental)"}
+    caveats: "Graded C (not B) because the evidence is structural, in an induced-OA model, with no clinical endpoint. The meta-analysis lists ASU among 'others' with an analgesic signal, but the specific trial was not identified (unverified). Commercial products combine ASU with Glu/CS."
+
+  - ingredient: msm
+    need: joint_mobility
+    species: dog
+    grade: D
+    effect_summary: "No controlled or uncontrolled canine (or feline) efficacy trial of MSM alone was found; MSM appears only inside multi-ingredient joint products."
+    mechanism: "Proposed sulfur donor and anti-inflammatory (NF-kB inhibition), based on rodent and human data."
+    citations:
+      - {id: "PMID:20344826", first_author: "Khan SA", year: 2010, note: "joint-supplement overdose report (safety, not efficacy)"}
+    caveats: "Evidence gap. Any efficacy claim would be extrapolated from small human knee-OA trials (not verified here)."
+
+  - ingredient: vitamin_e
+    need: joint_mobility
+    species: dog
+    grade: B
+    effect_summary: "In surgically induced OA in dogs, high-dose oral vitamin E lowered synovial PGE2 and NOx, reduced cartilage histologic lesions, and showed a trend toward lower pain scores."
+    mechanism: "Antioxidant; reduces lipid peroxidation and inflammatory mediator release."
+    citations:
+      - {id: "PMID:24101795", first_author: "Rhouma M", year: 2013, note: "experimental model; pain effects at alpha=0.1"}
+      - {id: "PMID:36142319", first_author: "Barbeau-Gregoire M", year: 2022, note: "one vitamin E trial counted as showing an analgesic effect"}
+    caveats: "Experimental-model study with weak pain findings; no trial in naturally occurring OA."
+
+  # ------------------------------------------------------------------ SKIN / COAT
+  - ingredient: omega3_epa_dha
+    need: skin_coat_barrier
+    species: dog
+    grade: B
+    effect_summary: "Several double-blind RCTs in atopic/pruritic dogs found less pruritus, alopecia and better coat with marine oil, improved clinical scores, and a steroid-sparing effect after about 2 months."
+    mechanism: "Anti-inflammatory eicosanoid shift; incorporation into epidermal lipids that support barrier function."
+    citations:
+      - {id: "PMID:34645070", first_author: "Logas D", year: 1994, note: "double-blind crossover vs corn oil; pruritus, alopecia and coat improved"}
+      - {id: "PMID:15206474", first_author: "Mueller RS", year: 2004, note: "RCT, 29 dogs; flax oil and EPA/DHA both better than placebo"}
+      - {id: "PMID:15214949", first_author: "Saevik BK", year: 2004, note: "RCT; prednisolone sparing reached significance after day 64"}
+      - {id: "PMID:20456716", first_author: "Olivry T", year: 2010, note: "ICADA guidelines recommend EFA supplementation for skin/coat care in atopic dermatitis"}
+    caveats: "Benefit is modest and slow (6-12 weeks). Guidelines support EFA as adjunctive care for skin and coat, not as an anti-pruritic monotherapy. The Mueller 2004 product also contained omega-6, and flax (ALA) worked as well, so the effect is not specific to EPA/DHA."
+
+  - ingredient: vitamin_e
+    need: skin_coat_barrier
+    species: dog
+    grade: B
+    effect_summary: "In an RCT of 29 atopic dogs (all on fexofenadine), vitamin E 8.1 IU/kg/day lowered CADESI-03 scores versus placebo and raised plasma vitamin E and antioxidant capacity."
+    mechanism: "Lipid-soluble antioxidant; reduces cutaneous oxidative stress."
+    citations:
+      - {id: "PMID:25205675", first_author: "Plevnik Kapun A", year: 2014}
+    caveats: "Single-centre trial. No pruritus difference was clearly reported in the abstract."
+
+  - ingredient: biotin
+    need: skin_coat_barrier
+    species: dog
+    grade: C
+    effect_summary: "In an uncontrolled field study (119 dogs, ~5 mg/10 kg/day for 3-5 weeks), owners/vets reported cure in 60% and improvement in 31% of dull coat, scaling and alopecia cases."
+    mechanism: "Cofactor for carboxylases involved in skin lipid synthesis; corrects deficiency."
+    citations:
+      - {id: "PMID:2602924", first_author: "Frigg M", year: 1989, note: "manufacturer (Roche) collaborative study"}
+    caveats: "No control group; breed responses varied (poodles responded poorly). True biotin deficiency is rare on complete diets."
+
+  - ingredient: zinc
+    need: skin_coat_barrier
+    species: dog
+    grade: C
+    effect_summary: "Case series (41 dogs, mostly Siberian huskies) with zinc-responsive dermatosis: oral zinc (2-3 mg/kg/day elemental zinc) improved signs in most dogs."
+    mechanism: "Corrects absolute or genetic zinc deficiency (poor intestinal absorption), which is needed for keratinocyte differentiation."
+    citations:
+      - {id: "PMID:11360336", first_author: "White SD", year: 2001}
+    caveats: "Applies only to zinc-responsive dermatosis (a breed-linked syndrome or a diet-induced one). There is no evidence zinc improves skin or coat in dogs that are not deficient."
+
+  - ingredient: melatonin
+    need: skin_coat_barrier
+    species: dog
+    grade: C
+    effect_summary: "Uncontrolled reports of hair regrowth in alopecia X and flank alopecia; the only placebo-controlled RCT (melatonin implants to prevent flank-alopecia recurrence, n=17) found no significant benefit."
+    mechanism: "Modulates the hair follicle cycle and sex-steroid/prolactin signalling."
+    citations:
+      - {id: "PMID:15500479", first_author: "Frank LA", year: 2004, note: "alopecia X; adrenal steroids during melatonin treatment"}
+      - {id: "PMID:36106629", first_author: "Verschuuren MUMY", year: 2022, note: "RCT, efficacy 'uncertain', p=0.40, underpowered"}
+      - {id: "PMID:38861499", first_author: "Amado Martins F", year: 2024, note: "melatonin vs photobiomodulation, alopecia X in German Spitz (abstract not extracted)"}
+    caveats: "Applies only to non-inflammatory hair-cycle alopecias, not barrier or atopic disease. The RCT result is null but too underpowered to be graded NEG."
+
+  # ------------------------------------------------------------------ GI: microbiome / stool
+  - ingredient: enterococcus_faecium_sf68
+    need: gi_microbiome_stool_quality
+    species: cat
+    grade: B
+    effect_summary: "In a blinded, placebo-controlled shelter crossover, cats fed SF68 had fewer diarrhoea episodes of 2 days or more (7.4% vs 20.7%). In lab cats on amoxicillin-clavulanate, SF68 lowered total diarrhoea scores but did not change microbiome diversity."
+    mechanism: "Competitive exclusion; lactic acid production; supports mucosal IgA."
+    citations:
+      - {id: "PMID:21689152", first_author: "Bybee SN", year: 2011}
+      - {id: "PMID:29291771", first_author: "Torres-Henderson C", year: 2017}
+    caveats: "The shelter design randomised by room, not by individual cat. Results are specific to the SF68 strain (NCIMB 10415; FortiFlora)."
+
+  - ingredient: enterococcus_faecium_sf68
+    need: gi_microbiome_stool_quality
+    species: dog
+    grade: B
+    effect_summary: "Mixed. No difference in shelter dogs (diarrhoea was uncommon in both groups). Added to metronidazole in shelter dogs with diarrhoea, SF68 increased the percentage of days with normal stools (65.6% vs 46.9%, p=0.0496)."
+    mechanism: "As in cats."
+    citations:
+      - {id: "PMID:21689152", first_author: "Bybee SN", year: 2011, note: "null in dogs"}
+      - {id: "PMID:29291770", first_author: "Fenimore A", year: 2017, note: "adjunct to metronidazole"}
+    caveats: "Small trials; the positive result is as an add-on to an antibiotic."
+
+  - ingredient: multistrain_probiotic
+    need: gi_microbiome_stool_quality
+    species: dog
+    grade: B
+    effect_summary: "In a placebo-controlled RCT of acute haemorrhagic diarrhoea syndrome, a multistrain probiotic sped normalisation of the microbiome (Blautia, Faecalibacterium) and lowered C. perfringens, while clinical recovery was rapid in both groups."
+    mechanism: "Multiple Lactobacillus/Bifidobacterium/Streptococcus strains; colonisation resistance; SCFA production."
+    citations:
+      - {id: "PMID:30261077", first_author: "Ziese AL", year: 2018}
+    caveats: "Clinical benefit was marginal (recovery on day 3 vs day 4); the main effect is on the microbiome. Results are specific to the product used."
+
+  - ingredient: multistrain_probiotic
+    need: gi_microbiome_stool_quality
+    species: cat
+    grade: C
+    effect_summary: "In an uncontrolled pilot in cats with chronic constipation or megacolon, SLAB51 (the 'Sivomixx'/newer 'VSL#3-type' formulation) reduced FCEAI, faecal consistency score and mucosal histology scores."
+    mechanism: "As in dogs; also restored interstitial cells of Cajal (histology)."
+    citations:
+      - {id: "PMID:29065705", first_author: "Rossi G", year: 2018}
+    caveats: "No control group (healthy archived tissue was used only as a histology reference)."
+
+  - ingredient: psyllium
+    need: gi_microbiome_stool_quality
+    species: dog
+    grade: C
+    effect_summary: "In a retrospective series (37 dogs) and an uncontrolled study in police working dogs, psyllium added to the diet gave good to excellent responses in chronic idiopathic large-bowel diarrhoea (lower defecation frequency, firmer stools)."
+    mechanism: "Soluble, gel-forming fibre: holds water, normalises transit, and is partly fermented to SCFA."
+    citations:
+      - {id: "PMID:10668813", first_author: "Leib MS", year: 2000, note: "retrospective, combined with a highly digestible diet"}
+      - {id: "PMID:33653329", first_author: "Alves JC", year: 2021, note: "uncontrolled"}
+    caveats: "No placebo-controlled trial. In Leib 2000, the response is confounded with the diet change."
+
+  - ingredient: psyllium
+    need: gi_microbiome_stool_quality
+    species: cat
+    grade: C
+    effect_summary: "In two uncontrolled field trials (66 cats), a psyllium-enriched dry diet improved faecal consistency in constipated cats and allowed lactulose and cisapride to be reduced."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:21944542", first_author: "Freiche V", year: 2011}
+    caveats: "Diet-level intervention; uncontrolled."
+
+  - ingredient: inulin_fos
+    need: gi_microbiome_stool_quality
+    species: dog
+    grade: B
+    effect_summary: "In a controlled dose-response study in healthy dogs, low-level inulin/scFOS changed digestibility and faecal metabolites (lower phenol, more butyrate with scFOS) but did not change faecal microbiota."
+    mechanism: "Fermentable prebiotic fibre; selective substrate for saccharolytic bacteria; produces SCFA."
+    citations:
+      - {id: "PMID:19574565", first_author: "Barry KA", year: 2009}
+    caveats: "Healthy dogs and surrogate endpoints only; no clinical diarrhoea trial of inulin/FOS alone was found."
+
+  - ingredient: inulin_fos
+    need: gi_microbiome_stool_quality
+    species: cat
+    grade: C
+    effect_summary: "In healthy cats, FOS supplementation increased faecal lactobacilli and Bacteroides and decreased E. coli and C. perfringens (culture-based)."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:9563627", first_author: "Sparkes AH", year: 1998}
+      - {id: "PMID:9563626", first_author: "Sparkes AH", year: 1998, note: "duodenal flora"}
+    caveats: "Culture-based microbiology, healthy cats, and statistically 'trends' at multiple-comparison thresholds. No clinical outcome."
+
+  # ------------------------------------------------------------------ GI: mucosal inflammation
+  - ingredient: multistrain_probiotic
+    need: gi_mucosal_inflammation
+    species: dog
+    grade: B
+    effect_summary: "In dogs with idiopathic IBD, the VSL#3 strains lowered clinical and histological scores and CD3+ infiltration and raised FoxP3+/TGF-beta+ regulatory cells (vs prednisone+metronidazole). Visbiome added to diet+prednisone upregulated tight-junction proteins but did not improve histology more than standard therapy."
+    mechanism: "Induces regulatory T-cells, strengthens tight junctions (E-cadherin, occludin, zonulin), and corrects dysbiosis (more Faecalibacterium)."
+    citations:
+      - {id: "PMID:24722235", first_author: "Rossi G", year: 2014, note: "randomised vs active comparator, no placebo"}
+      - {id: "PMID:28678609", first_author: "White R", year: 2017, note: "RCT, 34 dogs; added to standard therapy"}
+    caveats: "Small trials. VSL#3/Visbiome/SLAB51 formulations have diverged over time, so results should not be transferred between brands."
+
+  # ------------------------------------------------------------------ COBALAMIN
+  - ingredient: cobalamin
+    need: cobalamin_repletion
+    species: dog
+    grade: A
+    effect_summary: "Randomised trials and retrospective data show that daily oral cyanocobalamin normalises serum cobalamin and lowers MMA in hypocobalaminaemic dogs with chronic enteropathy (and EPI), as effectively as injections."
+    mechanism: "High-dose oral B12 is absorbed by passive diffusion that does not depend on intrinsic factor or the ileal cubam receptor (~1% of dose)."
+    citations:
+      - {id: "PMID:29428088", first_author: "Toresson L", year: 2018, note: "RCT, oral vs parenteral, 53 dogs"}
+      - {id: "PMID:30606444", first_author: "Toresson L", year: 2019, note: "MMA/homocysteine follow-up of the RCT"}
+      - {id: "PMID:36054643", first_author: "Chang CH", year: 2022, note: "prospective RCT, CE and EPI dogs"}
+      - {id: "PMID:26648590", first_author: "Toresson L", year: 2016, note: "retrospective, all dogs normalised"}
+      - {id: "PMID:30554416", first_author: "Kook PH", year: 2019, note: "oral B12 maintains Beagles with Imerslund-Grasbeck syndrome"}
+    caveats: "Efficacy is for repletion in deficient dogs only. The 'Toll 2010' and 'Kathrani/Berghoff oral cobalamin' papers named in the task could not be found; Berghoff's papers are on diagnosis (cobalamin/MMA), not oral therapy (e.g. PMID:23270350)."
+
+  - ingredient: cobalamin
+    need: cobalamin_repletion
+    species: cat
+    grade: B
+    effect_summary: "A prospective RCT (oral vs SC, 250 ug/cat) normalised serum cobalamin in all hypocobalaminaemic cats with chronic GI disease or EPI, and MMA in 70-88%; a retrospective study (25 cats) also found supranormal levels on oral tablets."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:39268979", first_author: "Chang CH", year: 2024}
+      - {id: "PMID:28128683", first_author: "Toresson L", year: 2017}
+    caveats: "Only one feline RCT so far."
+
+  # ------------------------------------------------------------------ RENAL / PHOSPHATE
+  - ingredient: omega3_epa_dha
+    need: renal_support
+    species: dog
+    grade: B
+    effect_summary: "In dogs with experimental renal insufficiency (11/12 nephrectomy), a fish-oil diet for 20 months reduced proteinuria and glomerulosclerosis and preserved GFR versus omega-6 (safflower) or saturated fat diets."
+    mechanism: "Lowers glomerular hypertension and renal eicosanoid (PGE2/TxA2) production; anti-inflammatory and antifibrotic."
+    citations:
+      - {id: "PMID:9605110", first_author: "Brown SA", year: 1998}
+      - {id: "PMID:10711867", first_author: "Brown SA", year: 2000}
+    caveats: "Induced-model dogs (n=7 per group); fish oil was given as dietary fat at 15% added fat. Clinical CKD diets that show benefit change several nutrients at once."
+
+  - ingredient: omega3_epa_dha
+    need: renal_support
+    species: cat
+    grade: C
+    effect_summary: "In a retrospective comparison of commercial renal diets in CKD cats, the diet with the longest median survival (23 months) had the highest EPA content."
+    mechanism: "As in dogs (presumed)."
+    citations:
+      - {id: "PMID:16100367", first_author: "Plantinga EA", year: 2005}
+    caveats: "Association only, confounded by other diet components. No feline RCT of omega-3 alone. Extrapolated from the canine model."
+
+  - ingredient: chitosan_calcium_carbonate
+    need: phosphate_management
+    species: cat
+    grade: C
+    effect_summary: "In a small study, a chitosan + calcium carbonate supplement (Epakitin/Ipakitine type) lowered apparent phosphorus digestibility in healthy cats and lowered plasma phosphate and urea in 6 aged CKD cats over 35 days."
+    mechanism: "Calcium carbonate binds dietary phosphate in the gut; chitosan is proposed to adsorb uraemic toxins."
+    citations:
+      - {id: "PMID:15298059", first_author: "Wagner E", year: 2004, note: "uncontrolled, n=6 CKD cats"}
+      - {id: "PMID:24872876", first_author: "Bernachon N", year: 2014, note: "palatability only"}
+    caveats: "A Brown SA et al. 2008 IJARVM study of Epakitin in cats with reduced renal function is widely cited but could not be found in PubMed or Crossref (unverified). Most of the phosphate-binding effect is probably from calcium carbonate; the incremental value of chitosan is not established."
+
+  - ingredient: chitosan_calcium_carbonate
+    need: renal_support
+    species: dog
+    grade: B
+    effect_summary: "In a masked RCT (31 azotaemic CKD dogs on a renal diet), a supplement of chitosan, phosphate binders and alkalinising agents roughly halved mortality from uraemic crises over 44 weeks (p=0.015)."
+    mechanism: "Intestinal phosphate binding, alkalinisation, and possible adsorption of uraemic toxins."
+    citations:
+      - {id: "PMID:22593665", first_author: "Zatelli A", year: 2012}
+    caveats: "Multi-component product; the effect cannot be credited to chitosan. The phosphate-lowering endpoint was not extracted from the abstract (unverified)."
+
+  # ------------------------------------------------------------------ HEPATIC
+  - ingredient: same
+    need: hepatic_support
+    species: dog
+    grade: B
+    effect_summary: "In dogs on prednisolone (controlled study), SAMe 20 mg/kg/day raised hepatic glutathione and improved redox ratio but did not prevent vacuolar hepatopathy. In an RCT, SAMe + silybin (Denamarin) reduced CCNU-induced ALT/ALP/bilirubin rises and treatment interruptions."
+    mechanism: "Methyl donor and glutathione precursor via the transsulfuration pathway; supports hepatocyte membrane fluidity."
+    citations:
+      - {id: "PMID:15757136", first_author: "Center SA", year: 2005}
+      - {id: "PMID:21689156", first_author: "Skorupski KA", year: 2011, note: "Denamarin = SAMe + silybin combination"}
+    caveats: "Surrogate endpoints (enzymes, GSH). No RCT showing better survival or histology in naturally occurring chronic hepatitis. Bioavailability depends on formulation (enteric coating, empty stomach)."
+
+  - ingredient: same
+    need: hepatic_support
+    species: cat
+    grade: C
+    effect_summary: "In clinically normal cats, oral SAMe 48 mg/kg/day for 113 days raised liver GSH by 35%, reduced RBC TBARS and improved RBC osmotic resilience."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:15954543", first_author: "Center SA", year: 2005}
+    caveats: "Healthy cats, redox surrogates only; no clinical trial in cats with liver disease."
+
+  - ingredient: silybin
+    need: hepatic_support
+    species: dog
+    grade: B
+    effect_summary: "Silybin is a component of Denamarin, which reduced CCNU hepatotoxicity markers in an RCT. Silybin-phosphatidylcholine has documented bioavailability in dogs and anti-inflammatory effects in canine hepatocytes in vitro."
+    mechanism: "Antioxidant; NF-kB inhibition; membrane stabilisation; possible antifibrotic action."
+    citations:
+      - {id: "PMID:21689156", first_author: "Skorupski KA", year: 2011, note: "combination with SAMe"}
+      - {id: "PMID:17348898", first_author: "Filburn CR", year: 2007, note: "bioavailability of silybin-phosphatidylcholine complex in dogs"}
+      - {id: "PMID:21395602", first_author: "Au AY", year: 2011, note: "in vitro"}
+    caveats: "Controlled clinical evidence exists only for the SAMe + silybin combination; silybin alone is grade D in dogs. Amanita-toxicosis use is anecdotal or extrapolated (not verified here)."
+
+  - ingredient: silybin
+    need: hepatic_support
+    species: cat
+    grade: B
+    effect_summary: "In experimental acetaminophen toxicosis in cats (4 per group), silymarin 30 mg/kg given with or 4 h after APAP kept liver enzymes, methaemoglobin and bilirubin within normal limits, similar to N-acetylcysteine."
+    mechanism: "Antioxidant/glutathione-sparing."
+    citations:
+      - {id: "PMID:20444031", first_author: "Avizeh R", year: 2010}
+    caveats: "Silymarin extract (not pure silybin); tiny experimental toxicity model; not evidence for chronic feline liver disease."
+
+  - ingredient: l_carnitine
+    need: hepatic_support
+    species: cat
+    grade: B
+    effect_summary: "In obese cats with experimentally induced hepatic lipidosis, dietary L-carnitine reduced fasting ketosis and changed liver carnitine metabolism (controlled experiment)."
+    mechanism: "Moves long-chain fatty acids into mitochondria for beta-oxidation, which limits hepatocellular triglyceride build-up."
+    citations:
+      - {id: "PMID:11823579", first_author: "Blanchard G", year: 2002}
+    caveats: "Experimental model, metabolic endpoints; no clinical trial in naturally occurring feline hepatic lipidosis. Its use in that disease is based on expert opinion (grade D clinically)."
+
+  # ------------------------------------------------------------------ COGNITIVE AGING
+  - ingredient: mct_oil
+    need: cognitive_aging
+    species: dog
+    grade: B
+    effect_summary: "In aged beagles, a 5.5% MCT diet improved performance on most cognitive test protocols over 8 months. In an RCT of client-owned dogs with cognitive dysfunction syndrome (87 dogs), a 6.5% MCT + nutrient-blend diet improved all 6 CDS sign categories at 90 days."
+    mechanism: "Medium-chain fatty acids are converted to ketones (beta-hydroxybutyrate), an alternative brain fuel that bypasses impaired glucose metabolism."
+    citations:
+      - {id: "PMID:20141643", first_author: "Pan Y", year: 2010, note: "lab beagles"}
+      - {id: "PMID:30619873", first_author: "Pan Y", year: 2018, note: "clinical RCT; co-authors Landsberg G, Milgram NW; MCT + 'brain protection blend'"}
+    caveats: "All Purina-funded. The clinical trial tested MCT with a nutrient blend, and the 9% MCT arm only worked in dogs that accepted the diet. This is the Pan/Landsberg evidence named in the task."
+
+  - ingredient: same
+    need: cognitive_aging
+    species: dog
+    grade: B
+    effect_summary: "In a double-blind RCT (36 dogs older than 8 years with cognitive signs), SAMe tosylate 18 mg/kg for 8 weeks improved owner-rated activity and awareness versus placebo; 41% vs 16% had more than a 50% drop in mental-impairment score."
+    mechanism: "Methyl donor for neurotransmitter and phospholipid synthesis; raises brain glutathione."
+    citations:
+      - {id: "PMID:18597245", first_author: "Reme CA", year: 2008, note: "Virbac Novifit; manufacturer-linked"}
+      - {id: "doi:10.1016/j.jveb.2009.10.011", first_author: "Mongillo P", year: 2010, note: "J Vet Behav abstract on Novifit in aged beagles; result not verified"}
+    caveats: "Owner questionnaire outcomes only. A lab study by Araujo et al. (2012) on SAMe executive function in dogs and cats could not be verified."
+
+  - ingredient: omega3_epa_dha
+    need: cognitive_aging
+    species: dog
+    grade: C
+    effect_summary: "A nutrient blend containing fish oil, arginine, antioxidants and B vitamins improved landmark and egocentric reversal learning in old lab dogs, and was part of the clinical CDS diet."
+    mechanism: "DHA supports neuronal membranes and synapses; anti-inflammatory."
+    citations:
+      - {id: "PMID:29316985", first_author: "Pan Y", year: 2018}
+      - {id: "PMID:30619873", first_author: "Pan Y", year: 2018}
+    caveats: "Evidence is for multi-nutrient blends only; the omega-3 contribution cannot be isolated."
+
+  - ingredient: omega3_epa_dha
+    need: cognitive_aging
+    species: cat
+    grade: C
+    effect_summary: "Middle-aged and old cats fed a blend of fish oil, B vitamins, antioxidants and arginine did better on 3 of 4 cognitive test protocols than controls."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:23211671", first_author: "Pan Y", year: 2013}
+    caveats: "Combination only; lab cats. No MCT data in cats was found (gap)."
+
+  - ingredient: vitamin_e
+    need: cognitive_aging
+    species: dog
+    grade: C
+    effect_summary: "In aged beagles, an antioxidant-fortified food (vitamin E, C, lipoic acid, carnitine, fruit and vegetable extracts) improved discrimination and reversal learning, mainly when combined with behavioural enrichment."
+    mechanism: "Reduces oxidative damage in the ageing brain."
+    citations:
+      - {id: "PMID:15130670", first_author: "Milgram NW", year: 2004}
+      - {id: "PMID:17303448", first_author: "Nippak PM", year: 2007, note: "spatial ability, same cohort"}
+    caveats: "Multi-antioxidant diet; the effect mostly came from the combined diet + enrichment group. No vitamin E-alone trial."
+
+  # ------------------------------------------------------------------ ANXIETY / STRESS
+  - ingredient: l_theanine
+    need: anxiety_stress
+    species: dog
+    grade: B
+    effect_summary: "In a laboratory model (beagles fearful of people), Anxitane reduced fearful behaviour toward unfamiliar humans. An open-label study in storm-sensitive pet dogs reported less overall response severity, pacing, panting and hiding."
+    mechanism: "Glutamate analogue; raises GABA, serotonin and dopamine; increases alpha-wave activity."
+    citations:
+      - {id: "doi:10.1016/j.jveb.2010.02.003", first_author: "Araujo JA", year: 2010, note: "J Vet Behav; abstract not retrievable, design details from summary only"}
+      - {id: "doi:10.1016/j.jveb.2015.04.001", first_author: "Pike AL", year: 2015, note: "open-label"}
+    caveats: "Manufacturer (Virbac) support; few dogs; no large placebo-controlled clinical RCT in pet dogs."
+
+  - ingredient: l_theanine
+    need: anxiety_stress
+    species: cat
+    grade: C
+    effect_summary: "In an open-label field study (33 cats, 30 days), L-theanine reduced owner-rated stress-related signs (91% had a lower global score), notably inappropriate elimination."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:30338056", first_author: "Dramard V", year: 2018}
+    caveats: "No placebo group; outcomes are owner-scored."
+
+  - ingredient: alpha_casozepine
+    need: anxiety_stress
+    species: dog
+    grade: B
+    effect_summary: "Alpha-casozepine was non-inferior to selegiline in dogs with anxiety disorders (no placebo arm). A 2025/2026 crossover RCT (20 dogs, 15 mg/kg for 6 days) reduced stress postures and the veterinarian stress score at vet visits, with no autonomic changes."
+    mechanism: "Bovine alpha-s1-casein tryptic decapeptide with benzodiazepine-like GABA-A receptor affinity."
+    citations:
+      - {id: "doi:10.1016/j.jveb.2007.08.001", first_author: "Beata C", year: 2007, note: "vs selegiline, J Vet Behav"}
+      - {id: "doi:10.1016/j.jveb.2025.12.008", first_author: "Puglisi I", year: 2026, note: "placebo-controlled crossover; results taken from a web summary of the abstract"}
+      - {id: "doi:10.18849/ve.v2i3.67", first_author: "Buckley L", year: 2017, note: "Veterinary Evidence knowledge summary: no evidence for short-term situational use; limited low-quality evidence for medium to long term"}
+      - {id: "doi:10.1016/j.jveb.2011.05.025", first_author: "Kato M", year: 2012, note: "prescription diet containing it; combination"}
+    caveats: "The evidence is mostly diet or combination products and manufacturer-linked. The Puglisi RCT postdates the Buckley summary and partly contradicts its conclusion on short-term use."
+
+  - ingredient: alpha_casozepine
+    need: anxiety_stress
+    species: cat
+    grade: B
+    effect_summary: "In a controlled trial in anxious cats, alpha-casozepine improved global anxiety score and items including fear of strangers and fear-related aggression. A diet with alpha-casozepine plus L-tryptophan reduced anxiety in an open-field test but not fear of unfamiliar people."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "doi:10.1016/j.jveb.2007.02.002", first_author: "Beata C", year: 2007, note: "abstract withheld by the publisher; result from the Semantic Scholar TLDR; the placebo-controlled design is unverified"}
+      - {id: "PMID:27677831", first_author: "Landsberg G", year: 2017, note: "diet + L-tryptophan combination, lab cats"}
+    caveats: "The Beata 2007 cat trial's design details (n, placebo) could not be confirmed from an accessible abstract."
+
+  - ingredient: bifidobacterium_longum_bl999
+    need: anxiety_stress
+    species: dog
+    grade: C
+    effect_summary: "In a blinded, placebo-controlled crossover in 24 anxious Labradors (6 weeks per arm), BL999 reduced barking, jumping, spinning and pacing, lowered salivary cortisol and heart rate, and increased HRV."
+    mechanism: "Gut-brain axis: vagal and immune signalling and neurotransmitter precursor modulation (mechanism largely from rodent data)."
+    citations:
+      - {id: "https://www.fearfree.com/wp-content/uploads/2024/07/Ragen-McGowan-2018-VBS-Abstract.pdf", first_author: "McGowan RTS", year: 2018, note: "Veterinary Behavior Symposium abstract"}
+    caveats: "Graded C rather than B because the only evidence is a conference abstract from the manufacturer (Purina Calming Care); no peer-reviewed full paper was found. Strain-specific."
+
+  - ingredient: bifidobacterium_longum_bl999
+    need: anxiety_stress
+    species: cat
+    grade: D
+    effect_summary: "Marketed for cats (feline Calming Care), but no feline efficacy study could be found or verified."
+    mechanism: "As in dogs (assumed)."
+    citations: []
+    caveats: "Unverified; would be extrapolated from the dog abstract."
+
+  - ingredient: mct_oil
+    need: anxiety_stress
+    species: dog
+    grade: B
+    effect_summary: "In a 3-month crossover RCT of a ketogenic MCT diet in epileptic dogs (secondary behavioural outcome), owners reported less chasing and less stranger-directed fear than on placebo diet."
+    mechanism: "Ketosis and possible GABAergic/anxiolytic effects."
+    citations:
+      - {id: "PMID:26773515", first_author: "Packer RM", year: 2016}
+      - {id: "PMID:26337751", first_author: "Law TH", year: 2015, note: "parent epilepsy RCT"}
+    caveats: "Only in dogs with idiopathic epilepsy; secondary outcome; diet-level intervention."
+
+  # ------------------------------------------------------------------ CARDIAC
+  - ingredient: taurine
+    need: cardiac_support
+    species: cat
+    grade: B
+    effect_summary: "Oral taurine raised plasma taurine and normalised left-ventricular function in cats with dilated cardiomyopathy and low plasma taurine; this finding led to taurine fortification of commercial cat foods."
+    mechanism: "Taurine is an essential nutrient in cats. Myocardial taurine depletion impairs calcium handling and contractility, and repletion reverses it."
+    citations:
+      - {id: "PMID:3616607", first_author: "Pion PD", year: 1987, note: "Science"}
+      - {id: "PMID:1500323", first_author: "Pion PD", year: 1992, note: "clinical findings and relationship to taurine deficiency"}
+    caveats: "The causal evidence is very strong (deficiency then repletion, and DCM largely disappeared after diets were fortified), but there is no RCT, hence B. Applies only to taurine-deficient DCM; there is no evidence taurine helps HCM."
+
+  - ingredient: taurine
+    need: cardiac_support
+    species: dog
+    grade: B
+    effect_summary: "In American cocker spaniels with DCM and low taurine, taurine + carnitine improved echocardiographic indices and allowed cardiac drugs to be withdrawn (placebo-controlled phase, MUST). Golden retrievers with diet-associated taurine deficiency improved on echo after diet change plus taurine."
+    mechanism: "Corrects myocardial taurine deficiency; breed and diet factors (grain-free or legume-rich diets) contribute."
+    citations:
+      - {id: "PMID:9298474", first_author: "Kittleson MD", year: 1997, note: "MUST; placebo arm n=5; taurine + carnitine together"}
+      - {id: "PMID:30543707", first_author: "Kaplan JL", year: 2018, note: "uncontrolled, diet change plus taurine"}
+      - {id: "PMID:14584742", first_author: "Backus RC", year: 2003, note: "taurine deficiency in Newfoundlands"}
+    caveats: "Benefit only in taurine-deficient or diet-associated DCM, not in typical Dobermans or in MMVD. MUST gave taurine and carnitine together. Freeman's diet-associated DCM papers were not separately verified here."
+
+  - ingredient: l_carnitine
+    need: cardiac_support
+    species: dog
+    grade: C
+    effect_summary: "Case reports (a boxer family with myocardial carnitine deficiency) and the combined taurine + carnitine response in MUST suggest benefit in a subset of DCM dogs with carnitine deficiency."
+    mechanism: "Carnitine is needed for myocardial fatty-acid oxidation and energy production."
+    citations:
+      - {id: "PMID:2019534", first_author: "Keene BW", year: 1991, note: "family of boxers"}
+      - {id: "PMID:1949496", first_author: "Keene BW", year: 1991, note: "review"}
+      - {id: "PMID:9298474", first_author: "Kittleson MD", year: 1997, note: "combination with taurine"}
+    caveats: "No RCT of carnitine alone. Myocardial carnitine deficiency is hard to diagnose because plasma levels are often normal."
+
+  - ingredient: omega3_epa_dha
+    need: cardiac_support
+    species: dog
+    grade: B
+    effect_summary: "In an RCT in dogs with heart failure, fish oil lowered IL-1beta and improved cachexia scores. In boxers with ARVC, fish oil (not flax oil) reduced 24-h VPCs over 6 weeks (RCT)."
+    mechanism: "Anti-cytokine (IL-1, TNF) effect; membrane anti-arrhythmic effect of EPA/DHA."
+    citations:
+      - {id: "PMID:9857337", first_author: "Freeman LM", year: 1998}
+      - {id: "PMID:17427387", first_author: "Smith CE", year: 2007}
+    caveats: "Surrogate endpoints (cytokines, VPC counts); no survival benefit has been shown. Plant ALA (flax) does not work in dogs."
+
+  - ingredient: coenzyme_q10
+    need: cardiac_support
+    species: dog
+    grade: B
+    effect_summary: "In dogs with MMVD, RCTs found that oral CoQ10 (100 mg BID) raised plasma CoQ10 3-7 fold and, in the CHF subgroup, improved some leukocyte/inflammatory indices; the abstract reports no echocardiographic or clinical benefit."
+    mechanism: "Mitochondrial electron carrier and antioxidant."
+    citations:
+      - {id: "PMID:33764833", first_author: "Druzhaeva N", year: 2021, note: "dose-finding RCT, PK only"}
+      - {id: "PMID:35892628", first_author: "Druzhaeva N", year: 2022, note: "RCT, 43 MMVD dogs, 3 months"}
+      - {id: "PMID:28346005", first_author: "Svete AN", year: 2017, note: "observational CoQ10 status"}
+    caveats: "Graded B only because controlled trials exist; they show surrogate or no clinical effect, so practically this is close to D for clinical cardiac outcomes."
+
+  # ------------------------------------------------------------------ URINARY
+  - ingredient: cranberry_pac
+    need: urinary_tract_health
+    species: dog
+    grade: C
+    effect_summary: "In a small study (12 dogs with recurrent UTI, cranberry vs antibiotic prophylaxis), no dog developed UTI and post-supplement urine reduced E. coli adhesion to MDCK cells. However, an RCT in 94 post-surgical IVDH dogs found no reduction in bacteriuria (6 placebo vs 11 cranberry)."
+    mechanism: "A-type proanthocyanidins inhibit P-fimbriated E. coli adhesion to uroepithelium."
+    citations:
+      - {id: "PMID:27027843", first_author: "Chou HI", year: 2016, note: "small, active comparator, not placebo-controlled"}
+      - {id: "PMID:27914106", first_author: "Olby NJ", year: 2017, note: "RCT null, low power"}
+    caveats: "The best-quality trial is null but underpowered, so it is not graded NEG. Results depend on PAC dose and assay method."
+
+  - ingredient: cranberry_pac
+    need: urinary_tract_health
+    species: cat
+    grade: B
+    effect_summary: "In a small randomised controlled study (21 FIC cats), a cranberry-containing supplement resolved lower urinary tract signs by day 60 and improved GI signs and bladder ultrasound versus controls."
+    mechanism: "Anti-adhesion (PAC); FIC is usually sterile, so the mechanism there is unclear (antioxidant or anti-inflammatory proposed)."
+    citations:
+      - {id: "PMID:34039227", first_author: "Colombino E", year: 2022}
+    caveats: "Multi-ingredient formulation; small; blinding unclear; FIC is mostly non-bacterial."
+
+  - ingredient: glucosamine
+    need: urinary_tract_health
+    species: cat
+    grade: NEG
+    effect_summary: "In a placebo-controlled RCT (40 cats with recurrent FIC, 6 months), oral N-acetylglucosamine did not differ from placebo in health score, clinical score or days with signs; both groups improved, probably because more wet food was fed."
+    mechanism: "Proposed to replenish the bladder glycosaminoglycan layer."
+    citations:
+      - {id: "PMID:15265477", first_author: "Gunn-Moore DA", year: 2004}
+    caveats: "A large placebo response limits power; the trial is still the best available evidence."
+
+  # ------------------------------------------------------------------ WEIGHT / LEAN MASS
+  - ingredient: l_carnitine
+    need: weight_lean_mass
+    species: cat
+    grade: B
+    effect_summary: "Mixed. In obese pet cats on calorie restriction, L-carnitine 250 mg/day sped weight loss (RCT). In a later controlled diet study, carnitine raised fat oxidation and REE per kg lean mass but did not increase total weight loss."
+    mechanism: "Increases mitochondrial long-chain fatty-acid oxidation during energy restriction; may help preserve lean mass."
+    citations:
+      - {id: "PMID:11110381", first_author: "Center SA", year: 2000}
+      - {id: "PMID:22738052", first_author: "Center SA", year: 2012}
+    caveats: "Small trials. No well-verified dog trial of carnitine for weight loss was found (gap). Purina/Hill's weight diets include carnitine as one of several changes."
+
+  # ------------------------------------------------------------------ IMMUNE
+  - ingredient: l_lysine
+    need: immune_support
+    species: cat
+    grade: NEG
+    effect_summary: "A systematic review and shelter RCTs found that lysine does not prevent or treat FHV-1 infection or upper respiratory disease; some trials reported more FHV-1 detection or disease in lysine-fed cats."
+    mechanism: "Proposed arginine antagonism. Lysine does not antagonise arginine in cats, and has no effect on FHV-1 replication kinetics in vitro."
+    citations:
+      - {id: "PMID:26573523", first_author: "Bol S", year: 2015, note: "systematic review; recommends stopping lysine"}
+      - {id: "PMID:19878022", first_author: "Drazenovich TL", year: 2009, note: "shelter RCT"}
+      - {id: "PMID:18547855", first_author: "Rees TM", year: 2008, note: "did not prevent URI"}
+      - {id: "PMID:17055313", first_author: "Maggs DJ", year: 2007, note: "higher disease score and FHV-1 DNA in supplemented group"}
+      - {id: "PMID:12518876", first_author: "Maggs DJ", year: 2003, note: "earlier small positive study (reduced shedding), superseded"}
+      - {id: "PMID:16206789", first_author: "Stiles J", year: 2002, note: "earlier small experimental positive study (milder conjunctivitis), superseded"}
+    caveats: "The task's 'Lappin 2002' citation could not be found; the 2002 lysine paper appears to be Stiles J 2002. Older small experimental studies were positive; larger, more realistic studies and the systematic review are negative."
+
+  - ingredient: enterococcus_faecium_sf68
+    need: immune_support
+    species: dog
+    grade: B
+    effect_summary: "Puppies fed SF68 from weaning to 1 year had higher faecal IgA, higher distemper vaccine-specific IgG/IgA, and more mature B-cells than controls."
+    mechanism: "Probiotic stimulation of gut-associated lymphoid tissue."
+    citations:
+      - {id: "PMID:12672936", first_author: "Benyacoub J", year: 2003, note: "Nestle Purina"}
+    caveats: "Immune surrogates in healthy puppies; no clinical infection endpoint."
+
+  - ingredient: enterococcus_faecium_sf68
+    need: immune_support
+    species: cat
+    grade: B
+    effect_summary: "Kittens given SF68 had higher CD4+ percentage but no other immune or vaccine differences. A 12-cat pilot in chronic FHV-1 cats found a more stable faecal microbiome and possibly less morbidity in some cats."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:18183541", first_author: "Veir JK", year: 2007}
+      - {id: "PMID:19201238", first_author: "Lappin MR", year: 2009, note: "pilot"}
+    caveats: "Weak or mostly null controlled data; close to C."
+
+  - ingredient: bovine_colostrum
+    need: immune_support
+    species: dog
+    grade: B
+    effect_summary: "In a controlled study (24 dogs, 40 weeks), a diet with 0.1% bovine colostrum increased the CDV vaccine IgG response and faecal IgA and made the gut microbiota more diverse and stable."
+    mechanism: "Immunoglobulins, lactoferrin and growth factors act on gut-associated lymphoid tissue."
+    citations:
+      - {id: "PMID:23773360", first_author: "Satyaraj E", year: 2013, note: "Nestle Purina"}
+      - {id: "PMID:39858185", first_author: "Yu P", year: 2025, note: "review"}
+    caveats: "Immune surrogates in healthy dogs; single manufacturer."
+
+  - ingredient: bovine_colostrum
+    need: immune_support
+    species: cat
+    grade: B
+    effect_summary: "Kittens fed 0.1% bovine colostrum had higher faecal IgA, a faster and stronger rabies booster antibody response, and more stable gut microbiota."
+    mechanism: "As in dogs."
+    citations:
+      - {id: "PMID:34447799", first_author: "Gore AM", year: 2021, note: "Nestle Purina"}
+    caveats: "Surrogates; single study."
+
+  - ingredient: beta_glucan
+    need: immune_support
+    species: dog
+    grade: B
+    effect_summary: "Oral yeast beta-1,3/1,6-glucan temporarily lowered serum, saliva and tear IgA and raised IgM in beagles. A Pleurotus glucan raised parvovirus and rabies vaccine titres and phagocytic indices in puppies."
+    mechanism: "Dectin-1/CR3 recognition by macrophages and neutrophils primes innate immunity."
+    citations:
+      - {id: "PMID:20032218", first_author: "Stuyven E", year: 2010}
+      - {id: "PMID:21354943", first_author: "Haladova E", year: 2011}
+      - {id: "PMID:38930453", first_author: "Amaral AR", year: 2024, note: "review incl. atopic dermatitis, OA, IBD"}
+    caveats: "Source-specific (yeast vs mushroom vs algae; molecular weight). Surrogate endpoints with inconsistent direction."
+
+  # ------------------------------------------------------------------ ORAL / DENTAL
+  - ingredient: zinc
+    need: oral_dental_health
+    species: cat
+    grade: B
+    effect_summary: "In a randomised placebo-controlled study (36 cats, 42 days), topical oral zinc ascorbate gel reduced plaque, gingivitis and anaerobic periodontal pathogens; halitosis and calculus did not differ."
+    mechanism: "Zinc is antibacterial and anti-plaque and inhibits volatile sulfur compounds; ascorbate supports collagen."
+    citations:
+      - {id: "PMID:11968899", first_author: "Clarke DE", year: 2001}
+    caveats: "Topical gel, not dietary zinc; this cannot be extrapolated to oral zinc supplements. No dog trial was found."
+
+species_specificity:
+  omega3_epa_dha: "Mostly transferable between dogs and cats for marine EPA/DHA, but cats convert ALA poorly and the dog flax results are not consistent; dose-response data exist mainly for dogs."
+  glucosamine: "No efficacy in either species; there is nothing species-specific to transfer."
+  chondroitin_sulfate: "Same as glucosamine; feline data are almost nil."
+  green_lipped_mussel: "The mechanism is not species-specific, but potency depends on the product (stabilisation, lipid-extract vs powder), so results transfer between products less well than between species."
+  undenatured_collagen_type_ii: "Oral-tolerance mechanism may be conserved, but there are no feline data; dose (10 mg/day UC-II) comes from human/dog work."
+  msm: "No species data in either; any claim is extrapolated from humans."
+  avocado_soybean_unsaponifiables: "Canine data come from an experimental model only; no cat data."
+  curcumin: "Likely species-dependent pharmacokinetics; cats have limited glucuronidation capacity (not verified for curcumin), so dog results may not transfer to cats."
+  boswellia_serrata: "Dog-only, uncontrolled; feline pharmacokinetics unknown."
+  hyaluronic_acid: "Dog-only biomarker data; transferability unknown."
+  eggshell_membrane: "Dog-only; product-specific (NEM)."
+  same: "Effects on glutathione are shown in both species, but bioavailability depends on the formulation (tosylate vs butanedisulfonate, enteric coating); cognitive data are dog-only."
+  silybin: "Formulation-specific (phosphatidylcholine complex improves bioavailability in dogs); feline data are experimental silymarin only."
+  vitamin_e: "Antioxidant mechanism is conserved; clinical data for skin and OA are dog-only."
+  enterococcus_faecium_sf68: "Strain-specific (NCIMB 10415). Effects differed between dogs and cats even within the same trial, so do not transfer them to other E. faecium strains."
+  bifidobacterium_longum_bl999: "Strictly strain-specific; dog data are from one manufacturer abstract, and cat efficacy is unverified."
+  multistrain_probiotic: "Product- and formulation-specific (original VSL#3, Visbiome and SLAB51 now differ); do not transfer results between brands or species."
+  psyllium: "The physical fibre mechanism transfers well between species; the evidence in both is uncontrolled."
+  inulin_fos: "Fermentation responses differ (cats are obligate carnivores with a shorter colon); microbiota outcomes do not reliably transfer."
+  cobalamin: "Oral repletion is now shown in both species (dog: several RCTs; cat: one RCT); the dose differs by body weight."
+  l_theanine: "Mechanism is probably conserved; evidence in both species is weak or open-label."
+  alpha_casozepine: "The GABA-A mechanism is probably conserved; positive data exist in both species, but they are mostly manufacturer-linked or diet-based."
+  melatonin: "Hair-cycle effects are specific to the condition (alopecia X, flank alopecia); no feline data."
+  cranberry_pac: "Anti-adhesion depends on uropathogenic E. coli; dogs get bacterial UTI, while feline LUT signs are usually sterile FIC, so the needs differ by species."
+  chitosan_calcium_carbonate: "Phosphate binding by calcium carbonate is not species-specific; the canine trial tested a different multi-component product."
+  mct_oil: "Ketogenic response is shown in dogs; cats are obligate carnivores with different fat metabolism and palatability, and there are no feline cognition data."
+  l_carnitine: "Weight and hepatic lipidosis data are feline; cardiac data are canine (breed-specific deficiency). Do not cross-apply."
+  taurine: "Strongly species-specific: an essential nutrient in cats (deficiency-DCM is classic); in dogs it matters only for certain breeds or diets."
+  coenzyme_q10: "Dog-only MMVD data; no cat data."
+  zinc: "Dermatologic benefit is limited to genetic or dietary deficiency (huskies, malamutes); the dental evidence is for a topical feline gel."
+  biotin: "Dog-only uncontrolled data; deficiency is rare in both species on complete diets."
+  l_lysine: "Negative in cats (the only relevant species, for FHV-1); cat-specific arginine biology makes it potentially harmful."
+  beta_glucan: "Effects depend on the beta-glucan source and structure; dog-only immune surrogates."
+  bovine_colostrum: "Similar surrogate immune effects in dogs and kittens (same manufacturer, same 0.1% inclusion)."
+
+unverified_or_not_found:
+  - "'Toll 2010' oral cobalamin: no such paper found. The oral cobalamin evidence is Toresson 2016/2017/2018/2019 and Chang 2022/2024."
+  - "'Kathrani / Berghoff oral cobalamin': no oral-therapy trial by these authors found; Berghoff papers cover cobalamin/MMA diagnostics."
+  - "'Lappin 2002' lysine: not found; probably meant Stiles J 2002 (PMID:16206789) or Maggs DJ 2003 (PMID:12518876)."
+  - "'Bol 2017' lysine: the systematic review is Bol S & Bunnik BAD 2015 (PMID:26573523)."
+  - "Brown SA et al. 2008 (Epakitin in cats, Intern J Appl Res Vet Med): widely cited but not found in PubMed/Crossref."
+  - "Araujo et al. 2012 SAMe (NoviSAMe) executive function in aged dogs and cats: not found."
+  - "Beata 2007 cat alpha-casozepine: DOI verified; abstract withheld by the publisher, so design details are unverified."
+  - "BL999: no peer-reviewed full paper found (dog or cat); only the 2018 conference abstract."
+  - "Freeman LM diet-associated DCM and taurine papers were not individually verified; Kaplan 2018 and Kittleson 1997 are used instead."
+  - "Bierer 2002 GLM (PMID:12042477) and Rialland 2013 GLM diet (PMID:23814358): PMIDs verified, abstracts not read."
+  - "Logas 1994 (PMID:34645070): PubMed lists 1994 as the publication year; indexed retroactively."
+  - "No literature found for: melatonin anxiety (dog/cat), MCT in cats, MSM alone, vitamin E for hepatic support in dogs (no RCT found), carnitine for weight loss in dogs, beta-glucan/colostrum for oral health, zinc dental in dogs."

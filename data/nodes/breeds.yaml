@@ -1,0 +1,194 @@
+# Generated from the breed research pass, then hand-edited. weight = AKC breed chart (dogs), secondary charts (cats).
+- id: breed:labrador_retriever
+  name: Labrador Retriever
+  species: species:dog
+  size_class: large
+  adult_weight_kg:
+    min: 25.0
+    max: 36.0
+  description: Weight-aware dosing; joint support; avoid added copper; calorie density of chews matters.
+- id: breed:golden_retriever
+  name: Golden Retriever
+  species: species:dog
+  size_class: large
+  adult_weight_kg:
+    min: 25.0
+    max: 34.0
+  description: Taurine/carnitine support is relevant where diet-associated DCM is a concern (vet supervision). Omega-3 for
+    skin/joints.
+- id: breed:german_shepherd
+  name: German Shepherd Dog
+  species: species:dog
+  size_class: large
+  adult_weight_kg:
+    min: 22.0
+    max: 41.0
+  description: With EPI, enzyme replacement is needed and fat-soluble vitamin/cobalamin status matters; powder forms mixed
+    into food suit this.
+- id: breed:dalmatian
+  name: Dalmatian
+  species: species:dog
+  size_class: large
+  adult_weight_kg:
+    min: 20.0
+    max: 32.0
+  description: Avoid high-purine ingredients (organ meats, yeast/brewer's yeast, fish/krill/GLM powders are moderate-high
+    purine, unverified) and urine-acidifying actives. Prefer low-purine excipients/palatants.
+- id: breed:bedlington_terrier
+  name: Bedlington Terrier
+  species: species:dog
+  size_class: small
+  adult_weight_kg:
+    min: 7.7
+    max: 10.4
+  description: Exclude copper. Zinc (acetate/gluconate) may be indicated under vet care. Avoid copper-rich ingredients (liver,
+    shellfish/GLM, some organ-meat palatants; unverified ranking).
+- id: breed:doberman_pinscher
+  name: Doberman Pinscher
+  species: species:dog
+  size_class: large
+  adult_weight_kg:
+    min: 27.0
+    max: 45.0
+  description: Cardiac (taurine, carnitine, omega-3, CoQ10) and liver support; avoid copper.
+- id: breed:cavalier_king_charles_spaniel
+  name: Cavalier King Charles Spaniel
+  species: species:dog
+  size_class: small
+  adult_weight_kg:
+    min: 5.9
+    max: 8.2
+  description: Cardiac support; small unit size.
+- id: breed:miniature_schnauzer
+  name: Miniature Schnauzer
+  species: species:dog
+  size_class: small
+  adult_weight_kg:
+    min: 5.0
+    max: 9.0
+  description: 'Fat-restricted formulations: avoid high-fat chews/oil carriers; omega-3 may help lower triglycerides. Avoid
+    high-dose vitamin C (oxalate precursor, unverified).'
+- id: breed:yorkshire_terrier
+  name: Yorkshire Terrier
+  species: species:dog
+  size_class: toy
+  adult_weight_kg:
+    min: 2.0
+    max: 3.2
+  description: Toy units (small chews, liquids). Low fat.
+- id: breed:boxer
+  name: Boxer
+  species: species:dog
+  size_class: large
+  adult_weight_kg:
+    min: 23.0
+    max: 36.0
+  description: Omega-3 is used in Boxer ARVC (arrhythmia reduction, vet-directed, unverified); L-carnitine-responsive myocardial
+    disease reported in Boxers (unverified).
+- id: breed:west_highland_white_terrier
+  name: West Highland White Terrier
+  species: species:dog
+  size_class: small
+  adult_weight_kg:
+    min: 6.8
+    max: 9.1
+  description: Skin (omega-3) focus; avoid copper.
+- id: breed:shih_tzu
+  name: Shih Tzu
+  species: species:dog
+  size_class: small
+  adult_weight_kg:
+    min: 4.0
+    max: 7.3
+  description: Urinary support; avoid calcium/vitamin D/vitamin C excess (oxalate) (unverified).
+- id: breed:english_bulldog
+  name: English Bulldog
+  species: species:dog
+  size_class: medium
+  adult_weight_kg:
+    min: 18.0
+    max: 23.0
+  description: Avoid high-purine and high-methionine/cystine loads for stone formers (unverified); joint support.
+- id: breed:dachshund
+  name: Dachshund
+  species: species:dog
+  size_class: small
+  adult_weight_kg:
+    min: 5.0
+    max: 14.5
+  description: Weight management. Joint/IVDD claims are drug-like (avoid disease claims).
+- id: breed:border_collie
+  name: Border Collie
+  species: species:dog
+  size_class: medium
+  adult_weight_kg:
+    min: 14.0
+    max: 25.0
+  description: MCT oil (epilepsy adjunct, vet-directed). MDR1 test advised before ivermectin-class drugs.
+- id: breed:collie
+  name: Collie (Rough/Smooth)
+  species: species:dog
+  size_class: large
+  adult_weight_kg:
+    min: 23.0
+    max: 34.0
+  description: Flag P-gp-interacting botanicals as caution (unverified). Avoid loperamide/ivermectin-type drugs (not supplements).
+- id: breed:great_dane
+  name: Great Dane
+  species: species:dog
+  size_class: giant
+  adult_weight_kg:
+    min: 50.0
+    max: 79.0
+  description: Avoid excess calcium in growing dogs (developmental orthopaedic disease, unverified). Cardiac support. Unit
+    size is not limiting.
+- id: breed:persian
+  name: Persian
+  species: species:cat
+  adult_weight_kg:
+    min: 3.2
+    max: 5.4
+  description: 'Renal-safe formulas: low phosphorus, avoid high-dose vitamin D/calcium; omega-3 is fine.'
+- id: breed:maine_coon
+  name: Maine Coon
+  species: species:cat
+  adult_weight_kg:
+    min: 4.5
+    max: 8.2
+  description: Joint support with feline-safe actives (glucosamine/chondroitin, omega-3, UC-II). Cardiac (taurine is already
+    essential in diet).
+- id: breed:siamese
+  name: Siamese
+  species: species:cat
+  adult_weight_kg:
+    min: 2.5
+    max: 4.5
+  description: Dental and respiratory focus. Lean, small cats need small dose volumes.
+- id: breed:abyssinian
+  name: Abyssinian
+  species: species:cat
+  adult_weight_kg:
+    min: 2.7
+    max: 5.4
+  description: Renal-safe formulation; omega-3.
+- id: breed:burmese
+  name: Burmese
+  species: species:cat
+  adult_weight_kg:
+    min: 2.7
+    max: 6.4
+  description: Avoid sugars/maltodextrin carriers and high-calorie palatants (diabetes). Potassium status matters.
+- id: breed:ragdoll
+  name: Ragdoll
+  species: species:cat
+  adult_weight_kg:
+    min: 3.8
+    max: 9.0
+  description: Urinary support (but struvite and CaOx push urine pH targets in opposite directions; avoid blanket acidifiers).
+    Cardiac.
+- id: breed:domestic_shorthair
+  name: Domestic Shorthair
+  species: species:cat
+  adult_weight_kg:
+    min: 3.5
+    max: 5.5

@@ -1,0 +1,355 @@
+# Purchasable inputs. Formulas are dosed in ingredients (actives) and built from these.
+# `provides.fraction` = w/w of the ingredient as dosed by DoseRules. Values marked unverified
+# in `description` must be replaced by the supplier's CoA before production use.
+
+# ---- omega-3 ----------------------------------------------------------------
+- id: rm:fish_oil_concentrate_rtg_60
+  name: Fish oil concentrate, re-esterified TG, ~60% EPA+DHA
+  physical_form: oil
+  provides: [{ingredient: ingredient:omega3_epa_dha, fraction: 0.60}]
+  derived_from: [allergen:fish]
+  heat_max_c: 60
+  oxidation_sensitive: true
+  palatability: neutral
+  preferred: true
+  compatible_forms:
+    - {form: form:liquid_oil}
+    - {form: form:softgel}
+    - {form: form:soft_chew_cold, notes: "<=10% oil load in the chew"}
+  description: Concentrate grade; needs mixed tocopherols / rosemary; keep away from Fe/Cu premixes. Spec must meet GOED oxidation limits.
+  sources: [source:goed_monograph, source:colorcon_soft_chew_case_study]
+- id: rm:fish_oil_18_12_tg
+  name: Fish oil 18/12, natural TG (anchovy)
+  physical_form: oil
+  provides: [{ingredient: ingredient:omega3_epa_dha, fraction: 0.30}]
+  derived_from: [allergen:fish]
+  heat_max_c: 60
+  oxidation_sensitive: true
+  compatible_forms: [{form: form:liquid_oil}, {form: form:softgel}, {form: form:soft_chew_cold}]
+  description: 18% EPA + 12% DHA. Cheapest source but twice the volume of the concentrate.
+  sources: [source:goed_monograph]
+- id: rm:krill_oil
+  name: Krill oil (phospholipid omega-3)
+  physical_form: oil
+  provides: [{ingredient: ingredient:omega3_epa_dha, fraction: 0.15}]
+  derived_from: [allergen:shellfish]
+  heat_max_c: 50
+  oxidation_sensitive: true
+  compatible_forms: [{form: form:liquid_oil}, {form: form:softgel}, {form: form:soft_chew_cold}]
+  description: ">=15% omega-3 (patent spec); contains astaxanthin. Low omega-3 density means many units at therapeutic doses."
+- id: rm:algal_oil_dha
+  name: Algal oil (Schizochytrium), DHA-rich
+  physical_form: oil
+  provides: [{ingredient: ingredient:omega3_epa_dha, fraction: 0.40}]
+  derived_from: []
+  heat_max_c: 60
+  oxidation_sensitive: true
+  compatible_forms: [{form: form:liquid_oil}, {form: form:softgel}, {form: form:soft_chew_cold}]
+  description: >-
+    >=40% DHA, <=3% EPA. Fish-free fallback. Caution: joint and anti-inflammatory evidence is for
+    EPA-rich marine oil; the KG models EPA+DHA as one active, so a vet should review any formula
+    where this replaces fish oil.
+
+# ---- joint ------------------------------------------------------------------
+- id: rm:glucosamine_hcl_shellfish
+  name: Glucosamine HCl (crustacean)
+  physical_form: powder
+  provides: [{ingredient: ingredient:glucosamine, fraction: 0.83}]
+  derived_from: [allergen:shellfish]
+  compatible_forms: &dry_heat_ok
+    - {form: form:soft_chew_cold}
+    - {form: form:soft_chew_extruded}
+    - {form: form:chewable_tablet}
+    - {form: form:capsule}
+    - {form: form:sprinkle_capsule}
+    - {form: form:powder_sachet}
+  description: 83% glucosamine base (MW 179.2 / 215.6).
+- id: rm:glucosamine_hcl_vegetarian
+  name: Glucosamine HCl (corn fermentation)
+  physical_form: powder
+  provides: [{ingredient: ingredient:glucosamine, fraction: 0.83}]
+  derived_from: [allergen:corn]
+  preferred: true
+  compatible_forms: *dry_heat_ok
+- id: rm:chondroitin_sulfate_bovine
+  name: Sodium chondroitin sulfate, bovine trachea, 90%
+  physical_form: powder
+  provides: [{ingredient: ingredient:chondroitin_sulfate, fraction: 0.90}]
+  derived_from: [allergen:beef]
+  moisture_sensitive: true
+  preferred: true
+  compatible_forms: *dry_heat_ok
+  description: Specify HPLC/enzymatic assay; CPC titration is non-specific and adulteration is common.
+- id: rm:chondroitin_sulfate_porcine
+  name: Sodium chondroitin sulfate, porcine, 90%
+  physical_form: powder
+  provides: [{ingredient: ingredient:chondroitin_sulfate, fraction: 0.90}]
+  derived_from: [allergen:pork]
+  moisture_sensitive: true
+  compatible_forms: *dry_heat_ok
+- id: rm:green_lipped_mussel_powder
+  name: Green-lipped mussel powder, freeze-dried (Perna canaliculus)
+  physical_form: powder
+  provides: [{ingredient: ingredient:green_lipped_mussel, fraction: 1.0}]
+  derived_from: [allergen:shellfish]
+  heat_max_c: 40
+  palatability: good
+  compatible_forms:
+    - {form: form:soft_chew_cold}
+    - {form: form:chewable_tablet}
+    - {form: form:capsule}
+    - {form: form:powder_sachet}
+  description: Gram-scale doses. Heat-dried powders reportedly lose activity. Not interchangeable with lipid extracts (PCSO-524) on a mg basis.
+- id: rm:uc_ii_collagen
+  name: UC-II undenatured type II collagen (chicken sternum)
+  physical_form: powder
+  provides: [{ingredient: ingredient:undenatured_collagen_type_ii, fraction: 1.0}]
+  derived_from: [allergen:chicken]
+  heat_max_c: 40
+  compatible_forms:
+    - {form: form:capsule}
+    - {form: form:sprinkle_capsule}
+    - {form: form:chewable_tablet}
+    - {form: form:soft_chew_cold, notes: cold process only}
+    - {form: form:powder_sachet}
+  description: Dosed as mg of the UC-II ingredient. 40 mg UC-II ~ 10 mg type II collagen ~ 1.2 mg undenatured.
+  sources: [source:lugo_2016_uc2]
+- id: rm:msm
+  name: Methylsulfonylmethane, 99.9%
+  physical_form: powder
+  provides: [{ingredient: ingredient:msm, fraction: 0.999}]
+  palatability: poor
+  compatible_forms: *dry_heat_ok
+- id: rm:curcumin_95
+  name: Turmeric extract, 95% curcuminoids
+  physical_form: powder
+  provides: [{ingredient: ingredient:curcumin, fraction: 0.95}]
+  light_sensitive: true
+  palatability: poor
+  compatible_forms:
+    - {form: form:capsule}
+    - {form: form:soft_chew_cold}
+    - {form: form:chewable_tablet}
+    - {form: form:powder_sachet}
+  description: Poor oral bioavailability; bitter; stains chews yellow.
+- id: rm:boswellia_extract
+  name: Boswellia serrata gum resin extract
+  physical_form: powder
+  provides: [{ingredient: ingredient:boswellia_serrata, fraction: 1.0}]
+  palatability: poor
+  compatible_forms: [{form: form:capsule}, {form: form:chewable_tablet}, {form: form:soft_chew_cold}, {form: form:powder_sachet}]
+- id: rm:asu
+  name: Avocado/soybean unsaponifiables
+  physical_form: powder
+  provides: [{ingredient: ingredient:avocado_soybean_unsaponifiables, fraction: 1.0}]
+  derived_from: [allergen:soy]
+  compatible_forms: [{form: form:chewable_tablet}, {form: form:capsule}, {form: form:soft_chew_cold}]
+- id: rm:sodium_hyaluronate
+  name: Sodium hyaluronate (fermentation)
+  physical_form: powder
+  provides: [{ingredient: ingredient:hyaluronic_acid, fraction: 0.95}]
+  moisture_sensitive: true
+  compatible_forms: *dry_heat_ok
+- id: rm:eggshell_membrane
+  name: Natural eggshell membrane powder
+  physical_form: powder
+  provides: [{ingredient: ingredient:eggshell_membrane, fraction: 1.0}]
+  derived_from: [allergen:egg]
+  compatible_forms: [{form: form:capsule}, {form: form:chewable_tablet}, {form: form:soft_chew_cold}, {form: form:powder_sachet}]
+
+# ---- liver ------------------------------------------------------------------
+- id: rm:same_tosylate
+  name: SAMe disulfate tosylate
+  physical_form: powder
+  provides: [{ingredient: ingredient:same, fraction: 0.50}]
+  moisture_sensitive: true
+  requires_enteric_coating: true
+  heat_max_c: 40
+  compatible_forms: [{form: form:enteric_tablet, notes: "blister packed; may share the tablet with silybin-PC (as Denamarin)"}]
+  description: 800 mg salt = 400 mg SAMe ion. Cannot go in chews, powders or uncoated capsules.
+- id: rm:silybin_phosphatidylcholine
+  name: Silybin-phosphatidylcholine complex (~29% silybin A+B)
+  physical_form: powder
+  provides: [{ingredient: ingredient:silybin, fraction: 0.29}]
+  derived_from: [allergen:soy]
+  compatible_forms:
+    - {form: form:chewable_tablet}
+    - {form: form:capsule}
+    - {form: form:sprinkle_capsule}
+    - {form: form:enteric_tablet}
+  description: Denamarin ratio 31 mg complex = 9 mg silybin A+B. PC source is typically soy lecithin (unverified for each supplier).
+
+# ---- antioxidants / vitamins ---------------------------------------------------
+- id: rm:vitamin_e_acetate_50
+  name: dl-alpha-tocopheryl acetate 50% powder
+  physical_form: powder
+  provides: [{ingredient: ingredient:vitamin_e, iu_per_g: 500}]
+  preferred: true
+  compatible_forms: *dry_heat_ok
+  description: Synthetic acetate = 1.0 IU/mg; 50% adsorbate = 500 IU/g.
+- id: rm:vitamin_e_natural_oil
+  name: d-alpha-tocopherol (natural) oil
+  physical_form: oil
+  provides: [{ingredient: ingredient:vitamin_e, iu_per_g: 1490}]
+  derived_from: [allergen:soy]
+  compatible_forms: [{form: form:liquid_oil}, {form: form:softgel}, {form: form:soft_chew_cold}]
+  description: RRR-alpha-tocopherol = 1.49 IU/mg. Usually soy-derived.
+- id: rm:cyanocobalamin_1pct
+  name: Cyanocobalamin 1% triturate
+  physical_form: powder
+  provides: [{ingredient: ingredient:cobalamin, fraction: 0.01}]
+  light_sensitive: true
+  heat_max_c: 60
+  compatible_forms:
+    - {form: form:chewable_tablet}
+    - {form: form:capsule}
+    - {form: form:sprinkle_capsule}
+    - {form: form:powder_sachet}
+    - {form: form:soft_chew_cold}
+  description: Cyanocobalamin is the most heat/light stable form; avoid co-formulating methylcobalamin with ascorbic acid.
+- id: rm:biotin_1pct
+  name: Biotin 1% triturate
+  physical_form: powder
+  provides: [{ingredient: ingredient:biotin, fraction: 0.01}]
+  compatible_forms: *dry_heat_ok
+- id: rm:zinc_gluconate
+  name: Zinc gluconate (14.3% Zn)
+  physical_form: powder
+  provides: [{ingredient: ingredient:zinc, fraction: 0.143}]
+  compatible_forms: *dry_heat_ok
+  description: Dosed as elemental zinc.
+
+# ---- GI ---------------------------------------------------------------------
+- id: rm:probiotic_sf68
+  name: Enterococcus faecium SF68 (NCIMB 10415) concentrate
+  physical_form: powder
+  provides: [{ingredient: ingredient:enterococcus_faecium_sf68, cfu_per_g: 1.0e10}]
+  heat_max_c: 35
+  moisture_sensitive: true
+  overage: 1.0
+  compatible_forms: &probiotic_forms
+    - {form: form:powder_sachet}
+    - {form: form:capsule}
+    - {form: form:sprinkle_capsule}
+  description: Strain-specific; results do not transfer to other E. faecium strains. Concentrate CFU/g and 2x overage are placeholders (unverified).
+- id: rm:probiotic_multistrain
+  name: Multi-strain lactic acid bacteria blend (Visbiome/SLAB51-type)
+  physical_form: powder
+  provides: [{ingredient: ingredient:multistrain_probiotic, cfu_per_g: 1.0e11}]
+  heat_max_c: 35
+  moisture_sensitive: true
+  overage: 1.0
+  compatible_forms: *probiotic_forms
+  description: Product-specific evidence; specify the exact strain set. CFU/g placeholder (unverified).
+- id: rm:probiotic_bl999
+  name: Bifidobacterium longum BL999 concentrate
+  physical_form: powder
+  provides: [{ingredient: ingredient:bifidobacterium_longum_bl999, cfu_per_g: 1.0e10}]
+  heat_max_c: 35
+  moisture_sensitive: true
+  overage: 1.0
+  compatible_forms: *probiotic_forms
+  description: Proprietary strain (Nestle Purina); sourcing outside Purina may not be possible. CFU/g placeholder.
+- id: rm:psyllium_husk_95
+  name: Psyllium husk powder 95%
+  physical_form: powder
+  provides: [{ingredient: ingredient:psyllium, fraction: 0.95}]
+  moisture_sensitive: true
+  compatible_forms: [{form: form:powder_sachet}, {form: form:capsule, notes: low dose only}]
+  description: Swells >=50 mL/g; gram-scale doses; may slow absorption of co-dosed actives.
+- id: rm:inulin_chicory
+  name: Chicory inulin / FOS
+  physical_form: powder
+  provides: [{ingredient: ingredient:inulin_fos, fraction: 0.90}]
+  compatible_forms: *dry_heat_ok
+- id: rm:beta_glucan_yeast
+  name: Yeast beta-1,3/1,6-glucan (Saccharomyces cerevisiae)
+  physical_form: powder
+  provides: [{ingredient: ingredient:beta_glucan, fraction: 0.75}]
+  derived_from: [allergen:yeast]
+  compatible_forms: *dry_heat_ok
+  description: Purity placeholder (unverified). Yeast-derived, so screened against urate-forming patients.
+- id: rm:bovine_colostrum
+  name: Bovine colostrum powder
+  physical_form: powder
+  provides: [{ingredient: ingredient:bovine_colostrum, fraction: 1.0}]
+  derived_from: [allergen:dairy, allergen:beef]
+  compatible_forms: [{form: form:powder_sachet}, {form: form:capsule}, {form: form:chewable_tablet}, {form: form:soft_chew_cold}]
+
+# ---- renal ------------------------------------------------------------------
+- id: rm:chitosan_calcium_carbonate_blend
+  name: Chitosan + calcium carbonate phosphate-binder blend (Epakitin-type, 8% chitosan / 10% CaCO3)
+  physical_form: powder
+  provides: [{ingredient: ingredient:chitosan_calcium_carbonate, fraction: 1.0}]
+  derived_from: [allergen:shellfish, allergen:soy]
+  compatible_forms: [{form: form:powder_sachet, notes: give with each meal}]
+  description: Dosed as grams of the whole blend (as the Epakitin label). Carrier contains lactose and hydrolysed soy protein.
+
+# ---- behaviour / cognition -------------------------------------------------------
+- id: rm:l_theanine
+  name: L-theanine (synthetic)
+  physical_form: powder
+  provides: [{ingredient: ingredient:l_theanine, fraction: 0.99}]
+  palatability: good
+  compatible_forms: *dry_heat_ok
+- id: rm:alpha_casozepine_hydrolysate
+  name: Alpha-S1 casein tryptic hydrolysate (alpha-casozepine)
+  physical_form: powder
+  provides: [{ingredient: ingredient:alpha_casozepine, fraction: 1.0}]
+  derived_from: [allergen:dairy]
+  palatability: good
+  compatible_forms:
+    - {form: form:sprinkle_capsule}
+    - {form: form:capsule}
+    - {form: form:soft_chew_cold}
+    - {form: form:chewable_tablet}
+    - {form: form:powder_sachet}
+  description: Dosed as mg of hydrolysate (the Zylkene convention).
+- id: rm:melatonin_1pct
+  name: Melatonin 1% triturate
+  physical_form: powder
+  provides: [{ingredient: ingredient:melatonin, fraction: 0.01}]
+  light_sensitive: true
+  compatible_forms: [{form: form:chewable_tablet}, {form: form:soft_chew_cold}, {form: form:capsule}]
+  description: Triturate for blend uniformity. Never source human gummy/fast-dissolve melatonin (xylitol risk).
+- id: rm:mct_oil
+  name: MCT oil (C8/C10)
+  physical_form: oil
+  provides: [{ingredient: ingredient:mct_oil, fraction: 1.0}]
+  compatible_forms: [{form: form:liquid_oil}, {form: form:softgel}]
+  description: Oxidatively stable. GI upset at high dose; titrate.
+
+# ---- cardiac / metabolic -----------------------------------------------------------
+- id: rm:taurine
+  name: Taurine
+  physical_form: powder
+  provides: [{ingredient: ingredient:taurine, fraction: 0.99}]
+  compatible_forms: *dry_heat_ok
+- id: rm:l_carnitine_tartrate
+  name: L-carnitine L-tartrate (68% carnitine)
+  physical_form: powder
+  provides: [{ingredient: ingredient:l_carnitine, fraction: 0.68}]
+  compatible_forms: *dry_heat_ok
+  description: Non-hygroscopic salt for dry forms; base form is highly hygroscopic.
+- id: rm:coq10_ubiquinone
+  name: Coenzyme Q10 (ubiquinone)
+  physical_form: powder
+  provides: [{ingredient: ingredient:coenzyme_q10, fraction: 0.98}]
+  heat_max_c: 45
+  light_sensitive: true
+  compatible_forms:
+    - {form: form:softgel, notes: best bioavailability dissolved in oil}
+    - {form: form:capsule}
+    - {form: form:chewable_tablet}
+    - {form: form:soft_chew_cold}
+  description: Melts ~49 C, so not for hot-process chews.
+
+# ---- urinary ------------------------------------------------------------------
+- id: rm:cranberry_extract_pac30
+  name: Cranberry extract, ~30% PAC (BL-DMAC)
+  physical_form: powder
+  provides: [{ingredient: ingredient:cranberry_pac, fraction: 0.30}]
+  moisture_sensitive: true
+  palatability: poor
+  compatible_forms: [{form: form:soft_chew_cold}, {form: form:chewable_tablet}, {form: form:capsule}, {form: form:powder_sachet}]
+  description: Dosed as mg PAC; always record the PAC assay method (BL-DMAC values are not interchangeable with other methods).

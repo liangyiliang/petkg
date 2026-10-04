@@ -1,0 +1,879 @@
+# Breed -> Condition. strength: strong | moderate | reported (single/weak source).
+- breed: breed:labrador_retriever
+  condition: condition:obesity
+  strength: strong
+  genetic_test: POMC deletion (Labrador)
+  sources:
+  - source:raffan_2016_pomc
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: POMC 14-bp deletion, allele freq 12%; about 23% of Labradors carry >=1 copy; +1.9 kg per allele; linked to food
+      motivation (Raffan E et al. Cell Metab 2016, doi:10.1016/j.cmet.2016.04.012). Obesity is among the most common disorders
+      in UK Labradors (McGreevy PD et al. Canine Genet Epidemiol 2018, VetCompass) [verified_snippet]
+- breed: breed:labrador_retriever
+  condition: condition:osteoarthritis
+  strength: strong
+  sources:
+  - source:anderson_2018_vetcompass_oa
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Predisposed in VetCompass appendicular OA study (Anderson KL et al. Sci Rep 2018;8:5641, doi:10.1038/s41598-018-23940-z);
+      OA is a top disorder in McGreevy 2018 [verified_snippet]
+- breed: breed:labrador_retriever
+  condition: condition:hip_dysplasia
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: OFA registry, Gough & Thomas 2018 [unverified_numbers]
+- breed: breed:labrador_retriever
+  condition: condition:elbow_dysplasia
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'OFA: about 10.1% ED (birth years 1998-2001) [verified_snippet]'
+- breed: breed:labrador_retriever
+  condition: condition:cranial_cruciate_ligament_rupture
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas 2018; VetCompass (Taylor-Brown FE et al. Vet Surg 2015, PMID 26118493) [unverified_numbers]
+- breed: breed:labrador_retriever
+  condition: condition:copper_storage_hepatopathy
+  strength: moderate
+  genetic_test: COMMD1 (Bedlington); ATP7B/ATP7A research tests
+  sources:
+  - source:webster_2019_acvim_copper
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: ATP7B p.Arg1453Gln raises and ATP7A p.Thr327Ile partly lowers hepatic copper (Fieten H et al. Dis Model Mech 2016)
+      [verified_snippet]
+- breed: breed:labrador_retriever
+  condition: condition:atopic_dermatitis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MSD Vet Manual breed list [verified_snippet]
+- breed: breed:labrador_retriever
+  condition: condition:cystinuria
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Type I-A (SLC3A1) reported in Labradors; UC Davis VGL test https://vgl.ucdavis.edu/test/cystinuria-type-ia-labrador
+      [verified_snippet]
+- breed: breed:golden_retriever
+  condition: condition:hip_dysplasia
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: OFA / Gough & Thomas [unverified_numbers]
+- breed: breed:golden_retriever
+  condition: condition:elbow_dysplasia
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: OFA about 10.1% (1998-2001 birth years); about 11.6% affected through 2003 (GRCA) [verified_snippet]
+- breed: breed:golden_retriever
+  condition: condition:cranial_cruciate_ligament_rupture
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'VetCompass: golden retriever x1.69 risk (verified_snippet)'
+- breed: breed:golden_retriever
+  condition: condition:atopic_dermatitis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MSD Vet Manual [verified_snippet]
+- breed: breed:golden_retriever
+  condition: condition:hypothyroidism
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Breed lists; Gough & Thomas [verified_snippet]
+- breed: breed:golden_retriever
+  condition: condition:dilated_cardiomyopathy
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Taurine-deficient DCM over-represented in goldens; diet-associated (Kaplan JL et al. PLoS One 2018, PMC6292607;
+      family report PMID 16141179) [verified_snippet]
+- breed: breed:golden_retriever
+  condition: condition:osteoarthritis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: secondary to dysplasia; Gough & Thomas [unverified_numbers]
+- breed: breed:golden_retriever
+  condition: condition:obesity
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:german_shepherd
+  condition: condition:exocrine_pancreatic_insufficiency
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Pancreatic acinar atrophy; GSDs make up about two-thirds of PAA-EPI cases (MSD Vet Manual; Batchelor DJ et al.
+      JVIM 2007) [verified_snippet]
+- breed: breed:german_shepherd
+  condition: condition:hip_dysplasia
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: OFA / Gough & Thomas [unverified_numbers]
+- breed: breed:german_shepherd
+  condition: condition:elbow_dysplasia
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'OFA: 17.2% (1998-2001 birth years); 18.9% of 36,523 evaluations (later data) [verified_snippet]'
+- breed: breed:german_shepherd
+  condition: condition:chronic_enteropathy
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: IBD / antibiotic-responsive enteropathy over-represented (Gough & Thomas 2018) [unverified]
+- breed: breed:german_shepherd
+  condition: condition:atopic_dermatitis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:german_shepherd
+  condition: condition:mdr1_mutation
+  strength: reported
+  sources:
+  - source:wsu_mdr1_breeds
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'WSU: about 10% (white/long-haired lines more often) [verified_snippet]'
+- breed: breed:german_shepherd
+  condition: condition:osteoarthritis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: secondary to HD/ED [unverified]
+- breed: breed:german_shepherd
+  condition: condition:epilepsy
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:dalmatian
+  condition: condition:urate_urolithiasis
+  strength: strong
+  genetic_test: SLC2A9 (UC Davis VGL)
+  sources:
+  - source:bannasch_2008_slc2a9
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: All Dalmatians are homozygous for SLC2A9 hyperuricosuria (Bannasch D et al. PLoS Genet 2008, PMID 18989453) [verified_snippet]
+- breed: breed:dalmatian
+  condition: condition:atopic_dermatitis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MSD Vet Manual breed list [verified_snippet]
+- breed: breed:dalmatian
+  condition: condition:copper_storage_hepatopathy
+  strength: moderate
+  genetic_test: COMMD1 (Bedlington); ATP7B/ATP7A research tests
+  sources:
+  - source:webster_2019_acvim_copper
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Copper-associated hepatitis recognised in Dalmatians (ACVIM consensus / Fieten reviews) [verified_snippet]
+- breed: breed:bedlington_terrier
+  condition: condition:copper_storage_hepatopathy
+  strength: strong
+  genetic_test: COMMD1 (Bedlington); ATP7B/ATP7A research tests
+  sources:
+  - source:webster_2019_acvim_copper
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'Autosomal recessive COMMD1 (MURR1) deletion impairs biliary copper excretion (van de Sluis B et al. Hum Mol Genet
+      2002, citation_from_memory: true; VIN/Auburn proceedings verified_snippet) [verified_snippet]'
+- breed: breed:doberman_pinscher
+  condition: condition:dilated_cardiomyopathy
+  strength: strong
+  sources:
+  - source:wess_2010_doberman_dcm
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Cumulative prevalence 58.2% in European Dobermans; 44% at >8 y (Wess G et al. JVIM 2010) [verified_snippet]
+- breed: breed:doberman_pinscher
+  condition: condition:hypothyroidism
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: OR 17.02 vs other breeds (VetCompass/UK primary care hypothyroidism study, Canine Genet Epidemiol 2022, doi:10.1186/s40575-022-00123-8)
+      [verified_snippet]
+- breed: breed:doberman_pinscher
+  condition: condition:copper_storage_hepatopathy
+  strength: moderate
+  genetic_test: COMMD1 (Bedlington); ATP7B/ATP7A research tests
+  sources:
+  - source:webster_2019_acvim_copper
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: ATP7B c.4358G>A associated with raised hepatic copper (Fieten et al.) [verified_snippet]
+- breed: breed:doberman_pinscher
+  condition: condition:cranial_cruciate_ligament_rupture
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:cavalier_king_charles_spaniel
+  condition: condition:myxomatous_mitral_valve_disease
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Up to about 90% affected by 10 years; about 20x more prevalent than in other breeds (UFAW Genetic Welfare Problems)
+      [verified_snippet]
+- breed: breed:cavalier_king_charles_spaniel
+  condition: condition:obesity
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:miniature_schnauzer
+  condition: condition:hyperlipidemia
+  strength: strong
+  sources:
+  - source:xenoulis_2007_schnauzer_htg
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Primary hypertriglyceridaemia in 32.8% of 192 US Mini Schnauzers, rising with age (Xenoulis PG et al. JVIM 2007)
+      [verified_snippet]
+- breed: breed:miniature_schnauzer
+  condition: condition:pancreatitis_history
+  strength: strong
+  sources:
+  - source:xenoulis_2010_htg_pancreatitis
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Severe HTG (>862 mg/dL) gave 4.5x odds of raised cPLI. After pancreatitis, 71% vs 33% had HTG (OR 5.02) (Xenoulis
+      PG et al. JAAHA 2010, PMID 20610694) [verified_snippet]
+- breed: breed:miniature_schnauzer
+  condition: condition:calcium_oxalate_urolithiasis
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Odds of CaOx uroliths 11.8x (UMVTH) / 2x (MUC) vs other breeds [verified_snippet]
+- breed: breed:miniature_schnauzer
+  condition: condition:diabetes_mellitus
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:miniature_schnauzer
+  condition: condition:hypothyroidism
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Breed lists [verified_snippet]
+- breed: breed:yorkshire_terrier
+  condition: condition:pancreatitis_history
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Increased risk of fatal acute pancreatitis (Hess RS et al. JAVMA 1999;214(1):46-51) [verified_snippet]
+- breed: breed:yorkshire_terrier
+  condition: condition:calcium_oxalate_urolithiasis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Listed with Lhasa, Schnauzers, Bichon, Shih Tzu as CaOx-predisposed (IVIS Veterinary Focus 28.2 urolith review)
+      [verified_snippet]
+- breed: breed:yorkshire_terrier
+  condition: condition:myxomatous_mitral_valve_disease
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: small-breed predisposition; Gough & Thomas [unverified]
+- breed: breed:boxer
+  condition: condition:dilated_cardiomyopathy
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Boxer cardiomyopathy is mostly arrhythmogenic right ventricular cardiomyopathy (ARVC, STRN-linked; PMC4433500).
+      ARVC is not in the ID list; mapped here to the closest cardiomyopathy ID. Some Boxers progress to a DCM phenotype (unverified).
+      [verified_snippet]
+- breed: breed:boxer
+  condition: condition:hypothyroidism
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: OR 10.44 (Canine Genet Epidemiol 2022) [verified_snippet]
+- breed: breed:boxer
+  condition: condition:chronic_enteropathy
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Granulomatous (histiocytic ulcerative) colitis of Boxers, associated with invasive E. coli [verified_snippet]
+- breed: breed:boxer
+  condition: condition:atopic_dermatitis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MSD Vet Manual [verified_snippet]
+- breed: breed:boxer
+  condition: condition:cranial_cruciate_ligament_rupture
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:west_highland_white_terrier
+  condition: condition:atopic_dermatitis
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MSD Vet Manual breed list [verified_snippet]
+- breed: breed:west_highland_white_terrier
+  condition: condition:copper_storage_hepatopathy
+  strength: moderate
+  genetic_test: COMMD1 (Bedlington); ATP7B/ATP7A research tests
+  sources:
+  - source:webster_2019_acvim_copper
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Copper-associated hepatitis recognised (VIN, ACVIM) [verified_snippet]
+- breed: breed:west_highland_white_terrier
+  condition: condition:cranial_cruciate_ligament_rupture
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: VetCompass x1.80 risk [verified_snippet]
+- breed: breed:west_highland_white_terrier
+  condition: condition:calcium_oxalate_urolithiasis
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:shih_tzu
+  condition: condition:calcium_oxalate_urolithiasis
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Hypercalciuria associated with CaOx stones in Shih Tzus; males form oxalate (MUC literature) [verified_snippet]
+- breed: breed:shih_tzu
+  condition: condition:atopic_dermatitis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MSD Vet Manual [verified_snippet]
+- breed: breed:shih_tzu
+  condition: condition:chronic_kidney_disease
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Hereditary renal dysplasia seen most often in Shih Tzu (juvenile CKD) (VIN) [verified_snippet]
+- breed: breed:shih_tzu
+  condition: condition:struvite_urolithiasis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: females tend to form struvite (MUC) [verified_snippet]
+- breed: breed:english_bulldog
+  condition: condition:hip_dysplasia
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'OFA: 71.6% dysplastic (n=564, 1974-2013), worst-ranked breed (OFA data via secondary source; radiograph submission
+      bias) [verified_snippet]'
+- breed: breed:english_bulldog
+  condition: condition:elbow_dysplasia
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'OFA: 32.7% (n=159) [verified_snippet]'
+- breed: breed:english_bulldog
+  condition: condition:cystinuria
+  strength: strong
+  genetic_test: SLC3A1/SLC7A9 (UC Davis VGL)
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: SLC3A1 and SLC7A9 variants (Harnevik 2006; Brons AK et al. JVIM 2013) [verified_snippet]
+- breed: breed:english_bulldog
+  condition: condition:urate_urolithiasis
+  strength: moderate
+  genetic_test: SLC2A9 (UC Davis VGL)
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'SLC2A9 allele freq 0.16; about 3% affected, 25.5% carriers (Karmi N et al. JVIM 2010, citation_from_memory: true;
+      PMC5551899 table, verified_snippet)'
+- breed: breed:english_bulldog
+  condition: condition:atopic_dermatitis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas / breed lists [unverified]
+- breed: breed:english_bulldog
+  condition: condition:osteoarthritis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: secondary to HD [unverified]
+- breed: breed:english_bulldog
+  condition: condition:obesity
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:dachshund
+  condition: condition:obesity
+  strength: moderate
+  genetic_test: POMC deletion (Labrador)
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas; DachsLife 2015 lifestyle factors (Packer RMA et al. PLoS One 2016, PMC5097381) [unverified_numbers]
+- breed: breed:dachshund
+  condition: condition:diabetes_mellitus
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:dachshund
+  condition: condition:hypothyroidism
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: historical breed lists [verified_snippet]
+- breed: breed:dachshund
+  condition: condition:myxomatous_mitral_valve_disease
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: small-breed MMVD; Gough & Thomas [unverified]
+- breed: breed:dachshund
+  condition: condition:cystinuria
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: older reports (citation not verified) [unverified]
+- breed: breed:border_collie
+  condition: condition:epilepsy
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'Predisposed to idiopathic epilepsy with often poor outcome (Hülsmeyer V et al. JVIM 2010, citation_from_memory:
+      true; snippet verified) [verified_snippet]'
+- breed: breed:border_collie
+  condition: condition:mdr1_mutation
+  strength: reported
+  sources:
+  - source:wsu_mdr1_breeds
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'WSU: <5% of Border Collies [verified_snippet]'
+- breed: breed:border_collie
+  condition: condition:hip_dysplasia
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:collie
+  condition: condition:mdr1_mutation
+  strength: strong
+  genetic_test: ABCB1 (WSU VCPL)
+  sources:
+  - source:wsu_mdr1_breeds
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'WSU: about 70% of Collies carry the MDR1 mutation [verified_snippet]'
+- breed: breed:collie
+  condition: condition:exocrine_pancreatic_insufficiency
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: PAA-EPI in rough collies (MSD Vet Manual) [verified_snippet]
+- breed: breed:great_dane
+  condition: condition:dilated_cardiomyopathy
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'Over-represented; familial, possibly X-linked (Meurs KM et al. JVIM 2001, citation_from_memory: true; Cornell/LMU
+      summaries verified_snippet) [verified_snippet]'
+- breed: breed:great_dane
+  condition: condition:hip_dysplasia
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas / OFA [unverified_numbers]
+- breed: breed:great_dane
+  condition: condition:osteoarthritis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: giant-breed joint load [unverified]
+- breed: breed:great_dane
+  condition: condition:hypothyroidism
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas [unverified]
+- breed: breed:persian
+  condition: condition:polycystic_kidney_disease
+  strength: strong
+  genetic_test: PKD1 (UC Davis VGL)
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'PKD1 c.10063C>A, autosomal dominant. Prevalence 16-49% worldwide in Persians/related breeds (UK 49%, Germany/Australia
+      43%, France 42%, Italy 41%, Japan 40%) (PMC review, verified_snippet; Lyons LA et al. JASN 2004, citation_from_memory:
+      true)'
+- breed: breed:persian
+  condition: condition:chronic_kidney_disease
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: secondary to PKD; breed lists [verified_snippet]
+- breed: breed:persian
+  condition: condition:calcium_oxalate_urolithiasis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Higher CaOx risk vs expected breed frequency (Grauer, Today's Vet Practice) [verified_snippet]
+- breed: breed:persian
+  condition: condition:struvite_urolithiasis
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Higher struvite risk at the California lab [verified_snippet]
+- breed: breed:maine_coon
+  condition: condition:hypertrophic_cardiomyopathy
+  strength: strong
+  genetic_test: MYBPC3 A31P (Maine Coon) / R820W (Ragdoll)
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MYBPC3 A31P. About 34% heterozygous in tested, non-phenotyped cats (UC Davis VGL https://vgl.ucdavis.edu/test/maine-coon-hcm)
+      [verified_snippet]
+- breed: breed:maine_coon
+  condition: condition:hip_dysplasia
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 37.4% of 5,038 pedigree Maine Coons (Swedish SLU study); OFA feline registry 24.9% [verified_snippet]
+- breed: breed:maine_coon
+  condition: condition:osteoarthritis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: secondary to HD [unverified]
+- breed: breed:maine_coon
+  condition: condition:chronic_kidney_disease
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: older breed lists [verified_snippet]
+- breed: breed:maine_coon
+  condition: condition:obesity
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: large-frame breed; unverified
+- breed: breed:siamese
+  condition: condition:renal_amyloidosis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Familial amyloidosis in Siamese/Oriental lines is mainly HEPATIC, with renal involvement possible (UFAW). Mapped
+      to renal_amyloidosis as the closest ID; consider adding 'hepatic_amyloidosis'. [verified_snippet]
+- breed: breed:siamese
+  condition: condition:chronic_kidney_disease
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: older breed lists [verified_snippet]
+- breed: breed:siamese
+  condition: condition:diabetes_mellitus
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Gough & Thomas (Siamese and Burmese reported in some populations) [unverified]
+- breed: breed:abyssinian
+  condition: condition:renal_amyloidosis
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Familial AA amyloidosis (renal medullary) in Abyssinians; not a simple monogenic trait (Sci Rep 2021 multi-omic
+      study, PMC8052419) [verified_snippet]
+- breed: breed:abyssinian
+  condition: condition:chronic_kidney_disease
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: secondary to amyloidosis; breed lists [verified_snippet]
+- breed: breed:burmese
+  condition: condition:diabetes_mellitus
+  strength: strong
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: OR 3.0 (95% CI 2.0-4.4) vs crossbreds in 193,435 UK cats (O'Neill DG et al. JVIM 2016;30(4):964) [verified_snippet]
+- breed: breed:burmese
+  condition: condition:calcium_oxalate_urolithiasis
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Some reports; MUC lists Burmese as LOWER struvite risk. CaOx predisposition unverified [unverified]
+- breed: breed:burmese
+  condition: condition:obesity
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: unverified
+- breed: breed:ragdoll
+  condition: condition:hypertrophic_cardiomyopathy
+  strength: strong
+  genetic_test: MYBPC3 A31P (Maine Coon) / R820W (Ragdoll)
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MYBPC3 R820W (Ragdoll-specific) (UC Davis VGL https://vgl.ucdavis.edu/node/2171) [verified_snippet]
+- breed: breed:ragdoll
+  condition: condition:struvite_urolithiasis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: MUC breed predilection for struvite [verified_snippet]
+- breed: breed:ragdoll
+  condition: condition:calcium_oxalate_urolithiasis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: listed among CaOx-predisposed breeds [verified_snippet]
+- breed: breed:ragdoll
+  condition: condition:obesity
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 6.91% recorded obese (VetCompass Ragdoll) [verified_snippet]
+- breed: breed:domestic_shorthair
+  condition: condition:obesity
+  strength: moderate
+  genetic_test: POMC deletion (Labrador)
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'Common in UK primary care cats (O''Neill DG et al. ''Prevalence of disorders recorded in cats attending primary-care
+      veterinary practices in England'' Vet J 2014, citation_from_memory: true) [unverified_numbers]'
+- breed: breed:domestic_shorthair
+  condition: condition:chronic_kidney_disease
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'Age-related; a leading cause of death in older cats (VetCompass longevity work, citation_from_memory: true) [unverified_numbers]'
+- breed: breed:domestic_shorthair
+  condition: condition:diabetes_mellitus
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Period prevalence 0.58% in English cats (O'Neill 2016) [verified_snippet]
+- breed: breed:domestic_shorthair
+  condition: condition:struvite_urolithiasis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: DSH among MUC struvite-predisposed groups [verified_snippet]
+- breed: breed:domestic_shorthair
+  condition: condition:osteoarthritis
+  strength: moderate
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: 'Radiographic DJD in about 90% of cats >12 y (Hardie EM et al. JAVMA 2002, citation_from_memory: true) [unverified]'
+- breed: breed:domestic_shorthair
+  condition: condition:cognitive_dysfunction
+  strength: reported
+  sources:
+  - source:gough_thomas_2018
+  curation:
+    status: draft
+    notes: Age-related in senior cats >10 y (unverified prevalence) [unverified]
